@@ -9,7 +9,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const navList = document.querySelector('.nav-list');
 
   if (navToggle && navList) {
-    navToggle.addEventListener('click', function() {
+    navToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
       navList.classList.toggle('open');
       const isOpen = navList.classList.contains('open');
       navToggle.setAttribute('aria-expanded', isOpen);
@@ -21,6 +22,16 @@ document.addEventListener('DOMContentLoaded', function() {
         navList.classList.remove('open');
         navToggle.setAttribute('aria-expanded', 'false');
       }
+    });
+
+    // Close nav when a link is clicked (mobile)
+    navList.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        if (window.innerWidth <= 860) {
+          navList.classList.remove('open');
+          navToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
     });
   }
 
