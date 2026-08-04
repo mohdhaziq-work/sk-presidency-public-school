@@ -48,21 +48,21 @@ body{font-family:var(--font);background:linear-gradient(160deg,#0f172a,#1e293b,#
       <div class="ig"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><input type="password" id="mc" placeholder="Security Access Code" autocomplete="off"></div>
       <div class="ig"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><input type="password" id="mp" placeholder="Management Password" autocomplete="off"></div>
       <button type="submit" class="btn" id="bm"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Access Panel</button>
-      <p class="note">Code: <b>SKPPS@2024#ADMIN</b> | Pass: <b>skpps#admin2024</b></p>
+      
     </form>
 
     <form id="ft" class="tc" onsubmit="return lt(event)">
       <div class="ig"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><input type="text" id="tu" placeholder="Teacher Username" autocomplete="off"></div>
       <div class="ig"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><input type="password" id="tp" placeholder="Password" autocomplete="off"></div>
       <button type="submit" class="btn" id="bt"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/></svg>Sign In</button>
-      <p class="note">User: <b>teacher1</b> | Pass: <b>teacher123</b></p>
+      
     </form>
   </div>
   <div class="ft"><a href="index.html">School Website</a> | Staff Only</div>
 </div>
 
 <script>
-var A={mgmt:{code:'SKPPS@2024#ADMIN',pass:'skpps#admin2024'},teachers:[{u:'teacher1',p:'teacher123',n:'Mrs. Sharma'},{u:'teacher2',p:'teacher123',n:'Mr. Verma'},{u:'teacher3',p:'teacher123',n:'Mrs. Singh'}]};
+var A={mgmt:{code:'SKPPS@2024#ADMIN',pass:'skpps#admin2024'},teachers:[]};
 function st(t){document.querySelectorAll('.tabs button').forEach(function(b,i){b.classList.toggle('active',(t==='mgmt'&&i===0)||(t==='teacher'&&i===1))});document.getElementById('fm').classList.toggle('active',t==='mgmt');document.getElementById('ft').classList.toggle('active',t==='teacher');he()}
 function se(m){document.getElementById('et').textContent=m;document.getElementById('err').classList.add('show')}
 function he(){document.getElementById('err').classList.remove('show')}
@@ -71,7 +71,7 @@ function lm(e){e.preventDefault();var c=document.getElementById('mc').value.trim
 setTimeout(function(){if(c===A.mgmt.code&&p===A.mgmt.pass){sessionStorage.setItem('skpps_role','mgmt');sessionStorage.setItem('skpps_name','Management');sessionStorage.setItem('skpps_auth','1');sessionStorage.setItem('skpps_time',Date.now());location.href='management/index.html'}else{se('Invalid credentials');b.disabled=false;b.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Access Panel'}},600);return false}
 
 function lt(e){e.preventDefault();var u=document.getElementById('tu').value.trim(),p=document.getElementById('tp').value.trim();if(!u||!p){se('Please fill all fields');return false}he();var b=document.getElementById('bt');b.disabled=true;b.innerHTML='<div class="spin" style="display:block"></div> Signing in...';
-setTimeout(function(){var f=null;for(var i=0;i<A.teachers.length;i++){if(A.teachers[i].u===u&&A.teachers[i].p===p){f=A.teachers[i];break}}
+setTimeout(function(){var f=null;var localT=JSON.parse(localStorage.getItem('skpps_teachers')||'[]');var allT=A.teachers.concat(localT);for(var i=0;i<allT.length;i++){if(allT[i].u===u&&allT[i].p===p){f=allT[i];break}}
 if(f){sessionStorage.setItem('skpps_role','teacher');sessionStorage.setItem('skpps_name',f.n);sessionStorage.setItem('skpps_user',f.u);sessionStorage.setItem('skpps_auth','1');sessionStorage.setItem('skpps_time',Date.now());location.href='staff/index.html'}else{se('Invalid teacher credentials');b.disabled=false;b.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/></svg>Sign In'}},600);return false}
 </script>
 </body>
