@@ -63,7 +63,7 @@ async function saveConfig(){
     var ok1=await loadScript('https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js');
     var ok2=await loadScript('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js');
     if(!ok1||!ok2){show('Could not load Firebase SDK. Check your internet connection.','err');b.disabled=false;b.textContent='Initialize Firebase';return}
-    if(!firebase.apps.length)firebase.initializeApp(cfg);
+    if(!firebase.apps.length)if(!firebase.apps.length) firebase.initializeApp(cfg);
     var db=firebase.firestore();
     await db.collection('settings').doc('_test_').set({test:Date.now()});
     localStorage.setItem('skpps_firebase_config',JSON.stringify(cfg));
@@ -78,7 +78,7 @@ async function saveMgmtCreds(){
   if(!code||!pass||code.length<6||pass.length<6){show('Both fields required (min 6 characters each)','err');b.disabled=false;b.textContent='Save & Complete Setup';return}
   try{
     var cfg=JSON.parse(localStorage.getItem('skpps_firebase_config'));
-    if(!firebase.apps.length)firebase.initializeApp(cfg);
+    if(!firebase.apps.length)if(!firebase.apps.length) firebase.initializeApp(cfg);
     var db=firebase.firestore();
     await db.collection('settings').doc('management').set({security_code:code,password:pass,updated_at:new Date().toISOString()});
     localStorage.setItem('skpps_mgmt_config',JSON.stringify({code:code,pass:pass}));

@@ -130,7 +130,7 @@ async function loginMgmt(e) {
     // 1) Try Firestore
     if (typeof FIREBASE_CONFIG !== "undefined" && FIREBASE_CONFIG.apiKey && typeof initFirebase === "function") {
       try {
-        var fb = await initFirebase();
+        var fb = await _fbReady();
         if (fb && fb.db) {
           var doc = await fb.db.collection("settings").doc("management").get();
           if (doc.exists) {

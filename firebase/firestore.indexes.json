@@ -1,0 +1,14 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "students",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "is_active", "order": "ASCENDING" },
+        { "fieldPath": "class", "order": "ASCENDING" },
+        { "fieldPath": "roll_no", "order": "ASCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}
