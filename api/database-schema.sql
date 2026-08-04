@@ -151,18 +151,46 @@ CREATE TABLE IF NOT EXISTS admin_users (
 ) ENGINE=InnoDB;
 
 -- ============================================================
--- SAMPLE DATA - Insert a test student
--- Password = DOB format: 01012010 (1st Jan 2010)
+-- SAMPLE DATA
 -- ============================================================
-INSERT INTO students (student_id, admission_no, roll_no, full_name, father_name, date_of_birth,
-    gender, class, section, house, parent_phone, password, admission_date)
-VALUES
-('SKPPS2024001', 'A2024001', 1, 'Aarav Sharma', 'Rajesh Sharma', '2010-01-01',
- 'Male', 'IX', 'A', 'Earth', '8601735757', '01012010', '2024-04-01');
 
-INSERT INTO admin_users (username, password_hash, full_name, role)
-VALUES ('admin', '$2y$10$dummyhashreplacewithrealhash', 'School Administrator', 'Super Admin');
--- NOTE: Generate real password hash using: password_hash('yourpassword', PASSWORD_BCRYPT)
+-- Test Student 1 (From ID Card)
+INSERT INTO students (student_id, admission_no, roll_no, full_name, father_name, mother_name, date_of_birth,
+    gender, class, section, house, blood_group, parent_phone, parent_email, password, admission_date, is_active)
+VALUES
+('SKPPS2024001', 'A2024001', 12, 'Mohd Haziq', 'Mohd Work', 'Shabana',
+ '2016-03-15', 'Male', 'IV', 'A', 'Earth', 'B+', '8601735757', 'parent@email.com',
+ '15032016', '2024-04-01', 1);
+
+-- Test Student 2 (Sample)
+INSERT INTO students (student_id, admission_no, roll_no, full_name, father_name, mother_name, date_of_birth,
+    gender, class, section, house, blood_group, parent_phone, parent_email, password, admission_date, is_active)
+VALUES
+('SKPPS2024002', 'A2024002', 5, 'Deepanshi Gupta', 'Rajesh Gupta', 'Sunita Gupta',
+ '2014-08-20', 'Female', 'VIII', 'B', 'Water', 'O+', '8601738180', 'gupta@email.com',
+ '20082014', '2024-04-01', 1);
+
+-- Test attendance for student 1
+INSERT INTO attendance (student_id, attendance_date, status) VALUES
+('SKPPS2024001', CURDATE(), 'Present'),
+('SKPPS2024001', DATE_SUB(CURDATE(), INTERVAL 1 DAY), 'Present'),
+('SKPPS2024001', DATE_SUB(CURDATE(), INTERVAL 2 DAY), 'Present'),
+('SKPPS2024001', DATE_SUB(CURDATE(), INTERVAL 3 DAY), 'Late'),
+('SKPPS2024001', DATE_SUB(CURDATE(), INTERVAL 4 DAY), 'Present');
+
+-- Test timetable for Class IV-A Monday
+INSERT INTO timetable (class, section, day_of_week, period_no, subject, teacher_name, start_time, end_time, academic_year) VALUES
+('IV', 'A', 1, 1, 'English', 'Mrs. Sharma', '08:00', '08:45', '2025-2026'),
+('IV', 'A', 1, 2, 'Mathematics', 'Mr. Verma', '08:45', '09:30', '2025-2026'),
+('IV', 'A', 1, 3, 'Hindi', 'Mrs. Singh', '09:45', '10:30', '2025-2026'),
+('IV', 'A', 1, 4, 'Science', 'Mr. Kumar', '10:30', '11:15', '2025-2026'),
+('IV', 'A', 1, 5, 'Social Studies', 'Mrs. Gupta', '11:30', '12:15', '2025-2026'),
+('IV', 'A', 1, 6, 'Computer', 'Mr. Patel', '12:15', '13:00', '2025-2026');
+
+-- Test notice
+INSERT INTO notices (title, content, target_class, priority, expires_at) VALUES
+('Parent-Teacher Meeting', 'PTM scheduled for next Saturday at 10:00 AM. All parents requested to attend.', 'All', 'High', DATE_ADD(CURDATE(), INTERVAL 7 DAY)),
+('Exam Schedule Released', 'Term-1 examination will begin from next month. Check timetable for details.', 'IV,V,VI,VII,VIII', 'Urgent', DATE_ADD(CURDATE(), INTERVAL 30 DAY));
 
 -- ============================================================
 -- VERIFY
