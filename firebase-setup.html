@@ -1,92 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Firebase Setup - SKPPS</title>
 <style>
-:root{--p:#1A73E8;--w:#fff;--g50:#F8F9FA;--g200:#E8EAED;--g300:#DADCE0;--g600:#80868B;--g700:#5F6368;--g900:#202124;--rs:8px;--rm:14px;--f:'Segoe UI','Roboto',sans-serif}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--f);background:linear-gradient(160deg,#0f172a,#1e293b,#0d1b2a);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:16px}
-.card{background:white;border-radius:var(--rm);width:100%;max-width:560px;padding:clamp(24px,4vw,36px);box-shadow:0 20px 50px rgba(0,0,0,0.2)}
-.card h2{font-size:22px;font-weight:700;margin-bottom:4px;color:var(--g900)}
-.card p{font-size:13px;color:var(--g600);margin-bottom:24px}
-.ol{background:#F8F9FA;padding:12px;border-radius:var(--rs);font-size:12px;margin-bottom:16px;border-left:3px solid var(--p)}
-.ol li{margin-left:16px;margin-bottom:4px}
-.fg{margin-bottom:14px}.fg label{display:block;font-size:12px;font-weight:600;color:var(--g700);margin-bottom:4px}
-.fg input{width:100%;padding:10px 12px;border:1.5px solid var(--g300);border-radius:var(--rs);font-size:13px;font-family:var(--f)}
-.fg input:focus{outline:none;border-color:var(--p);box-shadow:0 0 0 3px rgba(26,115,232,0.1)}
-.btn{width:100%;padding:12px;background:var(--p);color:white;border:none;border-radius:var(--rs);font-size:14px;font-weight:600;cursor:pointer;font-family:var(--f)}
-.btn:hover{opacity:0.9}.btn:disabled{opacity:0.6;cursor:default}
-.alert{padding:10px 14px;border-radius:var(--rs);font-size:12px;margin:12px 0}.aok{background:#ECFDF5;color:#059669;border-left:3px solid #059669}.aerr{background:#FEF2F2;color:#DC2626;border-left:3px solid #DC2626}
-.mt2{margin-top:12px}#step2{display:none}.spin{width:14px;height:14px;border:2px solid rgba(255,255,255,0.3);border-top-color:white;border-radius:50%;animation:spin 0.7s linear infinite;display:none;margin-right:6px}
-@keyframes spin{to{transform:rotate(360deg)}}
-</style>
-</head>
-<body>
-<div class="card">
-  <h2>One-Time Firebase Setup</h2>
-  <p>Configure your Firebase project once. Credentials are stored securely in your browser - never committed to GitHub.</p>
-
-  <div class="ol">
-    <strong>Before you begin:</strong>
-    <li>Go to <a href="https://console.firebase.google.com" target="_blank">console.firebase.google.com</a></li>
-    <li>Create a project → Enable <strong>Cloud Firestore</strong></li>
-    <li>Project Settings → Your apps → Web app → Copy config</li>
-  </div>
-
-  <div id="step1">
-    <div class="fg"><label>apiKey</label><input id="apiKey" placeholder="Paste from Firebase Console"></div>
-    <div class="fg"><label>authDomain</label><input id="authDomain" placeholder="project.firebaseapp.com"></div>
-    <div class="fg"><label>projectId</label><input id="projectId" placeholder="skpps-school"></div>
-    <div class="fg"><label>storageBucket</label><input id="storageBucket" placeholder="project.appspot.com"></div>
-    <div class="fg"><label>messagingSenderId</label><input id="messagingSenderId" placeholder="000000000000"></div>
-    <div class="fg"><label>appId</label><input id="appId" placeholder="1:000:web:abc"></div>
-    <button class="btn" id="btnStart" onclick="saveConfig()">Initialize Firebase</button>
-  </div>
-
-  <div id="step2">
-    <div class="fg"><label>Management Security Code</label><input id="mgmtCode" placeholder="Choose a secure code"></div>
-    <div class="fg"><label>Management Password</label><input id="mgmtPass" type="password" placeholder="Choose a strong password"></div>
-    <button class="btn mt2" id="btnSave" onclick="saveMgmtCreds()">Save & Complete Setup</button>
-  </div>
-  <div id="msg"></div>
-</div>
-
+:root{--p:#1A73E8;--hg:#27AE60;--w:#fff;--g50:#F8F9FA;--g200:#E8EAED;--g300:#DADCE0;--g500:#9AA0A6;--g600:#80868B;--g700:#5F6368;--g900:#202124;--r:8px;--rm:14px;--f:'Segoe UI','Roboto',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:var(--f);background:linear-gradient(160deg,#0f172a,#1e293b,#0d1b2a);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:16px}
+.card{background:white;border-radius:var(--rm);width:100%;max-width:520px;padding:clamp(20px,4vw,32px);box-shadow:0 20px 50px rgba(0,0,0,.2);animation:fadeIn .5s}
+.card h2{font-size:20px;font-weight:700;margin-bottom:4px}.card p{font-size:12px;color:var(--g600);margin-bottom:16px}
+.ol{background:var(--g50);padding:10px 14px;border-radius:var(--r);font-size:11px;margin-bottom:14px;border-left:3px solid var(--p)}
+.ol li{margin-left:14px;margin-bottom:3px}
+.fg{margin-bottom:10px}.fg label{display:block;font-size:11px;font-weight:600;color:var(--g700);margin-bottom:2px}.fg input{width:100%;padding:9px 10px;border:1.5px solid var(--g300);border-radius:var(--r);font-size:12px;font-family:inherit}.fg input:focus{outline:none;border-color:var(--p);box-shadow:0 0 0 3px rgba(26,115,232,.08)}
+.btn{width:100%;padding:11px;background:var(--p);color:white;border:none;border-radius:var(--r);font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s}.btn:hover{opacity:.9}.btn:disabled{opacity:.5;cursor:default}
+.btn-g{background:var(--hg)}.alert{padding:10px 14px;border-radius:var(--r);font-size:11px;margin-top:10px}.aok{background:#ECFDF5;color:#059669;border-left:3px solid #059669}.aerr{background:#FEF2F2;color:#DC2626;border-left:3px solid #DC2626}
+.mt2{margin-top:10px}.spin{width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:white;border-radius:50%;animation:spin .7s linear infinite;display:none;margin-right:6px}#s2{display:none}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}@keyframes spin{to{transform:rotate(360deg)}}
+</style></head><body>
+<div class="card"><h2>Firebase Setup</h2><p>Configure your Firebase project once. Credentials are stored in your browser and Firestore - never committed to GitHub.</p>
+<div class="ol"><strong>Before you begin:</strong>
+<li>Go to <a href="https://console.firebase.google.com" target="_blank">console.firebase.google.com</a></li>
+<li>Create a project → Enable <strong>Cloud Firestore</strong> (Test mode)</li>
+<li>Project Settings → Web app → Copy the config values below</li></div>
+<div id="s1"><div class="fg"><label>apiKey</label><input id="apiKey" placeholder="AIzaSy..."></div>
+<div class="fg"><label>authDomain</label><input id="authDomain" placeholder="project.firebaseapp.com"></div>
+<div class="fg"><label>projectId</label><input id="projectId" placeholder="skpps-school"></div>
+<div class="fg"><label>storageBucket</label><input id="storageBucket" placeholder="project.appspot.com"></div>
+<div class="fg"><label>messagingSenderId</label><input id="messagingSenderId" placeholder="000000000000"></div>
+<div class="fg"><label>appId</label><input id="appId" placeholder="1:000:web:abc"></div>
+<button class="btn" id="btn1" onclick="step1()">Initialize Firebase</button></div>
+<div id="s2"><div class="fg"><label>Management Security Code</label><input id="mgmtCode" placeholder="Choose a secure code (min 6 chars)"></div>
+<div class="fg"><label>Management Password</label><input type="password" id="mgmtPass" placeholder="Choose a strong password (min 6 chars)"></div>
+<button class="btn btn-g mt2" id="btn2" onclick="step2()">Save & Complete Setup</button></div>
+<div id="msg"></div></div>
 <script>
-function loadScript(src){return new Promise(function(r){var s=document.createElement('script');s.src=src;s.onload=r;s.onerror=function(){r(false)};document.head.appendChild(s)})}
-async function saveConfig(){
-  var b=document.getElementById('btnStart');b.disabled=true;b.innerHTML='<div class="spin" style="display:block"></div>Initializing...';
-  var cfg={apiKey:document.getElementById('apiKey').value.trim(),authDomain:document.getElementById('authDomain').value.trim(),projectId:document.getElementById('projectId').value.trim(),storageBucket:document.getElementById('storageBucket').value.trim(),messagingSenderId:document.getElementById('messagingSenderId').value.trim(),appId:document.getElementById('appId').value.trim()};
-  if(!cfg.apiKey||!cfg.projectId){show('Please fill all Firebase config fields','err');b.disabled=false;b.textContent='Initialize Firebase';return}
-
-  try{
-    var ok1=await loadScript('https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js');
-    var ok2=await loadScript('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js');
-    if(!ok1||!ok2){show('Could not load Firebase SDK. Check your internet connection.','err');b.disabled=false;b.textContent='Initialize Firebase';return}
-    if(!firebase.apps.length)if(!firebase.apps.length) firebase.initializeApp(cfg);
-    var db=firebase.firestore();
-    await db.collection('settings').doc('_test_').set({test:Date.now()});
-    localStorage.setItem('skpps_firebase_config',JSON.stringify(cfg));
-    show('Firebase connected! Now create management credentials below.','ok');
-    document.getElementById('step1').style.display='none';document.getElementById('step2').style.display='block';
-  }catch(e){show('Error: '+e.message+'. Verify your Firebase config and ensure Firestore is enabled.','err');b.disabled=false;b.textContent='Initialize Firebase'}
-}
-
-async function saveMgmtCreds(){
-  var b=document.getElementById('btnSave');b.disabled=true;b.innerHTML='<div class="spin" style="display:block"></div>Saving...';
-  var code=document.getElementById('mgmtCode').value.trim(),pass=document.getElementById('mgmtPass').value.trim();
-  if(!code||!pass||code.length<6||pass.length<6){show('Both fields required (min 6 characters each)','err');b.disabled=false;b.textContent='Save & Complete Setup';return}
-  try{
-    var cfg=JSON.parse(localStorage.getItem('skpps_firebase_config'));
-    if(!firebase.apps.length)if(!firebase.apps.length) firebase.initializeApp(cfg);
-    var db=firebase.firestore();
-    await db.collection('settings').doc('management').set({security_code:code,password:pass,updated_at:new Date().toISOString()});
-    localStorage.setItem('skpps_mgmt_config',JSON.stringify({code:code,pass:pass}));
-    show('<strong>Setup complete!</strong> Your credentials are stored in Firestore. Access the staff portal now.','ok');
-    document.getElementById('step2').innerHTML='<div class="aok" style="margin-top:12px"><strong>Setup Complete!</strong><br><br>Management credentials saved to Firebase.<br><br><a href="staff-login.html" style="color:#1A73E8;font-weight:600">Go to Staff Login →</a></div>';
-  }catch(e){show('Error saving: '+e.message,'err');b.disabled=false;b.textContent='Save & Complete Setup'}
-}
+function loadJS(src){return new Promise(function(ok){var s=document.createElement('script');s.src=src;s.onload=function(){ok(true)};s.onerror=function(){ok(false)};document.head.appendChild(s)})}
+async function step1(){var b=document.getElementById('btn1'),cfg={apiKey:document.getElementById('apiKey').value.trim(),authDomain:document.getElementById('authDomain').value.trim(),projectId:document.getElementById('projectId').value.trim(),storageBucket:document.getElementById('storageBucket').value.trim(),messagingSenderId:document.getElementById('messagingSenderId').value.trim(),appId:document.getElementById('appId').value.trim()};if(!cfg.apiKey||!cfg.projectId){show('Please fill all Firebase config fields','err');return}b.disabled=true;b.innerHTML='<div class="spin" style="display:block"></div>Connecting...';
+try{var ok=await loadJS('https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js');if(!ok){show('Internet required','err');b.disabled=false;b.textContent='Initialize Firebase';return};await loadJS('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js');if(!firebase.apps.length)firebase.initializeApp(cfg);var db=firebase.firestore();await db.collection('settings').doc('_test').set({test:Date.now()});localStorage.setItem('skpps_firebase_config',JSON.stringify(cfg));show('Firebase connected! Now create management credentials.','ok');document.getElementById('s1').style.display='none';document.getElementById('s2').style.display='block'}catch(e){show('Failed: '+e.message+'. Verify your config and enable Firestore.','err');b.disabled=false;b.textContent='Initialize Firebase'}}
+async function step2(){var b=document.getElementById('btn2'),code=document.getElementById('mgmtCode').value.trim(),pass=document.getElementById('mgmtPass').value.trim();if(!code||!pass||code.length<6||pass.length<6){show('Both fields required (min 6 characters each)','err');return}b.disabled=true;b.innerHTML='<div class="spin" style="display:block"></div>Saving...';
+try{var cfg=JSON.parse(localStorage.getItem('skpps_firebase_config'));if(!firebase.apps.length)firebase.initializeApp(cfg);var db=firebase.firestore();await db.collection('settings').doc('management').set({security_code:code,password:pass,updated_at:new Date().toISOString()});localStorage.setItem('skpps_mgmt_config',JSON.stringify({code:code,pass:pass}));show('<strong>Setup Complete!</strong> Your credentials are saved to Firestore. <a href="staff-login.html" style="color:#1A73E8;font-weight:600">Go to Staff Login →</a>','ok');document.getElementById('s2').innerHTML='<div class="aok" style="margin-top:10px;font-size:13px">Setup complete! <a href="staff-login.html">Go to Staff Login →</a></div>'}catch(e){show('Error: '+e.message,'err');b.disabled=false;b.textContent='Save & Complete Setup'}}
 function show(m,t){document.getElementById('msg').innerHTML='<div class="alert a'+(t==='err'?'err':'ok')+'">'+m+'</div>'}
-</script>
-</body>
-</html>
+</script></body></html>

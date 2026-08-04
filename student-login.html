@@ -1,276 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Student Portal Login - SK Presidency Public School</title>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Portal - SK Presidency Public School</title>
+<script src="firebase/firebase-config.js"></script>
 <style>
-:root {
-  --house-red: #E74C3C; --house-blue: #3498DB; --house-green: #27AE60; --house-yellow: #F39C12;
-  --primary: #1A73E8; --primary-dark: #1557B0; --white: #fff; --gray-50: #F8F9FA;
-  --gray-100: #F1F3F4; --gray-200: #E8EAED; --gray-300: #DADCE0;
-  --gray-500: #9AA0A6; --gray-600: #80868B; --gray-700: #5F6368; --gray-800: #3C4043; --gray-900: #202124;
-  --radius-sm: 8px; --radius-md: 14px; --radius-lg: 22px; --radius-xl: 32px;
-  --font: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-  --shadow-md: 0 4px 20px rgba(0,0,0,0.08); --shadow-lg: 0 12px 40px rgba(0,0,0,0.12);
-}
-*{box-sizing:border-box;margin:0;padding:0}
-body{
-  font-family:var(--font); background: linear-gradient(160deg, #0f172a 0%, #1e293b 30%, #1a1a3e 60%, #0d1b2a 100%);
-  min-height:100vh; display:flex; align-items:center; justify-content:center; padding:16px; overflow-x:hidden;
-}
-.login-wrapper{width:100%;max-width:900px;display:grid;grid-template-columns:1fr 1fr;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg);animation:fadeInScale 0.5s ease}
-@media(max-width:720px){.login-wrapper{grid-template-columns:1fr;max-width:420px}}
-
-/* Left Panel - Brand / ID Card */
-.left-panel{background:linear-gradient(150deg, #1a3a5c 0%, #0d2137 100%);padding:clamp(28px,5vw,44px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:white;position:relative;overflow:hidden}
-.left-panel::before{content:'';position:absolute;width:300px;height:300px;border-radius:50%;border:2px solid rgba(255,255,255,0.06);top:-60px;right:-80px}
-.left-panel::after{content:'';position:absolute;width:200px;height:200px;border-radius:50%;border:2px solid rgba(255,255,255,0.04);bottom:-40px;left:-50px}
-.left-panel .id-card{border:3px solid rgba(255,255,255,0.2);border-radius:var(--radius-md);padding:clamp(16px,3vw,24px);background:rgba(255,255,255,0.06);backdrop-filter:blur(8px);margin-bottom:20px;position:relative;z-index:1;width:100%;max-width:260px}
-.left-panel .id-card .school-logo{width:clamp(55px,8vw,70px);height:clamp(55px,8vw,70px);border-radius:50%;background:white;padding:5px;margin:0 auto 12px;box-shadow:0 4px 16px rgba(0,0,0,0.2)}
-.left-panel .id-card .school-logo img{width:100%;height:100%;object-fit:contain;border-radius:50%}
-.left-panel .id-card .school-name{font-size:clamp(11px,1.3vw,13px);font-weight:700;margin-bottom:2px;letter-spacing:0.5px}
-.left-panel .id-card .school-sub{font-size:clamp(9px,1vw,10px);opacity:0.7;margin-bottom:10px}
-.left-panel .id-card .id-line{width:100%;height:1px;background:rgba(255,255,255,0.2);margin:8px 0}
-.left-panel .id-card .id-photo{width:clamp(40px,5vw,50px);height:clamp(50px,6vw,60px);background:rgba(255,255,255,0.15);border-radius:4px;margin:0 auto 8px;display:flex;align-items:center;justify-content:center}
-.left-panel .id-card .id-photo svg{width:28px;height:28px;opacity:0.5}
-.left-panel .id-card .id-info{font-size:clamp(8px,0.9vw,10px);line-height:1.6;text-align:left}
-.left-panel .id-card .id-info span{display:block;opacity:0.8}
-.left-panel .badge-strip{display:flex;gap:4px;margin-top:12px;position:relative;z-index:1}
-.left-panel .badge-strip div{width:clamp(30px,5vw,50px);height:4px;border-radius:2px}
-.left-panel .badge-strip div:nth-child(1){background:var(--house-red)}.left-panel .badge-strip div:nth-child(2){background:var(--house-blue)}
-.left-panel .badge-strip div:nth-child(3){background:var(--house-green)}.left-panel .badge-strip div:nth-child(4){background:var(--house-yellow)}
-@media(max-width:720px){.left-panel{padding:24px 20px}.left-panel .id-card{max-width:200px}}
-
-/* Right Panel - Login Form */
-.right-panel{background:var(--white);padding:clamp(28px,5vw,44px);display:flex;flex-direction:column;justify-content:center}
-.right-panel h2{font-size:clamp(18px,2.2vw,24px);font-weight:700;color:var(--gray-900);margin-bottom:4px}
-.right-panel .subtitle{font-size:13px;color:var(--gray-600);margin-bottom:clamp(18px,2.5vw,28px)}
-.right-panel .tabs{display:flex;gap:0;margin-bottom:20px;border:1.5px solid var(--gray-200);border-radius:var(--radius-xl);overflow:hidden}
-.right-panel .tabs button{flex:1;padding:10px 14px;border:none;background:white;font-size:13px;font-weight:500;cursor:pointer;color:var(--gray-600);transition:all 0.2s;font-family:var(--font)}
-.right-panel .tabs button.active{background:var(--primary);color:white;font-weight:600}
-.right-panel .tabs button:hover:not(.active){background:var(--gray-50)}
-.right-panel .tab-content{display:none}
-.right-panel .tab-content.active{display:block;animation:fadeInUp 0.3s ease}
-.input-group{position:relative;margin-bottom:14px}
-.input-group svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--gray-400);pointer-events:none;z-index:2}
-.input-group:focus-within svg{color:var(--primary)}
-.input-group input,.input-group select{width:100%;padding:12px 14px 12px 44px;border:2px solid var(--gray-200);border-radius:var(--radius-sm);font-size:14px;font-family:var(--font);transition:all 0.3s;background:var(--gray-50)}
-.input-group select{appearance:none;padding-left:44px;cursor:pointer}
-.input-group input:focus,.input-group select:focus{outline:none;border-color:var(--primary);background:white;box-shadow:0 0 0 4px rgba(26,115,232,0.08)}
-.input-group input::placeholder{color:var(--gray-400)}
-.btn-login{width:100%;padding:13px;background:var(--primary);color:white;border:none;border-radius:var(--radius-sm);font-size:15px;font-weight:600;cursor:pointer;transition:all 0.3s;margin-top:4px;font-family:var(--font);display:flex;align-items:center;justify-content:center;gap:8px}
-.btn-login:hover{background:var(--primary-dark);box-shadow:0 6px 24px rgba(26,115,232,0.35);transform:translateY(-2px)}
-.btn-login:active{transform:translateY(0)}
-.error-msg{background:#FEF2F2;color:#DC2626;padding:10px 14px;border-radius:var(--radius-sm);font-size:12px;margin-bottom:12px;display:none;border-left:3px solid #DC2626;align-items:center;gap:8px}
-.error-msg.show{display:flex}
-.success-msg{background:#ECFDF5;color:#059669;padding:10px 14px;border-radius:var(--radius-sm);font-size:12px;margin-bottom:12px;display:none;border-left:3px solid #059669}
-.success-msg.show{display:block}
-.login-footer{text-align:center;margin-top:clamp(16px,2vw,24px);padding-top:16px;border-top:1px solid var(--gray-100)}
-.login-footer a{font-size:12px;color:var(--gray-500);text-decoration:none;transition:color 0.2s}
-.login-footer a:hover{color:var(--primary)}
-.login-footer span{display:block;font-size:11px;color:var(--gray-400);margin-top:4px}
-
-@keyframes fadeInUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadeInScale{from{opacity:0;transform:scale(0.94)}to{opacity:1;transform:scale(1)}}
-
-/* Floating BG shapes */
-.bg-shapes{position:fixed;pointer-events:none;z-index:0;inset:0}
-.bg-shapes .circle{position:absolute;border-radius:50%;opacity:0.04}
-.bg-shapes .c1{width:500px;height:500px;background:var(--house-red);top:-120px;right:-80px;animation:float 7s ease-in-out infinite}
-.bg-shapes .c2{width:380px;height:380px;background:var(--house-blue);bottom:-90px;left:-60px;animation:float 6s ease-in-out infinite reverse}
-.bg-shapes .c3{width:200px;height:200px;background:var(--house-green);top:40%;left:50%;animation:float 8s ease-in-out infinite 2s}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
-</style>
-</head>
-<body>
-
-<div class="bg-shapes"><div class="circle c1"></div><div class="circle c2"></div><div class="circle c3"></div></div>
-
-<div class="login-wrapper">
-  <!-- Left: ID Card Brand -->
-  <div class="left-panel">
-    <div class="id-card">
-      <div class="school-logo"><img src="images/logo-transparent.png" alt="SKPPS"></div>
-      <div class="school-name">S.K. PRESIDENCY PUBLIC SCHOOL</div>
-      <div class="school-sub">Sultanpur, UP | CBSE: 2133231</div>
-      <div class="id-line"></div>
-      <div class="id-photo"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-      <div class="id-info"><span>Name: ......................</span><span>Class: ...........</span><span>Roll No: .........</span><span>House: .........</span></div>
-      <div class="id-line"></div>
-    </div>
-    <div class="badge-strip"><div></div><div></div><div></div><div></div></div>
-  </div>
-
-  <!-- Right: Login -->
-  <div class="right-panel">
-    <h2>Student Portal</h2>
-    <p class="subtitle">Sign in to access your dashboard</p>
-
-    <div class="tabs">
-      <button class="active" onclick="switchTab('id')">Student ID</button>
-      <button onclick="switchTab('mobile')">Mobile</button>
-    </div>
-
-    <div class="error-msg" id="errorMsg"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg><span id="errorText">Invalid credentials</span></div>
-
-    <!-- Tab 1: Student ID -->
-    <form id="formId" class="tab-content active" onsubmit="return loginStudent(event)">
-      <div class="input-group">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="7" y1="5" x2="7" y2="19"/></svg>
-        <input type="text" name="student_id" placeholder="Student ID / Roll Number" autocomplete="off">
-      </div>
-      <div class="input-group">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        <input type="password" name="password" placeholder="Password" autocomplete="off">
-      </div>
-      <button type="submit" class="btn-login"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>Sign In</button>
-    </form>
-
-    <!-- Tab 2: Mobile -->
-    <form id="formMobile" class="tab-content" onsubmit="return loginMobile(event)">
-      <div class="input-group">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-        <input type="tel" name="mobile" placeholder="Mobile Number (Registered)" autocomplete="off">
-      </div>
-      <div class="input-group">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        <input type="text" name="student_name" placeholder="Full Name (as per school record)" autocomplete="off">
-      </div>
-      <div class="input-group">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5"/></svg>
-        <select name="class"><option value="">Select Class</option>
-          <option>Nursery</option><option>LKG</option><option>UKG</option>
-          <option>I</option><option>II</option><option>III</option><option>IV</option><option>V</option>
-          <option>VI</option><option>VII</option><option>VIII</option><option>IX</option><option>X</option>
-          <option>XI</option><option>XII</option>
-        </select>
-      </div>
-      <div class="input-group">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        <input type="password" name="password" placeholder="Password" autocomplete="off">
-      </div>
-      <button type="submit" class="btn-login"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>Sign In</button>
-    </form>
-
-    <div class="login-footer">
-      <a href="student-scan.html" style="display:flex;align-items:center;justify-content:center;gap:8px;font-size:14px;color:var(--primary);font-weight:600;text-decoration:none;margin-bottom:10px">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-        Scan ID Card to Login
-      </a>
-      <a href="index.html">Back to School Website</a>
-      <span>Default password is your Date of Birth (DDMMYYYY)</span>
-    </div>
-  </div>
-</div>
+:root{--p:#1A73E8;--hr:#E74C3C;--hb:#3498DB;--hg:#27AE60;--w:#fff;--g50:#F8F9FA;--g200:#E8EAED;--g300:#DADCE0;--g500:#9AA0A6;--g600:#80868B;--g700:#5F6368;--g900:#202124;--r:8px;--rm:14px;--f:'Segoe UI','Roboto',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:var(--f);background:linear-gradient(160deg,#0f172a,#1e293b,#0d1b2a,#1a1a3e);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:16px}
+.wrap{width:100%;max-width:900px;display:grid;grid-template-columns:1fr 1fr;border-radius:var(--rm);overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.15);animation:fadeIn .5s}@media(max-width:720px){.wrap{grid-template-columns:1fr;max-width:420px}}
+.left{background:linear-gradient(150deg,#1a2a40,#0d1630);padding:clamp(20px,4vw,36px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:white;position:relative;overflow:hidden}
+.left .id-card{border:2px solid rgba(255,255,255,.15);border-radius:var(--r);padding:clamp(14px,2vw,20px);background:rgba(255,255,255,.05);margin-bottom:14px;width:100%;max-width:220px}
+.left .id-card .logo{width:clamp(45px,6vw,60px);height:clamp(45px,6vw,60px);border-radius:50%;background:white;padding:4px;margin:0 auto 8px;box-shadow:0 4px 12px rgba(0,0,0,.3)}.left .id-card .logo img{width:100%;height:100%;object-fit:contain;border-radius:50%}
+.left .id-card .sn{font-size:clamp(10px,1.1vw,12px);font-weight:700;letter-spacing:.5px}.left .id-card .ss{font-size:clamp(8px,.9vw,9px);opacity:.6;margin-bottom:6px}
+.left .stripes{display:flex;gap:3px;margin-top:8px}.left .stripes div{width:clamp(24px,3vw,36px);height:3px;border-radius:2px}.left .stripes div:nth-child(1){background:var(--hr)}.left .stripes div:nth-child(2){background:var(--hb)}.left .stripes div:nth-child(3){background:var(--hg)}.left .stripes div:nth-child(4){background:#F39C12}
+.right{background:var(--w);padding:clamp(20px,4vw,36px);display:flex;flex-direction:column;justify-content:center}
+.right h2{font-size:clamp(17px,2vw,22px);font-weight:700;margin-bottom:2px}.right .sub{font-size:12px;color:var(--g600);margin-bottom:18px}
+.tabs{display:flex;border:1.5px solid var(--g200);border-radius:var(--r);overflow:hidden;margin-bottom:16px}.tabs button{flex:1;padding:9px;border:none;background:white;font-size:11px;font-weight:500;cursor:pointer;color:var(--g600);font-family:inherit;transition:all .2s}.tabs button.active{background:var(--p);color:white;font-weight:600}
+.ig{position:relative;margin-bottom:10px}.ig svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:var(--g300);z-index:2;pointer-events:none}.ig input,.ig select{width:100%;padding:10px 10px 10px 38px;border:2px solid var(--g200);border-radius:var(--r);font-size:13px;font-family:inherit;background:var(--g50);transition:all .3s}.ig input:focus,.ig select:focus{outline:none;border-color:var(--p);background:white;box-shadow:0 0 0 3px rgba(26,115,232,.08)}.ig select{appearance:none;cursor:pointer}
+.btn{width:100%;padding:12px;background:var(--p);color:white;border:none;border-radius:var(--r);font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:7px}.btn:hover{background:#1557B0;transform:translateY(-2px);box-shadow:0 5px 16px rgba(26,115,232,.3)}.btn:disabled{opacity:.6;transform:none!important}
+.err{background:#FEF2F2;color:#DC2626;padding:9px 12px;border-radius:var(--r);font-size:11px;margin-bottom:10px;display:none;border-left:3px solid #DC2626;align-items:center;gap:7px}.err.show{display:flex}
+.ft{text-align:center;padding-top:14px;border-top:1px solid var(--g200);margin-top:16px;font-size:10px;color:var(--g500)}.ft a{color:var(--g500);text-decoration:none}.tc{display:none}.tc.active{display:block}.spin{width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:white;border-radius:50%;animation:spin .7s linear infinite;display:none}.scan-link{display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:12px;font-size:12px;color:var(--p);font-weight:600;text-decoration:none;padding:8px;border:1.5px dashed var(--g300);border-radius:var(--r);transition:all .2s}.scan-link:hover{border-color:var(--p);background:#f8faff}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}@keyframes spin{to{transform:rotate(360deg)}}
+</style></head><body>
+<div class="wrap">
+<div class="left"><div class="id-card"><div class="logo"><img src="images/logo-transparent.png" alt="SKPPS"></div><div class="sn">SK PRESIDENCY PUBLIC SCHOOL</div><div class="ss">Sultanpur, UP | CBSE: 2133231</div><div style="width:100%;height:1px;background:rgba(255,255,255,.15);margin:6px 0"></div><div style="width:40px;height:50px;background:rgba(255,255,255,.1);border-radius:4px;margin:0 auto 6px;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div style="font-size:8px;opacity:.5;line-height:1.4">Name: ...............<br>Class: .......<br>Roll No: ......</div></div><div class="stripes"><div></div><div></div><div></div><div></div></div></div>
+<div class="right"><h2>Student Portal</h2><p class="sub">Sign in to access your dashboard</p>
+<a href="student-scan.html" class="scan-link"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>Scan ID Card to Login</a>
+<div class="tabs"><button class="active" onclick="swTab('id')">Student ID</button><button onclick="swTab('mobile')">Mobile</button></div>
+<div class="err" id="err"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/></svg><span id="et"></span></div>
+<form id="fi" class="tc active" onsubmit="return loginID(event)"><div class="ig"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/></svg><input type="text" name="student_id" placeholder="Student ID / Roll Number" autocomplete="off"></div><div class="ig"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><input type="password" name="password" placeholder="Password (DOB: DDMMYYYY)" autocomplete="off"></div><button type="submit" class="btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>Sign In</button></form>
+<form id="fm" class="tc" onsubmit="return loginMobile(event)"><div class="ig"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg><input type="tel" name="mobile" placeholder="Mobile Number (Registered)" autocomplete="off"></div><div class="ig"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><input type="text" name="student_name" placeholder="Full Name (as per records)" autocomplete="off"></div><div class="ig"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/></svg><select name="class"><option value="">Select Class</option><option>Nursery</option><option>LKG</option><option>UKG</option><option>I</option><option>II</option><option>III</option><option>IV</option><option>V</option><option>VI</option><option>VII</option><option>VIII</option><option>IX</option><option>X</option><option>XI</option><option>XII</option></select></div><div class="ig"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><input type="password" name="password" placeholder="Password" autocomplete="off"></div><button type="submit" class="btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>Sign In</button></form>
+<div class="ft"><a href="index.html">Back to School Website</a><br><span style="margin-top:2px;display:block">Default password: Date of Birth (DDMMYYYY)</span></div></div></div>
 
 <script>
-function switchTab(tab) {
-  document.querySelectorAll('.tabs button').forEach(function(b,i){
-    b.classList.toggle('active', (tab==='id' && i===0) || (tab==='mobile' && i===1));
-  });
-  document.getElementById('formId').classList.toggle('active', tab==='id');
-  document.getElementById('formMobile').classList.toggle('active', tab==='mobile');
-}
+function swTab(t){document.querySelectorAll(".tabs button").forEach(function(b,i){b.classList.toggle("active",(t==="id"&&i===0)||(t==="mobile"&&i===1))});document.getElementById("fi").classList.toggle("active",t==="id");document.getElementById("fm").classList.toggle("active",t==="mobile");he()}
+function se(m){document.getElementById("et").textContent=m;document.getElementById("err").classList.add("show")}function he(){document.getElementById("err").classList.remove("show")}
+function goDash(st){sessionStorage.setItem("skpps_auth","1");sessionStorage.setItem("skpps_name",st.full_name||st.name);sessionStorage.setItem("skpps_class",st.class||st.cls);sessionStorage.setItem("skpps_section",st.section||st.sec||"A");sessionStorage.setItem("skpps_roll",String(st.roll_no||st.roll||""));sessionStorage.setItem("skpps_house",st.house||"Earth");sessionStorage.setItem("skpps_role","student");sessionStorage.setItem("skpps_sid",st.student_id||st.sid);sessionStorage.setItem("skpps_student",JSON.stringify(st));location.href="student/dashboard.html"}
 
-// Handle form submissions with validation
-document.getElementById('formId').addEventListener('submit', function(e){
-  var sid = this.querySelector('[name="student_id"]');
-  var pw = this.querySelector('[name="password"]');
-  if(!sid.value.trim() || !pw.value.trim()){
-    e.preventDefault();
-    showError('Please fill in all fields');
-  }
-});
-document.getElementById('formMobile').addEventListener('submit', function(e){
-  var mob = this.querySelector('[name="mobile"]');
-  var name = this.querySelector('[name="student_name"]');
-  var cls = this.querySelector('[name="class"]');
-  var pw = this.querySelector('[name="password"]');
-  if(!mob.value.trim() || !name.value.trim() || !cls.value || !pw.value.trim()){
-    e.preventDefault();
-    showError('Please fill in all fields');
-  }
-});
+async function loginID(e){e.preventDefault();var sid=this.querySelector('[name=student_id]').value.trim(),pw=this.querySelector('[name=password]').value.trim();if(!sid||!pw){se("Please fill all fields");return false}he();
+  try{var st=await fbFindStudent(sid);if(st){var dp=(st.date_of_birth||st.dob||"").replace(/-/g,"").substring(0,8),sp=st.password||dp;if(pw===dp||pw===sp){goDash(st);return}else{se("Invalid password");return}}else{se("Student not found");return}}catch(e){se("Login failed. Try again.");return false}}
 
-function showError(msg){
-  var err = document.getElementById('errorMsg');
-  document.getElementById('errorText').textContent = msg;
-  err.classList.add('show');
-  setTimeout(function(){ err.classList.remove('show'); }, 4000);
-}
-
-// Check URL params for error
-var params = new URLSearchParams(window.location.search);
-if(params.get('error') === 'invalid') showError('Invalid credentials. Please try again.');
-if(params.get('error') === 'empty') showError('Please fill in all fields.');
-if(params.get('first') === '1') showError('Please create your password first. Contact school admin.');
-</script>
-
-<script>
-
-
-async function loginStudent(e){
-  e.preventDefault();
-  var sid=document.querySelector("#formId [name=student_id]").value.trim();
-  var pw=document.querySelector("#formId [name=password]").value.trim();
-  if(!sid||!pw){showError("Please fill all fields");return false}
-  try{
-    var st=await fbFindStudent(sid);
-    if(!st){var arr=JSON.parse(localStorage.skpps_students||'[]');for(var i=0;i<arr.length;i++){if(arr[i].student_id===sid||arr[i].admission_no===sid||String(arr[i].roll_no)===sid){st=arr[i];break}}}
-    if(st){
-      var dobPw=(st.date_of_birth||st.dob||'').replace(/-/g,'').substring(0,8);
-      var storedPw=st.password||dobPw;
-      if(pw===dobPw||pw===storedPw||pw===(st.date_of_birth||st.dob||'').replace(/-/g,'')){
-        sessionStorage.setItem("skpps_auth","1");
-        sessionStorage.setItem("skpps_name",st.full_name||st.name||'');
-        sessionStorage.setItem("skpps_class",s[i].cls);
-        sessionStorage.setItem("skpps_section",s[i].sec);
-        sessionStorage.setItem("skpps_roll",String(s[i].roll));
-        sessionStorage.setItem("skpps_house",s[i].house);
-        sessionStorage.setItem("skpps_role","student");
-        sessionStorage.setItem("skpps_sid",s[i].sid);
-        sessionStorage.setItem("skpps_student",JSON.stringify(s[i]));
-        window.location.href="student/dashboard.html";
-        return false;
-      }
-      showError("Invalid password. Default is DOB (DDMMYYYY)");
-      return false;
-    }
-  }
-  showError("Student not found. Contact school office.");
-  return false;
-}
-
-async function loginMobile(e){
-  e.preventDefault();
-  var mob=document.querySelector("#formMobile [name=mobile]").value.trim();
-  var name=document.querySelector("#formMobile [name=student_name]").value.trim();
-  var cls=document.querySelector("#formMobile [name=class]").value;
-  var pw=document.querySelector("#formMobile [name=password]").value.trim();
-  if(!mob||!name||!cls||!pw){showError("Please fill all fields");return false}
-  try{
-    var allSt = []; try { allSt = await fbGetStudents() || []; } catch(e) {}
-    if(!allSt.length) allSt = JSON.parse(localStorage.getItem('skpps_students')||'[]');
-    for(var i=0;i<allSt.length;i++){
-      var s=allSt[i],sname=s.full_name||s.name||'',scls=s.class||s.cls||'',sphone=s.parent_phone||s.phone||'';
-      if(sphone===mob&&scls===cls&&sname.toLowerCase().includes(name.toLowerCase())){
-        var dobPw=(s.date_of_birth||s.dob||'').replace(/-/g,'').substring(0,8);
-        var storedPw=s.password||dobPw;
-        if(pw===dobPw||pw===storedPw){
-          sessionStorage.setItem("skpps_auth","1");sessionStorage.setItem("skpps_name",sname);
-          sessionStorage.setItem("skpps_class",scls);sessionStorage.setItem("skpps_section",s.section||s.sec||'A');
-          sessionStorage.setItem("skpps_roll",String(s.roll_no||s.roll||0));sessionStorage.setItem("skpps_house",s.house||'Earth');
-          sessionStorage.setItem("skpps_role","student");sessionStorage.setItem("skpps_sid",s.student_id||s.sid||'');
-          sessionStorage.setItem("skpps_student",JSON.stringify(s));
-          window.location.href="student/dashboard.html";return false;
-        }
-        showError("Invalid password. Default is DOB (DDMMYYYY)");return false;
-      }
-    }
-  }catch(e){}
-  showError("Student not found. Check details.");return false;
-}
-</script>
-</body>
-</html>
+async function loginMobile(e){e.preventDefault();var mob=this.querySelector('[name=mobile]').value.trim(),name=this.querySelector('[name=student_name]').value.trim(),cls=this.querySelector('[name=class]').value,pw=this.querySelector('[name=password]').value.trim();if(!mob||!name||!cls||!pw){se("Please fill all fields");return false}he();
+  try{var all=await fbGetStudents();if(!all||!all.length){se("No students in database");return false}
+  for(var i=0;i<all.length;i++){var s=all[i];if(s.parent_phone===mob&&s.class===cls&&s.full_name.toLowerCase().includes(name.toLowerCase())){var dp=(s.date_of_birth||"").replace(/-/g,"").substring(0,8),sp=s.password||dp;if(pw===dp||pw===sp){goDash(s);return}else{se("Invalid password");return}}}se("Student not found");return false}catch(e){se("Login failed")}}
+</script></body></html>

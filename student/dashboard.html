@@ -1,49 +1,38 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Student Dashboard - SKPPS</title>
-<style>
-:root{--p:#1A73E8;--hrd:#E74C3C;--hbl:#3498DB;--hgr:#27AE60;--hyl:#F39C12;--w:#fff;--g50:#F8F9FA;--g100:#F1F3F4;--g200:#E8EAED;--g300:#DADCE0;--g500:#9AA0A6;--g600:#80868B;--g700:#5F6368;--g800:#3C4043;--g900:#202124;--rs:8px;--rm:14px;--sh:0 1px 3px rgba(0,0,0,0.06);--f:'Segoe UI','Roboto',sans-serif}
-*{box-sizing:border-box;margin:0;padding:0}body{font-family:var(--f);background:var(--g50);min-height:100vh}
-.tb{background:var(--g900);color:white;padding:0 14px;height:50px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
-.tb b{font-size:14px}.tb a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:11px;padding:5px 12px;border-radius:14px}
-.tb a:hover{background:rgba(255,255,255,0.1);color:white}
-.ct{max-width:1100px;margin:0 auto;padding:14px}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:16px}
-.stat{background:white;padding:16px;border-radius:var(--rm);box-shadow:var(--sh);border:1px solid var(--g200)}
-.stat .v{font-size:24px;font-weight:700;color:var(--g900)}.stat .l{font-size:10px;color:var(--g600);text-transform:uppercase;letter-spacing:0.5px;margin-top:2px}
-.r{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:700px){.r{grid-template-columns:1fr}}
-.card{background:white;border-radius:var(--rm);box-shadow:var(--sh);border:1px solid var(--g200);overflow:hidden;margin-bottom:14px}
-.ch{padding:11px 14px;border-bottom:1px solid var(--g100);font-weight:700;font-size:13px;display:flex;align-items:center;gap:6px}.cb{padding:14px}
-.profile{display:flex;gap:16px;align-items:start;flex-wrap:wrap}
-.profile .av{width:70px;height:70px;border-radius:50%;background:var(--p);color:white;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;flex-shrink:0}
-.profile .det{flex:1;min-width:180px;font-size:13px;line-height:2}
-.profile .det b{color:var(--g600);min-width:90px;display:inline-block}
-.badge-sm{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:600}
-.pbar{height:8px;background:var(--g100);border-radius:4px;overflow:hidden;margin-top:6px}
-.pbar .f{height:100%;border-radius:4px;transition:width 0.4s}.fg{background:var(--hgr)}.fr{background:var(--hrd)}.fy{background:var(--hyl)}
-.tw{overflow-x:auto}.dt{width:100%;border-collapse:collapse;font-size:11px}
-.dt th{background:var(--g50);padding:6px 8px;text-align:left;font-weight:600;color:var(--g700);border-bottom:2px solid var(--g200);white-space:nowrap}
-.dt td{padding:5px 8px;border-bottom:1px solid var(--g100);color:var(--g700)}.dt tr:hover td{background:var(--g50)}
-.mt1{margin-top:8px}
-</style></head><body>
-<div class="tb"><b>SKPPS Student Portal<span id="uname"></span></b><a href="#" onclick="logout()" style="color:#f87171">Logout</a></div>
-<div class="ct" id="mc"></div>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard - SK Presidency Public School</title>
 <script src="../firebase/firebase-config.js"></script>
+<style>
+:root{--p:#1A73E8;--hr:#E74C3C;--hb:#3498DB;--hg:#27AE60;--hy:#F39C12;--w:#fff;--g50:#F8F9FA;--g100:#F1F3F4;--g200:#E8EAED;--g300:#DADCE0;--g500:#9AA0A6;--g600:#80868B;--g700:#5F6368;--g800:#3C4043;--g900:#202124;--r:8px;--rm:14px;--f:'Segoe UI','Roboto',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:var(--f);background:var(--g50);min-height:100vh}
+.tb{background:var(--g900);color:white;padding:0 14px;height:50px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}.tb b{font-size:14px}.tb a{color:rgba(255,255,255,.7);text-decoration:none;font-size:11px;padding:5px 12px;border-radius:14px}.tb a:hover{background:rgba(255,255,255,.1);color:white}
+.ct{max-width:1000px;margin:0 auto;padding:14px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:16px}.stat{background:white;padding:16px;border-radius:var(--rm);box-shadow:0 1px 3px rgba(0,0,0,.06);border:1px solid var(--g200)}.stat .v{font-size:24px;font-weight:700}.stat .l{font-size:10px;color:var(--g500);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+.r2{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:700px){.r2{grid-template-columns:1fr}}
+.card{background:white;border-radius:var(--rm);box-shadow:0 1px 3px rgba(0,0,0,.06);border:1px solid var(--g200);overflow:hidden;margin-bottom:14px}.ch{padding:12px 14px;border-bottom:1px solid var(--g100);font-weight:700;font-size:13px;display:flex;align-items:center;gap:6px}.cb{padding:14px}
+.profile{display:flex;gap:16px;align-items:start}.profile .av{width:70px;height:70px;border-radius:50%;background:var(--p);color:white;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;flex-shrink:0}.profile .det{flex:1;min-width:160px;font-size:13px;line-height:2}.profile .det b{color:var(--g600);min-width:80px;display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+</style></head><body>
+<div class="tb"><b>SKPPS Student Portal</b><span id="uname"></span><a href="#" onclick="logout()" style="color:#f87171">Logout</a></div>
+<div class="ct" id="mc"></div>
 <script>
+(function(){
 if(!sessionStorage.getItem('skpps_auth')||sessionStorage.getItem('skpps_role')!=='student'){location.href='../student-login.html'}
-var s=JSON.parse(sessionStorage.getItem('skpps_student')||'{}');
-document.getElementById('uname').textContent=' - '+s.name;
-function logout(){sessionStorage.clear();location.href='../student-login.html'}
+var sd=JSON.parse(sessionStorage.getItem('skpps_student')||'{}');
+document.getElementById('uname').textContent=' - '+sd.full_name;
+window.logout=function(){sessionStorage.clear();location.href='../student-login.html'}
 
-var h='<h1 style="font-size:clamp(18px,2.5vw,24px);margin-bottom:4px">Welcome, '+s.name.split(' ')[0]+'!</h1>';
-h+='<p style="font-size:13px;color:var(--g600);margin-bottom:16px">Class '+s.cls+'-'+s.sec+' | Roll: '+s.roll+' | House: '+s.house+'</p>';
+var h='<h1 style="font-size:clamp(18px,2.5vw,24px);margin-bottom:4px">Welcome, '+(sd.full_name||'Student').split(' ')[0]+'!</h1>';
+h+='<p style="font-size:13px;color:var(--g600);margin-bottom:16px">Class '+(sd.class||'')+'-'+(sd.section||'A')+' | Roll: '+(sd.roll_no||'')+' | House: '+(sd.house||'Earth')+'</p>';
+h+='<div class="stats"><div class="stat"><div class="v">'+(sd.class||'?')+'</div><div class="l">Class</div></div><div class="stat"><div class="v">'+(sd.roll_no||'?')+'</div><div class="l">Roll Number</div></div><div class="stat"><div class="v">'+(sd.house||'Earth')+'</div><div class="l">House</div></div></div>';
 
-h+='<div class="stats"><div class="stat"><div class="v">85%</div><div class="l">Attendance</div><div class="pbar"><div class="f fg" style="width:85%"></div></div></div><div class="stat"><div class="v">'+s.cls+'</div><div class="l">Class</div></div><div class="stat"><div class="v">'+s.roll+'</div><div class="l">Roll Number</div></div><div class="stat"><div class="v">0</div><div class="l">Pending Fees</div></div></div>';
+h+='<div class="r2"><div class="card"><div class="ch"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--p)" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>My Profile</div><div class="cb"><div class="profile"><div class="av">'+(sd.full_name||'S').charAt(0).toUpperCase()+'</div><div class="det"><div><b>Name:</b> '+esc(sd.full_name)+'</div><div><b>Father:</b> '+esc(sd.father_name)+'</div><div><b>Class:</b> '+esc(sd.class)+'-'+esc(sd.section)+'</div><div><b>Roll No:</b> '+esc(sd.roll_no)+'</div><div><b>House:</b> '+esc(sd.house)+'</div><div><b>Blood Group:</b> '+esc(sd.blood_group)+'</div><div><b>Phone:</b> '+esc(sd.parent_phone)+'</div><div><b>DOB:</b> '+esc(sd.date_of_birth)+'</div></div></div></div></div>';
 
-h+='<div class="r"><div class="card"><div class="ch">My Profile</div><div class="cb"><div class="profile"><div class="av">'+(s.name||'S').charAt(0).toUpperCase()+'</div><div class="det"><div><b>Name:</b> '+s.name+'</div><div><b>Father:</b> '+s.father+'</div><div><b>Class:</b> '+s.cls+'-'+s.sec+'</div><div><b>Roll No:</b> '+s.roll+'</div><div><b>House:</b> '+s.house+'</div><div><b>Blood Group:</b> '+s.blood+'</div><div><b>Phone:</b> '+s.phone+'</div><div><b>DOB:</b> '+s.dob+'</div></div></div></div></div>';
+h+='<div class="card"><div class="ch"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--hr)" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>Notices</div><div class="cb"><p style="font-size:13px;color:var(--g600)">No new notices for your class.</p></div></div></div>';
 
-h+='<div class="card"><div class="ch">Recent Notices</div><div class="cb"><div style="padding:10px 0;border-bottom:1px solid var(--g100)"><strong style="font-size:13px">PTM Scheduled</strong><p style="font-size:12px;color:var(--g600);margin-top:3px">Parent-Teacher Meeting next Saturday at 10 AM.</p></div><div style="padding:10px 0"><strong style="font-size:13px">Exams Coming Soon</strong><p style="font-size:12px;color:var(--g600);margin-top:3px">Term-1 exams start next month. Prepare well!</p></div></div></div></div>';
-
-h+='<div class="card"><div class="ch">School Website</div><div class="cb"><a href="../index.html" style="color:var(--p);font-size:14px;font-weight:600">Go to Main Website</a></div></div>';
+h+='<div class="card"><div class="ch">Quick Links</div><div class="cb" style="display:flex;gap:10px;flex-wrap:wrap"><a href="../index.html" class="btn" style="background:var(--p);color:white;padding:8px 16px;border-radius:var(--r);text-decoration:none;font-size:12px;font-weight:600;display:inline-block">School Website</a><a href="#" onclick="logout()" class="btn" style="background:var(--g100);color:var(--g700);padding:8px 16px;border-radius:var(--r);text-decoration:none;font-size:12px;font-weight:600;display:inline-block">Logout</a></div></div>';
 
 document.getElementById('mc').innerHTML=h;
+function esc(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+})();
 </script></body></html>
