@@ -1,5 +1,5 @@
 /* SKPPS Firebase Config - Override via firebase-setup.html or edit directly */
-var FIREBASE_CONFIG={apiKey:"AIzaSyD-PLACEHOLDER-KEY",authDomain:"skpps-school.firebaseapp.com",projectId:"skpps-school",storageBucket:"skpps-school.appspot.com",messagingSenderId:"000000000000",appId:"1:000000000000:web:abc123def456"};
+var FIREBASE_CONFIG={apiKey:"AIzaSyDYHVi3c-cNvdcMON5wcPjRrJ1nxpdrw2Y",authDomain:"sk-presidency-public-school.firebaseapp.com",projectId:"sk-presidency-public-school",storageBucket:"sk-presidency-public-school.firebasestorage.app",messagingSenderId:"808351998605",appId:"1:808351998605:web:0c8d072cfea4efa74278c4"};
 (function(){var c=localStorage.getItem("skpps_firebase_config");if(c){try{FIREBASE_CONFIG=JSON.parse(c)}catch(e){}}})();
 
 let _db = null, _auth = null, _initialized = false;
