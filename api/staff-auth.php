@@ -7,8 +7,8 @@
 session_start();
 
 // ===== CONFIG =====
-$MANAGEMENT_SECURITY_CODE = 'SKPPS@2024#ADMIN';
-$MANAGEMENT_PASSWORD_HASH = '$2y$10$0F9JbHRdsAsCFbscq9CnbOlMIsUyKQqZ9mXtOqZkHZ0QLBu8PIRQW'; // default: skpps#admin2024
+$MANAGEMENT_SECURITY_CODE = getenv('SKPPS_MGMT_CODE') ?: 'CHANGE_ME';
+$MANAGEMENT_PASSWORD_HASH = getenv('SKPPS_MGMT_HASH') ?: '$2y$10$PLACEHOLDER_REPLACE_WITH_REAL_HASH';
 
 // Teacher credentials (admin adds teachers via management panel)
 $db_host = 'localhost'; $db_name = 'skpps_students';

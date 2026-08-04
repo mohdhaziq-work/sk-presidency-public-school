@@ -1,0 +1,21 @@
+# Sensitive configuration - never commit
+firebase/firebase-config.js
+api/db-config.php
+config.js
+config.json
+*.local.*
+.env
+
+# Dependencies
+node_modules/
+.npm/
+
+# Build artifacts
+dist/
+build/
+.arena/
+.cache/
+
+# OS files
+.DS_Store
+Thumbs.db

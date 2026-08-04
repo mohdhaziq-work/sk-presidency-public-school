@@ -7,7 +7,7 @@
 session_start();
 
 // ========== SIMPLE AUTH (change these!) ==========
-$admin_password = 'skppsadmin2024';
+$admin_password = getenv('SKPPS_ADMIN_PW') ?: 'CHANGE_ME';
 
 $error = ''; $success = '';
 $is_authenticated = false;

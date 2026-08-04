@@ -4,9 +4,9 @@
  * Upload to skpresidency.com and update credentials below
  */
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'skpps_students');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_NAME', getenv('DB_NAME') ?: 'skpps_students');
+define('DB_USER', getenv('DB_USER') ?: 'root');
+define('DB_PASS', getenv('DB_PASS') ?: '');
 
 function getDB() {
     static $pdo = null;

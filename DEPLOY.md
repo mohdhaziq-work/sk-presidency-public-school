@@ -4,56 +4,48 @@
 
 | Environment | Storage |
 |-------------|---------|
-| **GitHub Pages (demo)** | Browser localStorage (not shared) |
-| **skpresidency.com (production)** | MySQL Database (all users share) |
+| GitHub Pages (demo) | Browser localStorage (not shared across devices) |
+| With Firebase | Firebase Firestore (all devices share real-time data) |
+| With PHP/MySQL | MySQL database on your server |
 
-## Step 1: Setup MySQL Database
+## Quick Start (Firebase - Recommended)
 
-1. Login to your hosting cPanel → phpMyAdmin
-2. Click "New" → Database name: `skpps_students` → Create
-3. Select `skpps_students` → Click "SQL" tab
-4. Paste contents of `api/database-schema.sql` → Click "Go"
-5. 7 tables created with 1 admin user
+### Step 1: Create Firebase Project
+1. Go to [console.firebase.google.com](https://console.firebase.google.com)
+2. Create a new project (or use existing)
+3. Enable **Cloud Firestore** (Test mode for setup, then secure)
 
-## Step 2: Update Database Credentials
+### Step 2: Configure
+Open `firebase-setup.html` in your browser:
+1. Paste your Firebase web app config
+2. Choose management security code + password
+3. Credentials are saved securely to Firestore (never in code!)
 
-Edit `api/db-config.php`:
-```
-DB_HOST → 'localhost' (usually correct)
-DB_NAME → 'skpps_students'
-DB_USER → your cPanel MySQL username
-DB_PASS → your cPanel MySQL password
-```
+### Step 3: Add Teachers & Students
+1. Login at `staff-login.html` with your management credentials
+2. Add teachers via "Teachers" tab
+3. Scan ID cards or bulk import students
+4. Students login at `student-login.html`
 
-## Step 3: Upload All Files
+## Alternative: MySQL + PHP
 
-Upload everything to `public_html/` or `www/` on skpresidency.com via FTP or cPanel File Manager.
+### Step 1: Import Database
+- phpMyAdmin → Import `api/database-schema.sql`
 
-## Step 4: Access
+### Step 2: Configure
+- Copy `api/db-config.example.php` to `api/db-config.php`
+- Set your MySQL credentials (NEVER commit db-config.php!)
 
-- **Website**: https://skpresidency.com
-- **Staff Login**: https://skpresidency.com/staff-login.html
-  - Management: Code `SKPPS@2024#ADMIN` / Pass `skpps#admin2024`
-- **Student Login**: https://skpresidency.com/student-login.html
+### Step 3: Set Environment Variables
+On your server, set these environment variables or edit the PHP files:
+- `SKPPS_MGMT_CODE` - Management security code
+- `SKPPS_MGMT_HASH` - bcrypt hash of management password  
+  (Generate: `php -r "echo password_hash('yourpassword', PASSWORD_BCRYPT);"`)
+- `DB_USER`, `DB_PASS`, `DB_NAME` - MySQL credentials
 
-## How Data Flows
-
-```
-Management Panel → api/save-student.php → MySQL students table
-Management Panel → api/save-teacher.php → MySQL admin_users table
-Student Login → api/auth-student.php → MySQL students table
-Teacher Login → api/auth-teacher.php → MySQL admin_users table
-```
-
-## PHP APIs (all in api/ folder)
-
-| API | Purpose |
-|-----|---------|
-| db-config.php | Database connection |
-| save-student.php | Add student to MySQL |
-| list-students.php | Get all students |
-| save-teacher.php | Add teacher to MySQL |
-| list-teachers.php | Get all teachers |
-| auth-student.php | Student login |
-| auth-teacher.php | Teacher login |
-| auth-management.php | Management login |
+## Security Notes
+- NEVER commit real credentials to GitHub
+- `firebase/firebase-config.js` and `api/db-config.php` are in `.gitignore`
+- Use `firebase-setup.html` for Firebase config (stored in browser localStorage)
+- Use environment variables for PHP credentials
+- Rotate passwords regularly

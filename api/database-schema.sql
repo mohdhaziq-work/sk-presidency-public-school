@@ -121,10 +121,10 @@ CREATE TABLE IF NOT EXISTS admin_users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
--- Insert default admin (CHANGE PASSWORD after first login!)
-INSERT INTO admin_users (username, password_hash, full_name, role)
-VALUES ('admin', '$2y$10$0F9JbHRdsAsCFbscq9CnbOlMIsUyKQqZ9mXtOqZkHZ0QLBu8PIRQW', 'School Administrator', 'Super Admin')
-ON DUPLICATE KEY UPDATE username=username;
+-- Insert default admin - RUN THIS AFTER REPLACING THE HASH:
+-- INSERT INTO admin_users (username, password_hash, full_name, role)
+-- VALUES ('admin', 'REPLACE_WITH_BCRYPT_HASH', 'School Administrator', 'Super Admin');
+-- Generate hash: php -r "echo password_hash('yourpassword', PASSWORD_BCRYPT);"
 
 SELECT 'Database setup complete! Tables created.' AS status;
 SHOW TABLES;
