@@ -250,8 +250,8 @@ async function loginMobile(e){
   var pw=document.querySelector("#formMobile [name=password]").value.trim();
   if(!mob||!name||!cls||!pw){showError("Please fill all fields");return false}
   try{
-    var allSt=await fbGetStudents();
-    if(!allSt.length)allSt=JSON.parse(localStorage.skpps_students||'[]');
+    var allSt = []; try { allSt = await fbGetStudents() || []; } catch(e) {}
+    if(!allSt.length) allSt = JSON.parse(localStorage.getItem('skpps_students')||'[]');
     for(var i=0;i<allSt.length;i++){
       var s=allSt[i],sname=s.full_name||s.name||'',scls=s.class||s.cls||'',sphone=s.parent_phone||s.phone||'';
       if(sphone===mob&&scls===cls&&sname.toLowerCase().includes(name.toLowerCase())){
