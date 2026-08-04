@@ -31,6 +31,7 @@ CREATE TABLE IF NOT EXISTS students (
     parent_phone    VARCHAR(15)  DEFAULT NULL,
     parent_email    VARCHAR(100) DEFAULT NULL,
     password        VARCHAR(255) NOT NULL COMMENT 'Hashed password (or DOB-based initially)',
+    password_set    TINYINT(1)   DEFAULT 0 COMMENT '0=using DOB, 1=student set own password',
     photo           VARCHAR(255) DEFAULT NULL COMMENT 'Path to student photo',
     is_active       TINYINT(1)   DEFAULT 1,
     admission_date  DATE         DEFAULT NULL,
