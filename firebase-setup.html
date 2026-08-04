@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Firebase Setup - SKPPS</title>
+<style>
+:root{--p:#1A73E8;--w:#fff;--g50:#F8F9FA;--g200:#E8EAED;--g300:#DADCE0;--g600:#80868B;--g700:#5F6368;--g900:#202124;--rs:8px;--rm:14px;--f:'Segoe UI','Roboto',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--f);background:linear-gradient(160deg,#0f172a,#1e293b,#0d1b2a);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:16px}
+.card{background:white;border-radius:var(--rm);width:100%;max-width:560px;padding:clamp(24px,4vw,36px);box-shadow:0 20px 50px rgba(0,0,0,0.2)}
+.card h2{font-size:22px;font-weight:700;margin-bottom:4px;color:var(--g900)}
+.card p{font-size:13px;color:var(--g600);margin-bottom:24px}
+.fg{margin-bottom:14px}.fg label{display:block;font-size:12px;font-weight:600;color:var(--g700);margin-bottom:4px}
+.fg input{width:100%;padding:10px 12px;border:1.5px solid var(--g300);border-radius:var(--rs);font-size:13px;font-family:var(--f)}
+.fg input:focus{outline:none;border-color:var(--p);box-shadow:0 0 0 3px rgba(26,115,232,0.1)}
+.btn{width:100%;padding:12px;background:var(--p);color:white;border:none;border-radius:var(--rs);font-size:14px;font-weight:600;cursor:pointer;font-family:var(--f)}
+.btn:hover{opacity:0.9}
+.alert{padding:10px 14px;border-radius:var(--rs);font-size:12px;margin-bottom:12px}.aok{background:#ECFDF5;color:#059669;border-left:3px solid #059669}.aerr{background:#FEF2F2;color:#DC2626;border-left:3px solid #DC2626}
+code{display:block;background:#F8F9FA;padding:12px;border-radius:var(--rs);font-size:11px;margin:12px 0;word-break:break-all;font-family:monospace}
+.mt2{margin-top:12px}
+</style>
+</head>
+<body>
+<div class="card">
+  <h2>Firebase Setup</h2>
+  <p>Paste your Firebase configuration from the Firebase Console. This stores everything in Firebase Firestore - all devices share the same data.</p>
+
+  <div id="step1">
+    <div class="fg"><label>apiKey</label><input id="apiKey" placeholder="AIzaSy..."></div>
+    <div class="fg"><label>authDomain</label><input id="authDomain" placeholder="project.firebaseapp.com"></div>
+    <div class="fg"><label>projectId</label><input id="projectId" placeholder="skpps-school"></div>
+    <div class="fg"><label>storageBucket</label><input id="storageBucket" placeholder="project.appspot.com"></div>
+    <div class="fg"><label>messagingSenderId</label><input id="messagingSenderId" placeholder="000000000000"></div>
+    <div class="fg"><label>appId</label><input id="appId" placeholder="1:000:web:abc"></div>
+    <button class="btn" onclick="saveConfig()">Save & Initialize Firebase</button>
+  </div>
+
+  <div id="step2" style="display:none">
+    <div class="fg"><label>Management Security Code</label><input id="mgmtCode" value="SKPPS@2024#ADMIN"></div>
+    <div class="fg"><label>Management Password</label><input id="mgmtPass" type="password" value="skpps#admin2024"></div>
+    <button class="btn mt2" onclick="saveMgmtCreds()">Save Management Credentials</button>
+  </div>
+
+  <div id="msg"></div>
+</div>
+
+<script>
+async function saveConfig(){
+  var cfg={apiKey:document.getElementById('apiKey').value,authDomain:document.getElementById('authDomain').value,projectId:document.getElementById('projectId').value,storageBucket:document.getElementById('storageBucket').value,messagingSenderId:document.getElementById('messagingSenderId').value,appId:document.getElementById('appId').value};
+  if(!cfg.apiKey||!cfg.projectId){showMsg('Please fill all fields','err');return}
+
+  // Save to firebase-config.js
+  var configJS='/* SKPPS Firebase Config */\nconst FIREBASE_CONFIG='+JSON.stringify(cfg,null,2)+';\n';
+  configJS+=document.querySelector('script').textContent.split('const FIREBASE_CONFIG')[1].split(';\n')[0].split('\n').slice(1).join('\n')||'';
+
+  // Store config in localStorage so the main config can pick it up
+  localStorage.setItem('skpps_firebase_config',JSON.stringify(cfg));
+  showMsg('Firebase config saved! Now save management credentials.','ok');
+  document.getElementById('step1').style.display='none';
+  document.getElementById('step2').style.display='block';
+}
+
+async function saveMgmtCreds(){
+  var code=document.getElementById('mgmtCode').value.trim();
+  var pass=document.getElementById('mgmtPass').value.trim();
+  if(!code||!pass){showMsg('Please fill both fields','err');return}
+
+  try{
+    var cfg=JSON.parse(localStorage.getItem('skpps_firebase_config'));
+    // Initialize Firebase with saved config
+    await loadScript('https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js');
+    await loadScript('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js');
+    if(!firebase.apps.length)firebase.initializeApp(cfg);
+    var db=firebase.firestore();
+    await db.collection('settings').doc('management').set({security_code:code,password:pass,updated_at:new Date().toISOString()});
+    showMsg('Setup complete! Management credentials saved to Firestore. <a href="staff-login.html" style="color:#1A73E8">Go to Staff Login</a>','ok');
+  }catch(e){showMsg('Error: '+e.message+'. Make sure Firebase project has Firestore enabled.','err')}
+}
+
+function loadScript(src){return new Promise(function(r){var s=document.createElement('script');s.src=src;s.onload=r;document.head.appendChild(s)})}
+function showMsg(m,t){var el=document.getElementById('msg');el.innerHTML='<div class="alert a'+(t==='err'?'err':'ok')+'">'+m+'</div>'}
+</script>
+</body>
+</html>

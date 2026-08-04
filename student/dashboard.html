@@ -27,6 +27,7 @@
 </style></head><body>
 <div class="tb"><b>SKPPS Student Portal<span id="uname"></span></b><a href="#" onclick="logout()" style="color:#f87171">Logout</a></div>
 <div class="ct" id="mc"></div>
+<script src="../firebase/firebase-config.js"></script>
 <script>
 if(!sessionStorage.getItem('skpps_auth')||sessionStorage.getItem('skpps_role')!=='student'){location.href='../student-login.html'}
 var s=JSON.parse(sessionStorage.getItem('skpps_student')||'{}');

@@ -208,21 +208,22 @@ if(params.get('first') === '1') showError('Please create your password first. Co
 </script>
 
 <script>
-function gs(){try{return JSON.parse(localStorage.getItem("skpps_students")||"[]")}catch(e){return[]}}
 
-function loginStudent(e){
+
+async function loginStudent(e){
   e.preventDefault();
   var sid=document.querySelector("#formId [name=student_id]").value.trim();
   var pw=document.querySelector("#formId [name=password]").value.trim();
   if(!sid||!pw){showError("Please fill all fields");return false}
-  var s=gs();
-  for(var i=0;i<s.length;i++){
-    var match=(s[i].sid===sid||s[i].admn===sid||String(s[i].roll)===sid);
-    if(match){
-      var dobPw=s[i].dob.replace(/-/g,"").substring(0,8);
-      if(pw===dobPw||pw===s[i].dob.replace(/-/g,"")){
+  try{
+    var st=await fbFindStudent(sid);
+    if(!st){var arr=JSON.parse(localStorage.skpps_students||'[]');for(var i=0;i<arr.length;i++){if(arr[i].student_id===sid||arr[i].admission_no===sid||String(arr[i].roll_no)===sid){st=arr[i];break}}}
+    if(st){
+      var dobPw=(st.date_of_birth||st.dob||'').replace(/-/g,'').substring(0,8);
+      var storedPw=st.password||dobPw;
+      if(pw===dobPw||pw===storedPw||pw===(st.date_of_birth||st.dob||'').replace(/-/g,'')){
         sessionStorage.setItem("skpps_auth","1");
-        sessionStorage.setItem("skpps_name",s[i].name);
+        sessionStorage.setItem("skpps_name",st.full_name||st.name||'');
         sessionStorage.setItem("skpps_class",s[i].cls);
         sessionStorage.setItem("skpps_section",s[i].sec);
         sessionStorage.setItem("skpps_roll",String(s[i].roll));
@@ -241,28 +242,33 @@ function loginStudent(e){
   return false;
 }
 
-function loginMobile(e){
+async function loginMobile(e){
   e.preventDefault();
   var mob=document.querySelector("#formMobile [name=mobile]").value.trim();
   var name=document.querySelector("#formMobile [name=student_name]").value.trim();
   var cls=document.querySelector("#formMobile [name=class]").value;
   var pw=document.querySelector("#formMobile [name=password]").value.trim();
   if(!mob||!name||!cls||!pw){showError("Please fill all fields");return false}
-  var s=gs();
-  for(var i=0;i<s.length;i++){
-    if(s[i].phone===mob&&s[i].cls===cls&&s[i].name.toLowerCase().includes(name.toLowerCase())){
-      var dobPw=s[i].dob.replace(/-/g,"").substring(0,8);
-      if(pw===dobPw||pw===s[i].dob.replace(/-/g,"")){
-        sessionStorage.setItem("skpps_auth","1");sessionStorage.setItem("skpps_name",s[i].name);
-        sessionStorage.setItem("skpps_class",s[i].cls);sessionStorage.setItem("skpps_section",s[i].sec);
-        sessionStorage.setItem("skpps_roll",String(s[i].roll));sessionStorage.setItem("skpps_house",s[i].house);
-        sessionStorage.setItem("skpps_role","student");sessionStorage.setItem("skpps_sid",s[i].sid);
-        sessionStorage.setItem("skpps_student",JSON.stringify(s[i]));
-        window.location.href="student/dashboard.html";return false;
+  try{
+    var allSt=await fbGetStudents();
+    if(!allSt.length)allSt=JSON.parse(localStorage.skpps_students||'[]');
+    for(var i=0;i<allSt.length;i++){
+      var s=allSt[i],sname=s.full_name||s.name||'',scls=s.class||s.cls||'',sphone=s.parent_phone||s.phone||'';
+      if(sphone===mob&&scls===cls&&sname.toLowerCase().includes(name.toLowerCase())){
+        var dobPw=(s.date_of_birth||s.dob||'').replace(/-/g,'').substring(0,8);
+        var storedPw=s.password||dobPw;
+        if(pw===dobPw||pw===storedPw){
+          sessionStorage.setItem("skpps_auth","1");sessionStorage.setItem("skpps_name",sname);
+          sessionStorage.setItem("skpps_class",scls);sessionStorage.setItem("skpps_section",s.section||s.sec||'A');
+          sessionStorage.setItem("skpps_roll",String(s.roll_no||s.roll||0));sessionStorage.setItem("skpps_house",s.house||'Earth');
+          sessionStorage.setItem("skpps_role","student");sessionStorage.setItem("skpps_sid",s.student_id||s.sid||'');
+          sessionStorage.setItem("skpps_student",JSON.stringify(s));
+          window.location.href="student/dashboard.html";return false;
+        }
+        showError("Invalid password. Default is DOB (DDMMYYYY)");return false;
       }
-      showError("Invalid password. Default is DOB (DDMMYYYY)");return false;
     }
-  }
+  }catch(e){}
   showError("Student not found. Check details.");return false;
 }
 </script>

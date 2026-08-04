@@ -20,17 +20,21 @@
 </style></head><body>
 <div class="tb"><b>SKPPS<span class="badge">Teacher</span><span id="uname"></span></b><a href="#" onclick="logout()" style="color:#f87171">Logout</a></div>
 <div class="ct" id="mc"></div>
+<script src="../firebase/firebase-config.js"></script>
 <script>
 if(!sessionStorage.getItem('skpps_auth')||sessionStorage.getItem('skpps_role')!=='teacher'){location.href='../staff-login.html'}
 document.getElementById('uname').textContent=' - '+(sessionStorage.getItem('skpps_name')||'Teacher');
 function gs(){try{return JSON.parse(localStorage.getItem('skpps_students')||'[]')}catch(e){return[]}}
 function logout(){sessionStorage.clear();location.href='../staff-login.html'}
+function renderTeacher(s){
 
-var s=gs();
+async function loadTeacherData(){try{var fbStudents=await fbGetStudents();s=fbStudents.length?fbStudents:(JSON.parse(localStorage.skpps_students||'[]'));renderTeacher(s)}catch(e){s=JSON.parse(localStorage.skpps_students||'[]');renderTeacher(s)}}var s=[];
+function renderTeacher(s){
 var h='<div class="stats"><div class="stat"><div class="v">'+s.length+'</div><div class="l">Total Students</div></div><div class="stat"><div class="v">'+new Set(s.map(function(x){return x.cls})).size+'</div><div class="l">Classes</div></div></div>';
 h+='<div class="card"><div class="ch">Student Directory</div><div class="cb"><input style="width:100%;padding:8px 10px;border:1.5px solid var(--g300);border-radius:var(--rs);font-size:12px;font-family:var(--f);margin-bottom:10px" placeholder="Search students..." oninput="fs(this.value)"><div class="tw"><table class="dt" id="stbl"><tr><th>ID</th><th>Name</th><th>Class</th><th>Sec</th><th>Roll</th><th>House</th><th>Phone</th><th>DOB</th></tr>';
 for(var i=0;i<s.length;i++){var hc=s[i].house;h+='<tr><td>'+s[i].sid+'</td><td><strong>'+s[i].name+'</strong></td><td>'+s[i].cls+'</td><td>'+s[i].sec+'</td><td>'+s[i].roll+'</td><td><span class="badge-sm '+(hc==='Earth'?'bg':hc==='Fire'?'br':hc==='Water'?'bb':'by')+'">'+hc+'</span></td><td>'+s[i].phone+'</td><td style="font-size:10px">'+s[i].dob+'</td></tr>'}
 h+='</table></div></div></div>';
-document.getElementById('mc').innerHTML=h;
+document.getElementById('mc').innerHTML=h;}
+loadTeacherData();}
 function fs(q){var r=document.querySelectorAll('#stbl tr');for(var i=1;i<r.length;i++)r[i].style.display=r[i].textContent.toLowerCase().includes(q.toLowerCase())?'':'none'}
 </script></body></html>
