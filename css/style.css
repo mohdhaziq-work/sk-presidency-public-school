@@ -200,6 +200,41 @@ img { max-width: 100%; height: auto; display: block; }
 .btn-dot-green { border-left: 3px solid var(--house-green); }
 .btn-dot-yellow { border-left: 3px solid var(--house-yellow); }
 
+/* --- Social Media Icons (Official Brand Colors) --- */
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(30px, 4vw, 38px);
+  height: clamp(30px, 4vw, 38px);
+  border-radius: 50%;
+  transition: all var(--transition);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+.social-icon svg { width: clamp(16px, 1.8vw, 20px); height: clamp(16px, 1.8vw, 20px); }
+
+.social-fb { background: #1877F2; color: #FFFFFF; }
+.social-fb:hover { background: #166FE5; box-shadow: 0 4px 12px rgba(24,119,242,0.4); transform: translateY(-2px); }
+
+.social-yt { background: #FF0000; color: #FFFFFF; }
+.social-yt:hover { background: #E50000; box-shadow: 0 4px 12px rgba(255,0,0,0.4); transform: translateY(-2px); }
+
+.btn-playstore {
+  background: #FFFFFF;
+  color: var(--gray-700);
+  border: 1.5px solid var(--gray-300);
+  font-weight: 600;
+  gap: 6px;
+}
+.btn-playstore:hover {
+  background: #F1F8FF;
+  border-color: #34A853;
+  color: #34A853;
+}
+.btn-playstore svg { width: 16px; height: 16px; }
+
 /* =============================================
    NAVIGATION
    ============================================= */
