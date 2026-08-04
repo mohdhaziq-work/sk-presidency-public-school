@@ -1,120 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Staff Portal - SK Presidency Public School</title>
 <style>
-:root{--primary:#1A73E8;--primary-dark:#1557B0;--house-red:#E74C3C;--house-green:#27AE60;
---white:#fff;--gray-50:#F8F9FA;--gray-100:#F1F3F4;--gray-200:#E8EAED;--gray-300:#DADCE0;
---gray-500:#9AA0A6;--gray-600:#80868B;--gray-700:#5F6368;--gray-800:#3C4043;--gray-900:#202124;
---radius-sm:8px;--radius-md:14px;--radius-lg:22px;--shadow-xl:0 20px 50px rgba(0,0,0,0.15);
---font:'Segoe UI','Roboto',sans-serif}
+:root{--primary:#1A73E8;--primary-dark:#1557B0;--white:#fff;--gray-50:#F8F9FA;--gray-100:#F1F3F4;--gray-200:#E8EAED;--gray-300:#DADCE0;--gray-500:#9AA0A6;--gray-600:#80868B;--gray-700:#5F6368;--radius-sm:8px;--radius-md:14px;--shadow-xl:0 20px 50px rgba(0,0,0,0.15);--font:'Segoe UI','Roboto',sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--font);background:linear-gradient(160deg,#0f172a 0%,#1e293b 30%,#0d1b2a 60%,#1a1a3e 100%);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:16px}
-.login-card{background:var(--white);border-radius:var(--radius-lg);width:100%;max-width:420px;overflow:hidden;box-shadow:var(--shadow-xl);animation:fadeIn 0.5s ease}
-.card-top{background:linear-gradient(135deg,#1a1a2e,#16213e);padding:clamp(24px,4vw,36px);text-align:center;color:white;position:relative;overflow:hidden}
-.card-top::before{content:'';position:absolute;width:200px;height:200px;border-radius:50%;border:2px solid rgba(255,255,255,0.05);top:-50px;right:-60px}
-.card-top .shield{width:clamp(50px,7vw,64px);height:clamp(50px,7vw,64px);border-radius:50%;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;border:2px solid rgba(255,255,255,0.2)}
-.card-top .shield svg{width:28px;height:28px;stroke:white}
-.card-top h2{font-size:clamp(17px,2vw,22px);font-weight:700}
-.card-top p{font-size:12px;opacity:0.7;margin-top:4px}
-.card-body{padding:clamp(20px,3vw,32px)}
-.tabs{display:flex;border:1.5px solid var(--gray-200);border-radius:var(--radius-sm);overflow:hidden;margin-bottom:20px}
-.tabs button{flex:1;padding:10px;border:none;background:white;font-size:13px;font-weight:500;cursor:pointer;color:var(--gray-600);font-family:var(--font);transition:all 0.2s}
+body{font-family:var(--font);background:linear-gradient(160deg,#0f172a,#1e293b,#0d1b2a,#1a1a3e);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:16px}
+.card{background:var(--white);border-radius:var(--radius-md);width:100%;max-width:430px;overflow:hidden;box-shadow:var(--shadow-xl)}
+.card-top{background:linear-gradient(135deg,#1a1a2e,#16213e);padding:clamp(20px,3.5vw,32px);text-align:center;color:white}
+.card-top .shield{width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;border:2px solid rgba(255,255,255,0.2)}
+.card-top .shield svg{width:24px;height:24px;stroke:white}
+.card-top h2{font-size:clamp(16px,2vw,20px);font-weight:700}.card-top p{font-size:11px;opacity:0.7;margin-top:3px}
+.card-body{padding:clamp(18px,3vw,28px)}
+.tabs{display:flex;border:1.5px solid var(--gray-200);border-radius:var(--radius-sm);overflow:hidden;margin-bottom:18px}
+.tabs button{flex:1;padding:10px;border:none;background:white;font-size:12px;font-weight:500;cursor:pointer;color:var(--gray-600);font-family:var(--font);transition:all 0.2s}
 .tabs button.active{background:var(--primary);color:white;font-weight:600}
-.input-group{position:relative;margin-bottom:14px}
-.input-group svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--gray-400);z-index:2;pointer-events:none}
-.input-group:focus-within svg{color:var(--primary)}
-.input-group input{width:100%;padding:12px 14px 12px 42px;border:2px solid var(--gray-200);border-radius:var(--radius-sm);font-size:14px;font-family:var(--font);background:var(--gray-50);transition:all 0.3s}
-.input-group input:focus{outline:none;border-color:var(--primary);background:white;box-shadow:0 0 0 4px rgba(26,115,232,0.08)}
-.btn-submit{width:100%;padding:13px;background:var(--primary);color:white;border:none;border-radius:var(--radius-sm);font-size:15px;font-weight:600;cursor:pointer;font-family:var(--font);transition:all 0.3s;display:flex;align-items:center;justify-content:center;gap:8px}
-.btn-submit:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:0 6px 20px rgba(26,115,232,0.35)}
-.error{background:#FEF2F2;color:#DC2626;padding:10px 14px;border-radius:var(--radius-sm);font-size:12px;margin-bottom:12px;display:none;border-left:3px solid #DC2626;align-items:center;gap:8px}
-.error.show{display:flex}
-.footer{text-align:center;padding:0 0 24px;font-size:11px;color:var(--gray-400)}
-.footer a{color:var(--gray-500);text-decoration:none}
-.tab-content{display:none}
-.tab-content.active{display:block;animation:fadeIn 0.3s ease}
-.role-badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:10px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase}
-.badge-mgmt{background:#FEF3E0;color:#EA580C}.badge-teacher{background:#E3F0FD;color:var(--primary)}
-@keyframes fadeIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:400px){.card-body{padding:16px}}
+.ig{position:relative;margin-bottom:12px}
+.ig svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:17px;height:17px;color:var(--gray-400);z-index:2;pointer-events:none}
+.ig:focus-within svg{color:var(--primary)}
+.ig input{width:100%;padding:11px 12px 11px 40px;border:2px solid var(--gray-200);border-radius:var(--radius-sm);font-size:13px;font-family:var(--font);background:var(--gray-50);transition:all 0.3s}
+.ig input:focus{outline:none;border-color:var(--primary);background:white;box-shadow:0 0 0 3px rgba(26,115,232,0.08)}
+.btn{width:100%;padding:12px;background:var(--primary);color:white;border:none;border-radius:var(--radius-sm);font-size:14px;font-weight:600;cursor:pointer;font-family:var(--font);transition:all 0.3s;display:flex;align-items:center;justify-content:center;gap:7px}
+.btn:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:0 5px 18px rgba(26,115,232,0.3)}
+.btn:disabled{opacity:0.6;cursor:not-allowed;transform:none!important}
+.err{background:#FEF2F2;color:#DC2626;padding:9px 12px;border-radius:var(--radius-sm);font-size:11px;margin-bottom:10px;display:none;border-left:3px solid #DC2626;align-items:center;gap:7px}
+.err.show{display:flex}
+.ft{text-align:center;padding:0 0 18px;font-size:10px;color:var(--gray-400)}.ft a{color:var(--gray-500);text-decoration:none}
+.tc{display:none}.tc.active{display:block}
+.spin{width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-top-color:white;border-radius:50%;animation:spin 0.7s linear infinite;display:none}
+.note{font-size:10px;color:var(--gray-500);margin-top:6px;text-align:center}
+@keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
 
-<div class="login-card">
+<div class="card">
   <div class="card-top">
     <div class="shield"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-    <h2>Staff Portal</h2>
-    <p>SK Presidency Public School</p>
+    <h2>Staff Portal</h2><p>SK Presidency Public School</p>
   </div>
-
   <div class="card-body">
-    <div class="tabs">
-      <button class="active" onclick="switchTab('mgmt')">Management</button>
-      <button onclick="switchTab('teacher')">Teacher</button>
-    </div>
+    <div class="tabs"><button class="active" onclick="st('mgmt')">Management</button><button onclick="st('teacher')">Teacher</button></div>
+    <div class="err" id="err"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/></svg><span id="et"></span></div>
 
-    <div class="error" id="error"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/></svg><span id="errorText">Invalid credentials</span></div>
-
-    <!-- Management Login -->
-    <form id="formMgmt" class="tab-content active" method="post" action="api/staff-auth.php">
-      <input type="hidden" name="role" value="management">
-      <div class="input-group">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        <input type="password" name="security_code" placeholder="Security Access Code" autocomplete="off">
-      </div>
-      <div class="input-group">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        <input type="password" name="password" placeholder="Management Password" autocomplete="off">
-      </div>
-      <button type="submit" class="btn-submit">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        Access Management Panel
-      </button>
+    <form id="fm" class="tc active" onsubmit="return lm(event)">
+      <div class="ig"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><input type="password" id="mc" placeholder="Security Access Code" autocomplete="off"></div>
+      <div class="ig"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><input type="password" id="mp" placeholder="Management Password" autocomplete="off"></div>
+      <button type="submit" class="btn" id="bm"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Access Panel</button>
+      <p class="note">Code: <b>SKPPS@2024#ADMIN</b> | Pass: <b>skpps#admin2024</b></p>
     </form>
 
-    <!-- Teacher Login -->
-    <form id="formTeacher" class="tab-content" method="post" action="api/staff-auth.php">
-      <input type="hidden" name="role" value="teacher">
-      <div class="input-group">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        <input type="text" name="username" placeholder="Teacher Username" autocomplete="off">
-      </div>
-      <div class="input-group">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        <input type="password" name="password" placeholder="Password" autocomplete="off">
-      </div>
-      <button type="submit" class="btn-submit">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/></svg>
-        Sign In
-      </button>
+    <form id="ft" class="tc" onsubmit="return lt(event)">
+      <div class="ig"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><input type="text" id="tu" placeholder="Teacher Username" autocomplete="off"></div>
+      <div class="ig"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><input type="password" id="tp" placeholder="Password" autocomplete="off"></div>
+      <button type="submit" class="btn" id="bt"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/></svg>Sign In</button>
+      <p class="note">User: <b>teacher1</b> | Pass: <b>teacher123</b></p>
     </form>
   </div>
-
-  <div class="footer">
-    <a href="index.html">School Website</a> &nbsp;|&nbsp; Staff Access Only
-  </div>
+  <div class="ft"><a href="index.html">School Website</a> | Staff Only</div>
 </div>
 
 <script>
-function switchTab(tab){
-  document.querySelectorAll('.tabs button').forEach(function(b,i){
-    b.classList.toggle('active',(tab==='mgmt'&&i===0)||(tab==='teacher'&&i===1));
-  });
-  document.getElementById('formMgmt').classList.toggle('active',tab==='mgmt');
-  document.getElementById('formTeacher').classList.toggle('active',tab==='teacher');
-}
-document.querySelectorAll('form').forEach(function(f){f.addEventListener('submit',function(e){
-  var inputs=this.querySelectorAll('input[type="password"],input[type="text"]');
-  var empty=false;inputs.forEach(function(i){if(!i.value.trim())empty=true});
-  if(empty){e.preventDefault();showError('Please fill in all fields');}
-})});
-function showError(m){var e=document.getElementById('error');document.getElementById('errorText').textContent=m;e.classList.add('show');setTimeout(function(){e.classList.remove('show')},4000)}
-var p=new URLSearchParams(window.location.search);
-if(p.get('e')==='1')showError('Invalid credentials. Access denied.');
+var A={mgmt:{code:'SKPPS@2024#ADMIN',pass:'skpps#admin2024'},teachers:[{u:'teacher1',p:'teacher123',n:'Mrs. Sharma'},{u:'teacher2',p:'teacher123',n:'Mr. Verma'},{u:'teacher3',p:'teacher123',n:'Mrs. Singh'}]};
+function st(t){document.querySelectorAll('.tabs button').forEach(function(b,i){b.classList.toggle('active',(t==='mgmt'&&i===0)||(t==='teacher'&&i===1))});document.getElementById('fm').classList.toggle('active',t==='mgmt');document.getElementById('ft').classList.toggle('active',t==='teacher');he()}
+function se(m){document.getElementById('et').textContent=m;document.getElementById('err').classList.add('show')}
+function he(){document.getElementById('err').classList.remove('show')}
+
+function lm(e){e.preventDefault();var c=document.getElementById('mc').value.trim(),p=document.getElementById('mp').value.trim();if(!c||!p){se('Please fill all fields');return false}he();var b=document.getElementById('bm');b.disabled=true;b.innerHTML='<div class="spin" style="display:block"></div> Verifying...';
+setTimeout(function(){if(c===A.mgmt.code&&p===A.mgmt.pass){sessionStorage.setItem('skpps_role','mgmt');sessionStorage.setItem('skpps_name','Management');sessionStorage.setItem('skpps_auth','1');sessionStorage.setItem('skpps_time',Date.now());location.href='management/index.html'}else{se('Invalid credentials');b.disabled=false;b.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Access Panel'}},600);return false}
+
+function lt(e){e.preventDefault();var u=document.getElementById('tu').value.trim(),p=document.getElementById('tp').value.trim();if(!u||!p){se('Please fill all fields');return false}he();var b=document.getElementById('bt');b.disabled=true;b.innerHTML='<div class="spin" style="display:block"></div> Signing in...';
+setTimeout(function(){var f=null;for(var i=0;i<A.teachers.length;i++){if(A.teachers[i].u===u&&A.teachers[i].p===p){f=A.teachers[i];break}}
+if(f){sessionStorage.setItem('skpps_role','teacher');sessionStorage.setItem('skpps_name',f.n);sessionStorage.setItem('skpps_user',f.u);sessionStorage.setItem('skpps_auth','1');sessionStorage.setItem('skpps_time',Date.now());location.href='staff/index.html'}else{se('Invalid teacher credentials');b.disabled=false;b.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/></svg>Sign In'}},600);return false}
 </script>
 </body>
 </html>

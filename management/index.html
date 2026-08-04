@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Management Panel - SKPPS</title>
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+<style>
+:root{--p:#1A73E8;--hrd:#E74C3C;--hbl:#3498DB;--hgr:#27AE60;--hyl:#F39C12;--w:#fff;--g50:#F8F9FA;--g100:#F1F3F4;--g200:#E8EAED;--g300:#DADCE0;--g500:#9AA0A6;--g600:#80868B;--g700:#5F6368;--g800:#3C4043;--g900:#202124;--rs:8px;--rm:14px;--sh:0 1px 3px rgba(0,0,0,0.06);--f:'Segoe UI','Roboto',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--f);background:var(--g50);min-height:100vh}
+.tb{background:var(--g900);color:white;padding:0 14px;height:50px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.tb b{font-size:14px}.tb .badge{background:var(--hyl);color:#000;padding:2px 8px;border-radius:12px;font-size:9px;font-weight:700;text-transform:uppercase;margin-left:6px}
+.tb a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:11px;padding:5px 12px;border-radius:14px}
+.tb a:hover{background:rgba(255,255,255,0.1);color:white}
+.ct{max-width:1240px;margin:0 auto;padding:14px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-bottom:14px}
+.stat{background:white;padding:14px;border-radius:var(--rm);box-shadow:var(--sh);border:1px solid var(--g200)}
+.stat .v{font-size:24px;font-weight:700;color:var(--g900)}.stat .l{font-size:10px;color:var(--g600);text-transform:uppercase;letter-spacing:0.5px;margin-top:2px}
+.tabs-nav{display:flex;gap:0;margin-bottom:14px;border:1.5px solid var(--g200);border-radius:var(--rs);overflow:hidden;width:fit-content}
+.tabs-nav button{padding:7px 14px;border:none;background:white;font-size:12px;font-weight:500;cursor:pointer;font-family:var(--f);color:var(--g600)}
+.tabs-nav button.active{background:var(--p);color:white}
+.card{background:white;border-radius:var(--rm);box-shadow:var(--sh);border:1px solid var(--g200);overflow:hidden;margin-bottom:14px}
+.ch{padding:11px 14px;border-bottom:1px solid var(--g100);font-weight:700;font-size:13px;display:flex;align-items:center;gap:6px}
+.cb{padding:14px}
+.fg{margin-bottom:8px}.fg label{display:block;font-size:11px;font-weight:600;color:var(--g700);margin-bottom:2px}.fg input,.fg select{width:100%;padding:7px 9px;border:1.5px solid var(--g300);border-radius:var(--rs);font-size:12px;font-family:var(--f)}.fg input:focus,.fg select:focus{outline:none;border-color:var(--p);box-shadow:0 0 0 2px rgba(26,115,232,0.08)}
+.r2{display:grid;grid-template-columns:1fr 1fr;gap:6px}@media(max-width:500px){.r2{grid-template-columns:1fr}}
+.btn{display:inline-flex;align-items:center;gap:4px;padding:7px 14px;border:none;border-radius:var(--rs);font-size:12px;font-weight:600;cursor:pointer;font-family:var(--f)}
+.btn-b{background:var(--p);color:white}.btn-b:hover{background:#1557B0}
+.btn-o{background:white;color:var(--g700);border:1.5px solid var(--g300)}.btn-o:hover{background:var(--g50)}
+.alert{padding:8px 10px;border-radius:var(--rs);font-size:11px;margin-bottom:8px}.aok{background:#ECFDF5;color:#059669;border-left:3px solid #059669}.aerr{background:#FEF2F2;color:#DC2626;border-left:3px solid #DC2626}
+.tw{overflow-x:auto}.dt{width:100%;border-collapse:collapse;font-size:11px}
+.dt th{background:var(--g50);padding:6px 8px;text-align:left;font-weight:600;color:var(--g700);border-bottom:2px solid var(--g200);white-space:nowrap}
+.dt td{padding:5px 8px;border-bottom:1px solid var(--g100);color:var(--g700)}.dt tr:hover td{background:var(--g50)}
+.badge-sm{display:inline-block;padding:1px 6px;border-radius:10px;font-size:9px;font-weight:600}.bg{background:#E6F4EA;color:var(--hgr)}.br{background:#FDE8E8;color:var(--hrd)}.bb{background:#E3F0FD;color:var(--hbl)}.by{background:#FEF3E0;color:var(--hyl)}
+.mt1{margin-top:6px}
+#camBox{background:#000;border-radius:var(--rs);overflow:hidden;position:relative;aspect-ratio:16/9;max-width:480px}
+#camBox video{width:100%;height:100%;object-fit:cover}
+#camBox .ol{position:absolute;inset:clamp(14px,6%,40px);border:2px dashed rgba(255,255,255,0.5);border-radius:var(--rs);pointer-events:none}
+</style></head><body>
+<div class="tb"><b>SKPPS<span class="badge">Management</span><span id="uname"></span></b><div><a href="#" onclick="showTab('scan')">Scanner</a><a href="#" onclick="showTab('bulk')">Import</a><a href="#" onclick="showTab('teacher')">Teachers</a><a href="#" onclick="showTab('all')">Students</a><a href="#" onclick="logout()" style="color:#f87171">Logout</a></div></div>
+<div class="ct" id="mc"></div>
+<script src="panel.js"></script></body></html>
