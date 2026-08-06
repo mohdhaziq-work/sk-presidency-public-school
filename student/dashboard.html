@@ -16,10 +16,10 @@
 <div class="ct" id="mc"></div>
 <script>
 (function(){
-if(!sessionStorage.getItem('skpps_auth')||sessionStorage.getItem('skpps_role')!=='student'){location.href='../student-login.html'}
+if(!sessionStorage.getItem('skpps_auth')||sessionStorage.getItem('skpps_role')!=='student'){location.href='../student-login-v2.html'}
 var sd=JSON.parse(sessionStorage.getItem('skpps_student')||'{}');
 document.getElementById('un').textContent=' — '+(sd.full_name||'Student');
-window.logout=function(){sessionStorage.clear();location.href='../student-login.html'}
+window.logout=function(){sessionStorage.clear();location.href='../student-login-v2.html'}
 
 var h='<h1 style="font-size:clamp(18px,2.5vw,26px);font-weight:500;margin-bottom:2px">Welcome, '+(sd.full_name||'Student').split(' ')[0]+'</h1>';
 h+='<p style="font-size:13px;color:var(--g600);margin-bottom:20px">Class '+(sd.class||'—')+'-'+(sd.section||'A')+' | House: '+(sd.house||'Earth')+'</p>';
