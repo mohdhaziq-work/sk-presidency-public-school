@@ -1,4 +1,7 @@
 /** SKPPS Management — Google Labs Design | Firebase | Auto-fill OCR */
+/* ===== ROBUST FIREBASE (onAuthStateChanged + Timeout Safety) ===== */
+(function(){window.FIREBASE_CONFIG={};var s=localStorage.getItem("skpps_firebase_config");if(s)try{FIREBASE_CONFIG=JSON.parse(s)}catch(e){}var _f=null,_p=null,_a=null;window._fbReady=function(){if(_p)return _p;_p=new Promise(function(ok){if(_f&&_f.db&&_a&&_a.currentUser)return ok(_f);if(!FIREBASE_CONFIG.apiKey){console.warn("Firebase not configured");ok(null);return}function ld(u){return new Promise(function(y,n){if(document.querySelector('script[src="'+u+'"]'))return y();var s=document.createElement('script');s.src=u;s.onload=y;s.onerror=n;document.head.appendChild(s)})}var loaded=false,to=setTimeout(function(){if(!loaded){loaded=true;console.warn("Auth timeout");ok(null)}},15000);Promise.all([ld('https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js'),ld('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js'),ld('https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js')]).then(function(){if(!firebase.apps.length)firebase.initializeApp(FIREBASE_CONFIG);_a=firebase.auth();var db=firebase.firestore();function done(){if(loaded)return;loaded=true;clearTimeout(to);_f={db:db,auth:_a};try{db.enablePersistence({synchronizeTabs:true}).catch(function(){})}catch(e){}ok(_f)}var unsub=_a.onAuthStateChanged(function(user){unsub();if(user){done()}else{_a.signInAnonymously().then(done).catch(function(e){console.warn("Auth err:",e.message);done()})}})}).catch(function(e){if(!loaded){loaded=true;clearTimeout(to);console.warn("Firebase load err",e);ok(null)}})});return _p};window.fbGetStudents=async function(){var f=await _fbReady();if(!f)return[];var s=await f.db.collection('students').where('is_active','==',true).get();return s.docs.map(function(d){var r=d.data();r.student_id=d.id;return r})};window.fbAddStudent=async function(d){var f=await _fbReady();if(!f)throw new Error("Firebase not connected");return f.db.collection('students').doc(d.student_id).set(d)};window.fbGetTeachers=async function(){var f=await _fbReady();if(!f)return[];var s=await f.db.collection('teachers').where('is_active','==',true).get();return s.docs.map(function(d){var r=d.data();return r})};window.fbAddTeacher=async function(d){var f=await _fbReady();if(!f)throw new Error("Firebase not connected");return f.db.collection('teachers').doc(d.username).set(d)};window.fbFindTeacher=async function(u){var f=await _fbReady();if(!f)return null;var d=await f.db.collection('teachers').doc(u).get();return d.exists?d.data():null}})();
+/* ===== END FIREBASE MODULE ===== */
 (function(){
 if(!sessionStorage.getItem('skpps_auth')||sessionStorage.getItem('skpps_role')!=='mgmt'){location.href='../staff-login.html'}
 document.getElementById('un').textContent=' — '+(sessionStorage.getItem('skpps_name')||'Admin');
@@ -11,8 +14,9 @@ async function lO(){if(!ocr)ocr=await Tesseract.createWorker('eng');return ocr}
 async function loadDB(){
   document.getElementById('mc').innerHTML='<div class="ld"><div class="sp"></div><p>Connecting to Firestore...</p></div>';
   S=[];T=[];
-  try{S=await fbGetStudents();if(!S)S=[]}catch(e){S=[]}
-  try{T=await fbGetTeachers();if(!T)T=[]}catch(e){T=[]}
+  try{S=await fbGetStudents();if(!S)S=[]}catch(e){console.error(e);S=[]}
+  try{T=await fbGetTeachers();if(!T)T=[]}catch(e){console.error(e);T=[]}
+  if(!S.length&&!T.length){var fb=await _fbReady();if(!fb)document.getElementById('mc').innerHTML='<div class="card"><div class="ch" style="color:#DC2626">Firebase Not Configured</div><div class="cb"><div class="al al-err">Run <a href="../firebase-setup.html" style="color:#DC2626;font-weight:700">Firebase Setup</a> first to connect to database.</div></div></div>';else render();return}
   render();
 }
 

@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Teacher Dashboard — SKPPS</title>
-<script src="../firebase/firebase-config.js"></script>
+
 <style>
 :root{--p:#1A73E8;--g-grn:#34A853;--g-red:#EA4335;--g-ylw:#FBBC04;--w:#fff;--g50:#F8F9FA;--g100:#F1F3F4;--g200:#E8EAED;--g300:#DADCE0;--g500:#9AA0A6;--g600:#80868B;--g700:#5F6368;--g800:#3C4043;--g900:#202124;--r:12px;--f:'Google Sans','Segoe UI','Roboto',sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}body{font-family:var(--f);background:var(--g50);-webkit-font-smoothing:antialiased}
@@ -15,6 +15,10 @@
 <div class="nav-t"><div class="nb"><div class="dot"></div>SK Presidency Public School<span class="pill">Teacher</span><span id="un" style="font-size:13px;color:var(--g600);font-weight:400"></span></div><button onclick="logout()" class="out">Logout</button></div>
 <div class="ct" id="mc"></div>
 <script>
+/* ===== ROBUST FIREBASE (onAuthStateChanged + Timeout Safety) ===== */
+(function(){window.FIREBASE_CONFIG={};var s=localStorage.getItem("skpps_firebase_config");if(s)try{FIREBASE_CONFIG=JSON.parse(s)}catch(e){}var _f=null,_p=null,_a=null;window._fbReady=function(){if(_p)return _p;_p=new Promise(function(ok){if(_f&&_f.db&&_a&&_a.currentUser)return ok(_f);if(!FIREBASE_CONFIG.apiKey){console.warn("Firebase not configured");ok(null);return}function ld(u){return new Promise(function(y,n){if(document.querySelector('script[src="'+u+'"]'))return y();var s=document.createElement('script');s.src=u;s.onload=y;s.onerror=n;document.head.appendChild(s)})}var loaded=false,to=setTimeout(function(){if(!loaded){loaded=true;console.warn("Auth timeout");ok(null)}},15000);Promise.all([ld('https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js'),ld('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js'),ld('https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js')]).then(function(){if(!firebase.apps.length)firebase.initializeApp(FIREBASE_CONFIG);_a=firebase.auth();var db=firebase.firestore();function done(){if(loaded)return;loaded=true;clearTimeout(to);_f={db:db,auth:_a};try{db.enablePersistence({synchronizeTabs:true}).catch(function(){})}catch(e){}ok(_f)}var unsub=_a.onAuthStateChanged(function(user){unsub();if(user){done()}else{_a.signInAnonymously().then(done).catch(function(e){console.warn("Auth err:",e.message);done()})}})}).catch(function(e){if(!loaded){loaded=true;clearTimeout(to);console.warn("Firebase load err",e);ok(null)}})});return _p};window.fbGetStudents=async function(){var f=await _fbReady();if(!f)return[];var s=await f.db.collection('students').where('is_active','==',true).get();return s.docs.map(function(d){var r=d.data();r.student_id=d.id;return r})}})();
+/* ===== END FIREBASE MODULE ===== */
+
 (function(){
 if(!sessionStorage.getItem('skpps_auth')||sessionStorage.getItem('skpps_role')!=='teacher'){location.href='../staff-login.html'}
 document.getElementById('un').textContent=' — '+(sessionStorage.getItem('skpps_name')||'Teacher');

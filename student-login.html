@@ -35,14 +35,40 @@
 </div><div class="ft"><a href="index.html">Back to School Website</a><br><span style="margin-top:3px;display:block;font-size:10px">Default password: Date of Birth (DDMMYYYY)</span></div></div>
 
 <script>
-/* ===== SELF-CONTAINED FIREBASE (no external dependency) ===== */
+/* ===== ROBUST FIREBASE (Anonymous Auth + Error Visibility) ===== */
 (function(){
   window.FIREBASE_CONFIG={};var s=localStorage.getItem("skpps_firebase_config");if(s)try{FIREBASE_CONFIG=JSON.parse(s)}catch(e){}
-  var _f=null,_p=null;
-  window._fbReady=function(){if(_p)return _p;_p=new Promise(function(ok){if(_f&&_f.db)return ok(_f);if(!FIREBASE_CONFIG.apiKey){console.warn("Firebase not configured");ok(null);return}function ld(u){return new Promise(function(y,n){if(document.querySelector('script[src="'+u+'"]'))return y();var s=document.createElement('script');s.src=u;s.onload=y;s.onerror=n;document.head.appendChild(s)})}ld('https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js').then(function(){return ld('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js')}).then(function(){if(!firebase.apps.length)firebase.initializeApp(FIREBASE_CONFIG);_f={db:firebase.firestore()};try{_f.db.enablePersistence({synchronizeTabs:true}).catch(function(){})}catch(e){}ok(_f)}).catch(function(e){console.warn("Firebase load err",e);ok(null)})});return _p};
-  window.fbFindStudent=async function(id){var f=await _fbReady();if(!f)return null;var d=await f.db.collection('students').doc(id).get();if(d.exists){var r=d.data();r.student_id=d.id;return r}return null};
-  window.fbFindStudentsByPhone=async function(phone){var f=await _fbReady();if(!f)return[];try{var s=await f.db.collection('students').where('parent_phone','==',phone).where('is_active','==',true).get();return s.docs.map(function(d){var r=d.data();r.student_id=d.id;return r})}catch(e){console.warn("Phone search error:",e);return[]}};
-  window.fbGetStudents=async function(){var f=await _fbReady();if(!f)return[];var s=await f.db.collection('students').where('is_active','==',true).get();return s.docs.map(function(d){var r=d.data();r.student_id=d.id;return r})};
+  var _f=null,_p=null,_a=null;
+  window._fbReady=function(){if(_p)return _p;_p=new Promise(function(ok,rej){
+    if(_f&&_f.db&&_a&&_a.currentUser)return ok(_f);
+    if(!FIREBASE_CONFIG.apiKey){ok(null);return}
+    function ld(u){return new Promise(function(y,n){if(document.querySelector('script[src="'+u+'"]'))return y();var s=document.createElement('script');s.src=u;s.onload=y;s.onerror=n;document.head.appendChild(s)})}
+    var loaded=false;
+    // Safety timeout — if auth takes >15s, proceed anyway
+    var t=setTimeout(function(){if(!loaded){loaded=true;console.warn("Auth timeout — proceeding without");ok(null)}},15000);
+    Promise.all([ld('https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js'),ld('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js'),ld('https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js')]).then(function(){
+      if(!firebase.apps.length)firebase.initializeApp(FIREBASE_CONFIG);
+      _a=firebase.auth();var db=firebase.firestore();
+      function done(){if(loaded)return;loaded=true;clearTimeout(t);_f={db:db,auth:_a};try{db.enablePersistence({synchronizeTabs:true}).catch(function(){})}catch(e){}ok(_f)}
+      // Use onAuthStateChanged for guaranteed auth ready
+      var unsub=_a.onAuthStateChanged(function(user){
+        unsub();
+        if(user){done()}else{_a.signInAnonymously().then(done).catch(function(e){console.warn("Anonymous auth failed:",e.message);done()})}
+      });
+    }).catch(function(e){if(!loaded){loaded=true;clearTimeout(t);console.warn("Firebase load err",e);ok(null)}});
+  });return _p};
+
+  window.fbFindStudent=async function(id){var f=await _fbReady();if(!f)throw new Error("Firebase not connected — run firebase-setup.html first");var d=await f.db.collection('students').doc(id).get();if(d.exists){var r=d.data();r.student_id=d.id;return r}return null};
+
+  window.fbFindStudentsByPhone=async function(phone){
+    var f=await _fbReady();
+    if(!f)throw new Error("Firebase not connected — run firebase-setup.html first");
+    // Single field query — NO composite index needed
+    var s=await f.db.collection('students').where('parent_phone','==',phone).get();
+    return s.docs.map(function(d){var r=d.data();r.student_id=d.id;return r}).filter(function(r){return r.is_active!==false});
+  };
+
+  window.fbGetStudents=async function(){var f=await _fbReady();if(!f)throw new Error("Firebase not connected — run firebase-setup.html first");var s=await f.db.collection('students').where('is_active','==',true).get();return s.docs.map(function(d){var r=d.data();r.student_id=d.id;return r})};
 })();
 
 /* ===== APP STATE ===== */
@@ -57,13 +83,13 @@ function verifyPassword(st,pw){var dp=(st.date_of_birth||st.dob||"").replace(/-/
 /* ===== TAB 1: STUDENT ID ===== */
 async function loginByID(e){e.preventDefault();var sid=this.querySelector('[name=sid]').value.trim(),pw=this.querySelector('[name=pw]').value.trim();if(!sid||!pw){showErr("Please fill both fields");return false}hideMsgs();var b=document.getElementById("btnID");b.disabled=true;b.innerHTML='<div class="spin" style="display:block"></div> Signing in...';
 try{var st=await fbFindStudent(sid);if(!st){var all=await fbGetStudents();for(var i=0;i<all.length;i++){if(all[i].roll_no==parseInt(sid)||all[i].admission_no===sid){st=all[i];break}}}
-if(st){if(verifyPassword(st,pw)){goDash(st);return}else{showErr("Invalid password. Default is DOB (DDMMYYYY).");b.disabled=false;b.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>Sign In';return false}}else{showErr("Student not found. Check your ID.");b.disabled=false;b.innerHTML='Sign In';return false}}catch(e){showErr("Login error: "+e.message);b.disabled=false;b.innerHTML='Sign In'}}
+if(st){if(verifyPassword(st,pw)){goDash(st);return}else{showErr("Invalid password. Default is DOB (DDMMYYYY).");b.disabled=false;b.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>Sign In';return false}}else{showErr("Student not found. Check your ID.");b.disabled=false;b.innerHTML='Sign In';return false}}catch(e){showErr(e.message||"Login error — check internet & Firebase setup");b.disabled=false;b.innerHTML='Sign In'}}
 
 /* ===== TAB 2: MOBILE LOOKUP ===== */
 async function lookupMobile(){var mob=document.getElementById("mobInput").value.replace(/\D/g,'');if(mob.length!==10){showErr("Please enter a valid 10-digit mobile number");return}hideMsgs();var b=document.getElementById("btnMobile");b.disabled=true;b.innerHTML='<div class="spin" style="display:block"></div> Searching...';
 try{mobileStudents=await fbFindStudentsByPhone(mob);
-if(!mobileStudents||!mobileStudents.length){showErr("No students found with this mobile number. Check the number or contact school office.");b.disabled=false;b.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Find My Account';return}
-showOk("Found "+mobileStudents.length+" student(s). Select your name below.");document.getElementById("mStep1").style.display="none";document.getElementById("mStep2").style.display="block";renderStudentList()}catch(e){showErr("Search error: "+e.message)}b.disabled=false;b.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Find My Account'}
+if(!mobileStudents||!mobileStudents.length){showErr("No student registered with this number. Verify the number or contact school office.");b.disabled=false;b.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Find My Account';return}
+showOk("Found "+mobileStudents.length+" student(s). Select your name below.");document.getElementById("mStep1").style.display="none";document.getElementById("mStep2").style.display="block";renderStudentList()}catch(e){showErr(e.message||"Search failed — check internet & Firebase setup");b.disabled=false;b.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Find My Account'}}
 function renderStudentList(){var h='';for(var i=0;i<mobileStudents.length;i++){var s=mobileStudents[i],nm=s.full_name||s.name,cl=s.class||s.cls,sc=s.section||s.sec||'A',rn=s.roll_no||s.roll||'';h+='<div class="st-row" onclick="selectStudent('+i+',this)" data-idx="'+i+'"><div class="av">'+(nm||'S').charAt(0).toUpperCase()+'</div><div class="info"><div class="nm">'+es(nm)+'</div><div class="mt">Class '+es(cl)+'-'+es(sc)+' | Roll '+es(rn)+'</div></div><div class="chk"></div></div>'}document.getElementById("studentList").innerHTML=h;selectedStudent=null}
 function selectStudent(idx,el){document.querySelectorAll(".st-row").forEach(function(r){r.classList.remove("selected")});el.classList.add("selected");selectedStudent=mobileStudents[idx];hideMsgs()}
 function goBackToMobile(){document.getElementById("mStep1").style.display="block";document.getElementById("mStep2").style.display="none";mobileStudents=[];selectedStudent=null;hideMsgs()}
