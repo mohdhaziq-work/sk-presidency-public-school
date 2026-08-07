@@ -9,8 +9,9 @@ body::after{content:'';position:absolute;width:350px;height:350px;border-radius:
 .card{background:rgba(255,255,255,.97);border-radius:24px;width:100%;max-width:440px;overflow:hidden;box-shadow:var(--sh);position:relative;z-index:1;animation:scalePop .6s cubic-bezier(.16,1,.3,1)}
 .top{background:linear-gradient(135deg,#1a237e,#0d47a1,#4285F4);padding:28px 24px 22px;text-align:center;color:#fff;position:relative;overflow:hidden}
 .top::before{content:'';position:absolute;width:280px;height:280px;border-radius:50%;border:1.5px solid rgba(255,255,255,.04);top:-80px;right:-60px}
-.shield{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;position:relative;z-index:1}
-.shield svg{width:24px;height:24px;stroke:#fff}
+.school-badge{border:2px solid rgba(255,255,255,.12);border-radius:12px;padding:10px 14px;background:rgba(255,255,255,.04);display:inline-block;margin-bottom:10px;position:relative;z-index:1}
+.school-badge .l{width:42px;height:42px;border-radius:50%;background:#fff;padding:2px;margin:0 auto 5px}.school-badge .l img{width:100%;height:100%;object-fit:contain;border-radius:50%}
+.school-badge .n{font-size:10px;font-weight:700;letter-spacing:.4px}.school-badge .s{font-size:7px;opacity:.4}
 .top h2{font-size:22px;font-weight:500;letter-spacing:-.3px;position:relative;z-index:1}.top p{font-size:11px;opacity:.6;position:relative;z-index:1}
 .body{padding:22px 24px 16px}
 .tabs{display:flex;background:var(--g100);border-radius:12px;padding:4px;margin-bottom:18px}
@@ -27,7 +28,7 @@ body::after{content:'';position:absolute;width:350px;height:350px;border-radius:
 .banner{background:#FEF3E0;border:1.5px solid #F39C12;border-radius:var(--rs);padding:10px 14px;margin-bottom:14px;font-size:11px;color:#7a5d00;text-align:center;display:none}.banner.show{display:block}.banner a{color:#E67E22;font-weight:700}
 @keyframes scalePop{0%{opacity:0;transform:scale(.9)}100%{opacity:1;transform:scale(1)}}@keyframes spin{to{transform:rotate(360deg)}}
 </style></head><body>
-<div class="card"><div class="top"><div class="shield"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h2>Staff Portal</h2><p>SK Presidency Public School</p></div>
+<div class="card"><div class="top"><div class="school-badge"><div class="l"><img src="images/logo-transparent.png" alt="SKPPS"></div><div class="n">SK PRESIDENCY PUBLIC SCHOOL</div><div class="s">CBSE: 2133231 | Sultanpur, UP</div></div><h2>Staff Portal</h2><p>Management & Teacher Access</p></div>
 <div class="body">
 <div class="banner" id="sb"><strong>First time?</strong> <a href="firebase-setup.html">Run Setup</a></div>
 <div class="tabs"><button class="active" onclick="wf('mgmt')">Management</button><button onclick="wf('tchr')">Teacher</button></div>
