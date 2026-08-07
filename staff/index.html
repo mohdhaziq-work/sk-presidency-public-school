@@ -153,9 +153,10 @@ document.getElementById('un').textContent=' — '+(sessionStorage.getItem('skpps
 window.navTo=function(t){curTab=t;closeSidebar();render()};
 
 // Get teacher's assigned class from session (set during login or default)
-tClass=sessionStorage.getItem('skpps_tclass')||'10TH';
-tSec=sessionStorage.getItem('skpps_tsection')||'C';
+tClass=sessionStorage.getItem('skpps_tclass')||'';
+tSec=sessionStorage.getItem('skpps_tsection')||'';
 var tName=sessionStorage.getItem('skpps_name')||'Teacher';
+if(!tClass){renderSetup();}else{initData();}
 
 function statCard(bg,icon,num,lbl){return'<div class="stat-card"><div class="st-ic" style="background:'+bg+'">'+icon+'</div><div class="st-n">'+num+'</div><div class="st-l">'+lbl+'</div></div>'}
 
@@ -280,8 +281,13 @@ window.sendNotice=async function(e){
 };
 
 // Init
-document.getElementById('mainContent').innerHTML='<div class="loading"><div class="spinner"></div><p>Connecting...</p></div>';
-fbG().then(function(data){S=data||[];return fbN(tClass,tSec)}).then(function(data2){N=data2||[];render()}).catch(function(){S=[];N=[];render()});
+function initData(){
+  document.getElementById('mainContent').innerHTML='<div class="loading"><div class="spinner"></div><p>Connecting...</p></div>';
+  fbG().then(function(data){S=data||[];return fbN(tClass,tSec)}).then(function(data2){N=data2||[];render()}).catch(function(){S=[];N=[];render()});
+}
+function renderSetup(){
+  document.getElementById('mainContent').innerHTML='<div class="crd"><div class="crd-h" style="color:#F39C12">Class Not Assigned</div><div class="crd-b"><p style="font-size:13px;color:var(--g600);margin-bottom:12px">Your teacher account does not have a class assigned yet. Please contact the school management to assign your class.</p><p style="font-size:11px;color:var(--g500)">Once assigned, re-login to access your class dashboard.</p><button class="btn btn-primary btn-sm" style="margin-top:8px" onclick="lg()">Logout & Login Again</button></div></div>';
+}
 })();
 </script>
 </body>

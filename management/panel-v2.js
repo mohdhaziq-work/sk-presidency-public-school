@@ -299,18 +299,20 @@ window.doImport=async function(){
 
 // ===== TEACHERS =====
 function renderTeachers(){
-  var rows='';if(!T.length)rows='<tr><td colspan="4" style="text-align:center;padding:30px;color:var(--g500)">No teachers added yet</td></tr>';
-  else for(var i=0;i<T.length;i++){var t=T[i];rows+='<tr><td><strong>'+esc(t.full_name)+'</strong></td><td>'+esc(t.username)+'</td><td>'+esc(t.email||'-')+'</td><td><span class="badge bdg-g">Active</span></td></tr>'}
+  var rows='';if(!T.length)rows='<tr><td colspan="5" style="text-align:center;padding:30px;color:var(--g500)">No teachers added yet</td></tr>';
+  else for(var i=0;i<T.length;i++){var t=T[i];rows+='<tr><td><strong>'+esc(t.full_name)+'</strong></td><td>'+esc(t.username)+'</td><td>'+esc(t.class||'-')+'-'+esc(t.section||'')+'</td><td>'+esc(t.email||'-')+'</td><td><span class="badge bdg-g">Active</span></td></tr>'}
   return '<div class="panel active"><div class="crd"><div class="crd-h">Add Teacher</div><div class="crd-b">'+
     '<form onsubmit="return addTeacher(event)"><div class="form-grid"><div class="fg"><label>Full Name *</label><input id="tName" required></div>'+
     '<div class="fg"><label>Username *</label><input id="tUser" required></div></div><div class="form-grid"><div class="fg"><label>Password *</label><input type="password" id="tPass" required minlength="4"></div>'+
-    '<div class="fg"><label>Email</label><input type="email" id="tEmail"></div></div><button class="btn btn-primary btn-sm">Add Teacher</button></form></div></div>'+
-    '<div class="crd"><div class="crd-h">All Teachers ('+T.length+')</div><div class="crd-b"><div class="tbl-wrap"><table class="tbl"><tr><th>Name</th><th>Username</th><th>Email</th><th>Status</th></tr>'+rows+'</table></div></div></div></div>'
+    '<div class="fg"><label>Email</label><input type="email" id="tEmail"></div></div><div class="form-grid"><div class="fg"><label>Assigned Class</label><input id="tClass" placeholder="e.g. 10TH"></div>'+
+    '<div class="fg"><label>Section</label><select id="tSec"><option>A</option><option>B</option><option>C</option></select></div></div><button class="btn btn-primary btn-sm">Add Teacher</button></form></div></div>'+
+    '<div class="crd"><div class="crd-h">All Teachers ('+T.length+')</div><div class="crd-b"><div class="tbl-wrap"><table class="tbl"><tr><th>Name</th><th>Username</th><th>Class</th><th>Email</th><th>Status</th></tr>'+rows+'</table></div></div></div></div>'
 }
 window.addTeacher=async function(e){
   e.preventDefault();var n=document.getElementById('tName').value.trim(),u=document.getElementById('tUser').value.trim(),
-      p=document.getElementById('tPass').value.trim(),em=document.getElementById('tEmail').value.trim();
-  try{await fbAT({username:u,password:p,full_name:n,email:em,is_active:true})}catch(er){alert('Failed: '+er.message);return false}
+      p=document.getElementById('tPass').value.trim(),em=document.getElementById('tEmail').value.trim(),
+      tcl=document.getElementById('tClass').value.trim(),tsc=document.getElementById('tSec').value;
+  try{await fbAT({username:u,password:p,full_name:n,email:em,class:tcl,section:tsc,is_active:true})}catch(er){alert('Failed: '+er.message);return false}
   T=await fbGT();render();return false
 };
 
