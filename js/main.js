@@ -1,31 +1,29 @@
-/* SKPPS — Scroll animations, slider, nav toggle */
+/* SKPPS v3 — Premium Interactive Features */
 (function(){
-  var currentSlide=0,totalSlides=document.querySelectorAll('.hero-slide').length||0,autoSlide;
-
-  function goTo(i){
-    currentSlide=((i%totalSlides)+totalSlides)%totalSlides;
-    document.querySelectorAll('.hero-slide').forEach(function(s,idx){s.classList.toggle('active',idx===currentSlide)});
-    document.querySelectorAll('.hero-dot').forEach(function(d,idx){d.classList.toggle('active',idx===currentSlide)});
-  }
-
-  if(totalSlides>1){
-    document.querySelectorAll('.hero-dot').forEach(function(dot){dot.addEventListener('click',function(){goTo(parseInt(this.dataset.index));resetAuto()})});
-    function nextSlide(){goTo(currentSlide+1)}function resetAuto(){clearInterval(autoSlide);autoSlide=setInterval(nextSlide,4500)}
-    autoSlide=setInterval(nextSlide,4500);
-    // Touch swipe
-    var touchX=0,touchY=0,hero=document.querySelector('.hero');
-    if(hero){hero.addEventListener('touchstart',function(e){touchX=e.touches[0].clientX;touchY=e.touches[0].clientY});hero.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-touchX,dy=e.changedTouches[0].clientY-touchY;if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>50){if(dx<0)goTo(currentSlide+1);else goTo(currentSlide-1);resetAuto()}})}
+  // Hero slider
+  var slide=0,total=document.querySelectorAll('.hero-slide').length,auto;
+  if(total>1){
+    function upDots(){document.querySelectorAll('.hero-dot').forEach(function(d,i){d.classList.toggle('active',i===slide)})}
+    window.goTo=function(i){slide=((i%total)+total)%total;document.querySelectorAll('.hero-slide').forEach(function(s,idx){s.classList.toggle('active',idx===slide)});upDots();clearInterval(auto);auto=setInterval(next,5000)}
+    window.heroMove=function(d){goTo(slide+d)};function next(){goTo(slide+1)}
+    upDots();auto=setInterval(next,5000);
+    var hero=document.getElementById('heroSlider')||document.querySelector('.hero');
+    if(hero){var tx;hero.addEventListener('touchstart',function(e){tx=e.touches[0].clientX});hero.addEventListener('touchend',function(e){var d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>50)goTo(slide+(d<0?1:-1))})}
   }
 
   // Scroll reveal
-  var observer=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add('visible')}})},{threshold:0.15});
-  document.querySelectorAll('.reveal').forEach(function(el){observer.observe(el)});
+  var ob=new IntersectionObserver(function(e){e.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){ob.observe(el)});
 
-  // Back to top
-  var btt=document.querySelector('.back-to-top');
-  if(btt){window.addEventListener('scroll',function(){btt.classList.toggle('visible',window.scrollY>400)});btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})})}
+  // Back to top + Scroll progress
+  var btt=document.querySelector('.back-to-top'),sp=document.getElementById('scrollBar');
+  if(btt){window.addEventListener('scroll',function(){btt.classList.toggle('show',window.scrollY>500);if(sp){var h=document.documentElement,sh=h.scrollHeight-h.clientHeight;sp.style.width=sh>0?Math.round(window.scrollY/sh*100)+'%':'0%'}});btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})})}
 
-  // Nav toggle mobile
-  var toggle=document.querySelector('.nav-toggle'),list=document.querySelector('.nav-list');
-  if(toggle&&list){toggle.addEventListener('click',function(){var open=list.classList.toggle('open');toggle.setAttribute('aria-expanded',open)});document.addEventListener('click',function(e){if(!e.target.closest('.nav')){list.classList.remove('open');toggle.setAttribute('aria-expanded','false')}})}
+  // Nav mobile
+  var t=document.querySelector('.nav-toggle'),l=document.querySelector('.nav-list');
+  if(t&&l){t.addEventListener('click',function(){l.classList.toggle('open')});document.addEventListener('click',function(e){if(!e.target.closest('.nav'))l.classList.remove('open')})}
+
+  // Sidebar toggle for inner pages
+  var sbHead=document.querySelector('.sidebar-head');
+  if(sbHead){sbHead.addEventListener('click',function(){document.querySelector('.sidebar-links').classList.toggle('collapsed')})}
 })();
