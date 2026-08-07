@@ -145,7 +145,7 @@ window.FIREBASE_CONFIG={};var cfg=localStorage.getItem("skpps_firebase_config");
 var _f=null,_p=null;
 window._fbReady=function(){if(_p)return _p;_p=new Promise(function(ok){if(_f&&_f.db)return ok(_f);if(!FIREBASE_CONFIG.apiKey){ok(null);return}function ld(u){return new Promise(function(y,n){if(document.querySelector('script[src="'+u+'"]'))return y();var s=document.createElement('script');s.src=u;s.onload=y;s.onerror=n;document.head.appendChild(s)})}Promise.all([ld('https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js'),ld('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js'),ld('https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js')]).then(function(){if(!firebase.apps.length)firebase.initializeApp(FIREBASE_CONFIG);_f={db:firebase.firestore()};ok(_f)}).catch(function(){ok(null)});});return _p};
 window.fbG=async function(){var f=await _fbReady();if(!f)return[];var s=await f.db.collection('students').where('is_active','==',true).get();return s.docs.map(function(d){var r=d.data();r.student_id=d.id;return r})};
-window.fbN=async function(cls,sec){var f=await _fbReady();if(!f)return[];var q=f.db.collection('notes').where('class','==',cls).where('section','==',sec).orderBy('created_at','desc');var s=await q.get();return s.docs.map(function(d){return d.data()})};
+window.fbN=async function(cls,sec){var f=await _fbReady();if(!f)return[];try{var s=await f.db.collection('notes').where('class','==',cls.toUpperCase().trim()).where('section','==',sec.toUpperCase().trim()).get();return s.docs.map(function(d){var r=d.data();r.id=d.id;return r}).sort(function(a,b){return (b.created_at||'').localeCompare(a.created_at||'')})}catch(e){console.warn('Notes query failed:',e.message);return[]}};
 window.fbAN=async function(d){var f=await _fbReady();if(!f)throw new Error("Firebase not connected");return f.db.collection('notes').add(d)};
 
 var S=[],N=[],curTab='db',tClass='',tSec='';
@@ -289,7 +289,7 @@ window.sendNotice=async function(e){
 // Init
 function initData(){
   document.getElementById('mainContent').innerHTML='<div class="loading"><div class="spinner"></div><p>Connecting...</p></div>';
-  fbG().then(function(data){S=data||[];return fbN(tClass,tSec)}).then(function(data2){N=data2||[];render()}).catch(function(){S=[];N=[];render()});
+  Promise.all([fbG().catch(function(){return[]}),fbN(tClass,tSec).catch(function(){return[]})]).then(function(data){S=data[0]||[];N=data[1]||[];render()});
 }
 function renderSetup(){
   document.getElementById('mainContent').innerHTML='<div class="crd"><div class="crd-h" style="color:#F39C12">Class Not Assigned</div><div class="crd-b"><p style="font-size:13px;color:var(--g600);margin-bottom:12px">Your teacher account does not have a class assigned yet. Please contact the school management to assign your class.</p><p style="font-size:11px;color:var(--g500)">Once assigned, re-login to access your class dashboard.</p><button class="btn btn-primary btn-sm" style="margin-top:8px" onclick="lg()">Logout & Login Again</button></div></div>';

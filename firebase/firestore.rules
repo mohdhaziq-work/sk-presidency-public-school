@@ -2,31 +2,45 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // ── READ: Open to everyone (students need to read without login complexity) ──
-    // ── WRITE: Requires Anonymous Auth (prevents outside tampering) ──
+    // ============================================================
+    // SKPPS Firestore Rules — Auth Required for ALL operations
+    // Anonymous Auth = FREE & UNLIMITED
+    // ============================================================
 
+    // ── Settings (management credentials) ──
     match /settings/{doc} {
-      allow read: if true;
-      allow write: if request.auth != null
-        && request.resource.data.keys().hasAll(['security_code', 'password']);
+      allow read, write: if request.auth != null;
     }
 
+    // ── Students ──
     match /students/{studentId} {
-      allow read, list: if true;
-      allow create, update: if request.auth != null
-        && request.resource.data.full_name is string
-        && request.resource.data.class is string;
+      allow read, list: if request.auth != null;
+      allow create, update: if request.auth != null;
       allow delete: if request.auth != null;
     }
 
+    // ── Teachers ──
     match /teachers/{teacherId} {
-      allow read, list: if true;
-      allow create, update: if request.auth != null
-        && request.resource.data.full_name is string;
+      allow read, list: if request.auth != null;
+      allow create, update: if request.auth != null;
       allow delete: if request.auth != null;
     }
 
-    // ── Block everything else ──
+    // ── NOTES & HOMEWORK (CRITICAL!) ──
+    match /notes/{noteId} {
+      allow read, list: if request.auth != null;
+      allow create: if request.auth != null;
+      allow update, delete: if request.auth != null;
+    }
+
+    // ── NOTICES ──
+    match /notices/{noticeId} {
+      allow read, list: if request.auth != null;
+      allow create: if request.auth != null;
+      allow update, delete: if request.auth != null;
+    }
+
+    // ── Fallback: block everything else ──
     match /{document=**} {
       allow read, write: if false;
     }
