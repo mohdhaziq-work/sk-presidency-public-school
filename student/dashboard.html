@@ -1,37 +1,98 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Dashboard — SK Presidency Public School</title>
+<title>My Dashboard — SK Presidency Public School</title>
 <style>
-:root{--p:#1A73E8;--pd:#1557B0;--g-grn:#34A853;--g-red:#EA4335;--g-ylw:#FBBC04;--w:#fff;--g50:#F8F9FA;--g100:#F1F3F4;--g200:#E8EAED;--g300:#DADCE0;--g500:#9AA0A6;--g600:#80868B;--g700:#5F6368;--g800:#3C4043;--g900:#202124;--r:12px;--rr:20px;--f:'Google Sans','Segoe UI','Roboto',sans-serif}
-*{box-sizing:border-box;margin:0;padding:0}body{font-family:var(--f);background:var(--g50);-webkit-font-smoothing:antialiased}
-.nav-t{background:var(--w);border-bottom:1px solid var(--g200);padding:0 20px;height:64px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}.nav-t .nb{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:500;color:var(--g900)}.nav-t .nb .dot{width:9px;height:9px;border-radius:50%;background:var(--g-grn)}.nav-t button{color:var(--g600);font-size:13px;font-weight:500;padding:8px 20px;border-radius:20px;border:none;background:none;cursor:pointer;font-family:inherit;transition:all .15s}.nav-t button:hover{background:var(--g100)}.nav-t .out{color:var(--g-red)}.nav-t .out:hover{background:#FEF2F2}
-.ct{max-width:1000px;margin:0 auto;padding:20px}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:20px}.st{background:var(--w);padding:20px;border-radius:16px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 1px 3px rgba(0,0,0,.1);border:1px solid var(--g200)}.st .v{font-size:28px;font-weight:400;color:var(--g900)}.st .l{font-size:11px;color:var(--g500);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
-.card{background:var(--w);border-radius:16px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 1px 3px rgba(0,0,0,.1);border:1px solid var(--g200);overflow:hidden;margin-bottom:16px}.ch{padding:14px 20px;border-bottom:1px solid var(--g100);font-weight:500;font-size:14px;display:flex;align-items:center;gap:10px;color:var(--g800)}.cb{padding:20px}
-.profile{display:flex;gap:20px;align-items:start;flex-wrap:wrap}.av{width:72px;height:72px;border-radius:50%;background:var(--p);color:white;display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:500;flex-shrink:0}.det{flex:1;min-width:200px;font-size:14px;line-height:2.2}.det b{color:var(--g600);min-width:85px;display:inline-block;font-weight:500}
-.qlinks{display:flex;gap:10px;flex-wrap:wrap}
-@media(max-width:500px){.nav-t .nb{font-size:13px}.profile{flex-direction:column;align-items:center;text-align:center}}
-@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+:root{--p:#1A73E8;--pd:#1557B0;--g:#34A853;--r:#EA4335;--y:#FBBC04;--w:#fff;--g50:#F8F9FA;--g100:#F1F3F4;--g200:#E8EAED;--g300:#DADCE0;--g500:#9AA0A6;--g600:#80868B;--g700:#5F6368;--g800:#3C4043;--g900:#202124;--f:'Google Sans','Segoe UI','Roboto',sans-serif;--sh:0 1px 2px rgba(0,0,0,.06),0 1px 3px rgba(0,0,0,.1)}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:var(--f);background:var(--g50);-webkit-font-smoothing:antialiased;min-height:100vh}
+.nav-t{background:var(--w);border-bottom:1px solid var(--g200);padding:0 20px;height:64px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-t .nb{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:500;color:var(--g900)}.nav-t .nb .dot{width:9px;height:9px;border-radius:50%;background:var(--g)}
+.nav-t button{color:var(--g600);font-size:13px;font-weight:500;padding:8px 20px;border-radius:20px;border:none;background:none;cursor:pointer;font-family:inherit;transition:all .15s}
+.nav-t button:hover{background:var(--g100)}.nav-t .out{color:var(--r)}.nav-t .out:hover{background:#FEF2F2}
+.ct{max-width:960px;margin:0 auto;padding:20px}
+.hero{background:linear-gradient(135deg,var(--p),#0d47a1);border-radius:20px;padding:28px 32px;color:white;margin-bottom:20px;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;width:200px;height:200px;border-radius:50%;border:2px solid rgba(255,255,255,.06);top:-60px;right:-40px}
+.hero h1{font-size:24px;font-weight:500;position:relative;z-index:1}.hero .sub{font-size:13px;opacity:.8;margin-top:4px;position:relative;z-index:1}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:20px}
+.st{background:var(--w);padding:18px;border-radius:14px;box-shadow:var(--sh);border:1px solid var(--g200);text-align:center}
+.st .icon{font-size:24px;margin-bottom:4px}.st .v{font-size:24px;font-weight:400;color:var(--g900)}.st .l{font-size:10px;color:var(--g500);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+.card{background:var(--w);border-radius:16px;box-shadow:var(--sh);border:1px solid var(--g200);overflow:hidden;margin-bottom:16px}
+.ch{padding:14px 20px;border-bottom:1px solid var(--g100);font-weight:500;font-size:14px;display:flex;align-items:center;gap:10px;color:var(--g800)}.cb{padding:20px}
+.profile{display:flex;gap:20px;align-items:start;flex-wrap:wrap}
+.av{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--p),#0d47a1);color:white;display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:500;flex-shrink:0;box-shadow:0 4px 12px rgba(26,115,232,.25)}
+.det{flex:1;min-width:200px;display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;font-size:13px}
+@media(max-width:400px){.det{grid-template-columns:1fr}}
+.det .row{display:flex;align-items:baseline;gap:6px}.det .lbl{color:var(--g500);font-weight:500;font-size:10px;text-transform:uppercase;letter-spacing:.3px;min-width:60px}.det .val{color:var(--g800)}
+.loading{text-align:center;padding:60px 20px}.loading .sp{width:36px;height:36px;border:3px solid var(--g200);border-top-color:var(--p);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px}
+@keyframes spin{to{transform:rotate(360deg)}}
 </style></head><body>
 <div class="nav-t"><div class="nb"><div class="dot"></div>SKPPS Student Portal<span id="un"></span></div><button onclick="logout()" class="out">Logout</button></div>
-<div class="ct" id="mc"></div>
+<div class="ct" id="mc"><div class="loading"><div class="sp"></div><p style="color:var(--g600);font-size:14px;margin-top:12px">Loading your dashboard...</p></div></div>
+
 <script>
 (function(){
-if(!sessionStorage.getItem('skpps_auth')||sessionStorage.getItem('skpps_role')!=='student'){location.href='../student-login-v2.html'}
-var sd=JSON.parse(sessionStorage.getItem('skpps_student')||'{}');
-document.getElementById('un').textContent=' — '+(sd.full_name||'Student');
-window.logout=function(){sessionStorage.clear();location.href='../student-login-v2.html'}
+  if(!sessionStorage.getItem('skpps_auth')||sessionStorage.getItem('skpps_role')!=='student'){location.href='../student-login.html'}
 
-var h='<h1 style="font-size:clamp(18px,2.5vw,26px);font-weight:500;margin-bottom:2px">Welcome, '+(sd.full_name||'Student').split(' ')[0]+'</h1>';
-h+='<p style="font-size:13px;color:var(--g600);margin-bottom:20px">Class '+(sd.class||'—')+'-'+(sd.section||'A')+' | House: '+(sd.house||'Earth')+'</p>';
-h+='<div class="stats"><div class="st"><div class="v">'+(sd.class||'—')+'</div><div class="l">Class</div></div><div class="st"><div class="v">'+(sd.roll_no||'—')+'</div><div class="l">Roll Number</div></div><div class="st"><div class="v">'+(sd.house||'Earth')+'</div><div class="l">House</div></div></div>';
+  window.FIREBASE_CONFIG={};var s=localStorage.getItem("skpps_firebase_config");if(s)try{FIREBASE_CONFIG=JSON.parse(s)}catch(e){}
+  var _db=null;
+  function getDB(){
+    if(_db)return Promise.resolve(_db);
+    return new Promise(function(ok){
+      if(!FIREBASE_CONFIG.apiKey){ok(null);return}
+      function ld(u){return new Promise(function(y){var s=document.createElement('script');s.src=u;s.onload=y;document.head.appendChild(s)})}
+      Promise.all([ld('https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js'),ld('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js')]).then(function(){
+        if(!firebase.apps.length)firebase.initializeApp(FIREBASE_CONFIG);
+        _db=firebase.firestore();ok(_db);
+      }).catch(function(){ok(null)});
+    });
+  }
 
-h+='<div class="card"><div class="ch"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--p)" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>My Profile</div><div class="cb"><div class="profile"><div class="av">'+(sd.full_name||'S').charAt(0).toUpperCase()+'</div><div class="det"><div><b>Name</b> '+esc(sd.full_name)+'</div><div><b>Father</b> '+esc(sd.father_name)+'</div><div><b>Class</b> '+esc(sd.class)+'-'+esc(sd.section)+'</div><div><b>House</b> '+esc(sd.house)+'</div><div><b>Blood Group</b> '+esc(sd.blood_group)+'</div><div><b>Phone</b> '+esc(sd.parent_phone)+'</div><div><b>Date of Birth</b> '+esc(sd.date_of_birth)+'</div></div></div></div></div>';
+  var sid=sessionStorage.getItem('skpps_sid');
+  window.logout=function(){sessionStorage.clear();location.href='../student-login.html'};
 
-h+='<div class="card"><div class="ch"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--g-red)" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>Recent Notices</div><div class="cb"><p style="font-size:13px;color:var(--g600)">No new notices for your class at this time.</p></div></div>';
+  async function loadDash(){
+    var sd={};
+    try{sd=JSON.parse(sessionStorage.getItem('skpps_student')||'{}')}catch(e){}
+    if((!sd||!sd.full_name)&&sid){
+      try{var db=await getDB();if(db){var doc=await db.collection('students').doc(sid).get();if(doc.exists){sd=doc.data();sd.student_id=sid;sessionStorage.setItem('skpps_student',JSON.stringify(sd))}}}catch(e){}
+    }
 
-h+='<div class="card"><div class="ch">Quick Links</div><div class="cb"><div class="qlinks"><a href="../index.html" style="padding:10px 20px;background:var(--p);color:white;text-decoration:none;border-radius:20px;font-size:13px;font-weight:500">School Website</a><a href="#" onclick="logout()" style="padding:10px 20px;background:var(--g100);color:var(--g700);text-decoration:none;border-radius:20px;font-size:13px;font-weight:500">Logout</a></div></div></div>';
+    var nm=sd.full_name||sd.name||sessionStorage.getItem('skpps_name')||'Student';
+    var cl=sd.class||sd.cls||sessionStorage.getItem('skpps_class')||'—';
+    var sc=sd.section||sd.sec||sessionStorage.getItem('skpps_section')||'A';
+    var hs=sd.house||sessionStorage.getItem('skpps_house')||'Earth';
+    var rn=sd.roll_no||sd.roll||sessionStorage.getItem('skpps_roll')||'—';
+    var fn=sd.father_name||sd.father||'—';
+    var mn=sd.mother_name||sd.mother||'—';
+    var ph=sd.parent_phone||sd.phone||'—';
+    var db2=sd.date_of_birth||sd.dob||'—';
+    var bg=sd.blood_group||'—';
+    var gd=sd.gender||'—';
 
-document.getElementById('mc').innerHTML=h;
-function esc(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+    document.getElementById('un').textContent=' — '+nm;
+    var h='';
+    h+='<div class="hero"><h1>Welcome, '+nm.split(' ')[0]+'! 👋</h1><div class="sub">Class '+cl+'-'+sc+' | Roll '+rn+' | '+hs+' House</div></div>';
+    h+='<div class="stats"><div class="st"><div class="icon">📚</div><div class="v">'+cl+'</div><div class="l">Class</div></div><div class="st"><div class="icon">🏠</div><div class="v">'+hs+'</div><div class="l">House</div></div><div class="st"><div class="icon">🔢</div><div class="v">'+rn+'</div><div class="l">Roll No</div></div><div class="st"><div class="icon">📞</div><div class="v">'+ph+'</div><div class="l">Contact</div></div></div>';
+
+    h+='<div class="card"><div class="ch"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--p)" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>My Profile</div><div class="cb"><div class="profile"><div class="av">'+nm.charAt(0).toUpperCase()+'</div><div class="det">';
+    h+='<div class="row"><span class="lbl">Name</span><span class="val">'+esc(nm)+'</span></div>';
+    h+='<div class="row"><span class="lbl">Father</span><span class="val">'+esc(fn)+'</span></div>';
+    h+='<div class="row"><span class="lbl">Mother</span><span class="val">'+esc(mn)+'</span></div>';
+    h+='<div class="row"><span class="lbl">Class</span><span class="val">'+esc(cl)+'-'+esc(sc)+'</span></div>';
+    h+='<div class="row"><span class="lbl">Roll No</span><span class="val">'+esc(rn)+'</span></div>';
+    h+='<div class="row"><span class="lbl">House</span><span class="val">'+esc(hs)+'</span></div>';
+    h+='<div class="row"><span class="lbl">Gender</span><span class="val">'+esc(gd)+'</span></div>';
+    h+='<div class="row"><span class="lbl">DOB</span><span class="val">'+esc(db2)+'</span></div>';
+    h+='<div class="row"><span class="lbl">Phone</span><span class="val">'+esc(ph)+'</span></div>';
+    h+='<div class="row"><span class="lbl">Blood</span><span class="val">'+esc(bg)+'</span></div>';
+    h+='</div></div></div></div>';
+
+    h+='<div class="card"><div class="ch"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--r)" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>Notices</div><div class="cb"><p style="font-size:13px;color:var(--g600)">No new notices for your class right now. Check back later!</p></div></div>';
+
+    h+='<div class="card"><div class="ch">Quick Links</div><div class="cb"><div style="display:flex;gap:10px;flex-wrap:wrap"><a href="../index.html" style="padding:10px 20px;background:var(--p);color:white;text-decoration:none;border-radius:20px;font-size:13px;font-weight:500">🏫 School Website</a><a href="#" onclick="logout()" style="padding:10px 20px;background:var(--g100);color:var(--g700);text-decoration:none;border-radius:20px;font-size:13px;font-weight:500">🚪 Logout</a></div></div></div>';
+
+    document.getElementById('mc').innerHTML=h;
+  }
+
+  function esc(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+  loadDash();
 })();
 </script></body></html>
