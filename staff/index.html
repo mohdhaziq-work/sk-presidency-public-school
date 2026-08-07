@@ -25,7 +25,7 @@ a{color:var(--p);text-decoration:none}
 .topbar .tr .mbtn span+span{margin-top:3px}
 
 /* ===== LAYOUT ===== */
-.layout{display:grid;grid-template-columns:220px 1fr;min-height:calc(100vh - 56px);min-height:calc(100dvh - 56px)}
+.layout{display:grid;grid-template-columns:200px 1fr;min-height:calc(100vh - 56px);min-height:calc(100dvh - 56px)}
 @media(max-width:600px){.layout{grid-template-columns:1fr}}
 
 /* ===== SIDEBAR ===== */
@@ -33,10 +33,10 @@ a{color:var(--p);text-decoration:none}
 @media(max-width:600px){.sidebar{position:fixed;left:-270px;top:56px;z-index:200;width:270px;transition:left var(--t);box-shadow:0 8px 40px rgba(0,0,0,.15);height:calc(100dvh - 56px)}.sidebar.open{left:0}}
 .sidebar .sh{padding:6px 14px 14px;font-size:9px;color:var(--g500);text-transform:uppercase;letter-spacing:1.5px;font-weight:700}
 .sidebar nav{flex:1}
-.sidebar nav button,.sidebar nav a{display:flex;align-items:center;gap:10px;padding:10px 14px;margin:1px 8px;font-size:13px;font-weight:500;color:var(--g700);border-radius:var(--rx);transition:all var(--t);border:none;background:none;width:calc(100% - 16px);cursor:pointer;font-family:var(--f);text-align:left;text-decoration:none}
+.sidebar nav button,.sidebar nav a{display:flex;align-items:center;gap:8px;padding:9px 10px;margin:1px 6px;font-size:12px;font-weight:500;color:var(--g700);border-radius:var(--rx);transition:all var(--t);border:none;background:none;width:calc(100% - 12px);cursor:pointer;font-family:var(--f);text-align:left;text-decoration:none}
 .sidebar nav button:hover,.sidebar nav a:hover{background:var(--g100);color:var(--g900)}
 .sidebar nav button.active,.sidebar nav a.active{background:#e8f0fe;color:var(--p);font-weight:600}
-.sidebar nav button .si,.sidebar nav a .si{width:30px;height:30px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sidebar nav button .si,.sidebar nav a .si{width:26px;height:26px;border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .si-db .si{background:#F3E8FF}.si-db svg{stroke:#9333EA}
 .si-st .si{background:#FEF3E0}.si-st svg{stroke:var(--hy)}
 .si-sc .si{background:#E3F0FD}.si-sc svg{stroke:var(--hb)}
@@ -57,10 +57,10 @@ a{color:var(--p);text-decoration:none}
 .stat-card{background:var(--w);border-radius:var(--rm);padding:16px 12px;box-shadow:var(--sh);border:1px solid var(--g200);transition:all var(--t);text-align:center}
 .stat-card:active{transform:scale(.97)}
 @media(min-width:600px){.stat-card:hover{transform:translateY(-3px);box-shadow:var(--shl)}}
-.stat-card .st-ic{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 8px}
-@media(min-width:480px){.stat-card .st-ic{width:48px;height:48px;margin-bottom:10px}}
-.stat-card .st-n{font-size:26px;font-weight:400;color:var(--g900);line-height:1.1}
-@media(min-width:480px){.stat-card .st-n{font-size:32px}}
+.stat-card .st-ic{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 6px}
+@media(min-width:480px){.stat-card .st-ic{width:42px;height:42px;margin-bottom:8px}}
+.stat-card .st-n{font-size:24px;font-weight:400;color:var(--g900);line-height:1.1}
+@media(min-width:480px){.stat-card .st-n{font-size:30px}}
 .stat-card .st-l{font-size:9px;color:var(--g500);text-transform:uppercase;letter-spacing:.6px;margin-top:3px}
 
 /* ===== CARDS ===== */
@@ -142,11 +142,11 @@ document.getElementById('un').textContent=' — '+(sessionStorage.getItem('skpps
 window.navTo=function(t){curTab=t;closeSidebar();render()};
 
 function statCard(bg,icon,num,lbl){return'<div class="stat-card"><div class="st-ic" style="background:'+bg+'">'+icon+'</div><div class="st-n">'+num+'</div><div class="st-l">'+lbl+'</div></div>'}
-var svg={students:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--hb)" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.9M16 3.1a4 4 0 010 7.8"/></svg>',
-  classes:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--hg)" stroke-width="1.8"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/></svg>',
-  active:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--hy)" stroke-width="1.8"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>',
-  search:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--hr)" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>',
-  all:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--p)" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>'};
+var svg={students:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--hb)" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.9M16 3.1a4 4 0 010 7.8"/></svg>',
+  classes:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--hg)" stroke-width="1.8"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/></svg>',
+  active:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--hy)" stroke-width="1.8"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>',
+  search:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--hr)" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>',
+  all:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--p)" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>'};
 
 function esc(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 function badge(hc){var m={Earth:'bdg-g',Fire:'bdg-r',Water:'bdg-b',Air:'bdg-y'};var c=m[hc]||'bdg-g';return'<span class="badge '+c+'">'+hc+'</span>'}
