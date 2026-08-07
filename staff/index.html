@@ -189,7 +189,13 @@ function render(){
 
   if(_rt)clearTimeout(_rt);
   _rt=setTimeout(function(){
-    var myClass=S.filter(function(s){return (s.class||s.cls)===tClass&&(s.section||s.sec||'A')===tSec});
+    var myClass=S.filter(function(s){
+    var sc=(s.class||s.cls||'').toUpperCase().trim();
+    var ss=(s.section||s.sec||'').toUpperCase().trim();
+    var tc=tClass.toUpperCase().trim();
+    var ts=tSec.toUpperCase().trim();
+    return sc===tc && ss===ts;
+});
     var classes=S.length?new Set(S.map(function(s){return s.class||s.cls})).size:0;
     var h='';
     switch(curTab){

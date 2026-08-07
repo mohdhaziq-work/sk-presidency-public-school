@@ -244,7 +244,7 @@ window.clearScan=function(){document.getElementById('scanResult').innerHTML='';d
 // ===== SAVE STUDENT =====
 window.saveStudent=async function(e){
   e.preventDefault();var f=e.target;
-  var sid=f.stid.value,nm=f.name.value,cls=f.cls.value,sec=f.sec.value,dob=f.dob.value||'2000-01-01',
+  var sid=f.stid.value,nm=f.name.value,cls=f.cls.value.toUpperCase().trim(),sec=f.sec.value.toUpperCase().trim(),dob=f.dob.value||'2000-01-01',
       father=f.father.value,phone=f.phone.value,gender=f.gender.value,house=f.house.value,blood=f.blood.value.trim();
   if(!nm||!cls){alert('Name and Class required');return false}
   document.getElementById('scanResult').innerHTML='<div class="crd" style="text-align:center;padding:20px"><div class="spinner" style="margin:0 auto 10px"></div><p style="font-size:12px;color:var(--g600)">Saving...</p></div>';
@@ -287,7 +287,7 @@ window.doImport=async function(){
   var lines=t.split('\n').filter(Boolean),a=0,s=0;
   for(var i=0;i<lines.length;i++){
     var c=lines[i].split(',').map(function(x){return x.trim()});if(c.length<4){s++;continue}
-    var sid=c[0]||('SKPPS'+new Date().getFullYear()+String(a+1).padStart(3,'0')),nm=c[1],cls=c[2],sec=c[3]||'A',
+    var sid=c[0]||('SKPPS'+new Date().getFullYear()+String(a+1).padStart(3,'0')),nm=c[1],cls=c[2].toUpperCase().trim(),sec=(c[3]||'A').toUpperCase().trim(),
         dob=c[4]||'2000-01-01',father=c[5]||'',phone=c[6]||'',gender=c[7]||'Male',house=c[8]||'Earth';
     if(!nm||!cls){s++;continue}
     try{await fbAS({student_id:sid,full_name:nm,class:cls,section:sec,date_of_birth:dob,father_name:father,
@@ -300,7 +300,7 @@ window.doImport=async function(){
 // ===== TEACHERS =====
 function renderTeachers(){
   var rows='';if(!T.length)rows='<tr><td colspan="5" style="text-align:center;padding:30px;color:var(--g500)">No teachers added yet</td></tr>';
-  else for(var i=0;i<T.length;i++){var t=T[i];rows+='<tr><td><strong>'+esc(t.full_name)+'</strong></td><td>'+esc(t.username)+'</td><td>'+esc(t.class||'-')+'-'+esc(t.section||'')+'</td><td>'+esc(t.email||'-')+'</td><td><span class="badge bdg-g">Active</span></td></tr>'}
+  else for(var i=0;i<T.length;i++){var t=T[i];rows+='<tr><td><strong>'+esc(t.full_name)+'</strong></td><td>'+esc(t.username)+'</td><td>'+(t.class||'-')+'-'+(t.section||'')+'</td><td>'+esc(t.email||'-')+'</td><td><span class="badge bdg-g">Active</span></td></tr>'}
   return '<div class="panel active"><div class="crd"><div class="crd-h">Add Teacher</div><div class="crd-b">'+
     '<form onsubmit="return addTeacher(event)"><div class="form-grid"><div class="fg"><label>Full Name *</label><input id="tName" required></div>'+
     '<div class="fg"><label>Username *</label><input id="tUser" required></div></div><div class="form-grid"><div class="fg"><label>Password *</label><input type="password" id="tPass" required minlength="4"></div>'+
