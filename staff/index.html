@@ -26,22 +26,19 @@ body{font-family:var(--f);background:var(--bg);color:var(--g800);-webkit-font-sm
 .sidebar nav button:hover,.sidebar nav a:hover{background:var(--g100)}.sidebar nav a.active,.sidebar nav button.active{background:#e8f0fe;color:var(--p);font-weight:600}
 .sidebar nav button .si,.sidebar nav a .si{width:26px;height:26px;border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .si-db .si{background:#F3E8FF}.si-st .si{background:#FEF3E0}.si-nt .si{background:#FDE8E8}.si-aw .si{background:#E3F0FD}.si-lk .si{background:#E6F4EA}
-.si-db svg{stroke:#9333EA}.si-st svg{stroke:var(--hy)}.si-nt svg{stroke:var(--hr)}.si-aw svg{stroke:var(--hb)}.si-lk svg{stroke:var(--hg)}
-.sidebar .sf{margin-top:auto;padding:12px 14px;border-top:1px solid var(--g100);font-size:10px;color:var(--g500)}.sidebar .sf .sv{font-weight:600;color:var(--g800);margin-top:2px}
+.si-db svg{stroke:#9333EA}.si-st svg{stroke:var(--hy)}.si-nt svg{stroke:var(--hr)}.si-aw svg{stroke:var(--hb)}.si-lk svg{stroke:var(--hg)}.sidebar .sf{margin-top:auto;padding:12px 14px;border-top:1px solid var(--g100);font-size:10px;color:var(--g500)}.sidebar .sf .sv{font-weight:600;color:var(--g800);margin-top:2px}
 .backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:199}@media(max-width:600px){.backdrop.show{display:block}}
 .main{padding:16px}@media(min-width:600px){.main{padding:24px}}
 .stats-row{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px}@media(min-width:480px){.stats-row{grid-template-columns:repeat(4,1fr);gap:12px}}
-.stat-card{background:var(--w);border-radius:var(--rm);padding:16px 12px;box-shadow:var(--sh);border:1px solid var(--g200);transition:all var(--t);text-align:center}
-.stat-card:active{transform:scale(.97)}@media(min-width:600px){.stat-card:hover{transform:translateY(-3px);box-shadow:var(--shl)}}
+.stat-card{background:var(--w);border-radius:var(--rm);padding:16px 12px;box-shadow:var(--sh);border:1px solid var(--g200);transition:all var(--t);text-align:center}.stat-card:active{transform:scale(.97)}@media(min-width:600px){.stat-card:hover{transform:translateY(-3px);box-shadow:var(--shl)}}
 .stat-card .st-ic{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 6px}
 .stat-card .st-n{font-size:24px;font-weight:400;color:var(--g900)}.stat-card .st-l{font-size:9px;color:var(--g500);text-transform:uppercase;letter-spacing:.6px;margin-top:3px}
 .crd{background:var(--w);border-radius:var(--rm);box-shadow:var(--sh);border:1px solid var(--g200);overflow:hidden;margin-bottom:14px}
 .crd-h{padding:12px 14px;border-bottom:1px solid var(--g100);font-weight:500;font-size:12px;display:flex;align-items:center;gap:7px;color:var(--g800)}.crd-b{padding:14px}
-.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--rx);border:1px solid var(--g200);-webkit-mask-image:linear-gradient(to right,black 90%,transparent 100%);mask-image:linear-gradient(to right,black 90%,transparent 100%)}
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--rx);border:1px solid var(--g200)}
 .tbl{width:100%;min-width:500px;border-collapse:collapse;font-size:11px}
 .tbl th{background:var(--g50);padding:8px 10px;text-align:left;font-weight:600;color:var(--g600);border-bottom:2px solid var(--g200);white-space:nowrap;font-size:8px;text-transform:uppercase;letter-spacing:.3px}
-.tbl td{padding:7px 10px;border-bottom:1px solid var(--g100);color:var(--g700)}.tbl tr:active td{background:var(--g50)}@media(min-width:600px){.tbl tr:hover td{background:var(--g50)}}
-.tbl .mono{font-family:monospace;font-size:9px}
+.tbl td{padding:7px 10px;border-bottom:1px solid var(--g100);color:var(--g700)}.tbl tr:active td{background:var(--g50)}@media(min-width:600px){.tbl tr:hover td{background:var(--g50)}}.tbl .mono{font-family:monospace;font-size:9px}
 .badge{display:inline-block;padding:2px 6px;border-radius:10px;font-size:8px;font-weight:600;text-transform:uppercase}
 .bdg-g{background:#E6F4EA;color:var(--g)}.bdg-r{background:#FDE8E8;color:var(--r)}.bdg-b{background:#E3F0FD;color:var(--p)}.bdg-y{background:#FEF7E0;color:#E37400}.bdg-p{background:#F3E8FF;color:#9333EA}
 .search-bar{width:100%;padding:9px 12px;border:1.5px solid var(--g300);border-radius:20px;font-size:12px;font-family:var(--f);margin-bottom:12px;transition:all var(--t);background:var(--w)}.search-bar:focus{outline:none;border-color:var(--p);box-shadow:0 0 0 3px rgba(66,133,244,.06)}
@@ -53,6 +50,13 @@ body{font-family:var(--f);background:var(--bg);color:var(--g800);-webkit-font-sm
 .btn-sm{padding:6px 12px;font-size:10px;border-radius:14px}.btn-primary{background:var(--p);color:var(--w)}.btn-outline{background:var(--w);color:var(--g700);border:1.5px solid var(--g300)}.btn-green{background:var(--g);color:var(--w)}.btn-red{background:var(--r);color:var(--w)}
 .notice-item{padding:10px 0;border-bottom:1px solid var(--g100);font-size:12px;color:var(--g600)}.notice-item:last-child{border-bottom:none}.notice-item strong{color:var(--g800);display:block;margin-bottom:2px}.notice-item .meta{font-size:9px;color:var(--g500);margin-top:2px}
 .loading{text-align:center;padding:48px 12px}.loading .spinner{width:28px;height:28px;border:2.5px solid var(--g200);border-top-color:var(--p);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px}.loading p{color:var(--g600);font-size:12px}
+/* Assign table */
+.assign-tbl{width:100%;border-collapse:collapse;font-size:12px}
+.assign-tbl td{padding:6px 8px;border-bottom:1px solid var(--g100);vertical-align:middle}
+.assign-tbl td:first-child{font-weight:600;color:var(--g800);min-width:90px;font-size:11px}
+.assign-tbl select{width:100%;padding:7px 8px;border:1.5px solid var(--g300);border-radius:var(--rx);font-size:11px;font-family:var(--f);background:var(--w)}
+.assign-tbl select:focus{outline:none;border-color:var(--p)}
+.assign-tbl .assigned-cell{font-size:10px;color:var(--g);font-weight:500;min-width:120px}
 @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}@keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
@@ -65,7 +69,7 @@ body{font-family:var(--f);background:var(--bg);color:var(--g800);-webkit-font-sm
 <nav>
 <button class="active si-db" onclick="navTo('db')"><span class="si"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span>Dashboard</button>
 <button class="si-st" onclick="navTo('students')"><span class="si"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span>My Class</button>
-<button class="si-aw" onclick="navTo('assign')"><span class="si"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><path d="M17 11l2 2 4-4"/></svg></span>Assign Notes Student</button>
+<button class="si-aw" onclick="navTo('assign')"><span class="si"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg></span>Assign Notes</button>
 <button class="si-nt" onclick="navTo('notices')"><span class="si"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg></span>Notices</button>
 <a class="si-lk" href="../index.html"><span class="si"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10"/><path d="M12 2a15.3 15.3 0 00-4 10 15.3 15.3 0 004 10"/></svg></span>Website</a>
 </nav>
@@ -102,7 +106,7 @@ var tClass=(sessionStorage.getItem('skpps_tclass')||'').toUpperCase().trim();
 var tSec=(sessionStorage.getItem('skpps_tsection')||'').toUpperCase().trim();
 var tName=sessionStorage.getItem('skpps_name')||'Teacher';
 var subjects=['English','Hindi','Maths','Science','Social Studies','Sanskrit','Computer'];
-document.getElementById('un').textContent=' — '+tName;
+document.getElementById('un').textContent=' - '+tName;
 window.navTo=function(t){curTab=t;closeSidebar();if(loaded)render()};
 
 function esc(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
@@ -112,7 +116,7 @@ function statCard(bg,icon,num,lbl){return'<div class="stat-card"><div class="st-
 var svgI={st:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--hb)" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>',
   us:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--p)" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>',
   nt:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--hr)" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>',
-  ck:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--hg)" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><path d="M17 11l2 2 4-4"/></svg>'};
+  ck:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--hg)" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg>'};
 
 function render(){
   document.querySelectorAll('.sidebar nav button').forEach(function(b){b.classList.remove('active')});
@@ -124,11 +128,11 @@ function render(){
     case 'db':
       h='<h2 style="font-size:18px;font-weight:500;margin-bottom:4px">Welcome, '+tName+'</h2>';
       h+='<p style="font-size:11px;color:var(--g500);margin-bottom:8px">'+(tClass?'Assigned: '+tClass+'-'+tSec+' | Students: '+myClass.length:'Class not assigned')+'</p>';
-      h+='<div class="stats-row">'+statCard('#E3F0FD',svgI.st,myClass.length,'My Class')+statCard('#E6F4EA',svgI.ck,S.length,'All School')+statCard('#FEF3E0',svgI.nt,classes,'Classes')+statCard('#FDE8E8',svgI.us,repData?Object.keys(repData.subjects||{}).length:0,'Reps Set')+'</div>';
+      h+='<div class="stats-row">'+statCard('#E3F0FD',svgI.st,myClass.length,'My Class')+statCard('#E6F4EA',svgI.ck,S.length,'All School')+statCard('#FEF3E0',svgI.nt,classes,'Classes')+statCard('#FDE8E8',svgI.us,repData&&repData.subjects?Object.keys(repData.subjects).filter(function(k){return repData.subjects[k]&&repData.subjects[k].student_id}).length:0,'Subjects Assigned')+'</div>';
       if(tClass&&myClass.length){
         h+='<div class="crd"><div class="crd-h">'+svgI.us+'My Class: '+tClass+'-'+tSec+' ('+myClass.length+')</div><div class="crd-b"><div class="tbl-wrap"><table class="tbl"><tr><th>ID</th><th>Name</th><th>Class</th><th>Sec</th><th>House</th><th>Phone</th></tr>';
         for(var i=0;i<myClass.length;i++){var s=myClass[i];h+='<tr><td class="mono">'+esc(s.student_id)+'</td><td><strong>'+esc(s.full_name)+'</strong></td><td>'+esc(s.class)+'</td><td>'+esc(s.section||'-')+'</td><td>'+badge(s.house||'Earth')+'</td><td>'+esc(s.parent_phone||'-')+'</td></tr>'}h+='</table></div></div></div>'}
-      if(repData&&repData.subjects){h+='<div class="crd"><div class="crd-h" style="color:var(--g)">'+svgI.ck+'Assigned Notes Students</div><div class="crd-b">';var subs=repData.subjects;for(var sub in subs){var r=subs[sub];h+='<div class="notice-item"><strong>'+esc(sub)+'</strong> → '+esc(r.student_name)+' ('+esc(r.student_id)+')</div>'}h+='</div></div>'}
+      if(repData&&repData.subjects){h+='<div class="crd"><div class="crd-h" style="color:var(--g)">'+svgI.ck+'Subject Assignments</div><div class="crd-b"><table class="assign-tbl">';var subs=repData.subjects;for(var k=0;k<subjects.length;k++){var sub=subjects[k],r=subs[sub];h+='<tr><td>'+sub+'</td><td>'+(r&&r.student_id?r.student_name+' <span class="badge bdg-g" style="font-size:7px">'+r.student_id+'</span>':'<span style="color:var(--g400)">Not assigned</span>')+'</td></tr>'}h+='</table></div></div>'}
       break;
     case 'students':
       if(!tClass||!myClass.length){h='<div class="crd"><div class="crd-h">My Class</div><div class="crd-b"><p style="color:var(--g500)">No class assigned.</p></div></div>';break}
@@ -137,12 +141,16 @@ function render(){
     case 'assign':
       if(!tClass||!myClass.length){h='<div class="crd"><div class="crd-h">Assign Notes Student</div><div class="crd-b"><p style="color:var(--g500)">No class assigned.</p></div></div>';break}
       var reps=repData&&repData.subjects?repData.subjects:{};
-      h='<div class="crd"><div class="crd-h">'+svgI.ck+'Assign Student Per Subject — '+tClass+'-'+tSec+'</div><div class="crd-b"><p style="font-size:12px;color:var(--g600);margin-bottom:14px">Assign one student per subject for notes &amp; homework upload.</p>';
+      h='<div class="crd"><div class="crd-h">'+svgI.ck+'Assign Student Per Subject — '+tClass+'-'+tSec+'</div><div class="crd-b"><p style="font-size:12px;color:var(--g600);margin-bottom:14px">Select one student per subject. Only that student can upload notes for that subject.</p>';
+      h+='<table class="assign-tbl">';
+      h+='<tr style="border-bottom:2px solid var(--g200)"><th style="text-align:left;padding:6px 8px;font-size:9px;color:var(--g600);text-transform:uppercase">Subject</th><th style="text-align:left;padding:6px 8px;font-size:9px;color:var(--g600);text-transform:uppercase">Assigned Student</th><th style="text-align:left;padding:6px 8px;font-size:9px;color:var(--g600);text-transform:uppercase">Status</th></tr>';
       for(var i=0;i<subjects.length;i++){var sub=subjects[i],cur=reps[sub];
-        h+='<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--g100)"><span style="font-weight:600;font-size:12px;min-width:100px;color:var(--g800)">'+sub+'</span><select id="sel_'+sub+'" onchange="assignSub(\''+sub+'\')" style="flex:1;padding:7px 10px;border:1.5px solid var(--g300);border-radius:var(--rx);font-size:12px;font-family:var(--f)"><option value="">— None —</option>';
-        for(var j=0;j<myClass.length;j++){var s=myClass[j];h+='<option value="'+esc(s.student_id)+'"'+(cur&&cur.student_id===s.student_id?' selected':'')+'>'+esc(s.full_name)+'</option>'}
-        h+='</select>';if(cur)h+='<span style="font-size:10px;color:var(--g)">Assigned</span></div>'}
-      h+='<button class="btn btn-green btn-sm" style="margin-top:12px" onclick="saveAllSubs()">Save All</button></div></div>';break;
+        h+='<tr><td>'+sub+'</td>';
+        h+='<td><select id="sel_'+sub+'" style="width:100%;padding:7px 8px;border:1.5px solid var(--g300);border-radius:var(--rx);font-size:11px;font-family:var(--f)"><option value="">— Select Student —</option>';
+        for(var j=0;j<myClass.length;j++){var s=myClass[j];h+='<option value="'+esc(s.student_id)+'"'+(cur&&cur.student_id===s.student_id?' selected':'')+'>'+esc(s.full_name)+' ('+esc(s.student_id)+')</option>'}h+='</select></td>';
+        h+='<td>'+(cur&&cur.student_id?'<span class="badge bdg-g">Assigned</span>':'<span style="color:var(--g400);font-size:10px">—</span>')+'</td></tr>'}
+      h+='</table>';
+      h+='<button class="btn btn-green" style="margin-top:14px" onclick="saveAllSubs()">Save All Assignments</button></div></div>';break;
     case 'notices':
       h='<div class="crd"><div class="crd-h">'+svgI.nt+'Notices'+(tClass?' — '+tClass+'-'+tSec:'')+'</div><div class="crd-b"><p style="font-size:12px;color:var(--g600);margin-bottom:12px">Notices appear on student dashboards.</p><form onsubmit="return sendNotice(event)"><div class="form-grid"><div class="fg"><label>Title *</label><input name="nTitle" placeholder="Notice title" required></div><div class="fg"><label>Type</label><select name="nType"><option>General</option><option>Fee Due</option><option>Exam</option><option>Event</option><option>Registration</option></select></div></div><div class="fg"><label>Message *</label><textarea name="nMsg" placeholder="Write notice..." required></textarea></div><button class="btn btn-red btn-sm">Send Notice</button></form>';
       h+='<div style="margin-top:16px;border-top:1px solid var(--g100);padding-top:12px"><strong style="font-size:12px;color:var(--g800)">Sent Notices</strong></div><div id="sentNotices"><p style="font-size:11px;color:var(--g500)">Loading...</p></div></div></div>';break;
@@ -153,28 +161,22 @@ function render(){
 
 window.fs=function(q){var r=document.querySelectorAll('#stb tr');for(var i=1;i<r.length;i++)r[i].style.display=r[i].textContent.toLowerCase().includes(q.toLowerCase())?'':'none'};
 
-// Per-subject assignment
-window.assignSub=function(sub){/* just stores in DOM, saved on Save All */};
 window.saveAllSubs=async function(){
   var newReps={};for(var i=0;i<subjects.length;i++){var sub=subjects[i],el=document.getElementById('sel_'+sub);
-    if(el&&el.value){var opt=el.selectedOptions[0];newReps[sub]={student_id:el.value,student_name:opt.textContent}}}
-  try{await fbSS(tClass,tSec,{student_id:Object.values(newReps)[0]?Object.values(newReps)[0].student_id:'',student_name:Object.values(newReps)[0]?Object.values(newReps)[0].student_name:'',subjects:newReps,class:tClass,section:tSec,teacher:tName,updated_at:new Date().toISOString()});
+    if(el&&el.value){var opt=el.selectedOptions[0];newReps[sub]={student_id:el.value,student_name:opt.textContent.replace(/\s*\(.*/,'')}}}
+  try{await fbSS(tClass,tSec,{subjects:newReps,class:tClass,section:tSec,teacher:tName,updated_at:new Date().toISOString()});
     repData={subjects:newReps};alert('Saved!');render()}catch(e){alert('Failed: '+e.message)}
 };
 
-// Notices system
 async function loadSentNotices(){var db=await _fbReady();if(!db){document.getElementById('sentNotices').innerHTML='<p style="font-size:11px;color:var(--r)">Not connected</p>';return}
   try{var s=await db.db.collection('notes').where('class','==',tClass).where('section','==',tSec).where('type','==','Notice').get();
     var data=s.docs.map(function(d){var r=d.data();r.id=d.id;return r}).sort(function(a,b){return(b.created_at||'').localeCompare(a.created_at||'')});
-    if(!data.length){document.getElementById('sentNotices').innerHTML='<p style="font-size:11px;color:var(--g500)">No notices sent yet.</p>';return}
+    if(!data.length){document.getElementById('sentNotices').innerHTML='<p style="font-size:11px;color:var(--g500)">No notices sent.</p>';return}
     var h='';for(var i=0;i<data.length;i++){var n=data[i];h+='<div class="notice-item"><strong>'+esc(n.title)+'</strong><span class="badge bdg-r" style="margin-left:6px">'+esc(n.nType||'General')+'</span><div style="font-size:10px;color:var(--g500);margin-top:2px">'+new Date(n.created_at).toLocaleDateString()+' | <a href="#" onclick="deleteNotice(\''+esc(n.id)+'\')" style="color:var(--r);font-size:9px">Delete</a></div></div>'}document.getElementById('sentNotices').innerHTML=h}catch(e){document.getElementById('sentNotices').innerHTML='<p style="font-size:11px;color:var(--r)">Error</p>'}}
 
 window.deleteNotice=async function(id){if(!confirm('Delete this notice?'))return;var f=await _fbReady();if(!f)return;try{await f.db.collection('notes').doc(id).delete();alert('Deleted!');loadSentNotices()}catch(e){alert('Failed: '+e.message)}};
-
-// Send notice
 window.sendNotice=async function(e){e.preventDefault();var f=e.target;try{await fbAN({subject:'Notice',type:'Notice',nType:f.nType.value,title:f.nTitle.value,content:f.nMsg.value,class:tClass,section:tSec,teacher_name:tName,created_at:new Date().toISOString()});alert('Notice sent!');f.reset();loadSentNotices()}catch(er){alert('Failed: '+er.message)};return false};
 
-// Init
 document.getElementById('mainContent').innerHTML='<div class="loading"><div class="spinner"></div><p>Loading...</p></div>';
 Promise.all([fbG().catch(function(){return[]}),tClass?fbSR(tClass,tSec).catch(function(){return null}):Promise.resolve(null)]).then(function(data){S=data[0]||[];repData=data[1];loaded=true;render()}).catch(function(){S=[];loaded=true;render()});
 })();
