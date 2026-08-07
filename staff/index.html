@@ -7,8 +7,7 @@
 <style>
 :root{--p:#4285F4;--pd:#1557B0;--r:#EA4335;--g:#34A853;--y:#FBBC04;--hr:#E74C3C;--hb:#3498DB;--hg:#27AE60;--hy:#F39C12;--w:#fff;--bg:#F6F8FC;--g50:#F8F9FA;--g100:#F1F3F4;--g200:#E8EAED;--g300:#DADCE0;--g400:#BDC1C6;--g500:#9AA0A6;--g600:#80868B;--g700:#5F6368;--g800:#3C4043;--g900:#202124;--rx:8px;--rs:12px;--rm:16px;--sh:0 1px 3px rgba(0,0,0,.04),0 1px 4px rgba(0,0,0,.06);--shl:0 4px 16px rgba(0,0,0,.06),0 2px 8px rgba(0,0,0,.08);--f:'Google Sans','Segoe UI','Roboto','Helvetica Neue',Arial,sans-serif;--t:.3s cubic-bezier(.16,1,.3,1)}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--f);background:var(--bg);color:var(--g800);-webkit-font-smoothing:antialiased;min-height:100vh;min-height:100dvh}
-a{color:var(--p);text-decoration:none}
+body{font-family:var(--f);background:var(--bg);color:var(--g800);-webkit-font-smoothing:antialiased;min-height:100vh;min-height:100dvh}a{color:var(--p);text-decoration:none}
 .topbar{background:rgba(255,255,255,.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--g200);padding:0 16px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
 .topbar .tl{display:flex;align-items:center;gap:7px;font-size:14px;font-weight:500;color:var(--g900);flex-shrink:0}
 .topbar .tl .dot{width:7px;height:7px;border-radius:50%;background:var(--g);animation:pulse 2s infinite}
@@ -16,6 +15,7 @@ a{color:var(--p);text-decoration:none}
 @media(min-width:480px){.topbar .tl .tag{display:inline}}
 .topbar .tr{display:flex;align-items:center;gap:2px}
 .topbar .tr .lg{color:var(--r);font-size:11px;font-weight:500;padding:6px 12px;border-radius:16px;border:none;background:none;cursor:pointer;font-family:var(--f)}
+.topbar .tr .lg:hover{background:#FEF2F2}
 .topbar .tr .mbtn{display:flex;align-items:center;gap:5px;color:var(--g700);font-size:11px;font-weight:500;padding:6px 10px;border-radius:16px;border:1.5px solid var(--g200);background:var(--w);cursor:pointer;font-family:var(--f)}
 @media(min-width:600px){.topbar .tr .mbtn{display:none}}
 .topbar .tr .mbtn span{display:block;width:16px;height:2px;background:currentColor;border-radius:1px}.topbar .tr .mbtn span+span{margin-top:3px}
@@ -32,8 +32,7 @@ a{color:var(--p);text-decoration:none}
 .si-db .si{background:#F3E8FF}.si-db svg{stroke:#9333EA}
 .si-st .si{background:#FEF3E0}.si-st svg{stroke:var(--hy)}
 .si-nt .si{background:#FDE8E8}.si-nt svg{stroke:var(--hr)}
-.si-cl .si{background:#E3F0FD}.si-cl svg{stroke:var(--hb)}
-.si-no .si{background:#E6F4EA}.si-no svg{stroke:var(--hg)}
+.si-aw .si{background:#E3F0FD}.si-aw svg{stroke:var(--hb)}
 .si-lk .si{background:#E6F4EA}.si-lk svg{stroke:var(--hg)}
 .sidebar .sf{margin-top:auto;padding:12px 14px;border-top:1px solid var(--g100);font-size:10px;color:var(--g500)}
 .sidebar .sf .sv{font-weight:600;color:var(--g800);margin-top:2px}
@@ -93,13 +92,12 @@ a{color:var(--p);text-decoration:none}
 <div class="sh">Staff Panel</div>
 <nav>
 <button class="active si-db" onclick="navTo('db')"><span class="si"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span>Dashboard</button>
-<button class="si-st" onclick="navTo('students')"><span class="si"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span>All Students</button>
-<button class="si-nt" onclick="navTo('notices')"><span class="si"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg></span>Notices</button>
-<button class="si-no" onclick="navTo('notes')"><span class="si"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>Notes & HW</button>
-<button class="si-cl" onclick="navTo('classwork')"><span class="si"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>Class Work</button>
+<button class="si-st" onclick="navTo('students')"><span class="si"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span>My Class Students</button>
+<button class="si-aw" onclick="navTo('assign')"><span class="si"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg></span>Assign Notes Student</button>
+<button class="si-nt" onclick="navTo('notices')"><span class="si"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg></span>Send Notice</button>
 <a class="si-lk" href="../index.html"><span class="si"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10"/><path d="M12 2a15.3 15.3 0 00-4 10 15.3 15.3 0 004 10"/></svg></span>Website</a>
 </nav>
-<div class="sf"><div>SK Presidency Public School</div><div class="sv">Staff v6</div></div>
+<div class="sf"><div>SK Presidency Public School</div><div class="sv">Staff v7</div></div>
 </aside>
 <div class="main" id="mainContent"></div>
 </div>
@@ -111,107 +109,90 @@ window.lg=function(){sessionStorage.clear();location.href='../staff-login.html'}
 window.closeSidebar=function(){document.getElementById('sidebar').classList.remove('open');document.getElementById('backdrop').classList.remove('show')};
 document.getElementById('menuBtn').addEventListener('click',function(){var s=document.getElementById('sidebar');s.classList.toggle('open');document.getElementById('backdrop').classList.toggle('show')});
 
-// ===== FIREBASE WITH ANONYMOUS AUTH (CRITICAL FIX!) =====
+// Firebase with Auth
 window.FIREBASE_CONFIG={};var cfg=localStorage.getItem("skpps_firebase_config");if(cfg)try{FIREBASE_CONFIG=JSON.parse(cfg)}catch(e){}
 var _f=null,_p=null,_a=null;
 window._fbReady=function(){if(_p)return _p;_p=new Promise(function(ok){
   if(_f&&_f.db&&_a&&_a.currentUser)return ok(_f);
-  if(!FIREBASE_CONFIG.apiKey){console.warn("No Firebase config");ok(null);return}
+  if(!FIREBASE_CONFIG.apiKey){ok(null);return}
   function ld(u){return new Promise(function(y,n){if(document.querySelector('script[src="'+u+'"]'))return y();var s=document.createElement('script');s.src=u;s.onload=y;s.onerror=n;document.head.appendChild(s)})}
-  var done=false,to=setTimeout(function(){if(!done){done=true;console.warn("FB timeout");ok(null)}},15000);
+  var done=false,to=setTimeout(function(){if(!done){done=true;ok(null)}},15000);
   Promise.all([ld('https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js'),ld('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js'),ld('https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js')]).then(function(){
     if(!firebase.apps.length)firebase.initializeApp(FIREBASE_CONFIG);
     _a=firebase.auth();var db=firebase.firestore();
-    function fin(){if(done)return;done=true;clearTimeout(to);
-      _f={db:db,auth:_a};try{db.enablePersistence({synchronizeTabs:true}).catch(function(){})}catch(e){}ok(_f)}
-    var unsub=_a.onAuthStateChanged(function(user){unsub();
-      if(user)fin();else _a.signInAnonymously().then(fin).catch(function(e){console.warn("Auth failed:",e.message);fin()})})
-  }).catch(function(e){if(!done){done=true;clearTimeout(to);console.warn("FB load err:",e.message);ok(null)}})
+    function fin(){if(done)return;done=true;clearTimeout(to);_f={db:db,auth:_a};try{db.enablePersistence({synchronizeTabs:true}).catch(function(){})}catch(e){}ok(_f)}
+    var unsub=_a.onAuthStateChanged(function(user){unsub();if(user)fin();else _a.signInAnonymously().then(fin).catch(function(){fin()})})
+  }).catch(function(e){if(!done){done=true;clearTimeout(to);ok(null)}})
 });return _p};
 
 window.fbG=async function(){var f=await _fbReady();if(!f)return[];var s=await f.db.collection('students').where('is_active','==',true).get();return s.docs.map(function(d){var r=d.data();r.student_id=d.id;return r})};
-window.fbN=async function(cls,sec){var f=await _fbReady();if(!f)return[];try{var s=await f.db.collection('notes').where('class','==',(cls||'').toUpperCase().trim()).where('section','==',(sec||'').toUpperCase().trim()).get();return s.docs.map(function(d){var r=d.data();r.id=d.id;return r}).sort(function(a,b){return (b.created_at||'').localeCompare(a.created_at||'')})}catch(e){return[]}};
-window.fbAN=async function(d){var f=await _fbReady();if(!f)throw new Error("Firebase not connected");return f.db.collection('notes').add(d)};
+window.fbSR=async function(cls,sec){var f=await _fbReady();if(!f)return null;var d=await f.db.collection('settings').doc('notes_student_'+cls+'_'+sec).get();return d.exists?d.data():null};
+window.fbSS=async function(cls,sec,sid,sname){var f=await _fbReady();if(!f)throw new Error("Not connected");return f.db.collection('settings').doc('notes_student_'+cls+'_'+sec).set({student_id:sid,student_name:sname,class:cls,section:sec,teacher:tName,updated_at:new Date().toISOString()})};
+window.fbAN=async function(d){var f=await _fbReady();if(!f)throw new Error("Not connected");return f.db.collection('notes').add(d)};
 
-var S=[],N=[],curTab='db',loaded=false;
+var S=[],curTab='db',repData=null,loaded=false;
 var tClass=(sessionStorage.getItem('skpps_tclass')||'').toUpperCase().trim();
 var tSec=(sessionStorage.getItem('skpps_tsection')||'').toUpperCase().trim();
 var tName=sessionStorage.getItem('skpps_name')||'Teacher';
 document.getElementById('un').textContent=' — '+tName;
-window.navTo=function(t){curTab=t;closeSidebar();if(loaded)render();};
+window.navTo=function(t){curTab=t;closeSidebar();if(loaded)render()};
 
 function statCard(bg,icon,num,lbl){return'<div class="stat-card"><div class="st-ic" style="background:'+bg+'">'+icon+'</div><div class="st-n">'+num+'</div><div class="st-l">'+lbl+'</div></div>'}
-
 function esc(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 function badge(hc){var m={Earth:'bdg-g',Fire:'bdg-r',Water:'bdg-b',Air:'bdg-y'};return'<span class="badge '+(m[hc]||'bdg-g')+'">'+hc+'</span>'}
 
 var svgI={
-  st:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--hb)" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.9M16 3.1a4 4 0 010 7.8"/></svg>',
-  cl:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--hy)" stroke-width="2"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/></svg>',
+  st:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--hb)" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>',
+  us:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--p)" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>',
   nt:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--hr)" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>',
-  us:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--p)" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>'
+  ck:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--hg)" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg>'
 };
-
-function tblRows(data,ct,showActions){
-  if(!data.length)return'<tr><td colspan="'+(showActions?'7':'6')+'" style="text-align:center;padding:36px;color:var(--g500)">'+(ct||'No students')+'.</td></tr>';
-  var r='',cols=showActions?7:6;
-  for(var i=0;i<data.length;i++){var s=data[i],hc=s.house||'Earth';
-    r+='<tr><td class="mono">'+esc(s.student_id)+'</td><td><strong>'+esc(s.full_name)+'</strong></td><td>'+esc(s.class)+'</td><td>'+esc(s.section||'-')+'</td><td>'+badge(hc)+'</td><td>'+esc(s.parent_phone||'-')+'</td>';
-    if(showActions)r+='<td><button class="btn btn-sm btn-outline" onclick="selectRep(\''+esc(s.student_id)+'\',\''+esc(s.full_name)+'\')">Select</button></td>';
-    r+='</tr>'}
-  return r;
-}
 
 function render(){
   document.querySelectorAll('.sidebar nav button').forEach(function(b){b.classList.remove('active')});
-  var map={db:'db',students:'st',notes:'no',notices:'nt',classwork:'cl'};
+  var map={db:'db',students:'st',assign:'aw',notices:'nt'};
   var sel=document.querySelector('.si-'+(map[curTab]||'db'));if(sel)sel.classList.add('active');
 
-  var myClass=tClass?S.filter(function(s){var sc=(s.class||s.cls||'').toUpperCase().trim();var ss=(s.section||s.sec||'').toUpperCase().trim();return sc===tClass&&ss===tSec}):S;
+  var myClass=tClass?S.filter(function(s){var sc=(s.class||s.cls||'').toUpperCase().trim();var ss=(s.section||s.sec||'').toUpperCase().trim();return sc===tClass&&ss===tSec}):[];
   var classes=S.length?new Set(S.map(function(s){return s.class||s.cls})).size:0;
   var h='';
 
   switch(curTab){
     case 'db':
       h='<h2 style="font-size:18px;font-weight:500;margin-bottom:4px">Welcome, '+tName+'</h2>';
-      h+='<p style="font-size:11px;color:var(--g500);margin-bottom:8px">'+(tClass?'Assigned Class: '+tClass+'-'+tSec+' | Your Students: '+myClass.length:'Showing all '+S.length+' students')+'</p>';
-      if(!tClass)h+='<div style="background:#FEF3E0;border-radius:8px;padding:8px 12px;margin-bottom:12px;font-size:10px;color:#92400e">Class not assigned yet. Showing all students.</div>';
-      h+='<div class="stats-row">'+statCard('#E3F0FD',svgI.st,S.length,'Total')+statCard('#E6F4EA',svgI.cl,classes,'Classes')+statCard('#FEF3E0',svgI.nt,N.length,'Notes')+statCard('#FDE8E8',svgI.us,myClass.length,tClass?'My Class':'All')+'</div>';
-      h+='<div class="crd"><div class="crd-h">'+svgI.us+(tClass?'Your Class Students: '+tClass+'-'+tSec+' ('+myClass.length+')':'All Students ('+S.length+')')+'</div><div class="crd-b"><input class="search-bar" placeholder="Search..." oninput="fs(this.value)"><div class="tbl-wrap"><table class="tbl" id="stb"><tr><th>ID</th><th>Name</th><th>Class</th><th>Sec</th><th>House</th><th>Phone</th></tr>'+tblRows(myClass,'No students matching your class')+'</table></div></div></div>';
+      h+='<p style="font-size:11px;color:var(--g500);margin-bottom:8px">'+(tClass?'Assigned: '+tClass+'-'+tSec+' | Students: '+myClass.length:'Class not assigned')+'</p>';
+      if(!tClass)h+='<div style="background:#FEF3E0;border-radius:8px;padding:8px 12px;margin-bottom:12px;font-size:10px;color:#92400e">Ask management to assign your class. Re-login after assignment.</div>';
+      h+='<div class="stats-row">'+statCard('#E3F0FD',svgI.st,myClass.length,'My Class')+statCard('#E6F4EA',svgI.ck,S.length,'All School')+statCard('#FEF3E0',svgI.nt,classes,'Classes')+statCard('#FDE8E8',svgI.us,repData?1:0,'Rep Assigned')+'</div>';
+      if(tClass&&myClass.length){
+        h+='<div class="crd"><div class="crd-h">'+svgI.us+'My Class: '+tClass+'-'+tSec+' ('+myClass.length+' students)</div><div class="crd-b"><input class="search-bar" placeholder="Search..." oninput="fs(this.value)"><div class="tbl-wrap"><table class="tbl" id="stb"><tr><th>ID</th><th>Name</th><th>Class</th><th>Sec</th><th>House</th><th>Phone</th></tr>';
+        for(var i=0;i<myClass.length;i++){var s=myClass[i];h+='<tr><td class="mono">'+esc(s.student_id)+'</td><td><strong>'+esc(s.full_name)+'</strong></td><td>'+esc(s.class)+'</td><td>'+esc(s.section||'-')+'</td><td>'+badge(s.house||'Earth')+'</td><td>'+esc(s.parent_phone||'-')+'</td></tr>'}
+        h+='</table></div></div></div>';
+      }
+      if(repData)h+='<div class="crd"><div class="crd-h" style="color:var(--g)">'+svgI.ck+'Assigned Notes Student</div><div class="crd-b"><div style="display:flex;align-items:center;gap:14px;padding:8px 0"><div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--p),#0d47a1);color:var(--w);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:500">'+(repData.student_name||'S').charAt(0).toUpperCase()+'</div><div><strong>'+esc(repData.student_name)+'</strong><div style="font-size:10px;color:var(--g500)">ID: '+esc(repData.student_id)+' | Can upload notes &amp; homework</div></div></div></div></div>';
       break;
 
     case 'students':
-      h='<div class="crd"><div class="crd-h">'+svgI.st+'Student Directory ('+S.length+')</div><div class="crd-b"><input class="search-bar" placeholder="Search by name, ID, class..." oninput="fs(this.value)"><div class="tbl-wrap"><table class="tbl" id="stb"><tr><th>ID</th><th>Name</th><th>Class</th><th>Sec</th><th>House</th><th>Phone</th></tr>'+tblRows(S,'No students yet')+'</table></div></div></div>';
+      if(!tClass||!myClass.length){h='<div class="crd"><div class="crd-h">My Class Students</div><div class="crd-b"><p style="color:var(--g500);font-size:13px">No class assigned or no students found in '+tClass+'-'+tSec+'.</p></div></div>';break}
+      h='<div class="crd"><div class="crd-h">'+svgI.us+'My Class: '+tClass+'-'+tSec+' ('+myClass.length+')</div><div class="crd-b"><input class="search-bar" placeholder="Search..." oninput="fs(this.value)"><div class="tbl-wrap"><table class="tbl" id="stb"><tr><th>ID</th><th>Name</th><th>Class</th><th>Sec</th><th>House</th><th>Phone</th></tr>';
+      for(var i=0;i<myClass.length;i++){var s=myClass[i];h+='<tr><td class="mono">'+esc(s.student_id)+'</td><td><strong>'+esc(s.full_name)+'</strong></td><td>'+esc(s.class)+'</td><td>'+esc(s.section||'-')+'</td><td>'+badge(s.house||'Earth')+'</td><td>'+esc(s.parent_phone||'-')+'</td></tr>'}
+      h+='</table></div></div></div>';
       break;
 
-    case 'notes':
-      var reps=JSON.parse(sessionStorage.getItem('skpps_reps')||'{}');
-      var repSid=reps[tClass+'-'+tSec]||'';
-      h='<div class="crd"><div class="crd-h">Notes &amp; Homework'+(tClass?' &#8212; '+tClass+'-'+tSec:'')+'</div><div class="crd-b">';
-      if(!tClass){h+='<p style="font-size:11px;color:#92400e;margin-bottom:10px;background:#FEF3E0;padding:8px;border-radius:8px">Class not assigned. Notes feature needs a class.</p>';}
-      else{
-        h+='<div class="form-grid"><div class="fg"><label>Student Rep</label><select id="repSelect" onchange="saveRep()"><option value="">Choose a student</option>';
-        for(var i=0;i<myClass.length;i++){var s=myClass[i];h+='<option value="'+esc(s.student_id)+'"'+(repSid===s.student_id?' selected':'')+'>'+esc(s.full_name)+'</option>';}
-        h+='</select></div></div>';
-        h+='<div style="background:#FEF3E0;border-radius:8px;padding:10px;margin:12px 0;font-size:10px;color:#92400e">Selected student can upload notes from Student Dashboard.</div>';
-        h+='<form onsubmit="return sendNote(event)" style="margin-top:12px"><div class="form-grid"><div class="fg"><label>Subject *</label><select name="subject" required><option>English</option><option>Hindi</option><option>Maths</option><option>Science</option><option>Social Studies</option><option>Sanskrit</option><option>Computer</option></select></div><div class="fg"><label>Type *</label><select name="type" required><option>Notes</option><option>Homework</option></select></div></div><div class="fg"><label>Title *</label><input name="title" placeholder="Chapter name..." required></div><div class="fg"><label>Content *</label><textarea name="content" placeholder="Write notes or homework..." required></textarea></div><button type="submit" class="btn btn-primary" style="margin-top:8px">Send to '+tClass+'-'+tSec+'</button></form>';
-      }
-      h+='</div></div>';
-      if(N.length){h+='<div class="crd"><div class="crd-h">Previously Sent</div><div class="crd-b">';for(var i=0;i<N.length;i++){var n=N[i];h+='<div class="notice-item"><strong>'+esc(n.subject)+' — '+esc(n.title)+'</strong><span class="badge bdg-p" style="margin-left:6px">'+esc(n.type)+'</span><div style="font-size:11px;color:var(--g600);margin-top:2px">'+esc(n.content).substring(0,150)+'</div><div class="meta">'+new Date(n.created_at).toLocaleDateString()+'</div></div>'}h+='</div></div>'}
+    case 'assign':
+      if(!tClass||!myClass.length){h='<div class="crd"><div class="crd-h">Assign Notes Student</div><div class="crd-b"><p style="color:var(--g500);font-size:13px">No class assigned. Cannot select student.</p></div></div>';break}
+      h='<div class="crd"><div class="crd-h">'+svgI.ck+'Assign Student for Notes &amp; Homework</div><div class="crd-b"><p style="font-size:12px;color:var(--g600);margin-bottom:12px">Select ONE student from your class to upload notes &amp; homework. Only the selected student will see the upload form on their dashboard.</p>';
+      if(repData)h+='<div style="background:#ECFDF5;padding:12px;border-radius:8px;margin-bottom:14px;display:flex;align-items:center;gap:10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:13px;color:#059669"><strong>Current:</strong> '+esc(repData.student_name)+' ('+esc(repData.student_id)+')</span></div>';
+      h+='<div class="tbl-wrap" style="margin-bottom:12px"><table class="tbl" style="min-width:500px"><tr><th>ID</th><th>Name</th><th>Class</th><th>Action</th></tr>';
+      for(var i=0;i<myClass.length;i++){var s=myClass[i];
+        h+='<tr><td class="mono">'+esc(s.student_id)+'</td><td><strong>'+esc(s.full_name)+'</strong></td><td>'+esc(s.class)+'-'+esc(s.section||'A')+'</td>';
+        if(repData&&repData.student_id===s.student_id)h+='<td><span class="badge bdg-g">Assigned</span></td>';
+        else h+='<td><button class="btn btn-sm btn-primary" onclick="assignStudent(\''+esc(s.student_id)+'\',\''+esc(s.full_name)+'\')">Select</button></td>';
+        h+='</tr>'}
+      h+='</table></div></div></div>';
       break;
 
     case 'notices':
-      h='<div class="crd"><div class="crd-h">'+svgI.nt+'Send Notice'+(tClass?' to '+tClass+'-'+tSec:'')+'</div><div class="crd-b"><p style="font-size:12px;color:var(--g600);margin-bottom:12px">Notices appear on student dashboards.</p><form onsubmit="return sendNotice(event)"><div class="form-grid"><div class="fg"><label>Title *</label><input name="nTitle" placeholder="Notice title" required></div><div class="fg"><label>Type</label><select name="nType"><option>General</option><option>Fee Due</option><option>Exam</option><option>Event</option><option>Registration</option></select></div></div><div class="fg"><label>Message *</label><textarea name="nMsg" placeholder="Write notice..." required></textarea></div><button class="btn btn-red btn-sm">Send Notice</button></form></div></div>';
-      break;
-
-    case 'classwork':
-      h='<div class="crd"><div class="crd-h">Class Teacher Tasks'+(tClass?' — '+tClass+'-'+tSec:'')+'</div><div class="crd-b">';
-      h+='<div class="notice-item"><strong>Attendance</strong>Mark daily attendance.<div class="meta">Coming soon</div></div>';
-      h+='<div class="notice-item"><strong>Leave Applications</strong>Approve/reject requests.<div class="meta">Coming soon</div></div>';
-      h+='<div class="notice-item"><strong>Fee Dues</strong>Track payments.<div class="meta">Coming soon</div></div>';
-      h+='<div class="notice-item"><strong>Board Exam Forms</strong>Collect TC, Aadhar, photos.<div class="meta">Coming soon</div></div>';
-      h+='<div class="notice-item"><strong>Reports</strong>Generate class reports.<div class="meta">Coming soon</div></div>';
-      h+='</div></div>';
+      h='<div class="crd"><div class="crd-h">'+svgI.nt+'Send Notice'+(tClass?' to '+tClass+'-'+tSec:'')+'</div><div class="crd-b"><p style="font-size:12px;color:var(--g600);margin-bottom:12px">Notices appear on student dashboards of this class.</p><form onsubmit="return sendNotice(event)"><div class="form-grid"><div class="fg"><label>Title *</label><input name="nTitle" placeholder="Notice title" required></div><div class="fg"><label>Type</label><select name="nType"><option>General</option><option>Fee Due</option><option>Exam</option><option>Event</option><option>Registration</option></select></div></div><div class="fg"><label>Message *</label><textarea name="nMsg" placeholder="Write notice..." required></textarea></div><button class="btn btn-red btn-sm">Send Notice</button></form></div></div>';
       break;
   }
   document.getElementById('mainContent').innerHTML=h;
@@ -219,15 +200,19 @@ function render(){
 
 window.fs=function(q){var r=document.querySelectorAll('#stb tr');for(var i=1;i<r.length;i++)r[i].style.display=r[i].textContent.toLowerCase().includes(q.toLowerCase())?'':'none'};
 
-window.saveRep=function(){var v=document.getElementById('repSelect').value,n=document.getElementById('repSelect').selectedOptions[0]?document.getElementById('repSelect').selectedOptions[0].text:'';var reps=JSON.parse(sessionStorage.getItem('skpps_reps')||'{}');reps[tClass+'-'+tSec]=v;sessionStorage.setItem('skpps_reps',JSON.stringify(reps));if(v)alert('Selected: '+n)};
-window.selectRep=function(sid,name){var reps=JSON.parse(sessionStorage.getItem('skpps_reps')||'{}');reps[tClass+'-'+tSec]=sid;sessionStorage.setItem('skpps_reps',JSON.stringify(reps));alert('Selected: '+name)};
+window.assignStudent=async function(sid,sname){
+  if(!confirm('Assign '+sname+' as the Notes & Homework student for '+tClass+'-'+tSec+'?'))return;
+  try{await fbSS(tClass,tSec,sid,sname);alert('Assigned! '+sname+' can now upload notes.');repData={student_id:sid,student_name:sname};render()}catch(e){alert('Failed: '+e.message)}
+};
 
-window.sendNote=async function(e){e.preventDefault();var f=e.target;try{await fbAN({subject:f.subject.value,type:f.type.value,title:f.title.value,content:f.content.value,class:tClass,section:tSec,teacher_name:tName,created_at:new Date().toISOString()});alert('Sent to '+tClass+'-'+tSec+'!');f.reset();N=await fbN(tClass,tSec);render()}catch(er){alert('Failed: '+er.message)};return false};
-window.sendNotice=async function(e){e.preventDefault();var f=e.target;try{await fbAN({subject:'Notice',type:f.nType.value,title:f.nTitle.value,content:f.nMsg.value,class:tClass,section:tSec,teacher_name:tName,created_at:new Date().toISOString()});alert('Notice sent!');f.reset();N=await fbN(tClass,tSec);render()}catch(er){alert('Failed: '+er.message)};return false};
+window.sendNotice=async function(e){e.preventDefault();var f=e.target;
+  try{await fbAN({subject:'Notice',type:f.nType.value,title:f.nTitle.value,content:f.nMsg.value,class:tClass,section:tSec,teacher_name:tName,created_at:new Date().toISOString()});alert('Notice sent!');f.reset()}catch(er){alert('Failed: '+er.message)};return false};
 
-// INIT
-document.getElementById('mainContent').innerHTML='<div class="loading"><div class="spinner"></div><p>Connecting to Firestore...</p></div>';
-fbG().then(function(data){S=data||[];loaded=true;render();return fbN(tClass,tSec).catch(function(){return[]})}).then(function(data2){if(data2)N=data2||[];render()}).catch(function(){S=[];loaded=true;render()});
+// Init
+document.getElementById('mainContent').innerHTML='<div class="loading"><div class="spinner"></div><p>Loading...</p></div>';
+Promise.all([fbG().catch(function(){return[]}),tClass?fbSR(tClass,tSec).catch(function(){return null}):Promise.resolve(null)]).then(function(data){
+  S=data[0]||[];repData=data[1];loaded=true;render();
+}).catch(function(){S=[];loaded=true;render()});
 })();
 </script>
 </body>

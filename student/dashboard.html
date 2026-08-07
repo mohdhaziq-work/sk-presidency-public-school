@@ -105,6 +105,13 @@ a{color:var(--p);text-decoration:none}
 .notice-item:last-child{border-bottom:none}
 .notice-item strong{color:var(--g800);display:block;margin-bottom:2px}
 .notice-item .meta{font-size:9px;color:var(--g500);margin-top:2px}
+.upload-zone{border:2px dashed var(--g300);border-radius:var(--rs);padding:18px;text-align:center;cursor:pointer;transition:all var(--t);margin-bottom:10px}
+.upload-zone:hover{border-color:var(--p);background:#F8FAFF}.upload-zone input{display:none}
+.upload-zone .uz-text{font-size:12px;color:var(--g600)}.upload-zone .uz-icon svg{width:28px;height:28px;stroke:var(--p);margin-bottom:6px}
+.file-preview{display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--g50);border-radius:var(--rx);font-size:10px;margin-top:6px;flex-wrap:wrap}
+.file-preview img{width:40px;height:40px;object-fit:cover;border-radius:4px}
+.file-preview .fp-remove{color:var(--r);cursor:pointer;font-weight:700;margin-left:auto}
+
 .bdg-p{background:#F3E8FF;color:#9333EA}
 
 /* Loading */
@@ -182,19 +189,90 @@ var svg={book:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" strok
 
 function esc(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 function kv(l,v){return'<div class="r"><span class="lb">'+l+'</span><span class="vl">'+esc(v)+'</span></div>'}
-var _nCache=null;
-async function loadNotes(cls,sec){
-  if(_nCache){showNotes(_nCache);return}
-  var db=await getDB();if(!db){document.getElementById('notesList').innerHTML='<p style="font-size:11px;color:var(--r)">Firebase not connected</p>';return}
-  try{var s=await db.collection('notes').where('class','==',cls).where('section','==',sec).orderBy('created_at','desc').get();
-    _nCache=s.docs.map(function(d){return d.data()});showNotes(_nCache)}
-  catch(e){document.getElementById('notesList').innerHTML='<p style="font-size:11px;color:var(--r)">'+e.message+'</p>'}
+var _uploadFiles=[];
+function loadNotesSection(cls,sec,nm,sid){
+  var h='<div class="crd"><div class="crd-h"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--g)" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Notes & Homework for Class '+cls+'-'+sc+'</div><div class="crd-b" id="notesSection">Checking access...</div></div>';
+  document.getElementById('mainContent').innerHTML=h;
+  checkRepAccess(cls,sec,sid,nm);
 }
-function showNotes(data){
-  if(!data||!data.length){document.getElementById('notesList').innerHTML='<p style="font-size:11px;color:var(--g500)">No notes or homework posted yet for your class.</p>';return}
-  var h='';for(var i=0;i<data.length;i++){var n=data[i];h+='<div class="notice-item"><strong>'+esc(n.subject)+': '+esc(n.title)+'</strong><span class="badge bdg-p" style="margin-left:6px;font-size:8px">'+esc(n.type)+'</span><div style="font-size:11px;color:var(--g600);margin-top:4px;white-space:pre-wrap">'+esc(n.content)+'</div><div class="meta" style="font-size:9px;color:var(--g500);margin-top:3px">By '+esc(n.teacher_name)+' | '+new Date(n.created_at).toLocaleDateString()+'</div></div>'}
-  document.getElementById('notesList').innerHTML=h;
+
+async function checkRepAccess(cls,sec,sid,nm){
+  var db=await getDB();if(!db){document.getElementById('notesSection').innerHTML='<p style="color:var(--r);font-size:12px">Firebase not connected</p>';return}
+  try{var d=await db.collection('settings').doc('notes_student_'+cls+'_'+sec).get();
+    var rep=d.exists?d.data():null;
+    var isRep=rep&&rep.student_id===sid;
+    renderNotesUI(cls,sec,isRep,rep,nm,sid);
+  }catch(e){document.getElementById('notesSection').innerHTML='<p style="color:var(--r);font-size:12px">Error: '+esc(e.message)+'</p>'}
 }
+
+function renderNotesUI(cls,sec,isRep,rep,nm,sid){
+  var h='';
+  // Upload section - ONLY for assigned student
+  if(isRep){
+    h+='<div style="background:#ECFDF5;padding:12px;border-radius:8px;margin-bottom:16px;display:flex;align-items:center;gap:8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:12px;color:#059669">You are assigned to upload notes &amp; homework for '+cls+'-'+sc+'</span></div>';
+    h+='<form onsubmit="return uploadNote(event,\''+cls+'\',\''+sec+'\',\''+esc(nm)+'\')"><div class="form-grid"><div class="fg"><label>Subject *</label><select name="subject" required><option>English</option><option>Hindi</option><option>Maths</option><option>Science</option><option>Social Studies</option><option>Sanskrit</option><option>Computer</option></select></div><div class="fg"><label>Type *</label><select name="type" required><option>Notes</option><option>Homework</option></select></div></div><div class="fg"><label>Title *</label><input name="title" placeholder="Chapter name..." required></div><div class="fg"><label>Content *</label><textarea name="content" placeholder="Write notes or homework details..." required></textarea></div>';
+    h+='<div class="upload-zone" onclick="document.getElementById(\'fileInput\').click()"><div class="uz-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div><div class="uz-text">Click to upload images or PDF files</div><div style="font-size:9px;color:var(--g400);margin-top:2px">JPG, PNG, PDF (max 10MB)</div><input type="file" id="fileInput" accept="image/*,.pdf" multiple onchange="handleFiles(this)" style="display:none"></div><div id="filePreview"></div>';
+    h+='<button type="submit" class="btn btn-green" style="margin-top:10px">Upload Notes / Homework</button></form>';
+  }else{
+    h+='<p style="font-size:12px;color:var(--g500)">You are not assigned to upload notes. '+(rep?'Currently assigned: <strong>'+esc(rep.student_name)+'</strong>':'No student assigned yet.')+'</p>';
+  }
+  // Show previously sent notes
+  h+='<div style="margin-top:16px;border-top:1px solid var(--g100);padding-top:12px"><strong style="font-size:12px;color:var(--g800)">Previously Sent</strong></div><div id="prevNotes">Loading...</div>';
+  document.getElementById('notesSection').innerHTML=h;
+  loadPrevNotes(cls,sec);
+}
+
+async function loadPrevNotes(cls,sec){
+  var db=await getDB();if(!db){document.getElementById('prevNotes').innerHTML='<p style="font-size:11px;color:var(--r)">Not connected</p>';return}
+  try{var s=await db.collection('notes').where('class','==',cls.toUpperCase().trim()).where('section','==',sec.toUpperCase().trim()).get();
+    var data=s.docs.map(function(d){var r=d.data();r.id=d.id;return r}).sort(function(a,b){return (b.created_at||'').localeCompare(a.created_at||'')});
+    if(!data.length){document.getElementById('prevNotes').innerHTML='<p style="font-size:11px;color:var(--g500)">No notes posted yet.</p>';return}
+    var h='';for(var i=0;i<data.length;i++){var n=data[i];h+='<div class="notice-item"><strong>'+esc(n.subject)+': '+esc(n.title)+'</strong><span class="badge bdg-p" style="margin-left:6px;font-size:8px">'+esc(n.type)+'</span><div style="font-size:11px;color:var(--g600);margin-top:4px;white-space:pre-wrap">'+esc(n.content)+'</div>';
+    if(n.files&&n.files.length){h+='<div style="margin-top:4px;display:flex;gap:6px;flex-wrap:wrap">';for(var j=0;j<n.files.length;j++){var f=n.files[j];if(f.type&&f.type.startsWith('image/'))h+='<a href="'+esc(f.data)+'" target="_blank"><img src="'+esc(f.data)+'" style="width:60px;height:60px;object-fit:cover;border-radius:4px" title="'+esc(f.name)+'"></a>';else h+='<a href="'+esc(f.data)+'" target="_blank" style="display:flex;align-items:center;gap:4px;padding:4px 8px;background:var(--g50);border-radius:4px;font-size:10px;color:var(--p)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg>'+esc(f.name)+'</a>'}h+='</div>'}
+    h+='<div class="meta" style="font-size:9px;color:var(--g500);margin-top:3px">By '+esc(n.teacher_name||n.uploader_name)+' | '+new Date(n.created_at).toLocaleDateString()+'</div></div>'}
+    document.getElementById('prevNotes').innerHTML=h;
+  }catch(e){document.getElementById('prevNotes').innerHTML='<p style="font-size:11px;color:var(--r)">Error loading notes</p>'}
+}
+
+_uploadFiles=[];
+window.handleFiles=function(input){
+  var files=input.files;if(!files||!files.length)return;
+  for(var i=0;i<files.length;i++){(function(file){
+    if(file.size>10*1024*1024){alert(file.name+' is too large (max 10MB)');return}
+    var reader=new FileReader();
+    reader.onload=function(e){_uploadFiles.push({name:file.name,type:file.type,size:file.size,data:e.target.result});showFilePreview()};
+    reader.readAsDataURL(file);
+  })(files[i])}
+  input.value='';
+};
+
+function showFilePreview(){
+  var h='';for(var i=0;i<_uploadFiles.length;i++){var f=_uploadFiles[i];
+    h+='<div class="file-preview">';
+    if(f.type.startsWith('image/'))h+='<img src="'+esc(f.data)+'" alt="'+esc(f.name)+'">';
+    else h+='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--r)" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg>';
+    h+='<span>'+esc(f.name)+' ('+Math.round(f.size/1024)+'KB)</span><span class="fp-remove" onclick="removeFile('+i+')">&times;</span></div>'}
+  document.getElementById('filePreview').innerHTML=h||'';
+}
+
+window.removeFile=function(idx){_uploadFiles.splice(idx,1);showFilePreview()};
+
+window.uploadNote=async function(e,cls,sec,nm){
+  e.preventDefault();var f=e.target;
+  if(!f.subject.value||!f.title.value||!f.content.value){alert('Fill all required fields');return false}
+  var db=await getDB();if(!db){alert('Firebase not connected');return false}
+  var btn=e.target.querySelector('button[type=submit]');btn.disabled=true;btn.textContent='Uploading...';
+  var filesData=_uploadFiles.map(function(f){return{name:f.name,type:f.type,size:f.size,data:f.data}});
+  try{
+    await db.collection('notes').add({subject:f.subject.value,type:f.type.value,title:f.title.value,content:f.content.value,
+      class:cls,section:sec,uploader_name:nm,student_id:sid,files:filesData,created_at:new Date().toISOString()});
+    alert('Uploaded successfully!');
+    f.reset();_uploadFiles=[];showFilePreview();
+    loadPrevNotes(cls,sec);
+  }catch(er){alert('Upload failed: '+er.message)}
+  btn.disabled=false;btn.textContent='Upload Notes / Homework';
+  return false;
+};
 
 function render(){
   var nm=sd.full_name||sd.name||'Student';
@@ -228,8 +306,7 @@ function render(){
       break;
 
     case 'notes':
-      h='<div class="crd"><div class="crd-h"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--g)" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Notes & Homework for Class '+cl+'-'+sc+'</div><div class="crd-b"><div id="notesList"><p style="font-size:12px;color:var(--g600)">Loading notes...</p></div></div></div>';
-      loadNotes(cl,sc);
+      loadNotesSection(cl,sc,nm,sid);
       break;
 
     case 'links':
