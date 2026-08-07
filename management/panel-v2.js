@@ -54,12 +54,12 @@ window.fbAT=async function(d){var f=await _fbReady();if(!f)throw new Error("Fire
 var S=[],T=[],curTab='db',camStream=null,ocrWorker=null;
 window.lg=function(){sessionStorage.clear();location.href='../staff-login.html'};
 window.navTo=function(t){curTab=t;closeCamera();render();closeSidebar()};
-window.closeSidebar=function(){document.getElementById('sidebar').classList.remove('open');document.getElementById('sb').classList.remove('show')};
+window.closeSidebar=function(){document.getElementById('sidebar').classList.remove('open');document.getElementById('backdrop').classList.remove('show')};
 
 // Mobile menu
-document.getElementById('mobMenu').addEventListener('click',function(){
+document.getElementById('menuBtn').addEventListener('click',function(){
   document.getElementById('sidebar').classList.toggle('open');
-  document.getElementById('sb').classList.toggle('show')
+  document.getElementById('backdrop').classList.toggle('show')
 });
 
 // ===== INIT =====
