@@ -59,6 +59,20 @@ body{font-family:var(--f);background:var(--bg);color:var(--g800);-webkit-font-sm
 .assign-tbl select:focus{outline:none;border-color:var(--p)}
 .assign-tbl .assigned-cell{font-size:10px;color:var(--g);font-weight:500;min-width:100px}
 @media(max-width:500px){.assign-tbl td:first-child{min-width:60px;font-size:10px}.assign-tbl select{max-width:160px;font-size:10px}}
+
+@media(max-width:480px){
+  .tbl-wrap{-webkit-mask-image:none;mask-image:none}
+  .tbl,.tbl tbody,.tbl tr,.tbl td{display:block;width:100%}
+  .tbl thead{display:none}
+  .tbl tr{margin-bottom:12px;border:1px solid var(--g200);border-radius:var(--rs);background:var(--w);padding:10px 12px;box-shadow:var(--sh)}
+  .tbl td{padding:4px 0;border:none;text-align:left;display:flex;justify-content:space-between;align-items:center}
+  .tbl td::before{content:attr(data-label);font-weight:600;font-size:8px;color:var(--g500);text-transform:uppercase;letter-spacing:.5px;flex-shrink:0;margin-right:10px}
+  .tbl td+td{border-top:1px solid var(--g50)}
+  .tbl .mono{font-size:11px}
+  .assign-tbl td{display:flex!important;justify-content:space-between!important}
+  .assign-tbl td::before{content:attr(data-label);font-weight:600;font-size:8px;color:var(--g500);text-transform:uppercase}
+}
+
 @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}@keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
@@ -133,24 +147,24 @@ function render(){
       h+='<div class="stats-row">'+statCard('#E3F0FD',svgI.st,myClass.length,'My Class')+statCard('#E6F4EA',svgI.ck,S.length,'All School')+statCard('#FEF3E0',svgI.nt,classes,'Classes')+statCard('#FDE8E8',svgI.us,repData&&repData.subjects?Object.keys(repData.subjects).filter(function(k){return repData.subjects[k]&&repData.subjects[k].student_id}).length:0,'Subjects Assigned')+'</div>';
       if(tClass&&myClass.length){
         h+='<div class="crd"><div class="crd-h">'+svgI.us+'My Class: '+tClass+'-'+tSec+' ('+myClass.length+')</div><div class="crd-b"><div class="tbl-wrap"><table class="tbl"><tr><th>ID</th><th>Name</th><th>Class</th><th>Sec</th><th>House</th><th>Phone</th></tr>';
-        for(var i=0;i<myClass.length;i++){var s=myClass[i];h+='<tr><td class="mono">'+esc(s.student_id)+'</td><td><strong>'+esc(s.full_name)+'</strong></td><td>'+esc(s.class)+'</td><td>'+esc(s.section||'-')+'</td><td>'+badge(s.house||'Earth')+'</td><td>'+esc(s.parent_phone||'-')+'</td></tr>'}h+='</table></div></div></div>'}
+        for(var i=0;i<myClass.length;i++){var s=myClass[i];h+='<tr><td class="mono" data-label="ID">'+esc(s.student_id)+'</td><td data-label="Name"><strong>'+esc(s.full_name)+'</strong></td><td data-label="Class">'+esc(s.class)+'</td><td data-label="Sec">'+esc(s.section||'-')+'</td><td data-label="House">'+badge(s.house||'Earth')+'</td><td data-label="Phone">'+esc(s.parent_phone||'-')+'</td></tr>'}h+='</table></div></div></div>'}
       if(repData&&repData.subjects){h+='<div class="crd"><div class="crd-h" style="color:var(--g)">'+svgI.ck+'Subject Assignments</div><div class="crd-b"><table class="assign-tbl">';var subs=repData.subjects;for(var k=0;k<subjects.length;k++){var sub=subjects[k],r=subs[sub];h+='<tr><td>'+sub+'</td><td>'+(r&&r.student_id?r.student_name+' <span class="badge bdg-g" style="font-size:7px">'+r.student_id+'</span>':'<span style="color:var(--g400)">Not assigned</span>')+'</td></tr>'}h+='</table></div></div>'}
       break;
     case 'students':
       if(!tClass||!myClass.length){h='<div class="crd"><div class="crd-h">My Class</div><div class="crd-b"><p style="color:var(--g500)">No class assigned.</p></div></div>';break}
       h='<div class="crd"><div class="crd-h">'+svgI.us+'My Class: '+tClass+'-'+tSec+' ('+myClass.length+')</div><div class="crd-b"><input class="search-bar" placeholder="Search..." oninput="fs(this.value)"><div class="tbl-wrap"><table class="tbl" id="stb"><tr><th>ID</th><th>Name</th><th>Class</th><th>Sec</th><th>House</th><th>Phone</th></tr>';
-      for(var i=0;i<myClass.length;i++){var s=myClass[i];h+='<tr><td class="mono">'+esc(s.student_id)+'</td><td><strong>'+esc(s.full_name)+'</strong></td><td>'+esc(s.class)+'</td><td>'+esc(s.section||'-')+'</td><td>'+badge(s.house||'Earth')+'</td><td>'+esc(s.parent_phone||'-')+'</td></tr>'}h+='</table></div></div></div>';break;
+      for(var i=0;i<myClass.length;i++){var s=myClass[i];h+='<tr><td class="mono" data-label="ID">'+esc(s.student_id)+'</td><td data-label="Name"><strong>'+esc(s.full_name)+'</strong></td><td data-label="Class">'+esc(s.class)+'</td><td data-label="Sec">'+esc(s.section||'-')+'</td><td data-label="House">'+badge(s.house||'Earth')+'</td><td data-label="Phone">'+esc(s.parent_phone||'-')+'</td></tr>'}h+='</table></div></div></div>';break;
     case 'assign':
       if(!tClass||!myClass.length){h='<div class="crd"><div class="crd-h">Assign Notes Student</div><div class="crd-b"><p style="color:var(--g500)">No class assigned.</p></div></div>';break}
       var reps=repData&&repData.subjects?repData.subjects:{};
       h='<div class="crd"><div class="crd-h">'+svgI.ck+'Assign Student Per Subject — '+tClass+'-'+tSec+'</div><div class="crd-b"><p style="font-size:12px;color:var(--g600);margin-bottom:14px">Select one student per subject. Only that student can upload notes for that subject.</p>';
       h+='<table class="assign-tbl">';
-      h+='<tr style="border-bottom:2px solid var(--g200)"><th style="text-align:left;padding:6px 8px;font-size:9px;color:var(--g600);text-transform:uppercase">Subject</th><th style="text-align:left;padding:6px 8px;font-size:9px;color:var(--g600);text-transform:uppercase">Assigned Student</th><th style="text-align:left;padding:6px 8px;font-size:9px;color:var(--g600);text-transform:uppercase">Status</th></tr>';
+      h+='<tr style="border-bottom:2px solid var(--g200)"><th>Subject</th><th>Assigned Student</th><th>Status</th></tr>';
       for(var i=0;i<subjects.length;i++){var sub=subjects[i],cur=reps[sub];
-        h+='<tr><td>'+sub+'</td>';
-        h+='<td><select id="sel_'+sub+'" style="width:100%;padding:7px 8px;border:1.5px solid var(--g300);border-radius:var(--rx);font-size:11px;font-family:var(--f)"><option value="">— Select Student —</option>';
+        h+='<tr><td data-label="Subject">'+sub+'</td>';
+        h+='<td data-label="Student"><select id="sel_'+sub+'" style="width:100%;padding:7px 8px;border:1.5px solid var(--g300);border-radius:var(--rx);font-size:11px;font-family:var(--f)"><option value="">— Select Student —</option>';
         for(var j=0;j<myClass.length;j++){var s=myClass[j];h+='<option value="'+esc(s.student_id)+'"'+(cur&&cur.student_id===s.student_id?' selected':'')+'>'+esc(s.full_name)+' ('+esc(s.student_id)+')</option>'}h+='</select></td>';
-        h+='<td>'+(cur&&cur.student_id?'<span class="badge bdg-g">Assigned</span>':'<span style="color:var(--g400);font-size:10px">—</span>')+'</td></tr>'}
+        h+='<td data-label="Status">'+(cur&&cur.student_id?'<span class="badge bdg-g">Assigned</span>':'<span style="color:var(--g400);font-size:10px">—</span>')+'</td></tr>'}
       h+='</table>';
       h+='<button class="btn btn-green" style="margin-top:14px" onclick="saveAllSubs()">Save All Assignments</button></div></div>';break;
     case 'notices':

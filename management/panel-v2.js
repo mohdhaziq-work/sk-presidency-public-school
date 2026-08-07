@@ -300,7 +300,7 @@ window.doImport=async function(){
 // ===== TEACHERS =====
 function renderTeachers(){
   var rows='';if(!T.length)rows='<tr><td colspan="5" style="text-align:center;padding:30px;color:var(--g500)">No teachers added yet</td></tr>';
-  else for(var i=0;i<T.length;i++){var t=T[i];rows+='<tr><td><strong>'+esc(t.full_name)+'</strong></td><td>'+esc(t.username)+'</td><td>'+(t.class||'-')+'-'+(t.section||'')+'</td><td>'+esc(t.email||'-')+'</td><td><span class="badge bdg-g">Active</span></td></tr>'}
+  else for(var i=0;i<T.length;i++){var t=T[i];rows+='<tr><td data-label="Name"><strong>'+esc(t.full_name)+'</strong></td><td data-label="Username">'+esc(t.username)+'</td><td data-label="Class">'+(t.class||'-')+'-'+(t.section||'')+'</td><td data-label="Email">'+esc(t.email||'-')+'</td><td data-label="Status"><span class="badge bdg-g">Active</span></td></tr>'}
   return '<div class="panel active"><div class="crd"><div class="crd-h">Add Teacher</div><div class="crd-b">'+
     '<form onsubmit="return addTeacher(event)"><div class="form-grid"><div class="fg"><label>Full Name *</label><input id="tName" required></div>'+
     '<div class="fg"><label>Username *</label><input id="tUser" required></div></div><div class="form-grid"><div class="fg"><label>Password *</label><input type="password" id="tPass" required minlength="4"></div>'+

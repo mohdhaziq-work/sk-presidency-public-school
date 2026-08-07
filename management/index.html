@@ -167,6 +167,19 @@ a{color:var(--p)}
 .loading .spinner,.spinner{width:28px;height:28px;border:2.5px solid var(--g200);border-top-color:var(--p);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px}
 .loading p{color:var(--g600);font-size:12px}
 
+
+/* ===== RESPONSIVE TABLES ===== */
+@media(max-width:480px){
+  .tbl-wrap{-webkit-mask-image:none;mask-image:none}
+  .tbl,.tbl tbody,.tbl tr,.tbl td{display:block;width:100%}
+  .tbl thead{display:none}
+  .tbl tr{margin-bottom:12px;border:1px solid var(--g200);border-radius:var(--rs);background:var(--w);padding:10px 12px;box-shadow:var(--sh)}
+  .tbl td{padding:4px 0;border:none;text-align:left;display:flex;justify-content:space-between;align-items:center}
+  .tbl td::before{content:attr(data-label);font-weight:600;font-size:8px;color:var(--g500);text-transform:uppercase;letter-spacing:.5px;flex-shrink:0;margin-right:10px}
+  .tbl td+td{border-top:1px solid var(--g50)}
+  .tbl .mono{font-size:11px}
+}
+
 @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
 @keyframes spin{to{transform:rotate(360deg)}}
