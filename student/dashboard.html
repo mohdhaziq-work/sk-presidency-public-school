@@ -40,6 +40,7 @@ a{color:var(--p);text-decoration:none}
 .si-db .si{background:#F3E8FF}.si-db svg{stroke:#9333EA}
 .si-pr .si{background:#E3F0FD}.si-pr svg{stroke:var(--hb)}
 .si-nt .si{background:#FEF3E0}.si-nt svg{stroke:var(--hy)}
+.si-no .si{background:#E6F4EA}.si-no svg{stroke:var(--hg)}
 .si-lk .si{background:#E6F4EA}.si-lk svg{stroke:var(--hg)}
 .sidebar .sf{margin-top:auto;padding:12px 14px;border-top:1px solid var(--g100);font-size:10px;color:var(--g500)}
 .sidebar .sf .sv{font-weight:600;color:var(--g800);margin-top:2px}
@@ -103,6 +104,8 @@ a{color:var(--p);text-decoration:none}
 .notice-item{padding:10px 0;border-bottom:1px solid var(--g100);font-size:12px;color:var(--g600)}
 .notice-item:last-child{border-bottom:none}
 .notice-item strong{color:var(--g800);display:block;margin-bottom:2px}
+.notice-item .meta{font-size:9px;color:var(--g500);margin-top:2px}
+.bdg-p{background:#F3E8FF;color:#9333EA}
 
 /* Loading */
 .loading{text-align:center;padding:48px 12px}
@@ -133,6 +136,7 @@ a{color:var(--p);text-decoration:none}
       <button class="active si-db" onclick="navTo('db')"><span class="si"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span>Home</button>
       <button class="si-pr" onclick="navTo('profile')"><span class="si"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>My Profile</button>
       <button class="si-nt" onclick="navTo('notices')"><span class="si"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg></span>Notices</button>
+      <button class="si-no" onclick="navTo('notes')"><span class="si"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>Notes & Homework</button>
       <button class="si-lk" onclick="navTo('links')"><span class="si"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>Quick Links</button>
       <a class="si-lk" href="../index.html"><span class="si"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10"/><path d="M12 2a15.3 15.3 0 00-4 10 15.3 15.3 0 004 10"/></svg></span>School Website</a>
     </nav>
@@ -156,7 +160,7 @@ var _db=null;
 function getDB(){if(_db)return Promise.resolve(_db);return new Promise(function(ok){if(!FIREBASE_CONFIG.apiKey){ok(null);return}function ld(u){return new Promise(function(y){var s=document.createElement('script');s.src=u;s.onload=y;document.head.appendChild(s)})}Promise.all([ld('https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js'),ld('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js')]).then(function(){if(!firebase.apps.length)firebase.initializeApp(FIREBASE_CONFIG);_db=firebase.firestore();ok(_db)}).catch(function(){ok(null)})})}
 
 var sid=sessionStorage.getItem('skpps_sid'),curTab='db';
-window.navTo=function(t){curTab=t;document.querySelectorAll('.sidebar nav button').forEach(function(b){b.classList.remove('active')});var sel=document.querySelector('.si-'+(t==='db'?'db':t==='profile'?'pr':t==='notices'?'nt':'lk'));if(sel)sel.classList.add('active');render();closeSidebar()};
+window.navTo=function(t){curTab=t;document.querySelectorAll('.sidebar nav button').forEach(function(b){b.classList.remove('active')});var sel=document.querySelector('.si-'+(t==='db'?'db':t==='profile'?'pr':t==='notices'?'nt':t==='notes'?'no':'lk'));if(sel)sel.classList.add('active');render();closeSidebar()};
 
 function statCard(cls,icon,val,lbl){return'<div class="stat-card"><div class="st-ic" style="background:'+(cls==='blue'?'#E3F0FD':cls==='green'?'#E6F4EA':cls==='red'?'#FDE8E8':'#FEF3E0')+'">'+icon+'</div><div class="st-n">'+val+'</div><div class="st-l">'+lbl+'</div></div>'}
 
@@ -178,6 +182,19 @@ var svg={book:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" strok
 
 function esc(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 function kv(l,v){return'<div class="r"><span class="lb">'+l+'</span><span class="vl">'+esc(v)+'</span></div>'}
+var _nCache=null;
+async function loadNotes(cls,sec){
+  if(_nCache){showNotes(_nCache);return}
+  var db=await getDB();if(!db){document.getElementById('notesList').innerHTML='<p style="font-size:11px;color:var(--r)">Firebase not connected</p>';return}
+  try{var s=await db.collection('notes').where('class','==',cls).where('section','==',sec).orderBy('created_at','desc').get();
+    _nCache=s.docs.map(function(d){return d.data()});showNotes(_nCache)}
+  catch(e){document.getElementById('notesList').innerHTML='<p style="font-size:11px;color:var(--r)">'+e.message+'</p>'}
+}
+function showNotes(data){
+  if(!data||!data.length){document.getElementById('notesList').innerHTML='<p style="font-size:11px;color:var(--g500)">No notes or homework posted yet for your class.</p>';return}
+  var h='';for(var i=0;i<data.length;i++){var n=data[i];h+='<div class="notice-item"><strong>'+esc(n.subject)+': '+esc(n.title)+'</strong><span class="badge bdg-p" style="margin-left:6px;font-size:8px">'+esc(n.type)+'</span><div style="font-size:11px;color:var(--g600);margin-top:4px;white-space:pre-wrap">'+esc(n.content)+'</div><div class="meta" style="font-size:9px;color:var(--g500);margin-top:3px">By '+esc(n.teacher_name)+' | '+new Date(n.created_at).toLocaleDateString()+'</div></div>'}
+  document.getElementById('notesList').innerHTML=h;
+}
 
 function render(){
   var nm=sd.full_name||sd.name||'Student';
@@ -208,6 +225,11 @@ function render(){
       h+='<div class="notice-item"><strong>Parent-Teacher Meeting</strong>Scheduled for the last Saturday of every month.</div>';
       h+='<div class="notice-item"><strong>Examination Schedule</strong>Term exams dates will be announced soon. Check noticeboard regularly.</div>';
       h+='</div></div>';
+      break;
+
+    case 'notes':
+      h='<div class="crd"><div class="crd-h"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--g)" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Notes & Homework for Class '+cl+'-'+sc+'</div><div class="crd-b"><div id="notesList"><p style="font-size:12px;color:var(--g600)">Loading notes...</p></div></div></div>';
+      loadNotes(cl,sc);
       break;
 
     case 'links':

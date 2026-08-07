@@ -3,14 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<title>Teacher Dashboard — SK Presidency Public School</title>
+<title>Staff Dashboard — SK Presidency Public School</title>
 <style>
-:root{--p:#4285F4;--pd:#1557B0;--r:#EA4335;--g:#34A853;--y:#FBBC04;--hr:#E74C3C;--hb:#3498DB;--hg:#27AE60;--hy:#F39C12;--w:#fff;--bg:#F6F8FC;--g50:#F8F9FA;--g100:#F1F3F4;--g200:#E8EAED;--g300:#DADCE0;--g400:#BDC1C6;--g500:#9AA0A6;--g600:#80868B;--g700:#5F6368;--g800:#3C4043;--g900:#202124;--rx:8px;--rs:12px;--rm:16px;--sh:0 1px 3px rgba(0,0,0,.04),0 1px 4px rgba(0,0,0,.06);--shl:0 4px 16px rgba(0,0,0,.06),0 2px 8px rgba(0,0,0,.08);--f:'Google Sans','Segoe UI','Roboto','Helvetica Neue',Arial,sans-serif;--t:.3s cubic-bezier(.16,1,.3,1)}
+:root{--p:#4285F4;--pd:#1557B0;--r:#EA4335;--g:#34A853;--y:#FBBC04;--hr:#E74C3C;--hb:#3498DB;--hg:#27AE60;--hy:#F39C12;--w:#fff;--bg:#F6F8FC;--g50:#F8F9FA;--g100:#F1F3F4;--g200:#E8EAED;--g300:#DADCE0;--g400:#BDC1C6;--g500:#9AA0A6;--g600:#80868B;--g700:#5F6368;--g800:#3C4043;--g900:#202124;--rx:8px;--rs:12px;--rm:16px;--sh:0 1px 3px rgba(0,0,0,.04),0 1px 4px rgba(0,0,0,.06);--shl:0 4px 16px rgba(0,0,0,.06),0 2px 8px rgba(0,0,0,.08);--f:'Google Sans','Segoe UI','Roboto','Helvetica Neue',Arial,sans-serif;--t:.3s cubic-bezier(.16,1,.3,1);--pm:var(--p);--sm:#7c3aed}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--f);background:var(--bg);color:var(--g800);-webkit-font-smoothing:antialiased;min-height:100vh;min-height:100dvh}
 a{color:var(--p);text-decoration:none}
 
-/* ===== TOP BAR ===== */
 .topbar{background:rgba(255,255,255,.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--g200);padding:0 16px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
 .topbar .tl{display:flex;align-items:center;gap:7px;font-size:14px;font-weight:500;color:var(--g900);flex-shrink:0}
 .topbar .tl .dot{width:7px;height:7px;border-radius:50%;background:var(--g);animation:pulse 2s infinite}
@@ -21,14 +20,11 @@ a{color:var(--p);text-decoration:none}
 .topbar .tr .lg:hover{background:#FEF2F2}
 .topbar .tr .mbtn{display:flex;align-items:center;gap:5px;color:var(--g700);font-size:11px;font-weight:500;padding:6px 10px;border-radius:16px;border:1.5px solid var(--g200);background:var(--w);cursor:pointer;font-family:var(--f)}
 @media(min-width:600px){.topbar .tr .mbtn{display:none}}
-.topbar .tr .mbtn span{display:block;width:16px;height:2px;background:currentColor;border-radius:1px}
-.topbar .tr .mbtn span+span{margin-top:3px}
+.topbar .tr .mbtn span{display:block;width:16px;height:2px;background:currentColor;border-radius:1px}.topbar .tr .mbtn span+span{margin-top:3px}
 
-/* ===== LAYOUT ===== */
 .layout{display:grid;grid-template-columns:200px 1fr;min-height:calc(100vh - 56px);min-height:calc(100dvh - 56px)}
 @media(max-width:600px){.layout{grid-template-columns:1fr}}
 
-/* ===== SIDEBAR ===== */
 .sidebar{background:var(--w);border-right:1px solid var(--g200);padding:12px 0;position:sticky;top:56px;height:calc(100vh - 56px);height:calc(100dvh - 56px);overflow-y:auto;display:flex;flex-direction:column}
 @media(max-width:600px){.sidebar{position:fixed;left:-270px;top:56px;z-index:200;width:270px;transition:left var(--t);box-shadow:0 8px 40px rgba(0,0,0,.15);height:calc(100dvh - 56px)}.sidebar.open{left:0}}
 .sidebar .sh{padding:6px 14px 14px;font-size:9px;color:var(--g500);text-transform:uppercase;letter-spacing:1.5px;font-weight:700}
@@ -39,55 +35,70 @@ a{color:var(--p);text-decoration:none}
 .sidebar nav button .si,.sidebar nav a .si{width:26px;height:26px;border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .si-db .si{background:#F3E8FF}.si-db svg{stroke:#9333EA}
 .si-st .si{background:#FEF3E0}.si-st svg{stroke:var(--hy)}
-.si-sc .si{background:#E3F0FD}.si-sc svg{stroke:var(--hb)}
+.si-nt .si{background:#FDE8E8}.si-nt svg{stroke:var(--hr)}
+.si-cl .si{background:#E3F0FD}.si-cl svg{stroke:var(--hb)}
+.si-no .si{background:#E6F4EA}.si-no svg{stroke:var(--hg)}
 .si-lk .si{background:#E6F4EA}.si-lk svg{stroke:var(--hg)}
 .sidebar .sf{margin-top:auto;padding:12px 14px;border-top:1px solid var(--g100);font-size:10px;color:var(--g500)}
 .sidebar .sf .sv{font-weight:600;color:var(--g800);margin-top:2px}
 
-/* Backdrop */
 .backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:199}
 @media(max-width:600px){.backdrop.show{display:block}}
 
-/* ===== MAIN ===== */
 .main{padding:16px}@media(min-width:600px){.main{padding:24px}}
 
-/* ===== STATS ===== */
+/* Stats */
 .stats-row{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px}
 @media(min-width:480px){.stats-row{grid-template-columns:repeat(4,1fr);gap:12px}}
 .stat-card{background:var(--w);border-radius:var(--rm);padding:16px 12px;box-shadow:var(--sh);border:1px solid var(--g200);transition:all var(--t);text-align:center}
-.stat-card:active{transform:scale(.97)}
-@media(min-width:600px){.stat-card:hover{transform:translateY(-3px);box-shadow:var(--shl)}}
+.stat-card:active{transform:scale(.97)}@media(min-width:600px){.stat-card:hover{transform:translateY(-3px);box-shadow:var(--shl)}}
 .stat-card .st-ic{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 6px}
 @media(min-width:480px){.stat-card .st-ic{width:42px;height:42px;margin-bottom:8px}}
 .stat-card .st-n{font-size:24px;font-weight:400;color:var(--g900);line-height:1.1}
 @media(min-width:480px){.stat-card .st-n{font-size:30px}}
 .stat-card .st-l{font-size:9px;color:var(--g500);text-transform:uppercase;letter-spacing:.6px;margin-top:3px}
 
-/* ===== CARDS ===== */
 .crd{background:var(--w);border-radius:var(--rm);box-shadow:var(--sh);border:1px solid var(--g200);overflow:hidden;margin-bottom:14px}
 @media(min-width:600px){.crd{margin-bottom:18px}}
 .crd-h{padding:12px 14px;border-bottom:1px solid var(--g100);font-weight:500;font-size:12px;display:flex;align-items:center;gap:7px;color:var(--g800)}
 @media(min-width:600px){.crd-h{padding:14px 18px;font-size:13px}}
 .crd-b{padding:14px}@media(min-width:600px){.crd-b{padding:18px}}
 
-/* ===== TABLE ===== */
 .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--rx);border:1px solid var(--g200);-webkit-mask-image:linear-gradient(to right,black 90%,transparent 100%);mask-image:linear-gradient(to right,black 90%,transparent 100%)}
 .tbl{width:100%;min-width:600px;border-collapse:collapse;font-size:11px}
 @media(min-width:480px){.tbl{font-size:12px;min-width:700px}}
-.tbl th{background:var(--g50);padding:8px 10px;text-align:left;font-weight:600;color:var(--g600);border-bottom:2px solid var(--g200);white-space:nowrap;font-size:8px;text-transform:uppercase;letter-spacing:.3px;position:sticky;top:0}
+.tbl th{background:var(--g50);padding:8px 10px;text-align:left;font-weight:600;color:var(--g600);border-bottom:2px solid var(--g200);white-space:nowrap;font-size:8px;text-transform:uppercase;letter-spacing:.3px}
 @media(min-width:480px){.tbl th{padding:10px 12px;font-size:9px}}
 .tbl td{padding:7px 10px;border-bottom:1px solid var(--g100);color:var(--g700)}@media(min-width:480px){.tbl td{padding:8px 12px}}
 .tbl tr:active td{background:var(--g50)}@media(min-width:600px){.tbl tr:hover td{background:var(--g50)}}
 .tbl .mono{font-family:monospace;font-size:9px}@media(min-width:480px){.tbl .mono{font-size:10px}}
 
-/* ===== BADGES ===== */
 .badge{display:inline-block;padding:2px 6px;border-radius:10px;font-size:8px;font-weight:600;text-transform:uppercase}
-.bdg-g{background:#E6F4EA;color:var(--g)}.bdg-r{background:#FDE8E8;color:var(--r)}.bdg-b{background:#E3F0FD;color:var(--p)}.bdg-y{background:#FEF7E0;color:#E37400}
+.bdg-g{background:#E6F4EA;color:var(--g)}.bdg-r{background:#FDE8E8;color:var(--r)}.bdg-b{background:#E3F0FD;color:var(--p)}.bdg-y{background:#FEF7E0;color:#E37400}.bdg-p{background:#F3E8FF;color:#9333EA}
 
-/* ===== SEARCH ===== */
-.search-bar{width:100%;padding:9px 12px;border:1.5px solid var(--g300);border-radius:20px;font-size:12px;font-family:var(--f);margin-bottom:12px;transition:all var(--t);background:var(--w)}.search-bar:focus{outline:none;border-color:var(--p);box-shadow:0 0 0 3px rgba(66,133,244,.06)}
+.search-bar{width:100%;padding:9px 12px;border:1.5px solid var(--g300);border-radius:20px;font-size:12px;font-family:var(--f);margin-bottom:12px;transition:all var(--t);background:var(--w)}
+.search-bar:focus{outline:none;border-color:var(--p);box-shadow:0 0 0 3px rgba(66,133,244,.06)}
 
-/* ===== LOADING ===== */
+.form-grid{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:500px){.form-grid{grid-template-columns:1fr 1fr;gap:12px}}
+.fg input,.fg select,.fg textarea{width:100%;padding:9px 11px;border:1.5px solid var(--g300);border-radius:var(--rx);font-size:13px;font-family:var(--f);background:var(--w);transition:all var(--t)}
+.fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--p);box-shadow:0 0 0 3px rgba(66,133,244,.08)}
+.fg label{display:block;font-size:9px;font-weight:600;color:var(--g600);margin-bottom:3px;text-transform:uppercase;letter-spacing:.4px}
+.fg textarea{resize:vertical;min-height:60px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 18px;border:none;border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;font-family:var(--f);transition:all var(--t);white-space:nowrap;text-decoration:none}
+@media(min-width:480px){.btn{padding:10px 22px;font-size:13px;border-radius:24px}}
+.btn-sm{padding:6px 12px;font-size:10px;border-radius:14px}
+.btn-primary{background:var(--p);color:var(--w)}.btn-primary:active{background:var(--pd)}
+.btn-outline{background:var(--w);color:var(--g700);border:1.5px solid var(--g300)}
+.btn-green{background:var(--g);color:var(--w)}.btn-red{background:var(--r);color:var(--w)}
+.btn-purple{background:#7c3aed;color:var(--w)}
+
+.notice-item{padding:10px 0;border-bottom:1px solid var(--g100);font-size:12px;color:var(--g600)}
+.notice-item:last-child{border-bottom:none}
+.notice-item strong{color:var(--g800);display:block;margin-bottom:2px}
+.notice-item .meta{font-size:9px;color:var(--g500);margin-top:2px}
+
 .loading{text-align:center;padding:48px 12px}
 .loading .spinner{width:28px;height:28px;border:2.5px solid var(--g200);border-top-color:var(--p);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px}
 .loading p{color:var(--g600);font-size:12px}
@@ -100,33 +111,31 @@ a{color:var(--p);text-decoration:none}
 <body>
 
 <div class="topbar">
-  <div class="tl"><div class="dot"></div>SKPPS<span class="tag">Teacher</span><span id="un" style="font-size:10px;color:var(--g500);font-weight:400;margin-left:2px"></span></div>
-  <div class="tr">
-    <button class="mbtn" id="menuBtn"><span></span><span></span>Menu</button>
-    <button onclick="lg()" class="lg">Logout</button>
-  </div>
+  <div class="tl"><div class="dot"></div>SKPPS<span class="tag">Staff</span><span id="un" style="font-size:10px;color:var(--g500);font-weight:400;margin-left:2px"></span></div>
+  <div class="tr"><button class="mbtn" id="menuBtn"><span></span><span></span>Menu</button><button onclick="lg()" class="lg">Logout</button></div>
 </div>
 
 <div class="backdrop" id="backdrop" onclick="closeSidebar()"></div>
 
 <div class="layout">
   <aside class="sidebar" id="sidebar">
-    <div class="sh">Teacher Panel</div>
+    <div class="sh">Staff Panel</div>
     <nav>
-      <button class="active si-db" onclick="navTo('db')"><span class="si"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span>Dashboard</button>
-      <button class="si-st" onclick="navTo('students')"><span class="si"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span>All Students</button>
-      <button class="si-sc" onclick="navTo('search')"><span class="si"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>Advanced Search</button>
-      <a class="si-lk" href="../index.html"><span class="si"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10"/><path d="M12 2a15.3 15.3 0 00-4 10 15.3 15.3 0 004 10"/></svg></span>School Website</a>
+      <button class="active si-db" onclick="navTo('db')"><span class="si"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span>Dashboard</button>
+      <button class="si-st" onclick="navTo('students')"><span class="si"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span>My Class Students</button>
+      <button class="si-no" onclick="navTo('notes')"><span class="si"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>Notes & Homework</button>
+      <button class="si-nt" onclick="navTo('notices')"><span class="si"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg></span>Send Notice</button>
+      <button class="si-cl" onclick="navTo('classwork')"><span class="si"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>Class Teacher Work</button>
+      <a class="si-lk" href="../index.html"><span class="si"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10"/><path d="M12 2a15.3 15.3 0 00-4 10 15.3 15.3 0 004 10"/></svg></span>School Website</a>
     </nav>
-    <div class="sf"><div>SK Presidency Public School</div><div class="sv">Teacher v5</div></div>
+    <div class="sf"><div>SK Presidency Public School</div><div class="sv">Staff v6</div></div>
   </aside>
-
   <div class="main" id="mainContent"></div>
 </div>
 
 <script>
 (function(){
-if(!sessionStorage.getItem('skpps_auth')||sessionStorage.getItem('skpps_role')!=='teacher'){location.href='../staff-login.html'}
+if(!sessionStorage.getItem('skpps_auth')||(sessionStorage.getItem('skpps_role')!=='teacher'&&sessionStorage.getItem('skpps_role')!=='mgmt')){location.href='../staff-login.html'}
 window.lg=function(){sessionStorage.clear();location.href='../staff-login.html'};
 window.closeSidebar=function(){document.getElementById('sidebar').classList.remove('open');document.getElementById('backdrop').classList.remove('show')};
 document.getElementById('menuBtn').addEventListener('click',function(){var s=document.getElementById('sidebar');s.classList.toggle('open');document.getElementById('backdrop').classList.toggle('show')});
@@ -136,62 +145,143 @@ window.FIREBASE_CONFIG={};var cfg=localStorage.getItem("skpps_firebase_config");
 var _f=null,_p=null;
 window._fbReady=function(){if(_p)return _p;_p=new Promise(function(ok){if(_f&&_f.db)return ok(_f);if(!FIREBASE_CONFIG.apiKey){ok(null);return}function ld(u){return new Promise(function(y,n){if(document.querySelector('script[src="'+u+'"]'))return y();var s=document.createElement('script');s.src=u;s.onload=y;s.onerror=n;document.head.appendChild(s)})}Promise.all([ld('https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js'),ld('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js'),ld('https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js')]).then(function(){if(!firebase.apps.length)firebase.initializeApp(FIREBASE_CONFIG);_f={db:firebase.firestore()};ok(_f)}).catch(function(){ok(null)});});return _p};
 window.fbG=async function(){var f=await _fbReady();if(!f)return[];var s=await f.db.collection('students').where('is_active','==',true).get();return s.docs.map(function(d){var r=d.data();r.student_id=d.id;return r})};
+window.fbN=async function(cls,sec){var f=await _fbReady();if(!f)return[];var q=f.db.collection('notes').where('class','==',cls).where('section','==',sec).orderBy('created_at','desc');var s=await q.get();return s.docs.map(function(d){return d.data()})};
+window.fbAN=async function(d){var f=await _fbReady();if(!f)throw new Error("Firebase not connected");return f.db.collection('notes').add(d)};
 
-var S=[],curTab='db';
+var S=[],N=[],curTab='db',tClass='',tSec='';
 document.getElementById('un').textContent=' — '+(sessionStorage.getItem('skpps_name')||'Teacher');
 window.navTo=function(t){curTab=t;closeSidebar();render()};
 
+// Get teacher's assigned class from session (set during login or default)
+tClass=sessionStorage.getItem('skpps_tclass')||'10TH';
+tSec=sessionStorage.getItem('skpps_tsection')||'C';
+var tName=sessionStorage.getItem('skpps_name')||'Teacher';
+
 function statCard(bg,icon,num,lbl){return'<div class="stat-card"><div class="st-ic" style="background:'+bg+'">'+icon+'</div><div class="st-n">'+num+'</div><div class="st-l">'+lbl+'</div></div>'}
-var svg={students:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--hb)" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.9M16 3.1a4 4 0 010 7.8"/></svg>',
-  classes:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--hg)" stroke-width="1.8"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/></svg>',
-  active:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--hy)" stroke-width="1.8"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>',
-  search:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--hr)" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>',
-  all:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--p)" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>'};
+
+var svgI={
+  students:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--hb)" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.9M16 3.1a4 4 0 010 7.8"/></svg>',
+  notes:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--hg)" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>',
+  cls:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--hy)" stroke-width="2"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/></svg>',
+  notice:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--hr)" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>',
+  user:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--p)" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>',
+  edit:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>'
+};
 
 function esc(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
-function badge(hc){var m={Earth:'bdg-g',Fire:'bdg-r',Water:'bdg-b',Air:'bdg-y'};var c=m[hc]||'bdg-g';return'<span class="badge '+c+'">'+hc+'</span>'}
+function badge(hc){var m={Earth:'bdg-g',Fire:'bdg-r',Water:'bdg-b',Air:'bdg-y'};return'<span class="badge '+(m[hc]||'bdg-g')+'">'+hc+'</span>'}
 
-function tableRows(data){
-  if(!data.length)return'<tr><td colspan="7" style="text-align:center;padding:36px;color:var(--g500)">No students found.</td></tr>';
+function tblRows(data,ct){
+  if(!data.length)return'<tr><td colspan="7" style="text-align:center;padding:36px;color:var(--g500)">'+(ct||'No students found')+'.</td></tr>';
   var r='';for(var i=0;i<data.length;i++){var s=data[i],hc=s.house||'Earth';
-    r+='<tr><td class="mono">'+esc(s.student_id)+'</td><td><strong>'+esc(s.full_name)+'</strong></td><td>'+esc(s.class)+'</td><td>'+esc(s.section||'-')+'</td><td style="font-size:10px">'+esc(s.date_of_birth||'-')+'</td><td>'+badge(hc)+'</td><td>'+esc(s.parent_phone||'-')+'</td></tr>'}
+    r+='<tr><td class="mono">'+esc(s.student_id)+'</td><td><strong>'+esc(s.full_name)+'</strong></td><td>'+esc(s.class)+'</td><td>'+esc(s.section||'-')+'</td><td>'+badge(hc)+'</td><td>'+esc(s.parent_phone||'-')+'</td><td><button class="btn btn-sm btn-outline" onclick="selectRep(\''+esc(s.student_id)+'\',\''+esc(s.full_name)+'\')">Select</button></td></tr>'}
   return r;
 }
 
 var _rt=null;
 function render(){
   document.querySelectorAll('.sidebar nav button').forEach(function(b){b.classList.remove('active')});
-  var sel=document.querySelector('.si-'+(curTab==='db'?'db':curTab==='students'?'st':'sc'));
+  var map={db:'db',students:'st',notes:'no',notices:'nt',classwork:'cl'};
+  var sel=document.querySelector('.si-'+(map[curTab]||'db'));
   if(sel)sel.classList.add('active');
   document.getElementById('mainContent').innerHTML='<div class="loading"><div class="spinner"></div><p>Loading...</p></div>';
 
-  var classes=S.length?new Set(S.map(function(s){return s.class||s.cls})).size:0;
-
   if(_rt)clearTimeout(_rt);
   _rt=setTimeout(function(){
+    var myClass=S.filter(function(s){return (s.class||s.cls)===tClass&&(s.section||s.sec||'A')===tSec});
+    var classes=S.length?new Set(S.map(function(s){return s.class||s.cls})).size:0;
     var h='';
     switch(curTab){
       case 'db':
-        h='<div class="stats-row">'+statCard('#E3F0FD',svg.students,S.length,'Total Students')+statCard('#E6F4EA',svg.classes,classes,'Active Classes')+statCard('#FEF3E0',svg.active,S.filter(function(s){return s.is_active!==false}).length,'Active Students')+statCard('#FDE8E8',svg.search,S.length,'Records')+'</div>';
-        h+='<div class="crd"><div class="crd-h"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--p)" stroke-width="2"><circle cx="9" cy="7" r="4"/><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/></svg>Recent Students</div><div class="crd-b"><input class="search-bar" placeholder="Quick search by name or class..." oninput="fs(this.value)"><div class="tbl-wrap"><table class="tbl" id="stb"><tr><th>ID</th><th>Name</th><th>Class</th><th>Sec</th><th>DOB</th><th>House</th><th>Phone</th></tr>'+tableRows(S.slice(0,10))+'</table></div></div></div>';
+        h='<h2 style="font-size:18px;font-weight:500;margin-bottom:4px">Welcome, '+tName+'</h2><p style="font-size:11px;color:var(--g500);margin-bottom:14px">Class Teacher: '+tClass+'-'+tSec+' | '+myClass.length+' students</p>';
+        h+='<div class="stats-row">'+statCard('#E3F0FD',svgI.students,S.length,'All Students')+statCard('#E6F4EA',svgI.notes,N.length,'Notes Sent')+statCard('#FEF3E0',svgI.cls,classes,'Classes')+statCard('#FDE8E8',svgI.notice,myClass.length,'Your Class')+'</div>';
+        h+='<div class="crd"><div class="crd-h">'+svgI.user+'Your Class: '+tClass+'-'+tSec+' ('+myClass.length+' students)</div><div class="crd-b"><input class="search-bar" placeholder="Search your class students..." oninput="fs(this.value)"><div class="tbl-wrap"><table class="tbl" id="stb"><tr><th>ID</th><th>Name</th><th>Class</th><th>Sec</th><th>House</th><th>Phone</th><th>Action</th></tr>'+tblRows(myClass,'No class students')+'</table></div></div></div>';
+        if(N.length){h+='<div class="crd"><div class="crd-h">Recent Notes & Homework</div><div class="crd-b">';for(var i=0;i<Math.min(N.length,5);i++){var n=N[i];h+='<div class="notice-item"><strong>'+esc(n.subject)+': '+esc(n.title)+'</strong>'+esc(n.content).substring(0,80)+'<div class="meta">By '+esc(n.teacher_name)+' | '+esc(n.type)+' | '+new Date(n.created_at).toLocaleDateString()+'</div></div>'}h+='</div></div>'}
         break;
+
       case 'students':
-        h='<div class="crd"><div class="crd-h"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--p)" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Student Directory ('+S.length+')</div><div class="crd-b"><input class="search-bar" placeholder="Search by name, ID, class or phone..." oninput="fs(this.value)"><div class="tbl-wrap"><table class="tbl" id="stb"><tr><th>ID</th><th>Name</th><th>Class</th><th>Sec</th><th>DOB</th><th>House</th><th>Phone</th></tr>'+tableRows(S)+'</table></div></div></div>';
+        h='<div class="crd"><div class="crd-h">'+svgI.user+'My Class Students: '+tClass+'-'+tSec+' ('+myClass.length+')</div><div class="crd-b"><input class="search-bar" placeholder="Search..." oninput="fs(this.value)"><div class="tbl-wrap"><table class="tbl" id="stb"><tr><th>ID</th><th>Name</th><th>Class</th><th>Sec</th><th>House</th><th>Phone</th><th>Action</th></tr>'+tblRows(myClass,'No students in your class')+'</table></div></div></div>';
+        h+='<div class="crd"><div class="crd-h">All Students Directory ('+S.length+')</div><div class="crd-b"><input class="search-bar" placeholder="Search all students..." oninput="fs2(this.value)"><div class="tbl-wrap"><table class="tbl" id="stb2"><tr><th>ID</th><th>Name</th><th>Class</th><th>Sec</th><th>House</th><th>Phone</th></tr>';for(var i=0;i<S.length;i++){var s=S[i];h+='<tr><td class="mono">'+esc(s.student_id)+'</td><td><strong>'+esc(s.full_name)+'</strong></td><td>'+esc(s.class)+'</td><td>'+esc(s.section||'-')+'</td><td>'+badge(s.house||'Earth')+'</td><td>'+esc(s.parent_phone||'-')+'</td></tr>'}h+='</table></div></div></div>';
         break;
-      case 'search':
-        h='<div class="crd"><div class="crd-h"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--p)" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Advanced Search</div><div class="crd-b"><input class="search-bar" id="asInput" placeholder="Type name, ID, class or phone..." oninput="advancedSearch(this.value)" style="margin-bottom:0"><p style="font-size:10px;color:var(--g500);margin-top:6px">Results update as you type. Matching any field.</p><div class="tbl-wrap" style="margin-top:12px"><table class="tbl" id="asTable"><tr><th>ID</th><th>Name</th><th>Class</th><th>Sec</th><th>DOB</th><th>House</th><th>Phone</th></tr>'+tableRows(S)+'</table></div></div></div>';
+
+      case 'notes':
+        var reps=JSON.parse(sessionStorage.getItem('skpps_reps')||'{}');
+        var repSid=reps[tClass+'-'+tSec]||'';
+        h='<div class="crd"><div class="crd-h">'+svgI.notes+'Notes & Homework System</div><div class="crd-b"><p style="font-size:12px;color:var(--g600);margin-bottom:12px">Send notes/homework to your class. Student representative will upload content.</p>';
+        h+='<div class="form-grid"><div class="fg"><label>Select Student Representative</label><select id="repSelect" onchange="saveRep()"><option value="">— Choose a student —</option>';for(var i=0;i<myClass.length;i++){var s=myClass[i];h+='<option value="'+esc(s.student_id)+'"'+(repSid===s.student_id?' selected':'')+'>'+esc(s.full_name)+' ('+esc(s.student_id)+')</option>'}h+='</select></div></div>';
+        h+='<div style="background:#FEF3E0;border-radius:8px;padding:10px;margin:12px 0;font-size:10px;color:#92400e">The selected student will see a Notes Upload section in their Student Dashboard.</div>';
+        h+='<form onsubmit="return sendNote(event)" style="margin-top:12px"><div class="form-grid"><div class="fg"><label>Subject *</label><select name="subject" required><option>English</option><option>Hindi</option><option>Maths</option><option>Science</option><option>Social Studies</option><option>Sanskrit</option><option>Computer</option></select></div><div class="fg"><label>Type *</label><select name="type" required><option>Notes</option><option>Homework</option></select></div></div><div class="form-grid"><div class="fg"><label>Title *</label><input name="title" placeholder="e.g. Chapter 5: Quadratic Equations" required></div></div><div class="fg"><label>Content / Instructions *</label><textarea name="content" placeholder="Write your notes or homework instructions here..." required></textarea></div><button type="submit" class="btn btn-primary" style="margin-top:8px">Send to Class '+tClass+'-'+tSec+'</button></form></div></div>';
+        if(N.length){h+='<div class="crd"><div class="crd-h">Previously Sent</div><div class="crd-b">';for(var i=0;i<N.length;i++){var n=N[i];h+='<div class="notice-item"><strong>'+esc(n.subject)+' — '+esc(n.title)+'</strong><span class="badge bdg-p" style="margin-left:6px">'+esc(n.type)+'</span><div style="font-size:11px;color:var(--g600);margin-top:2px">'+esc(n.content).substring(0,150)+'</div><div class="meta">'+new Date(n.created_at).toLocaleDateString()+'</div></div>'}h+='</div></div>'}
+        break;
+
+      case 'notices':
+        h='<div class="crd"><div class="crd-h">'+svgI.notice+'Send Notice to '+tClass+'-'+tSec+'</div><div class="crd-b"><p style="font-size:12px;color:var(--g600);margin-bottom:12px">This notice will appear on all students dashboards. Use for: fee dues, exam forms, event announcements, etc.</p>';
+        h+='<form onsubmit="return sendNotice(event)"><div class="form-grid"><div class="fg"><label>Notice Title *</label><input name="nTitle" placeholder="e.g. Fee Due Reminder" required></div><div class="fg"><label>Notice Type</label><select name="nType"><option>General</option><option>Fee Due</option><option>Exam</option><option>Event</option><option>Registration</option></select></div></div><div class="fg"><label>Message *</label><textarea name="nMsg" placeholder="Write your notice message here..." required></textarea></div><button class="btn btn-red btn-sm">Send Notice</button></form></div></div>';
+        break;
+
+      case 'classwork':
+        h='<div class="crd"><div class="crd-h">'+svgI.edit+'Class Teacher Tasks — '+tClass+'-'+tSec+'</div><div class="crd-b">';
+        h+='<div style="display:grid;grid-template-columns:1fr;gap:8px">';
+        h+='<div class="notice-item"><strong>Attendance</strong>Mark daily attendance for your class students.<div class="meta">Feature coming soon</div></div>';
+        h+='<div class="notice-item"><strong>Leave Applications</strong>View and approve student leave requests.<div class="meta">Feature coming soon</div></div>';
+        h+='<div class="notice-item"><strong>Fee Dues</strong>Track fee payment status of your class students.<div class="meta">Feature coming soon</div></div>';
+        h+='<div class="notice-item"><strong>Board Exam Registration</strong>Collect TC, Aadhar, DOB, passport photos for board exams.<div class="meta">Feature coming soon</div></div>';
+        h+='<div class="notice-item"><strong>Student Reports</strong>Generate performance reports for your class.<div class="meta">Feature coming soon</div></div>';
+        h+='</div></div></div>';
         break;
     }
     document.getElementById('mainContent').innerHTML=h;
   },100);
 }
 
+// Search filters
 window.fs=function(q){var r=document.querySelectorAll('#stb tr');for(var i=1;i<r.length;i++)r[i].style.display=r[i].textContent.toLowerCase().includes(q.toLowerCase())?'':'none'};
-window.advancedSearch=function(q){var r=document.querySelectorAll('#asTable tr');for(var i=1;i<r.length;i++)r[i].style.display=r[i].textContent.toLowerCase().includes(q.toLowerCase())?'':'none'};
+window.fs2=function(q){var r=document.querySelectorAll('#stb2 tr');for(var i=1;i<r.length;i++)r[i].style.display=r[i].textContent.toLowerCase().includes(q.toLowerCase())?'':'none'};
 
-// Load data
-document.getElementById('mainContent').innerHTML='<div class="loading"><div class="spinner"></div><p>Connecting to Firestore...</p></div>';
-fbG().then(function(data){S=data||[];render()}).catch(function(){S=[];render()});
+// Select student representative
+window.saveRep=function(){
+  var v=document.getElementById('repSelect').value,n=document.getElementById('repSelect').selectedOptions[0]?document.getElementById('repSelect').selectedOptions[0].text:'';
+  var reps=JSON.parse(sessionStorage.getItem('skpps_reps')||'{}');
+  reps[tClass+'-'+tSec]=v;
+  sessionStorage.setItem('skpps_reps',JSON.stringify(reps));
+  if(v)alert('Selected: '+n+' as notes representative');
+};
+window.selectRep=function(sid,name){
+  var reps=JSON.parse(sessionStorage.getItem('skpps_reps')||'{}');
+  reps[tClass+'-'+tSec]=sid;
+  sessionStorage.setItem('skpps_reps',JSON.stringify(reps));
+  alert('Selected: '+name+' as representative');
+};
+
+// Send note/homework
+window.sendNote=async function(e){
+  e.preventDefault();var f=e.target;
+  try{
+    await fbAN({subject:f.subject.value,type:f.type.value,title:f.title.value,content:f.content.value,
+      class:tClass,section:tSec,teacher_name:tName,created_at:new Date().toISOString()});
+    alert('Sent to '+tClass+'-'+tSec+'!');
+    f.reset();
+    N=await fbN(tClass,tSec);render();
+  }catch(er){alert('Failed: '+er.message)}
+  return false
+};
+
+// Send notice
+window.sendNotice=async function(e){
+  e.preventDefault();var f=e.target;
+  try{
+    await fbAN({subject:'Notice',type:f.nType.value,title:f.nTitle.value,content:f.nMsg.value,
+      class:tClass,section:tSec,teacher_name:tName,created_at:new Date().toISOString()});
+    alert('Notice sent!');
+    f.reset();
+    N=await fbN(tClass,tSec);render();
+  }catch(er){alert('Failed: '+er.message)}
+  return false
+};
+
+// Init
+document.getElementById('mainContent').innerHTML='<div class="loading"><div class="spinner"></div><p>Connecting...</p></div>';
+fbG().then(function(data){S=data||[];return fbN(tClass,tSec)}).then(function(data2){N=data2||[];render()}).catch(function(){S=[];N=[];render()});
 })();
 </script>
 </body>
