@@ -1,47 +1,196 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>Teacher Dashboard — SK Presidency Public School</title>
 <style>
-:root{--p:#4285F4;--g:#34A853;--r:#EA4335;--y:#FBBC04;--w:#fff;--g50:#F8F9FA;--g100:#F1F3F4;--g200:#E8EAED;--g300:#DADCE0;--g500:#9AA0A6;--g600:#80868B;--g700:#5F6368;--g800:#3C4043;--g900:#202124;--f:'Google Sans','Segoe UI','Roboto',sans-serif;--sh:0 1px 3px rgba(0,0,0,.04),0 1px 4px rgba(0,0,0,.06)}
+:root{--p:#4285F4;--pd:#1557B0;--r:#EA4335;--g:#34A853;--y:#FBBC04;--hr:#E74C3C;--hb:#3498DB;--hg:#27AE60;--hy:#F39C12;--w:#fff;--bg:#F6F8FC;--g50:#F8F9FA;--g100:#F1F3F4;--g200:#E8EAED;--g300:#DADCE0;--g400:#BDC1C6;--g500:#9AA0A6;--g600:#80868B;--g700:#5F6368;--g800:#3C4043;--g900:#202124;--rx:8px;--rs:12px;--rm:16px;--sh:0 1px 3px rgba(0,0,0,.04),0 1px 4px rgba(0,0,0,.06);--shl:0 4px 16px rgba(0,0,0,.06),0 2px 8px rgba(0,0,0,.08);--f:'Google Sans','Segoe UI','Roboto','Helvetica Neue',Arial,sans-serif;--t:.3s cubic-bezier(.16,1,.3,1)}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--f);background:var(--g50);-webkit-font-smoothing:antialiased;min-height:100vh}
-.nb{background:rgba(255,255,255,.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--g200);padding:0 22px;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
-.nb .bl{display:flex;align-items:center;gap:9px;font-size:14px;font-weight:500;color:var(--g900)}.nb .bl .d{width:7px;height:7px;border-radius:50%;background:var(--g)}
-.nb .bl .pl{background:#E3F0FD;color:var(--p);padding:2px 10px;border-radius:16px;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
-.nb button{color:var(--g600);font-size:12px;font-weight:500;padding:7px 18px;border-radius:20px;border:none;background:none;cursor:pointer;font-family:var(--f);transition:all .15s}
-.nb button:hover{background:var(--g100)}.nb .out{color:var(--r)}.nb .out:hover{background:#FEF2F2}
-.ct{max-width:1200px;margin:0 auto;padding:22px}
-.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:22px}
-.st{background:var(--w);padding:20px;border-radius:16px;box-shadow:var(--sh);border:1px solid var(--g200);transition:all .3s}.st:hover{transform:translateY(-2px)}
-.st .v{font-size:30px;font-weight:400;color:var(--g900)}.st .l{font-size:10px;color:var(--g500);text-transform:uppercase;letter-spacing:.5px;margin-top:4px}
-.card{background:var(--w);border-radius:18px;box-shadow:var(--sh);border:1px solid var(--g200);overflow:hidden;animation:fadeUp .5s .1s cubic-bezier(.16,1,.3,1) both}
-.ch{padding:14px 20px;border-bottom:1px solid var(--g100);font-weight:500;font-size:13px;display:flex;align-items:center;gap:9px;color:var(--g800)}.cb{padding:18px 20px}
-.tbl{overflow-x:auto;border-radius:8px;border:1px solid var(--g200)}
-.tbl table{width:100%;border-collapse:collapse;font-size:12px}
-.tbl th{background:var(--g50);padding:10px 12px;text-align:left;font-weight:600;color:var(--g600);border-bottom:2px solid var(--g200);font-size:9px;text-transform:uppercase;letter-spacing:.4px}
-.tbl td{padding:8px 12px;border-bottom:1px solid var(--g100);color:var(--g700)}.tbl tr:hover td{background:var(--g50)}
-.bd{display:inline-block;padding:2px 8px;border-radius:12px;font-size:9px;font-weight:600;text-transform:uppercase}
-.bd-g{background:#E6F4EA;color:var(--g)}.bd-r{background:#FDE8E8;color:var(--r)}.bd-b{background:#E3F0FD;color:var(--p)}.bd-y{background:#FEF7E0;color:#E37400}
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}@keyframes spin{to{transform:rotate(360deg)}}
-</style></head><body>
-<div class="nb"><div class="bl"><div class="d"></div>SK Presidency<span class="pl">Teacher</span><span id="un" style="font-size:12px;color:var(--g600);font-weight:400"></span></div><button onclick="lg()" class="out">Logout</button></div>
-<div class="ct" id="mc"></div>
+body{font-family:var(--f);background:var(--bg);color:var(--g800);-webkit-font-smoothing:antialiased;min-height:100vh;min-height:100dvh}
+a{color:var(--p);text-decoration:none}
+
+/* ===== TOP BAR ===== */
+.topbar{background:rgba(255,255,255,.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--g200);padding:0 16px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.topbar .tl{display:flex;align-items:center;gap:7px;font-size:14px;font-weight:500;color:var(--g900);flex-shrink:0}
+.topbar .tl .dot{width:7px;height:7px;border-radius:50%;background:var(--g);animation:pulse 2s infinite}
+.topbar .tl .tag{background:#E3F0FD;color:var(--p);padding:1px 8px;border-radius:12px;font-size:8px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;display:none}
+@media(min-width:480px){.topbar .tl .tag{display:inline}}
+.topbar .tr{display:flex;align-items:center;gap:2px}
+.topbar .tr .lg{color:var(--r);font-size:11px;font-weight:500;padding:6px 12px;border-radius:16px;border:none;background:none;cursor:pointer;font-family:var(--f)}
+.topbar .tr .lg:hover{background:#FEF2F2}
+.topbar .tr .mbtn{display:flex;align-items:center;gap:5px;color:var(--g700);font-size:11px;font-weight:500;padding:6px 10px;border-radius:16px;border:1.5px solid var(--g200);background:var(--w);cursor:pointer;font-family:var(--f)}
+@media(min-width:600px){.topbar .tr .mbtn{display:none}}
+.topbar .tr .mbtn span{display:block;width:16px;height:2px;background:currentColor;border-radius:1px}
+.topbar .tr .mbtn span+span{margin-top:3px}
+
+/* ===== LAYOUT ===== */
+.layout{display:grid;grid-template-columns:220px 1fr;min-height:calc(100vh - 56px);min-height:calc(100dvh - 56px)}
+@media(max-width:600px){.layout{grid-template-columns:1fr}}
+
+/* ===== SIDEBAR ===== */
+.sidebar{background:var(--w);border-right:1px solid var(--g200);padding:12px 0;position:sticky;top:56px;height:calc(100vh - 56px);height:calc(100dvh - 56px);overflow-y:auto;display:flex;flex-direction:column}
+@media(max-width:600px){.sidebar{position:fixed;left:-270px;top:56px;z-index:200;width:270px;transition:left var(--t);box-shadow:0 8px 40px rgba(0,0,0,.15);height:calc(100dvh - 56px)}.sidebar.open{left:0}}
+.sidebar .sh{padding:6px 14px 14px;font-size:9px;color:var(--g500);text-transform:uppercase;letter-spacing:1.5px;font-weight:700}
+.sidebar nav{flex:1}
+.sidebar nav button,.sidebar nav a{display:flex;align-items:center;gap:10px;padding:10px 14px;margin:1px 8px;font-size:13px;font-weight:500;color:var(--g700);border-radius:var(--rx);transition:all var(--t);border:none;background:none;width:calc(100% - 16px);cursor:pointer;font-family:var(--f);text-align:left;text-decoration:none}
+.sidebar nav button:hover,.sidebar nav a:hover{background:var(--g100);color:var(--g900)}
+.sidebar nav button.active,.sidebar nav a.active{background:#e8f0fe;color:var(--p);font-weight:600}
+.sidebar nav button .si,.sidebar nav a .si{width:30px;height:30px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.si-db .si{background:#F3E8FF}.si-db svg{stroke:#9333EA}
+.si-st .si{background:#FEF3E0}.si-st svg{stroke:var(--hy)}
+.si-sc .si{background:#E3F0FD}.si-sc svg{stroke:var(--hb)}
+.si-lk .si{background:#E6F4EA}.si-lk svg{stroke:var(--hg)}
+.sidebar .sf{margin-top:auto;padding:12px 14px;border-top:1px solid var(--g100);font-size:10px;color:var(--g500)}
+.sidebar .sf .sv{font-weight:600;color:var(--g800);margin-top:2px}
+
+/* Backdrop */
+.backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:199}
+@media(max-width:600px){.backdrop.show{display:block}}
+
+/* ===== MAIN ===== */
+.main{padding:16px}@media(min-width:600px){.main{padding:24px}}
+
+/* ===== STATS ===== */
+.stats-row{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px}
+@media(min-width:480px){.stats-row{grid-template-columns:repeat(4,1fr);gap:12px}}
+.stat-card{background:var(--w);border-radius:var(--rm);padding:16px 12px;box-shadow:var(--sh);border:1px solid var(--g200);transition:all var(--t);text-align:center}
+.stat-card:active{transform:scale(.97)}
+@media(min-width:600px){.stat-card:hover{transform:translateY(-3px);box-shadow:var(--shl)}}
+.stat-card .st-ic{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 8px}
+@media(min-width:480px){.stat-card .st-ic{width:48px;height:48px;margin-bottom:10px}}
+.stat-card .st-n{font-size:26px;font-weight:400;color:var(--g900);line-height:1.1}
+@media(min-width:480px){.stat-card .st-n{font-size:32px}}
+.stat-card .st-l{font-size:9px;color:var(--g500);text-transform:uppercase;letter-spacing:.6px;margin-top:3px}
+
+/* ===== CARDS ===== */
+.crd{background:var(--w);border-radius:var(--rm);box-shadow:var(--sh);border:1px solid var(--g200);overflow:hidden;margin-bottom:14px}
+@media(min-width:600px){.crd{margin-bottom:18px}}
+.crd-h{padding:12px 14px;border-bottom:1px solid var(--g100);font-weight:500;font-size:12px;display:flex;align-items:center;gap:7px;color:var(--g800)}
+@media(min-width:600px){.crd-h{padding:14px 18px;font-size:13px}}
+.crd-b{padding:14px}@media(min-width:600px){.crd-b{padding:18px}}
+
+/* ===== TABLE ===== */
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--rx);border:1px solid var(--g200);-webkit-mask-image:linear-gradient(to right,black 90%,transparent 100%);mask-image:linear-gradient(to right,black 90%,transparent 100%)}
+.tbl{width:100%;min-width:600px;border-collapse:collapse;font-size:11px}
+@media(min-width:480px){.tbl{font-size:12px;min-width:700px}}
+.tbl th{background:var(--g50);padding:8px 10px;text-align:left;font-weight:600;color:var(--g600);border-bottom:2px solid var(--g200);white-space:nowrap;font-size:8px;text-transform:uppercase;letter-spacing:.3px;position:sticky;top:0}
+@media(min-width:480px){.tbl th{padding:10px 12px;font-size:9px}}
+.tbl td{padding:7px 10px;border-bottom:1px solid var(--g100);color:var(--g700)}@media(min-width:480px){.tbl td{padding:8px 12px}}
+.tbl tr:active td{background:var(--g50)}@media(min-width:600px){.tbl tr:hover td{background:var(--g50)}}
+.tbl .mono{font-family:monospace;font-size:9px}@media(min-width:480px){.tbl .mono{font-size:10px}}
+
+/* ===== BADGES ===== */
+.badge{display:inline-block;padding:2px 6px;border-radius:10px;font-size:8px;font-weight:600;text-transform:uppercase}
+.bdg-g{background:#E6F4EA;color:var(--g)}.bdg-r{background:#FDE8E8;color:var(--r)}.bdg-b{background:#E3F0FD;color:var(--p)}.bdg-y{background:#FEF7E0;color:#E37400}
+
+/* ===== SEARCH ===== */
+.search-bar{width:100%;padding:9px 12px;border:1.5px solid var(--g300);border-radius:20px;font-size:12px;font-family:var(--f);margin-bottom:12px;transition:all var(--t);background:var(--w)}.search-bar:focus{outline:none;border-color:var(--p);box-shadow:0 0 0 3px rgba(66,133,244,.06)}
+
+/* ===== LOADING ===== */
+.loading{text-align:center;padding:48px 12px}
+.loading .spinner{width:28px;height:28px;border:2.5px solid var(--g200);border-top-color:var(--p);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px}
+.loading p{color:var(--g600);font-size:12px}
+
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="tl"><div class="dot"></div>SKPPS<span class="tag">Teacher</span><span id="un" style="font-size:10px;color:var(--g500);font-weight:400;margin-left:2px"></span></div>
+  <div class="tr">
+    <button class="mbtn" id="menuBtn"><span></span><span></span>Menu</button>
+    <button onclick="lg()" class="lg">Logout</button>
+  </div>
+</div>
+
+<div class="backdrop" id="backdrop" onclick="closeSidebar()"></div>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="sh">Teacher Panel</div>
+    <nav>
+      <button class="active si-db" onclick="navTo('db')"><span class="si"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span>Dashboard</button>
+      <button class="si-st" onclick="navTo('students')"><span class="si"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span>All Students</button>
+      <button class="si-sc" onclick="navTo('search')"><span class="si"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>Advanced Search</button>
+      <a class="si-lk" href="../index.html"><span class="si"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10"/><path d="M12 2a15.3 15.3 0 00-4 10 15.3 15.3 0 004 10"/></svg></span>School Website</a>
+    </nav>
+    <div class="sf"><div>SK Presidency Public School</div><div class="sv">Teacher v5</div></div>
+  </aside>
+
+  <div class="main" id="mainContent"></div>
+</div>
 
 <script>
-(function(){window.FIREBASE_CONFIG={};var s=localStorage.getItem("skpps_firebase_config");if(s)try{FIREBASE_CONFIG=JSON.parse(s)}catch(e){}var _f=null,_p=null;window._fbReady=function(){if(_p)return _p;_p=new Promise(function(ok){if(_f&&_f.db)return ok(_f);if(!FIREBASE_CONFIG.apiKey){ok(null);return}function ld(u){return new Promise(function(y,n){if(document.querySelector('script[src="'+u+'"]'))return y();var s=document.createElement('script');s.src=u;s.onload=y;s.onerror=n;document.head.appendChild(s)})}Promise.all([ld('https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js'),ld('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js'),ld('https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js')]).then(function(){if(!firebase.apps.length)firebase.initializeApp(FIREBASE_CONFIG);_f={db:firebase.firestore()};ok(_f)}).catch(function(){ok(null)});});return _p;};window.fbG=async function(){var f=await _fbReady();if(!f)return[];var s=await f.db.collection('students').where('is_active','==',true).get();return s.docs.map(function(d){var r=d.data();r.student_id=d.id;return r;});};})();
-
+(function(){
 if(!sessionStorage.getItem('skpps_auth')||sessionStorage.getItem('skpps_role')!=='teacher'){location.href='../staff-login.html'}
-document.getElementById('un').textContent=' - '+(sessionStorage.getItem('skpps_name')||'Teacher');
-window.lg=function(){sessionStorage.clear();location.href='../staff-login.html'}
+window.lg=function(){sessionStorage.clear();location.href='../staff-login.html'};
+window.closeSidebar=function(){document.getElementById('sidebar').classList.remove('open');document.getElementById('backdrop').classList.remove('show')};
+document.getElementById('menuBtn').addEventListener('click',function(){var s=document.getElementById('sidebar');s.classList.toggle('open');document.getElementById('backdrop').classList.toggle('show')});
 
-async function load(){
-  document.getElementById('mc').innerHTML='<div style="text-align:center;padding:80px"><div style="width:32px;height:32px;border:3px solid var(--g200);border-top-color:var(--p);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 14px"></div><p style="font-size:13px;color:var(--g600)">Loading...</p></div>';
-  var S=[];try{S=await fbG()||[]}catch(e){S=[]}
-  var cls=S.length?new Set(S.map(function(s){return s.class||s.cls})).size:0,rows='';
-  if(!S.length)rows='<tr><td colspan="7" style="text-align:center;padding:36px;color:var(--g500)">No students in database.</td></tr>';
-  else for(var i=0;i<S.length;i++){var s=S[i],hc=s.house||'Earth',bc=(hc==='Earth'?'bd-g':hc==='Fire'?'bd-r':hc==='Water'?'bd-b':'bd-y');rows+='<tr><td style="font-size:10px;font-family:monospace">'+xe(s.student_id)+'</td><td><strong>'+xe(s.full_name)+'</strong></td><td>'+xe(s.class)+'</td><td>'+xe(s.section||'-')+'</td><td style="font-size:10px">'+xe(s.date_of_birth||'-')+'</td><td><span class="bd '+bc+'">'+hc+'</span></td><td>'+xe(s.parent_phone||'-')+'</td></tr>'}
-  document.getElementById('mc').innerHTML='<div class="stats"><div class="st"><div class="v">'+S.length+'</div><div class="l">Total Students</div></div><div class="st"><div class="v">'+cls+'</div><div class="l">Classes</div></div></div><div class="card"><div class="ch"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--p)" stroke-width="2"><circle cx="9" cy="7" r="4"/><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/></svg>Student Directory ('+S.length+')</div><div class="cb"><input style="width:100%;padding:10px 14px;border:1.5px solid var(--g300);border-radius:22px;font-size:13px;font-family:var(--f);margin-bottom:14px" placeholder="Search..." oninput="fs(this.value)"><div class="tbl"><table id="stb"><tr><th>ID</th><th>Name</th><th>Class</th><th>Sec</th><th>DOB</th><th>House</th><th>Phone</th></tr>'+rows+'</table></div></div></div>'
+// Firebase
+window.FIREBASE_CONFIG={};var cfg=localStorage.getItem("skpps_firebase_config");if(cfg)try{FIREBASE_CONFIG=JSON.parse(cfg)}catch(e){}
+var _f=null,_p=null;
+window._fbReady=function(){if(_p)return _p;_p=new Promise(function(ok){if(_f&&_f.db)return ok(_f);if(!FIREBASE_CONFIG.apiKey){ok(null);return}function ld(u){return new Promise(function(y,n){if(document.querySelector('script[src="'+u+'"]'))return y();var s=document.createElement('script');s.src=u;s.onload=y;s.onerror=n;document.head.appendChild(s)})}Promise.all([ld('https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js'),ld('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js'),ld('https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js')]).then(function(){if(!firebase.apps.length)firebase.initializeApp(FIREBASE_CONFIG);_f={db:firebase.firestore()};ok(_f)}).catch(function(){ok(null)});});return _p};
+window.fbG=async function(){var f=await _fbReady();if(!f)return[];var s=await f.db.collection('students').where('is_active','==',true).get();return s.docs.map(function(d){var r=d.data();r.student_id=d.id;return r})};
+
+var S=[],curTab='db';
+document.getElementById('un').textContent=' — '+(sessionStorage.getItem('skpps_name')||'Teacher');
+window.navTo=function(t){curTab=t;closeSidebar();render()};
+
+function statCard(bg,icon,num,lbl){return'<div class="stat-card"><div class="st-ic" style="background:'+bg+'">'+icon+'</div><div class="st-n">'+num+'</div><div class="st-l">'+lbl+'</div></div>'}
+var svg={students:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--hb)" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.9M16 3.1a4 4 0 010 7.8"/></svg>',
+  classes:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--hg)" stroke-width="1.8"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/></svg>',
+  active:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--hy)" stroke-width="1.8"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>',
+  search:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--hr)" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>',
+  all:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--p)" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>'};
+
+function esc(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function badge(hc){var m={Earth:'bdg-g',Fire:'bdg-r',Water:'bdg-b',Air:'bdg-y'};var c=m[hc]||'bdg-g';return'<span class="badge '+c+'">'+hc+'</span>'}
+
+function tableRows(data){
+  if(!data.length)return'<tr><td colspan="7" style="text-align:center;padding:36px;color:var(--g500)">No students found.</td></tr>';
+  var r='';for(var i=0;i<data.length;i++){var s=data[i],hc=s.house||'Earth';
+    r+='<tr><td class="mono">'+esc(s.student_id)+'</td><td><strong>'+esc(s.full_name)+'</strong></td><td>'+esc(s.class)+'</td><td>'+esc(s.section||'-')+'</td><td style="font-size:10px">'+esc(s.date_of_birth||'-')+'</td><td>'+badge(hc)+'</td><td>'+esc(s.parent_phone||'-')+'</td></tr>'}
+  return r;
 }
-window.fs=function(q){var r=document.querySelectorAll('#stb tr');for(var i=1;i<r.length;i++)r[i].style.display=r[i].textContent.toLowerCase().includes(q.toLowerCase())?'':'none'}
-function xe(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
-load();
-</script></body></html>
+
+function render(){
+  document.querySelectorAll('.sidebar nav button').forEach(function(b){b.classList.remove('active')});
+  var sel=document.querySelector('.si-'+(curTab==='db'?'db':curTab==='students'?'st':'sc'));
+  if(sel)sel.classList.add('active');
+  document.getElementById('mainContent').innerHTML='<div class="loading"><div class="spinner"></div><p>Loading...</p></div>';
+
+  var classes=S.length?new Set(S.map(function(s){return s.class||s.cls})).size:0;
+
+  setTimeout(function(){
+    var h='';
+    switch(curTab){
+      case 'db':
+        h='<div class="stats-row">'+statCard('#E3F0FD',svg.students,S.length,'Total Students')+statCard('#E6F4EA',svg.classes,classes,'Active Classes')+statCard('#FEF3E0',svg.active,S.filter(function(s){return s.is_active!==false}).length,'Active Students')+statCard('#FDE8E8',svg.search,S.length,'Records')+'</div>';
+        h+='<div class="crd"><div class="crd-h"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--p)" stroke-width="2"><circle cx="9" cy="7" r="4"/><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/></svg>Recent Students</div><div class="crd-b"><input class="search-bar" placeholder="Quick search by name or class..." oninput="fs(this.value)"><div class="tbl-wrap"><table class="tbl" id="stb"><tr><th>ID</th><th>Name</th><th>Class</th><th>Sec</th><th>DOB</th><th>House</th><th>Phone</th></tr>'+tableRows(S.slice(0,10))+'</table></div></div></div>';
+        break;
+      case 'students':
+        h='<div class="crd"><div class="crd-h"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--p)" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Student Directory ('+S.length+')</div><div class="crd-b"><input class="search-bar" placeholder="Search by name, ID, class or phone..." oninput="fs(this.value)"><div class="tbl-wrap"><table class="tbl" id="stb"><tr><th>ID</th><th>Name</th><th>Class</th><th>Sec</th><th>DOB</th><th>House</th><th>Phone</th></tr>'+tableRows(S)+'</table></div></div></div>';
+        break;
+      case 'search':
+        h='<div class="crd"><div class="crd-h"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--p)" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Advanced Search</div><div class="crd-b"><input class="search-bar" id="asInput" placeholder="Type name, ID, class or phone..." oninput="advancedSearch(this.value)" style="margin-bottom:0"><p style="font-size:10px;color:var(--g500);margin-top:6px">Results update as you type. Matching any field.</p><div class="tbl-wrap" style="margin-top:12px"><table class="tbl" id="asTable"><tr><th>ID</th><th>Name</th><th>Class</th><th>Sec</th><th>DOB</th><th>House</th><th>Phone</th></tr>'+tableRows(S)+'</table></div></div></div>';
+        break;
+    }
+    document.getElementById('mainContent').innerHTML=h;
+  },100);
+}
+
+window.fs=function(q){var r=document.querySelectorAll('#stb tr');for(var i=1;i<r.length;i++)r[i].style.display=r[i].textContent.toLowerCase().includes(q.toLowerCase())?'':'none'};
+window.advancedSearch=function(q){var r=document.querySelectorAll('#asTable tr');for(var i=1;i<r.length;i++)r[i].style.display=r[i].textContent.toLowerCase().includes(q.toLowerCase())?'':'none'};
+
+// Load data
+document.getElementById('mainContent').innerHTML='<div class="loading"><div class="spinner"></div><p>Connecting to Firestore...</p></div>';
+fbG().then(function(data){S=data||[];render()}).catch(function(){S=[];render()});
+})();
+</script>
+</body>
+</html>
