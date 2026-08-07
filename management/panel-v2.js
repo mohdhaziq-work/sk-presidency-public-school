@@ -79,7 +79,7 @@ function renderLoading(){document.getElementById('mainContent').innerHTML=
 
 // ===== RENDER =====
 function render(){
-  document.querySelectorAll('.snav button').forEach(function(b){b.classList.remove('active')});
+  document.querySelectorAll('.sidebar nav button').forEach(function(b){b.classList.remove('active')});
   var sel=document.querySelector('.si-'+({'scan':'sc','import':'im','teachers':'tc','students':'st','db':'db'}[curTab]));
   if(sel)sel.classList.add('active');
 
@@ -222,7 +222,7 @@ function titleCase(s){
 function showForm(d,raw){
   var sid=d.studentID||('SKPPS'+new Date().getFullYear()+String(Date.now()%10000).padStart(4,'0'));
   var h='<div class="crd" style="border:2px solid #4ade80;margin-bottom:10px"><div class="crd-h" style="color:#059669"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>ID Card Scanned — Auto-filled</div><div class="crd-b">'+
-    '<form onsubmit="return saveStudent(event)"><input type="hidden" name="sid" value="'+esc(d.yes?d.studentID:sid)+'">'+
+    '<form onsubmit="return saveStudent(event)"><input type="hidden" name="sid" value="'+esc(sid)+'">'+
     '<div class="form-grid"><div class="fg"><label>Student ID</label><input name="stid" value="'+esc(sid)+'" style="background:#f0fdf4;color:#065f46" readonly></div>'+
     '<div class="fg"><label>Full Name *</label><input name="name" value="'+esc(d.name)+'" '+(d.name?'style="background:#f0fdf4"':'')+' required></div></div>'+
     '<div class="form-grid"><div class="fg"><label>Class *</label><input name="cls" value="'+esc(d.className)+'" '+(d.className?'style="background:#f0fdf4"':'')+' required></div>'+
@@ -254,7 +254,7 @@ window.saveStudent=async function(e){
       password:dob.replace(/-/g,'').substring(0,8)});
     document.getElementById('scanResult').innerHTML='<div class="crd" style="border:2px solid #059669"><div class="crd-h" style="color:#059669">Saved Successfully</div><div class="crd-b"><p style="font-size:13px"><strong>'+esc(nm)+'</strong> — '+esc(cls)+'-'+esc(sec)+'</p><p style="font-size:10px;color:var(--g600);margin-top:4px">ID: '+esc(sid)+' | Password: DOB</p><button onclick="clearScan()" class="btn btn-green btn-sm" style="margin-top:10px">Scan Another</button></div></div>';
     setTimeout(async function(){try{var ns=await fbGS();if(ns&&ns.length>0)S=ns}catch(e){}},400);
-  }catch(e){alert('Save failed: '+e.message);document.getElementById('scanResult').innerHTML='<div class="al al-err">'+e.message+'</div>'}
+  }catch(e){alert('Save failed: '+e.message);document.getElementById('scanResult').innerHTML='<div class="al al-err" style="display:block">'+e.message+'</div>'}
   return false
 };
 
