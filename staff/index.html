@@ -14,74 +14,46 @@ body{font-family:var(--f);background:var(--bg);color:var(--g800);-webkit-font-sm
 .topbar .tl .tag{background:#E3F0FD;color:var(--p);padding:1px 8px;border-radius:12px;font-size:8px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;display:none}
 @media(min-width:480px){.topbar .tl .tag{display:inline}}
 .topbar .tr{display:flex;align-items:center;gap:2px}
-.topbar .tr .lg{color:var(--r);font-size:11px;font-weight:500;padding:6px 12px;border-radius:16px;border:none;background:none;cursor:pointer;font-family:var(--f)}
-.topbar .tr .lg:hover{background:#FEF2F2}
-.topbar .tr .mbtn{display:flex;align-items:center;gap:5px;color:var(--g700);font-size:11px;font-weight:500;padding:6px 10px;border-radius:16px;border:1.5px solid var(--g200);background:var(--w);cursor:pointer;font-family:var(--f)}
-@media(min-width:600px){.topbar .tr .mbtn{display:none}}
+.topbar .tr .lg{color:var(--r);font-size:11px;font-weight:500;padding:6px 12px;border-radius:16px;border:none;background:none;cursor:pointer;font-family:var(--f)}.topbar .tr .lg:hover{background:#FEF2F2}
+.topbar .tr .mbtn{display:flex;align-items:center;gap:5px;color:var(--g700);font-size:11px;font-weight:500;padding:6px 10px;border-radius:16px;border:1.5px solid var(--g200);background:var(--w);cursor:pointer;font-family:var(--f)}@media(min-width:600px){.topbar .tr .mbtn{display:none}}
 .topbar .tr .mbtn span{display:block;width:16px;height:2px;background:currentColor;border-radius:1px}.topbar .tr .mbtn span+span{margin-top:3px}
-.layout{display:grid;grid-template-columns:200px 1fr;min-height:calc(100vh - 56px);min-height:calc(100dvh - 56px)}
-@media(max-width:600px){.layout{grid-template-columns:1fr}}
+.layout{display:grid;grid-template-columns:200px 1fr;min-height:calc(100vh - 56px);min-height:calc(100dvh - 56px)}@media(max-width:600px){.layout{grid-template-columns:1fr}}
 .sidebar{background:var(--w);border-right:1px solid var(--g200);padding:12px 0;position:sticky;top:56px;height:calc(100vh - 56px);height:calc(100dvh - 56px);overflow-y:auto;display:flex;flex-direction:column}
 @media(max-width:600px){.sidebar{position:fixed;left:-270px;top:56px;z-index:200;width:270px;transition:left var(--t);box-shadow:0 8px 40px rgba(0,0,0,.15);height:calc(100dvh - 56px)}.sidebar.open{left:0}}
 .sidebar .sh{padding:6px 14px 14px;font-size:9px;color:var(--g500);text-transform:uppercase;letter-spacing:1.5px;font-weight:700}
 .sidebar nav{flex:1}
 .sidebar nav button,.sidebar nav a{display:flex;align-items:center;gap:8px;padding:9px 10px;margin:1px 6px;font-size:12px;font-weight:500;color:var(--g700);border-radius:var(--rx);transition:all var(--t);border:none;background:none;width:calc(100% - 12px);cursor:pointer;font-family:var(--f);text-align:left;text-decoration:none}
-.sidebar nav button:hover,.sidebar nav a:hover{background:var(--g100)}
-.sidebar nav button.active,.sidebar nav a.active{background:#e8f0fe;color:var(--p);font-weight:600}
+.sidebar nav button:hover,.sidebar nav a:hover{background:var(--g100)}.sidebar nav a.active,.sidebar nav button.active{background:#e8f0fe;color:var(--p);font-weight:600}
 .sidebar nav button .si,.sidebar nav a .si{width:26px;height:26px;border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.si-db .si{background:#F3E8FF}.si-db svg{stroke:#9333EA}
-.si-st .si{background:#FEF3E0}.si-st svg{stroke:var(--hy)}
-.si-nt .si{background:#FDE8E8}.si-nt svg{stroke:var(--hr)}
-.si-aw .si{background:#E3F0FD}.si-aw svg{stroke:var(--hb)}
-.si-lk .si{background:#E6F4EA}.si-lk svg{stroke:var(--hg)}
-.sidebar .sf{margin-top:auto;padding:12px 14px;border-top:1px solid var(--g100);font-size:10px;color:var(--g500)}
-.sidebar .sf .sv{font-weight:600;color:var(--g800);margin-top:2px}
-.backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:199}
-@media(max-width:600px){.backdrop.show{display:block}}
+.si-db .si{background:#F3E8FF}.si-st .si{background:#FEF3E0}.si-nt .si{background:#FDE8E8}.si-aw .si{background:#E3F0FD}.si-lk .si{background:#E6F4EA}
+.si-db svg{stroke:#9333EA}.si-st svg{stroke:var(--hy)}.si-nt svg{stroke:var(--hr)}.si-aw svg{stroke:var(--hb)}.si-lk svg{stroke:var(--hg)}
+.sidebar .sf{margin-top:auto;padding:12px 14px;border-top:1px solid var(--g100);font-size:10px;color:var(--g500)}.sidebar .sf .sv{font-weight:600;color:var(--g800);margin-top:2px}
+.backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:199}@media(max-width:600px){.backdrop.show{display:block}}
 .main{padding:16px}@media(min-width:600px){.main{padding:24px}}
-.stats-row{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px}
-@media(min-width:480px){.stats-row{grid-template-columns:repeat(4,1fr);gap:12px}}
+.stats-row{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px}@media(min-width:480px){.stats-row{grid-template-columns:repeat(4,1fr);gap:12px}}
 .stat-card{background:var(--w);border-radius:var(--rm);padding:16px 12px;box-shadow:var(--sh);border:1px solid var(--g200);transition:all var(--t);text-align:center}
 .stat-card:active{transform:scale(.97)}@media(min-width:600px){.stat-card:hover{transform:translateY(-3px);box-shadow:var(--shl)}}
 .stat-card .st-ic{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 6px}
-@media(min-width:480px){.stat-card .st-ic{width:42px;height:42px;margin-bottom:8px}}
-.stat-card .st-n{font-size:24px;font-weight:400;color:var(--g900);line-height:1.1}
-@media(min-width:480px){.stat-card .st-n{font-size:30px}}
-.stat-card .st-l{font-size:9px;color:var(--g500);text-transform:uppercase;letter-spacing:.6px;margin-top:3px}
+.stat-card .st-n{font-size:24px;font-weight:400;color:var(--g900)}.stat-card .st-l{font-size:9px;color:var(--g500);text-transform:uppercase;letter-spacing:.6px;margin-top:3px}
 .crd{background:var(--w);border-radius:var(--rm);box-shadow:var(--sh);border:1px solid var(--g200);overflow:hidden;margin-bottom:14px}
-@media(min-width:600px){.crd{margin-bottom:18px}}
-.crd-h{padding:12px 14px;border-bottom:1px solid var(--g100);font-weight:500;font-size:12px;display:flex;align-items:center;gap:7px;color:var(--g800)}
-@media(min-width:600px){.crd-h{padding:14px 18px;font-size:13px}}
-.crd-b{padding:14px}@media(min-width:600px){.crd-b{padding:18px}}
+.crd-h{padding:12px 14px;border-bottom:1px solid var(--g100);font-weight:500;font-size:12px;display:flex;align-items:center;gap:7px;color:var(--g800)}.crd-b{padding:14px}
 .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--rx);border:1px solid var(--g200);-webkit-mask-image:linear-gradient(to right,black 90%,transparent 100%);mask-image:linear-gradient(to right,black 90%,transparent 100%)}
-.tbl{width:100%;min-width:600px;border-collapse:collapse;font-size:11px}
-@media(min-width:480px){.tbl{font-size:12px;min-width:700px}}
+.tbl{width:100%;min-width:500px;border-collapse:collapse;font-size:11px}
 .tbl th{background:var(--g50);padding:8px 10px;text-align:left;font-weight:600;color:var(--g600);border-bottom:2px solid var(--g200);white-space:nowrap;font-size:8px;text-transform:uppercase;letter-spacing:.3px}
-@media(min-width:480px){.tbl th{padding:10px 12px;font-size:9px}}
-.tbl td{padding:7px 10px;border-bottom:1px solid var(--g100);color:var(--g700)}@media(min-width:480px){.tbl td{padding:8px 12px}}
-.tbl tr:active td{background:var(--g50)}@media(min-width:600px){.tbl tr:hover td{background:var(--g50)}}
-.tbl .mono{font-family:monospace;font-size:9px}@media(min-width:480px){.tbl .mono{font-size:10px}}
+.tbl td{padding:7px 10px;border-bottom:1px solid var(--g100);color:var(--g700)}.tbl tr:active td{background:var(--g50)}@media(min-width:600px){.tbl tr:hover td{background:var(--g50)}}
+.tbl .mono{font-family:monospace;font-size:9px}
 .badge{display:inline-block;padding:2px 6px;border-radius:10px;font-size:8px;font-weight:600;text-transform:uppercase}
 .bdg-g{background:#E6F4EA;color:var(--g)}.bdg-r{background:#FDE8E8;color:var(--r)}.bdg-b{background:#E3F0FD;color:var(--p)}.bdg-y{background:#FEF7E0;color:#E37400}.bdg-p{background:#F3E8FF;color:#9333EA}
 .search-bar{width:100%;padding:9px 12px;border:1.5px solid var(--g300);border-radius:20px;font-size:12px;font-family:var(--f);margin-bottom:12px;transition:all var(--t);background:var(--w)}.search-bar:focus{outline:none;border-color:var(--p);box-shadow:0 0 0 3px rgba(66,133,244,.06)}
 .form-grid{display:grid;grid-template-columns:1fr;gap:10px}@media(min-width:500px){.form-grid{grid-template-columns:1fr 1fr;gap:12px}}
 .fg input,.fg select,.fg textarea{width:100%;padding:9px 11px;border:1.5px solid var(--g300);border-radius:var(--rx);font-size:13px;font-family:var(--f);background:var(--w);transition:all var(--t)}
 .fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--p);box-shadow:0 0 0 3px rgba(66,133,244,.08)}
-.fg label{display:block;font-size:9px;font-weight:600;color:var(--g600);margin-bottom:3px;text-transform:uppercase;letter-spacing:.4px}
-.fg textarea{resize:vertical;min-height:60px}
+.fg label{display:block;font-size:9px;font-weight:600;color:var(--g600);margin-bottom:3px;text-transform:uppercase;letter-spacing:.4px}.fg textarea{resize:vertical;min-height:60px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 18px;border:none;border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;font-family:var(--f);transition:all var(--t);white-space:nowrap;text-decoration:none}
-@media(min-width:480px){.btn{padding:10px 22px;font-size:13px;border-radius:24px}}
-.btn-sm{padding:6px 12px;font-size:10px;border-radius:14px}
-.btn-primary{background:var(--p);color:var(--w)}.btn-outline{background:var(--w);color:var(--g700);border:1.5px solid var(--g300)}
-.btn-green{background:var(--g);color:var(--w)}.btn-red{background:var(--r);color:var(--w)}
-.notice-item{padding:10px 0;border-bottom:1px solid var(--g100);font-size:12px;color:var(--g600)}
-.notice-item:last-child{border-bottom:none}.notice-item strong{color:var(--g800);display:block;margin-bottom:2px}.notice-item .meta{font-size:9px;color:var(--g500);margin-top:2px}
-.loading{text-align:center;padding:48px 12px}
-.loading .spinner{width:28px;height:28px;border:2.5px solid var(--g200);border-top-color:var(--p);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px}
-.loading p{color:var(--g600);font-size:12px}
-@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
-@keyframes spin{to{transform:rotate(360deg)}}
+.btn-sm{padding:6px 12px;font-size:10px;border-radius:14px}.btn-primary{background:var(--p);color:var(--w)}.btn-outline{background:var(--w);color:var(--g700);border:1.5px solid var(--g300)}.btn-green{background:var(--g);color:var(--w)}.btn-red{background:var(--r);color:var(--w)}
+.notice-item{padding:10px 0;border-bottom:1px solid var(--g100);font-size:12px;color:var(--g600)}.notice-item:last-child{border-bottom:none}.notice-item strong{color:var(--g800);display:block;margin-bottom:2px}.notice-item .meta{font-size:9px;color:var(--g500);margin-top:2px}
+.loading{text-align:center;padding:48px 12px}.loading .spinner{width:28px;height:28px;border:2.5px solid var(--g200);border-top-color:var(--p);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px}.loading p{color:var(--g600);font-size:12px}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}@keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
@@ -92,15 +64,13 @@ body{font-family:var(--f);background:var(--bg);color:var(--g800);-webkit-font-sm
 <div class="sh">Staff Panel</div>
 <nav>
 <button class="active si-db" onclick="navTo('db')"><span class="si"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span>Dashboard</button>
-<button class="si-st" onclick="navTo('students')"><span class="si"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span>My Class Students</button>
-<button class="si-aw" onclick="navTo('assign')"><span class="si"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg></span>Assign Notes Student</button>
-<button class="si-nt" onclick="navTo('notices')"><span class="si"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg></span>Send Notice</button>
+<button class="si-st" onclick="navTo('students')"><span class="si"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span>My Class</button>
+<button class="si-aw" onclick="navTo('assign')"><span class="si"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><path d="M17 11l2 2 4-4"/></svg></span>Assign Notes Student</button>
+<button class="si-nt" onclick="navTo('notices')"><span class="si"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg></span>Notices</button>
 <a class="si-lk" href="../index.html"><span class="si"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10"/><path d="M12 2a15.3 15.3 0 00-4 10 15.3 15.3 0 004 10"/></svg></span>Website</a>
 </nav>
-<div class="sf"><div>SK Presidency Public School</div><div class="sv">Staff v7</div></div>
-</aside>
-<div class="main" id="mainContent"></div>
-</div>
+<div class="sf"><div>SK Presidency Public School</div><div class="sv">Staff v8</div></div></aside>
+<div class="main" id="mainContent"></div></div>
 
 <script>
 (function(){
@@ -109,17 +79,14 @@ window.lg=function(){sessionStorage.clear();location.href='../staff-login.html'}
 window.closeSidebar=function(){document.getElementById('sidebar').classList.remove('open');document.getElementById('backdrop').classList.remove('show')};
 document.getElementById('menuBtn').addEventListener('click',function(){var s=document.getElementById('sidebar');s.classList.toggle('open');document.getElementById('backdrop').classList.toggle('show')});
 
-// Firebase with Auth
 window.FIREBASE_CONFIG={};var cfg=localStorage.getItem("skpps_firebase_config");if(cfg)try{FIREBASE_CONFIG=JSON.parse(cfg)}catch(e){}
 var _f=null,_p=null,_a=null;
 window._fbReady=function(){if(_p)return _p;_p=new Promise(function(ok){
-  if(_f&&_f.db&&_a&&_a.currentUser)return ok(_f);
-  if(!FIREBASE_CONFIG.apiKey){ok(null);return}
+  if(_f&&_f.db&&_a&&_a.currentUser)return ok(_f);if(!FIREBASE_CONFIG.apiKey){ok(null);return}
   function ld(u){return new Promise(function(y,n){if(document.querySelector('script[src="'+u+'"]'))return y();var s=document.createElement('script');s.src=u;s.onload=y;s.onerror=n;document.head.appendChild(s)})}
   var done=false,to=setTimeout(function(){if(!done){done=true;ok(null)}},15000);
   Promise.all([ld('https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js'),ld('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js'),ld('https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js')]).then(function(){
-    if(!firebase.apps.length)firebase.initializeApp(FIREBASE_CONFIG);
-    _a=firebase.auth();var db=firebase.firestore();
+    if(!firebase.apps.length)firebase.initializeApp(FIREBASE_CONFIG);_a=firebase.auth();var db=firebase.firestore();
     function fin(){if(done)return;done=true;clearTimeout(to);_f={db:db,auth:_a};try{db.enablePersistence({synchronizeTabs:true}).catch(function(){})}catch(e){}ok(_f)}
     var unsub=_a.onAuthStateChanged(function(user){unsub();if(user)fin();else _a.signInAnonymously().then(fin).catch(function(){fin()})})
   }).catch(function(e){if(!done){done=true;clearTimeout(to);ok(null)}})
@@ -127,92 +94,89 @@ window._fbReady=function(){if(_p)return _p;_p=new Promise(function(ok){
 
 window.fbG=async function(){var f=await _fbReady();if(!f)return[];var s=await f.db.collection('students').where('is_active','==',true).get();return s.docs.map(function(d){var r=d.data();r.student_id=d.id;return r})};
 window.fbSR=async function(cls,sec){var f=await _fbReady();if(!f)return null;var d=await f.db.collection('settings').doc('notes_student_'+cls+'_'+sec).get();return d.exists?d.data():null};
-window.fbSS=async function(cls,sec,sid,sname){var f=await _fbReady();if(!f)throw new Error("Not connected");return f.db.collection('settings').doc('notes_student_'+cls+'_'+sec).set({student_id:sid,student_name:sname,class:cls,section:sec,teacher:tName,updated_at:new Date().toISOString()})};
+window.fbSS=async function(cls,sec,data){var f=await _fbReady();if(!f)throw new Error("Not connected");return f.db.collection('settings').doc('notes_student_'+cls+'_'+sec).set(data)};
 window.fbAN=async function(d){var f=await _fbReady();if(!f)throw new Error("Not connected");return f.db.collection('notes').add(d)};
 
 var S=[],curTab='db',repData=null,loaded=false;
 var tClass=(sessionStorage.getItem('skpps_tclass')||'').toUpperCase().trim();
 var tSec=(sessionStorage.getItem('skpps_tsection')||'').toUpperCase().trim();
 var tName=sessionStorage.getItem('skpps_name')||'Teacher';
+var subjects=['English','Hindi','Maths','Science','Social Studies','Sanskrit','Computer'];
 document.getElementById('un').textContent=' — '+tName;
 window.navTo=function(t){curTab=t;closeSidebar();if(loaded)render()};
 
-function statCard(bg,icon,num,lbl){return'<div class="stat-card"><div class="st-ic" style="background:'+bg+'">'+icon+'</div><div class="st-n">'+num+'</div><div class="st-l">'+lbl+'</div></div>'}
 function esc(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 function badge(hc){var m={Earth:'bdg-g',Fire:'bdg-r',Water:'bdg-b',Air:'bdg-y'};return'<span class="badge '+(m[hc]||'bdg-g')+'">'+hc+'</span>'}
+function statCard(bg,icon,num,lbl){return'<div class="stat-card"><div class="st-ic" style="background:'+bg+'">'+icon+'</div><div class="st-n">'+num+'</div><div class="st-l">'+lbl+'</div></div>'}
 
-var svgI={
-  st:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--hb)" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>',
+var svgI={st:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--hb)" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>',
   us:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--p)" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>',
   nt:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--hr)" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>',
-  ck:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--hg)" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg>'
-};
+  ck:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--hg)" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><path d="M17 11l2 2 4-4"/></svg>'};
 
 function render(){
   document.querySelectorAll('.sidebar nav button').forEach(function(b){b.classList.remove('active')});
   var map={db:'db',students:'st',assign:'aw',notices:'nt'};
   var sel=document.querySelector('.si-'+(map[curTab]||'db'));if(sel)sel.classList.add('active');
-
   var myClass=tClass?S.filter(function(s){var sc=(s.class||s.cls||'').toUpperCase().trim();var ss=(s.section||s.sec||'').toUpperCase().trim();return sc===tClass&&ss===tSec}):[];
   var classes=S.length?new Set(S.map(function(s){return s.class||s.cls})).size:0;
-  var h='';
-
-  switch(curTab){
+  var h='';switch(curTab){
     case 'db':
       h='<h2 style="font-size:18px;font-weight:500;margin-bottom:4px">Welcome, '+tName+'</h2>';
       h+='<p style="font-size:11px;color:var(--g500);margin-bottom:8px">'+(tClass?'Assigned: '+tClass+'-'+tSec+' | Students: '+myClass.length:'Class not assigned')+'</p>';
-      if(!tClass)h+='<div style="background:#FEF3E0;border-radius:8px;padding:8px 12px;margin-bottom:12px;font-size:10px;color:#92400e">Ask management to assign your class. Re-login after assignment.</div>';
-      h+='<div class="stats-row">'+statCard('#E3F0FD',svgI.st,myClass.length,'My Class')+statCard('#E6F4EA',svgI.ck,S.length,'All School')+statCard('#FEF3E0',svgI.nt,classes,'Classes')+statCard('#FDE8E8',svgI.us,repData?1:0,'Rep Assigned')+'</div>';
+      h+='<div class="stats-row">'+statCard('#E3F0FD',svgI.st,myClass.length,'My Class')+statCard('#E6F4EA',svgI.ck,S.length,'All School')+statCard('#FEF3E0',svgI.nt,classes,'Classes')+statCard('#FDE8E8',svgI.us,repData?Object.keys(repData.subjects||{}).length:0,'Reps Set')+'</div>';
       if(tClass&&myClass.length){
-        h+='<div class="crd"><div class="crd-h">'+svgI.us+'My Class: '+tClass+'-'+tSec+' ('+myClass.length+' students)</div><div class="crd-b"><input class="search-bar" placeholder="Search..." oninput="fs(this.value)"><div class="tbl-wrap"><table class="tbl" id="stb"><tr><th>ID</th><th>Name</th><th>Class</th><th>Sec</th><th>House</th><th>Phone</th></tr>';
-        for(var i=0;i<myClass.length;i++){var s=myClass[i];h+='<tr><td class="mono">'+esc(s.student_id)+'</td><td><strong>'+esc(s.full_name)+'</strong></td><td>'+esc(s.class)+'</td><td>'+esc(s.section||'-')+'</td><td>'+badge(s.house||'Earth')+'</td><td>'+esc(s.parent_phone||'-')+'</td></tr>'}
-        h+='</table></div></div></div>';
-      }
-      if(repData)h+='<div class="crd"><div class="crd-h" style="color:var(--g)">'+svgI.ck+'Assigned Notes Student</div><div class="crd-b"><div style="display:flex;align-items:center;gap:14px;padding:8px 0"><div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--p),#0d47a1);color:var(--w);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:500">'+(repData.student_name||'S').charAt(0).toUpperCase()+'</div><div><strong>'+esc(repData.student_name)+'</strong><div style="font-size:10px;color:var(--g500)">ID: '+esc(repData.student_id)+' | Can upload notes &amp; homework</div></div></div></div></div>';
+        h+='<div class="crd"><div class="crd-h">'+svgI.us+'My Class: '+tClass+'-'+tSec+' ('+myClass.length+')</div><div class="crd-b"><div class="tbl-wrap"><table class="tbl"><tr><th>ID</th><th>Name</th><th>Class</th><th>Sec</th><th>House</th><th>Phone</th></tr>';
+        for(var i=0;i<myClass.length;i++){var s=myClass[i];h+='<tr><td class="mono">'+esc(s.student_id)+'</td><td><strong>'+esc(s.full_name)+'</strong></td><td>'+esc(s.class)+'</td><td>'+esc(s.section||'-')+'</td><td>'+badge(s.house||'Earth')+'</td><td>'+esc(s.parent_phone||'-')+'</td></tr>'}h+='</table></div></div></div>'}
+      if(repData&&repData.subjects){h+='<div class="crd"><div class="crd-h" style="color:var(--g)">'+svgI.ck+'Assigned Notes Students</div><div class="crd-b">';var subs=repData.subjects;for(var sub in subs){var r=subs[sub];h+='<div class="notice-item"><strong>'+esc(sub)+'</strong> → '+esc(r.student_name)+' ('+esc(r.student_id)+')</div>'}h+='</div></div>'}
       break;
-
     case 'students':
-      if(!tClass||!myClass.length){h='<div class="crd"><div class="crd-h">My Class Students</div><div class="crd-b"><p style="color:var(--g500);font-size:13px">No class assigned or no students found in '+tClass+'-'+tSec+'.</p></div></div>';break}
+      if(!tClass||!myClass.length){h='<div class="crd"><div class="crd-h">My Class</div><div class="crd-b"><p style="color:var(--g500)">No class assigned.</p></div></div>';break}
       h='<div class="crd"><div class="crd-h">'+svgI.us+'My Class: '+tClass+'-'+tSec+' ('+myClass.length+')</div><div class="crd-b"><input class="search-bar" placeholder="Search..." oninput="fs(this.value)"><div class="tbl-wrap"><table class="tbl" id="stb"><tr><th>ID</th><th>Name</th><th>Class</th><th>Sec</th><th>House</th><th>Phone</th></tr>';
-      for(var i=0;i<myClass.length;i++){var s=myClass[i];h+='<tr><td class="mono">'+esc(s.student_id)+'</td><td><strong>'+esc(s.full_name)+'</strong></td><td>'+esc(s.class)+'</td><td>'+esc(s.section||'-')+'</td><td>'+badge(s.house||'Earth')+'</td><td>'+esc(s.parent_phone||'-')+'</td></tr>'}
-      h+='</table></div></div></div>';
-      break;
-
+      for(var i=0;i<myClass.length;i++){var s=myClass[i];h+='<tr><td class="mono">'+esc(s.student_id)+'</td><td><strong>'+esc(s.full_name)+'</strong></td><td>'+esc(s.class)+'</td><td>'+esc(s.section||'-')+'</td><td>'+badge(s.house||'Earth')+'</td><td>'+esc(s.parent_phone||'-')+'</td></tr>'}h+='</table></div></div></div>';break;
     case 'assign':
-      if(!tClass||!myClass.length){h='<div class="crd"><div class="crd-h">Assign Notes Student</div><div class="crd-b"><p style="color:var(--g500);font-size:13px">No class assigned. Cannot select student.</p></div></div>';break}
-      h='<div class="crd"><div class="crd-h">'+svgI.ck+'Assign Student for Notes &amp; Homework</div><div class="crd-b"><p style="font-size:12px;color:var(--g600);margin-bottom:12px">Select ONE student from your class to upload notes &amp; homework. Only the selected student will see the upload form on their dashboard.</p>';
-      if(repData)h+='<div style="background:#ECFDF5;padding:12px;border-radius:8px;margin-bottom:14px;display:flex;align-items:center;gap:10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:13px;color:#059669"><strong>Current:</strong> '+esc(repData.student_name)+' ('+esc(repData.student_id)+')</span></div>';
-      h+='<div class="tbl-wrap" style="margin-bottom:12px"><table class="tbl" style="min-width:500px"><tr><th>ID</th><th>Name</th><th>Class</th><th>Action</th></tr>';
-      for(var i=0;i<myClass.length;i++){var s=myClass[i];
-        h+='<tr><td class="mono">'+esc(s.student_id)+'</td><td><strong>'+esc(s.full_name)+'</strong></td><td>'+esc(s.class)+'-'+esc(s.section||'A')+'</td>';
-        if(repData&&repData.student_id===s.student_id)h+='<td><span class="badge bdg-g">Assigned</span></td>';
-        else h+='<td><button class="btn btn-sm btn-primary" onclick="assignStudent(\''+esc(s.student_id)+'\',\''+esc(s.full_name)+'\')">Select</button></td>';
-        h+='</tr>'}
-      h+='</table></div></div></div>';
-      break;
-
+      if(!tClass||!myClass.length){h='<div class="crd"><div class="crd-h">Assign Notes Student</div><div class="crd-b"><p style="color:var(--g500)">No class assigned.</p></div></div>';break}
+      var reps=repData&&repData.subjects?repData.subjects:{};
+      h='<div class="crd"><div class="crd-h">'+svgI.ck+'Assign Student Per Subject — '+tClass+'-'+tSec+'</div><div class="crd-b"><p style="font-size:12px;color:var(--g600);margin-bottom:14px">Assign one student per subject for notes &amp; homework upload.</p>';
+      for(var i=0;i<subjects.length;i++){var sub=subjects[i],cur=reps[sub];
+        h+='<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--g100)"><span style="font-weight:600;font-size:12px;min-width:100px;color:var(--g800)">'+sub+'</span><select id="sel_'+sub+'" onchange="assignSub(\''+sub+'\')" style="flex:1;padding:7px 10px;border:1.5px solid var(--g300);border-radius:var(--rx);font-size:12px;font-family:var(--f)"><option value="">— None —</option>';
+        for(var j=0;j<myClass.length;j++){var s=myClass[j];h+='<option value="'+esc(s.student_id)+'"'+(cur&&cur.student_id===s.student_id?' selected':'')+'>'+esc(s.full_name)+'</option>'}
+        h+='</select>';if(cur)h+='<span style="font-size:10px;color:var(--g)">Assigned</span></div>'}
+      h+='<button class="btn btn-green btn-sm" style="margin-top:12px" onclick="saveAllSubs()">Save All</button></div></div>';break;
     case 'notices':
-      h='<div class="crd"><div class="crd-h">'+svgI.nt+'Send Notice'+(tClass?' to '+tClass+'-'+tSec:'')+'</div><div class="crd-b"><p style="font-size:12px;color:var(--g600);margin-bottom:12px">Notices appear on student dashboards of this class.</p><form onsubmit="return sendNotice(event)"><div class="form-grid"><div class="fg"><label>Title *</label><input name="nTitle" placeholder="Notice title" required></div><div class="fg"><label>Type</label><select name="nType"><option>General</option><option>Fee Due</option><option>Exam</option><option>Event</option><option>Registration</option></select></div></div><div class="fg"><label>Message *</label><textarea name="nMsg" placeholder="Write notice..." required></textarea></div><button class="btn btn-red btn-sm">Send Notice</button></form></div></div>';
-      break;
+      h='<div class="crd"><div class="crd-h">'+svgI.nt+'Notices'+(tClass?' — '+tClass+'-'+tSec:'')+'</div><div class="crd-b"><p style="font-size:12px;color:var(--g600);margin-bottom:12px">Notices appear on student dashboards.</p><form onsubmit="return sendNotice(event)"><div class="form-grid"><div class="fg"><label>Title *</label><input name="nTitle" placeholder="Notice title" required></div><div class="fg"><label>Type</label><select name="nType"><option>General</option><option>Fee Due</option><option>Exam</option><option>Event</option><option>Registration</option></select></div></div><div class="fg"><label>Message *</label><textarea name="nMsg" placeholder="Write notice..." required></textarea></div><button class="btn btn-red btn-sm">Send Notice</button></form>';
+      h+='<div style="margin-top:16px;border-top:1px solid var(--g100);padding-top:12px"><strong style="font-size:12px;color:var(--g800)">Sent Notices</strong></div><div id="sentNotices"><p style="font-size:11px;color:var(--g500)">Loading...</p></div></div></div>';break;
   }
   document.getElementById('mainContent').innerHTML=h;
+  if(curTab==='notices')loadSentNotices();
 }
 
 window.fs=function(q){var r=document.querySelectorAll('#stb tr');for(var i=1;i<r.length;i++)r[i].style.display=r[i].textContent.toLowerCase().includes(q.toLowerCase())?'':'none'};
 
-window.assignStudent=async function(sid,sname){
-  if(!confirm('Assign '+sname+' as the Notes & Homework student for '+tClass+'-'+tSec+'?'))return;
-  try{await fbSS(tClass,tSec,sid,sname);alert('Assigned! '+sname+' can now upload notes.');repData={student_id:sid,student_name:sname};render()}catch(e){alert('Failed: '+e.message)}
+// Per-subject assignment
+window.assignSub=function(sub){/* just stores in DOM, saved on Save All */};
+window.saveAllSubs=async function(){
+  var newReps={};for(var i=0;i<subjects.length;i++){var sub=subjects[i],el=document.getElementById('sel_'+sub);
+    if(el&&el.value){var opt=el.selectedOptions[0];newReps[sub]={student_id:el.value,student_name:opt.textContent}}}
+  try{await fbSS(tClass,tSec,{student_id:Object.values(newReps)[0]?Object.values(newReps)[0].student_id:'',student_name:Object.values(newReps)[0]?Object.values(newReps)[0].student_name:'',subjects:newReps,class:tClass,section:tSec,teacher:tName,updated_at:new Date().toISOString()});
+    repData={subjects:newReps};alert('Saved!');render()}catch(e){alert('Failed: '+e.message)}
 };
 
-window.sendNotice=async function(e){e.preventDefault();var f=e.target;
-  try{await fbAN({subject:'Notice',type:f.nType.value,title:f.nTitle.value,content:f.nMsg.value,class:tClass,section:tSec,teacher_name:tName,created_at:new Date().toISOString()});alert('Notice sent!');f.reset()}catch(er){alert('Failed: '+er.message)};return false};
+// Notices system
+async function loadSentNotices(){var db=await _fbReady();if(!db){document.getElementById('sentNotices').innerHTML='<p style="font-size:11px;color:var(--r)">Not connected</p>';return}
+  try{var s=await db.db.collection('notes').where('class','==',tClass).where('section','==',tSec).where('type','==','Notice').get();
+    var data=s.docs.map(function(d){var r=d.data();r.id=d.id;return r}).sort(function(a,b){return(b.created_at||'').localeCompare(a.created_at||'')});
+    if(!data.length){document.getElementById('sentNotices').innerHTML='<p style="font-size:11px;color:var(--g500)">No notices sent yet.</p>';return}
+    var h='';for(var i=0;i<data.length;i++){var n=data[i];h+='<div class="notice-item"><strong>'+esc(n.title)+'</strong><span class="badge bdg-r" style="margin-left:6px">'+esc(n.nType||'General')+'</span><div style="font-size:10px;color:var(--g500);margin-top:2px">'+new Date(n.created_at).toLocaleDateString()+' | <a href="#" onclick="deleteNotice(\''+esc(n.id)+'\')" style="color:var(--r);font-size:9px">Delete</a></div></div>'}document.getElementById('sentNotices').innerHTML=h}catch(e){document.getElementById('sentNotices').innerHTML='<p style="font-size:11px;color:var(--r)">Error</p>'}}
+
+window.deleteNotice=async function(id){if(!confirm('Delete this notice?'))return;var f=await _fbReady();if(!f)return;try{await f.db.collection('notes').doc(id).delete();alert('Deleted!');loadSentNotices()}catch(e){alert('Failed: '+e.message)}};
+
+// Send notice
+window.sendNotice=async function(e){e.preventDefault();var f=e.target;try{await fbAN({subject:'Notice',type:'Notice',nType:f.nType.value,title:f.nTitle.value,content:f.nMsg.value,class:tClass,section:tSec,teacher_name:tName,created_at:new Date().toISOString()});alert('Notice sent!');f.reset();loadSentNotices()}catch(er){alert('Failed: '+er.message)};return false};
 
 // Init
 document.getElementById('mainContent').innerHTML='<div class="loading"><div class="spinner"></div><p>Loading...</p></div>';
-Promise.all([fbG().catch(function(){return[]}),tClass?fbSR(tClass,tSec).catch(function(){return null}):Promise.resolve(null)]).then(function(data){
-  S=data[0]||[];repData=data[1];loaded=true;render();
-}).catch(function(){S=[];loaded=true;render()});
+Promise.all([fbG().catch(function(){return[]}),tClass?fbSR(tClass,tSec).catch(function(){return null}):Promise.resolve(null)]).then(function(data){S=data[0]||[];repData=data[1];loaded=true;render()}).catch(function(){S=[];loaded=true;render()});
 })();
 </script>
 </body>

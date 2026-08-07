@@ -7,175 +7,102 @@
 <style>
 :root{--p:#4285F4;--pd:#1557B0;--r:#EA4335;--g:#34A853;--y:#FBBC04;--hr:#E74C3C;--hb:#3498DB;--hg:#27AE60;--hy:#F39C12;--w:#fff;--bg:#F6F8FC;--g50:#F8F9FA;--g100:#F1F3F4;--g200:#E8EAED;--g300:#DADCE0;--g400:#BDC1C6;--g500:#9AA0A6;--g600:#80868B;--g700:#5F6368;--g800:#3C4043;--g900:#202124;--rx:8px;--rs:12px;--rm:16px;--sh:0 1px 3px rgba(0,0,0,.04),0 1px 4px rgba(0,0,0,.06);--shl:0 4px 16px rgba(0,0,0,.06),0 2px 8px rgba(0,0,0,.08);--f:'Google Sans','Segoe UI','Roboto','Helvetica Neue',Arial,sans-serif;--t:.3s cubic-bezier(.16,1,.3,1)}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--f);background:var(--bg);color:var(--g800);-webkit-font-smoothing:antialiased;min-height:100vh;min-height:100dvh}
-a{color:var(--p);text-decoration:none}
-
-/* ===== TOP BAR ===== */
+body{font-family:var(--f);background:var(--bg);color:var(--g800);-webkit-font-smoothing:antialiased;min-height:100vh;min-height:100dvh}a{color:var(--p);text-decoration:none}
 .topbar{background:rgba(255,255,255,.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--g200);padding:0 16px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
 .topbar .tl{display:flex;align-items:center;gap:7px;font-size:14px;font-weight:500;color:var(--g900);flex-shrink:0}
 .topbar .tl .dot{width:7px;height:7px;border-radius:50%;background:var(--g);animation:pulse 2s infinite}
 .topbar .tl .tag{background:#E3F0FD;color:var(--p);padding:1px 8px;border-radius:12px;font-size:8px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;display:none}
 @media(min-width:480px){.topbar .tl .tag{display:inline}}
 .topbar .tr{display:flex;align-items:center;gap:2px}
-.topbar .tr .lg{color:var(--r);font-size:11px;font-weight:500;padding:6px 12px;border-radius:16px;border:none;background:none;cursor:pointer;font-family:var(--f)}
-.topbar .tr .lg:hover{background:#FEF2F2}
-.topbar .tr .mbtn{display:flex;align-items:center;gap:5px;color:var(--g700);font-size:11px;font-weight:500;padding:6px 10px;border-radius:16px;border:1.5px solid var(--g200);background:var(--w);cursor:pointer;font-family:var(--f)}
-@media(min-width:600px){.topbar .tr .mbtn{display:none}}
-.topbar .tr .mbtn span{display:block;width:16px;height:2px;background:currentColor;border-radius:1px}
-.topbar .tr .mbtn span+span{margin-top:3px}
-
-/* ===== LAYOUT ===== */
-.layout{display:grid;grid-template-columns:200px 1fr;min-height:calc(100vh - 56px);min-height:calc(100dvh - 56px)}
-@media(max-width:600px){.layout{grid-template-columns:1fr}}
-
-/* ===== SIDEBAR ===== */
+.topbar .tr .lg{color:var(--r);font-size:11px;font-weight:500;padding:6px 12px;border-radius:16px;border:none;background:none;cursor:pointer;font-family:var(--f)}.topbar .tr .lg:hover{background:#FEF2F2}
+.topbar .tr .mbtn{display:flex;align-items:center;gap:5px;color:var(--g700);font-size:11px;font-weight:500;padding:6px 10px;border-radius:16px;border:1.5px solid var(--g200);background:var(--w);cursor:pointer;font-family:var(--f)}@media(min-width:600px){.topbar .tr .mbtn{display:none}}
+.topbar .tr .mbtn span{display:block;width:16px;height:2px;background:currentColor;border-radius:1px}.topbar .tr .mbtn span+span{margin-top:3px}
+.layout{display:grid;grid-template-columns:200px 1fr;min-height:calc(100vh - 56px);min-height:calc(100dvh - 56px)}@media(max-width:600px){.layout{grid-template-columns:1fr}}
 .sidebar{background:var(--w);border-right:1px solid var(--g200);padding:12px 0;position:sticky;top:56px;height:calc(100vh - 56px);height:calc(100dvh - 56px);overflow-y:auto;display:flex;flex-direction:column}
 @media(max-width:600px){.sidebar{position:fixed;left:-270px;top:56px;z-index:200;width:270px;transition:left var(--t);box-shadow:0 8px 40px rgba(0,0,0,.15);height:calc(100dvh - 56px)}.sidebar.open{left:0}}
 .sidebar .sh{padding:6px 14px 14px;font-size:9px;color:var(--g500);text-transform:uppercase;letter-spacing:1.5px;font-weight:700}
 .sidebar nav{flex:1}
 .sidebar nav a,.sidebar nav button{display:flex;align-items:center;gap:8px;padding:9px 10px;margin:1px 6px;font-size:12px;font-weight:500;color:var(--g700);border-radius:var(--rx);transition:all var(--t);border:none;background:none;width:calc(100% - 12px);cursor:pointer;font-family:var(--f);text-align:left;text-decoration:none}
-.sidebar nav a:hover,.sidebar nav button:hover{background:var(--g100);color:var(--g900)}
-.sidebar nav a.active,.sidebar nav button.active{background:#e8f0fe;color:var(--p);font-weight:600}
+.sidebar nav a:hover,.sidebar nav button:hover{background:var(--g100)}.sidebar nav a.active,.sidebar nav button.active{background:#e8f0fe;color:var(--p);font-weight:600}
 .sidebar nav a .si,.sidebar nav button .si{width:26px;height:26px;border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.si-db .si{background:#F3E8FF}.si-db svg{stroke:#9333EA}
-.si-pr .si{background:#E3F0FD}.si-pr svg{stroke:var(--hb)}
-.si-nt .si{background:#FEF3E0}.si-nt svg{stroke:var(--hy)}
-.si-no .si{background:#E6F4EA}.si-no svg{stroke:var(--hg)}
-.si-lk .si{background:#E6F4EA}.si-lk svg{stroke:var(--hg)}
-.sidebar .sf{margin-top:auto;padding:12px 14px;border-top:1px solid var(--g100);font-size:10px;color:var(--g500)}
-.sidebar .sf .sv{font-weight:600;color:var(--g800);margin-top:2px}
-
-/* Backdrop */
-.backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:199}
-@media(max-width:600px){.backdrop.show{display:block}}
-
-/* ===== MAIN ===== */
+.si-db .si{background:#F3E8FF}.si-db svg{stroke:#9333EA}.si-pr .si{background:#E3F0FD}.si-pr svg{stroke:var(--hb)}
+.si-nt .si{background:#FEF3E0}.si-nt svg{stroke:var(--hy)}.si-no .si{background:#E6F4EA}.si-no svg{stroke:var(--hg)}
+.si-lk .si{background:#E6F4EA}.si-lk svg{stroke:var(--hg)}.sidebar .sf{margin-top:auto;padding:12px 14px;border-top:1px solid var(--g100);font-size:10px;color:var(--g500)}.sidebar .sf .sv{font-weight:600;color:var(--g800);margin-top:2px}
+.backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:199}@media(max-width:600px){.backdrop.show{display:block}}
 .main{padding:16px}@media(min-width:600px){.main{padding:24px}}
-
-/* ===== HERO BANNER ===== */
 .hero{background:linear-gradient(135deg,#1a237e,#0d47a1,#4285F4);border-radius:var(--rm);padding:24px 20px;color:var(--w);margin-bottom:16px;position:relative;overflow:hidden}
-@media(min-width:480px){.hero{padding:28px 28px}}
-@media(min-width:600px){.hero{padding:32px 32px;margin-bottom:20px}}
+@media(min-width:480px){.hero{padding:28px 28px}}@media(min-width:600px){.hero{padding:32px 32px;margin-bottom:20px}}
 .hero::after{content:'';position:absolute;width:160px;height:160px;border-radius:50%;border:1.5px solid rgba(255,255,255,.05);top:-40px;right:-30px}
-@media(min-width:480px){.hero::after{width:200px;height:200px;top:-60px;right:-50px}}
-.hero h1{font-size:20px;font-weight:500;position:relative;z-index:1;letter-spacing:-.3px}
-@media(min-width:480px){.hero h1{font-size:24px}}
-.hero .sub{font-size:11px;opacity:.7;margin-top:4px;position:relative;z-index:1}
-@media(min-width:480px){.hero .sub{font-size:13px}}
-
-/* ===== STATS ===== */
-.stats-row{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px}
-@media(min-width:480px){.stats-row{grid-template-columns:repeat(4,1fr);gap:12px}}
+.hero h1{font-size:20px;font-weight:500;position:relative;z-index:1}.hero .sub{font-size:11px;opacity:.7;margin-top:4px;position:relative;z-index:1}
+@media(min-width:480px){.hero h1{font-size:24px}.hero .sub{font-size:13px}}
+.stats-row{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px}@media(min-width:480px){.stats-row{grid-template-columns:repeat(4,1fr);gap:12px}}
 .stat-card{background:var(--w);border-radius:var(--rm);padding:16px 12px;box-shadow:var(--sh);border:1px solid var(--g200);transition:all var(--t);text-align:center}
-.stat-card:active{transform:scale(.97)}
-@media(min-width:600px){.stat-card:hover{transform:translateY(-3px);box-shadow:var(--shl)}}
+.stat-card:active{transform:scale(.97)}@media(min-width:600px){.stat-card:hover{transform:translateY(-3px);box-shadow:var(--shl)}}
 .stat-card .st-ic{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 6px}
-@media(min-width:480px){.stat-card .st-ic{width:42px;height:42px;margin-bottom:8px}}
-.stat-card .st-n{font-size:24px;font-weight:400;color:var(--g900);line-height:1.1}
-@media(min-width:480px){.stat-card .st-n{font-size:30px}}
-.stat-card .st-l{font-size:9px;color:var(--g500);text-transform:uppercase;letter-spacing:.6px;margin-top:3px}
-
-/* ===== CARDS ===== */
+.stat-card .st-n{font-size:24px;font-weight:400;color:var(--g900)}.stat-card .st-l{font-size:9px;color:var(--g500);text-transform:uppercase;letter-spacing:.6px;margin-top:3px}
 .crd{background:var(--w);border-radius:var(--rm);box-shadow:var(--sh);border:1px solid var(--g200);overflow:hidden;margin-bottom:14px}
-@media(min-width:600px){.crd{margin-bottom:18px}}
 .crd-h{padding:12px 14px;border-bottom:1px solid var(--g100);font-weight:500;font-size:12px;display:flex;align-items:center;gap:7px;color:var(--g800)}
-@media(min-width:600px){.crd-h{padding:14px 18px;font-size:13px}}
-.crd-b{padding:14px}@media(min-width:600px){.crd-b{padding:18px}}
-
-/* ===== PROFILE ===== */
-.profile{display:flex;gap:14px;align-items:start;flex-wrap:wrap}
-@media(min-width:480px){.profile{gap:20px}}
-.av{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--p),#0d47a1);color:var(--w);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:500;flex-shrink:0;box-shadow:0 4px 14px rgba(66,133,244,.2)}
-@media(min-width:480px){.av{width:72px;height:72px;font-size:30px}}
-.det{flex:1;min-width:140px;display:grid;grid-template-columns:1fr;gap:5px 16px}
-@media(min-width:400px){.det{grid-template-columns:1fr 1fr;gap:6px 18px}}
-@media(min-width:600px){.det{gap:8px 20px}}
+.crd-b{padding:14px}
+.profile{display:flex;gap:14px;align-items:start;flex-wrap:wrap}.av{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--p),#0d47a1);color:var(--w);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:500;flex-shrink:0;box-shadow:0 4px 14px rgba(66,133,244,.2)}
+.det{flex:1;min-width:140px;display:grid;grid-template-columns:1fr;gap:5px 16px}@media(min-width:400px){.det{grid-template-columns:1fr 1fr;gap:6px 18px}}
 .det .r{display:flex;align-items:baseline;gap:5px}.det .r .lb{color:var(--g500);font-weight:500;font-size:9px;text-transform:uppercase;letter-spacing:.3px;min-width:45px;flex-shrink:0}.det .r .vl{color:var(--g800);font-weight:500;font-size:12px}
-
-/* ===== BUTTONS ===== */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 18px;border:none;border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;font-family:var(--f);transition:all var(--t);white-space:nowrap;text-decoration:none}
-@media(min-width:480px){.btn{padding:10px 22px;font-size:13px;border-radius:24px}}
-.btn-sm{padding:6px 12px;font-size:10px;border-radius:14px}@media(min-width:480px){.btn-sm{padding:7px 16px;font-size:11px;border-radius:18px}}
-.btn-primary{background:var(--p);color:var(--w)}.btn-primary:active{background:var(--pd)}
-.btn-outline{background:var(--w);color:var(--g700);border:1.5px solid var(--g300)}.btn-outline:active{background:var(--g50)}
-@media(min-width:600px){.btn-primary:hover{background:var(--pd);box-shadow:0 4px 16px rgba(66,133,244,.3)}.btn-outline:hover{background:var(--g50)}}
-
-/* Notices */
-.notice-item{padding:10px 0;border-bottom:1px solid var(--g100);font-size:12px;color:var(--g600)}
-.notice-item:last-child{border-bottom:none}
-.notice-item strong{color:var(--g800);display:block;margin-bottom:2px}
-.notice-item .meta{font-size:9px;color:var(--g500);margin-top:2px}
-.upload-zone{border:2px dashed var(--g300);border-radius:var(--rs);padding:18px;text-align:center;cursor:pointer;transition:all var(--t);margin-bottom:10px}
-.upload-zone:hover{border-color:var(--p);background:#F8FAFF}.upload-zone input{display:none}
+.btn-sm{padding:6px 12px;font-size:10px;border-radius:14px}.btn-primary{background:var(--p);color:var(--w)}.btn-outline{background:var(--w);color:var(--g700);border:1.5px solid var(--g300)}.btn-green{background:var(--g);color:var(--w)}.btn-red{background:var(--r);color:var(--w)}
+.notice-item{padding:10px 0;border-bottom:1px solid var(--g100);font-size:12px;color:var(--g600)}.notice-item:last-child{border-bottom:none}
+.notice-item strong{color:var(--g800);display:block;margin-bottom:2px}.notice-item .meta{font-size:9px;color:var(--g500);margin-top:2px}
+.upload-zone{border:2px dashed var(--g300);border-radius:var(--rs);padding:18px;text-align:center;cursor:pointer;transition:all var(--t);margin-bottom:10px}.upload-zone:hover{border-color:var(--p);background:#F8FAFF}
 .upload-zone .uz-text{font-size:12px;color:var(--g600)}.upload-zone .uz-icon svg{width:28px;height:28px;stroke:var(--p);margin-bottom:6px}
+.upload-zone input[type=file]{display:none}
 .file-preview{display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--g50);border-radius:var(--rx);font-size:10px;margin-top:6px;flex-wrap:wrap}
-.file-preview img{width:40px;height:40px;object-fit:cover;border-radius:4px}
-.file-preview .fp-remove{color:var(--r);cursor:pointer;font-weight:700;margin-left:auto}
-
-.bdg-p{background:#F3E8FF;color:#9333EA}
-
-/* Loading */
-.loading{text-align:center;padding:48px 12px}
-.loading .spinner{width:28px;height:28px;border:2.5px solid var(--g200);border-top-color:var(--p);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px}
-.loading p{color:var(--g600);font-size:12px}
-
+.file-preview img{width:40px;height:40px;object-fit:cover;border-radius:4px}.file-preview .fp-remove{color:var(--r);cursor:pointer;font-weight:700;margin-left:auto}
+.bdg-p{background:#F3E8FF;color:#9333EA}.bdg-r{background:#FDE8E8;color:var(--r)}.bdg-g{background:#E6F4EA;color:var(--g)}.badge{display:inline-block;padding:2px 6px;border-radius:10px;font-size:8px;font-weight:600;text-transform:uppercase}
+.form-grid{display:grid;grid-template-columns:1fr;gap:10px}@media(min-width:500px){.form-grid{grid-template-columns:1fr 1fr;gap:12px}}
+.fg input,.fg select,.fg textarea{width:100%;padding:9px 11px;border:1.5px solid var(--g300);border-radius:var(--rx);font-size:13px;font-family:var(--f);background:var(--w);transition:all var(--t)}
+.fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--p);box-shadow:0 0 0 3px rgba(66,133,244,.08)}
+.fg label{display:block;font-size:9px;font-weight:600;color:var(--g600);margin-bottom:3px;text-transform:uppercase;letter-spacing:.4px}.fg textarea{resize:vertical;min-height:60px}
+.search-bar{width:100%;padding:9px 12px;border:1.5px solid var(--g300);border-radius:20px;font-size:12px;font-family:var(--f);margin-bottom:12px;transition:all var(--t);background:var(--w)}.search-bar:focus{outline:none;border-color:var(--p);box-shadow:0 0 0 3px rgba(66,133,244,.06)}
+.loading{text-align:center;padding:48px 12px}.loading .spinner{width:28px;height:28px;border:2.5px solid var(--g200);border-top-color:var(--p);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px}.loading p{color:var(--g600);font-size:12px}
 @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
-@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}@keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
-
-<div class="topbar">
-  <div class="tl"><div class="dot"></div>SKPPS<span class="tag">Student</span><span id="un" style="font-size:10px;color:var(--g500);font-weight:400;margin-left:2px"></span></div>
-  <div class="tr">
-    <button class="mbtn" id="menuBtn"><span></span><span></span>Menu</button>
-    <button onclick="lg()" class="lg">Logout</button>
-  </div>
-</div>
-
+<div class="topbar"><div class="tl"><div class="dot"></div>SKPPS<span class="tag">Student</span><span id="un" style="font-size:10px;color:var(--g500);font-weight:400;margin-left:2px"></span></div><div class="tr"><button class="mbtn" id="menuBtn"><span></span><span></span>Menu</button><button onclick="lg()" class="lg">Logout</button></div></div>
 <div class="backdrop" id="backdrop" onclick="closeSidebar()"></div>
-
 <div class="layout">
-  <aside class="sidebar" id="sidebar">
-    <div class="sh">Student Portal</div>
-    <nav>
-      <button class="active si-db" onclick="navTo('db')"><span class="si"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span>Home</button>
-      <button class="si-pr" onclick="navTo('profile')"><span class="si"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>My Profile</button>
-      <button class="si-nt" onclick="navTo('notices')"><span class="si"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg></span>Notices</button>
-      <button class="si-no" onclick="navTo('notes')"><span class="si"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>Notes & Homework</button>
-      <button class="si-lk" onclick="navTo('links')"><span class="si"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>Quick Links</button>
-      <a class="si-lk" href="../index.html"><span class="si"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10"/><path d="M12 2a15.3 15.3 0 00-4 10 15.3 15.3 0 004 10"/></svg></span>School Website</a>
-    </nav>
-    <div class="sf"><div>SK Presidency Public School</div><div class="sv">Student v5</div></div>
-  </aside>
-
-  <div class="main" id="mainContent"></div>
-</div>
+<aside class="sidebar" id="sidebar">
+<div class="sh">Student Portal</div>
+<nav>
+<button class="active si-db" onclick="navTo('db')"><span class="si"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span>Home</button>
+<button class="si-pr" onclick="navTo('profile')"><span class="si"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>My Profile</button>
+<button class="si-nt" onclick="navTo('notices')"><span class="si"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg></span>Notices</button>
+<button class="si-no" onclick="navTo('notes')"><span class="si"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>Notes & HW</button>
+<button class="si-lk" onclick="navTo('links')"><span class="si"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>Links</button>
+<a class="si-lk" href="../index.html"><span class="si"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10"/><path d="M12 2a15.3 15.3 0 00-4 10 15.3 15.3 0 004 10"/></svg></span>Website</a>
+</nav>
+<div class="sf"><div>SK Presidency Public School</div><div class="sv">Student v5</div></div></aside>
+<div class="main" id="mainContent"></div></div>
 
 <script>
-// ===== AUTH GUARD =====
 (function(){
 if(!sessionStorage.getItem('skpps_auth')||sessionStorage.getItem('skpps_role')!=='student'){location.href='../student-login.html'}
 window.lg=function(){sessionStorage.clear();location.href='../student-login.html'};
 window.closeSidebar=function(){document.getElementById('sidebar').classList.remove('open');document.getElementById('backdrop').classList.remove('show')};
 document.getElementById('menuBtn').addEventListener('click',function(){var s=document.getElementById('sidebar');s.classList.toggle('open');document.getElementById('backdrop').classList.toggle('show')});
 
-// ===== FIREBASE =====
-window.FIREBASE_CONFIG={};var s=localStorage.getItem("skpps_firebase_config");if(s)try{FIREBASE_CONFIG=JSON.parse(s)}catch(e){}
+window.FIREBASE_CONFIG={};var cfg=localStorage.getItem("skpps_firebase_config");if(cfg)try{FIREBASE_CONFIG=JSON.parse(cfg)}catch(e){}
 var _db=null;
 function getDB(){if(_db)return Promise.resolve(_db);return new Promise(function(ok){if(!FIREBASE_CONFIG.apiKey){ok(null);return}function ld(u){return new Promise(function(y){var s=document.createElement('script');s.src=u;s.onload=y;document.head.appendChild(s)})}Promise.all([ld('https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js'),ld('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js')]).then(function(){if(!firebase.apps.length)firebase.initializeApp(FIREBASE_CONFIG);_db=firebase.firestore();ok(_db)}).catch(function(){ok(null)})})}
 
-var sid=sessionStorage.getItem('skpps_sid'),curTab='db';
-window.navTo=function(t){curTab=t;document.querySelectorAll('.sidebar nav button').forEach(function(b){b.classList.remove('active')});var sel=document.querySelector('.si-'+(t==='db'?'db':t==='profile'?'pr':t==='notices'?'nt':t==='notes'?'no':'lk'));if(sel)sel.classList.add('active');render();closeSidebar()};
+var sid=sessionStorage.getItem('skpps_sid'),curTab='db',sd={},noticesData=[];
+window.navTo=function(t){curTab=t;document.querySelectorAll('.sidebar nav button').forEach(function(b){b.classList.remove('active')});var m={db:'db',profile:'pr',notices:'nt',notes:'no',links:'lk'};var sel=document.querySelector('.si-'+(m[t]||'db'));if(sel)sel.classList.add('active');render();closeSidebar()};
 
+function esc(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 function statCard(cls,icon,val,lbl){return'<div class="stat-card"><div class="st-ic" style="background:'+(cls==='blue'?'#E3F0FD':cls==='green'?'#E6F4EA':cls==='red'?'#FDE8E8':'#FEF3E0')+'">'+icon+'</div><div class="st-n">'+val+'</div><div class="st-l">'+lbl+'</div></div>'}
 
-var sd={};
 async function loadData(){
   try{sd=JSON.parse(sessionStorage.getItem('skpps_student')||'{}')}catch(e){sd={}}
   if((!sd||!sd.full_name)&&sid){try{var db=await getDB();if(db){var doc=await db.collection('students').doc(sid).get();if(doc.exists){sd=doc.data();sd.student_id=sid;sessionStorage.setItem('skpps_student',JSON.stringify(sd))}}}catch(e){}}
-  // update sessionStorage from sd
   sessionStorage.setItem('skpps_name',sd.full_name||sd.name||'Student');
   sessionStorage.setItem('skpps_class',sd.class||sd.cls||'-');
   sessionStorage.setItem('skpps_section',sd.section||sd.sec||'A');
@@ -184,145 +111,112 @@ async function loadData(){
   render();
 }
 
-function val(k){return sd[k]||sessionStorage.getItem('skpps_'+k)||'-'}
-var svg={book:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--hb)" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>',home:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--hg)" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',hash:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--hy)" stroke-width="1.8"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg>',phone:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--hr)" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>'};
-
-function esc(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 function kv(l,v){return'<div class="r"><span class="lb">'+l+'</span><span class="vl">'+esc(v)+'</span></div>'}
+
+var svg={book:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--hb)" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>',
+  home:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--hg)" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',
+  hash:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--hy)" stroke-width="2"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg>',
+  phone:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--hr)" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>'};
+
+// ===== NOTES & HOMEWORK =====
 var _uploadFiles=[];
-function loadNotesSection(cls,sec,nm,sid){
-  var h='<div class="crd"><div class="crd-h"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--g)" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Notes & Homework for Class '+cls+'-'+sc+'</div><div class="crd-b" id="notesSection">Checking access...</div></div>';
-  document.getElementById('mainContent').innerHTML=h;
-  checkRepAccess(cls,sec,sid,nm);
+function buildNotesPage(cls,sec,nm){
+  var cl=cls.toUpperCase().trim(),sc=sec.toUpperCase().trim();
+  document.getElementById('mainContent').innerHTML='<div class="crd"><div class="crd-h"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--g)" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg>Notes & Homework — Class '+cl+'-'+sc+'</div><div class="crd-b" id="notesSection"><div class="loading"><div class="spinner"></div><p>Loading...</p></div></div></div>';
+  checkRepAccess(cl,sc,sid,nm);
 }
 
 async function checkRepAccess(cls,sec,sid,nm){
   var db=await getDB();if(!db){document.getElementById('notesSection').innerHTML='<p style="color:var(--r);font-size:12px">Firebase not connected</p>';return}
-  try{var d=await db.collection('settings').doc('notes_student_'+cls+'_'+sec).get();
+  try{
+    var d=await db.collection('settings').doc('notes_student_'+cls+'_'+sec).get();
     var rep=d.exists?d.data():null;
     var isRep=rep&&rep.student_id===sid;
-    renderNotesUI(cls,sec,isRep,rep,nm,sid);
-  }catch(e){document.getElementById('notesSection').innerHTML='<p style="color:var(--r);font-size:12px">Error: '+esc(e.message)+'</p>'}
+    if(!rep||!rep.student_id){
+      document.getElementById('notesSection').innerHTML='<p style="font-size:12px;color:var(--g500);margin-bottom:8px">No student assigned for notes upload yet. Contact your class teacher.</p><div style="border-top:1px solid var(--g100);padding-top:12px;margin-top:12px"><strong style="font-size:12px;color:var(--g800)">Previous Notes</strong></div><div id="prevNotes">Loading...</div>';
+      loadPrevNotes(cls,sec);return;
+    }
+    renderNotesUI(cls,sec,isRep,rep,nm);
+  }catch(e){document.getElementById('notesSection').innerHTML='<p style="color:var(--r);font-size:12px">Error loading</p>'}
 }
 
-function renderNotesUI(cls,sec,isRep,rep,nm,sid){
+function renderNotesUI(cls,sec,isRep,rep,nm){
   var h='';
-  // Upload section - ONLY for assigned student
   if(isRep){
-    h+='<div style="background:#ECFDF5;padding:12px;border-radius:8px;margin-bottom:16px;display:flex;align-items:center;gap:8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:12px;color:#059669">You are assigned to upload notes &amp; homework for '+cls+'-'+sc+'</span></div>';
-    h+='<form onsubmit="return uploadNote(event,\''+cls+'\',\''+sec+'\',\''+esc(nm)+'\')"><div class="form-grid"><div class="fg"><label>Subject *</label><select name="subject" required><option>English</option><option>Hindi</option><option>Maths</option><option>Science</option><option>Social Studies</option><option>Sanskrit</option><option>Computer</option></select></div><div class="fg"><label>Type *</label><select name="type" required><option>Notes</option><option>Homework</option></select></div></div><div class="fg"><label>Title *</label><input name="title" placeholder="Chapter name..." required></div><div class="fg"><label>Content *</label><textarea name="content" placeholder="Write notes or homework details..." required></textarea></div>';
-    h+='<div class="upload-zone" onclick="document.getElementById(\'fileInput\').click()"><div class="uz-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div><div class="uz-text">Click to upload images or PDF files</div><div style="font-size:9px;color:var(--g400);margin-top:2px">JPG, PNG, PDF (max 10MB)</div><input type="file" id="fileInput" accept="image/*,.pdf" multiple onchange="handleFiles(this)" style="display:none"></div><div id="filePreview"></div>';
+    h+='<div style="background:#ECFDF5;padding:10px 12px;border-radius:8px;margin-bottom:14px;display:flex;align-items:center;gap:8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span style="font-size:12px;color:#059669">You are assigned to upload notes &amp; homework for '+cls+'-'+sec+'</span></div>';
+    h+='<form onsubmit="return uploadNote(event,\''+cls+'\',\''+sec+'\',\''+esc(nm)+'\')"><div class="form-grid"><div class="fg"><label>Subject *</label><select name="subject" required><option>English</option><option>Hindi</option><option>Maths</option><option>Science</option><option>Social Studies</option><option>Sanskrit</option><option>Computer</option></select></div><div class="fg"><label>Type *</label><select name="type" required><option>Notes</option><option>Homework</option></select></div></div><div class="fg"><label>Title *</label><input name="title" placeholder="Chapter name..." required></div><div class="fg"><label>Content *</label><textarea name="content" placeholder="Write notes or homework..." required></textarea></div>';
+    h+='<div class="upload-zone" onclick="document.getElementById(\'fileInput\').click()"><div class="uz-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div><div class="uz-text">Upload images or PDF</div><div style="font-size:9px;color:var(--g400);margin-top:2px">JPG, PNG, PDF (max 10MB)</div><input type="file" id="fileInput" accept="image/*,.pdf" multiple onchange="handleFiles(this)"></div><div id="filePreview"></div>';
     h+='<button type="submit" class="btn btn-green" style="margin-top:10px">Upload Notes / Homework</button></form>';
   }else{
-    h+='<p style="font-size:12px;color:var(--g500)">You are not assigned to upload notes. '+(rep?'Currently assigned: <strong>'+esc(rep.student_name)+'</strong>':'No student assigned yet.')+'</p>';
+    h+='<p style="font-size:12px;color:var(--g500);margin-bottom:10px">Assigned student: <strong>'+esc(rep.student_name)+'</strong>. Only this student can upload.</p>';
   }
-  // Show previously sent notes
-  h+='<div style="margin-top:16px;border-top:1px solid var(--g100);padding-top:12px"><strong style="font-size:12px;color:var(--g800)">Previously Sent</strong></div><div id="prevNotes">Loading...</div>';
+  h+='<div style="border-top:1px solid var(--g100);padding-top:12px;margin-top:12px"><strong style="font-size:12px;color:var(--g800)">Previous Notes</strong></div><div id="prevNotes">Loading...</div>';
   document.getElementById('notesSection').innerHTML=h;
   loadPrevNotes(cls,sec);
 }
 
 async function loadPrevNotes(cls,sec){
   var db=await getDB();if(!db){document.getElementById('prevNotes').innerHTML='<p style="font-size:11px;color:var(--r)">Not connected</p>';return}
-  try{var s=await db.collection('notes').where('class','==',cls.toUpperCase().trim()).where('section','==',sec.toUpperCase().trim()).get();
+  try{var s=await db.collection('notes').where('class','==',cls).where('section','==',sec).get();
     var data=s.docs.map(function(d){var r=d.data();r.id=d.id;return r}).sort(function(a,b){return (b.created_at||'').localeCompare(a.created_at||'')});
-    if(!data.length){document.getElementById('prevNotes').innerHTML='<p style="font-size:11px;color:var(--g500)">No notes posted yet.</p>';return}
-    var h='';for(var i=0;i<data.length;i++){var n=data[i];h+='<div class="notice-item"><strong>'+esc(n.subject)+': '+esc(n.title)+'</strong><span class="badge bdg-p" style="margin-left:6px;font-size:8px">'+esc(n.type)+'</span><div style="font-size:11px;color:var(--g600);margin-top:4px;white-space:pre-wrap">'+esc(n.content)+'</div>';
-    if(n.files&&n.files.length){h+='<div style="margin-top:4px;display:flex;gap:6px;flex-wrap:wrap">';for(var j=0;j<n.files.length;j++){var f=n.files[j];if(f.type&&f.type.startsWith('image/'))h+='<a href="'+esc(f.data)+'" target="_blank"><img src="'+esc(f.data)+'" style="width:60px;height:60px;object-fit:cover;border-radius:4px" title="'+esc(f.name)+'"></a>';else h+='<a href="'+esc(f.data)+'" target="_blank" style="display:flex;align-items:center;gap:4px;padding:4px 8px;background:var(--g50);border-radius:4px;font-size:10px;color:var(--p)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg>'+esc(f.name)+'</a>'}h+='</div>'}
-    h+='<div class="meta" style="font-size:9px;color:var(--g500);margin-top:3px">By '+esc(n.teacher_name||n.uploader_name)+' | '+new Date(n.created_at).toLocaleDateString()+'</div></div>'}
+    if(!data.length){document.getElementById('prevNotes').innerHTML='<p style="font-size:11px;color:var(--g500)">No notes yet.</p>';return}
+    var h='';for(var i=0;i<data.length;i++){var n=data[i];h+='<div class="notice-item"><strong>'+esc(n.subject)+': '+esc(n.title)+'</strong><span class="badge bdg-p" style="margin-left:6px">'+esc(n.type)+'</span><div style="font-size:11px;color:var(--g600);margin-top:4px;white-space:pre-wrap">'+esc(n.content)+'</div>';
+    if(n.files&&n.files.length){h+='<div style="margin-top:4px;display:flex;gap:6px;flex-wrap:wrap">';for(var j=0;j<n.files.length;j++){var f=n.files[j];if(f.type&&f.type.indexOf('image/')===0)h+='<a href="'+esc(f.data)+'" target="_blank"><img src="'+esc(f.data)+'" style="width:60px;height:60px;object-fit:cover;border-radius:4px" title="'+esc(f.name)+'"></a>';else h+='<a href="'+esc(f.data)+'" target="_blank" style="display:flex;align-items:center;gap:4px;padding:4px 8px;background:var(--g50);border-radius:4px;font-size:10px;color:var(--p)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg>'+esc(f.name)+'</a>'}h+='</div>'}
+    h+='<div class="meta">By '+esc(n.uploader_name||n.teacher_name)+' | '+new Date(n.created_at).toLocaleDateString()+'</div></div>'}
     document.getElementById('prevNotes').innerHTML=h;
-  }catch(e){document.getElementById('prevNotes').innerHTML='<p style="font-size:11px;color:var(--r)">Error loading notes</p>'}
+  }catch(e){document.getElementById('prevNotes').innerHTML='<p style="font-size:11px;color:var(--r)">Error: '+esc(e.message)+'</p>'}
 }
 
 _uploadFiles=[];
-window.handleFiles=function(input){
-  var files=input.files;if(!files||!files.length)return;
-  for(var i=0;i<files.length;i++){(function(file){
-    if(file.size>10*1024*1024){alert(file.name+' is too large (max 10MB)');return}
-    var reader=new FileReader();
-    reader.onload=function(e){_uploadFiles.push({name:file.name,type:file.type,size:file.size,data:e.target.result});showFilePreview()};
-    reader.readAsDataURL(file);
-  })(files[i])}
-  input.value='';
-};
-
-function showFilePreview(){
-  var h='';for(var i=0;i<_uploadFiles.length;i++){var f=_uploadFiles[i];
-    h+='<div class="file-preview">';
-    if(f.type.startsWith('image/'))h+='<img src="'+esc(f.data)+'" alt="'+esc(f.name)+'">';
-    else h+='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--r)" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg>';
-    h+='<span>'+esc(f.name)+' ('+Math.round(f.size/1024)+'KB)</span><span class="fp-remove" onclick="removeFile('+i+')">&times;</span></div>'}
-  document.getElementById('filePreview').innerHTML=h||'';
-}
-
+window.handleFiles=function(input){var files=input.files;if(!files||!files.length)return;for(var i=0;i<files.length;i++){(function(file){if(file.size>10*1024*1024){alert(file.name+' too large (max 10MB)');return}var reader=new FileReader();reader.onload=function(e){_uploadFiles.push({name:file.name,type:file.type,size:file.size,data:e.target.result});showFilePreview()};reader.readAsDataURL(file)})(files[i])}input.value=''};
+function showFilePreview(){var h='';for(var i=0;i<_uploadFiles.length;i++){var f=_uploadFiles[i];h+='<div class="file-preview">';if(f.type.indexOf('image/')===0)h+='<img src="'+esc(f.data)+'" alt="'+esc(f.name)+'">';else h+='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--r)" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg>';h+='<span>'+esc(f.name)+' ('+Math.round(f.size/1024)+'KB)</span><span class="fp-remove" onclick="removeFile('+i+')">×</span></div>'}document.getElementById('filePreview').innerHTML=h||''}
 window.removeFile=function(idx){_uploadFiles.splice(idx,1);showFilePreview()};
+window.uploadNote=async function(e,cls,sec,nm){e.preventDefault();var f=e.target;if(!f.subject.value||!f.title.value||!f.content.value){alert('Fill all fields');return false}var db=await getDB();if(!db){alert('Firebase not connected');return false}var btn=e.target.querySelector('button[type=submit]');btn.disabled=true;btn.textContent='Uploading...';var filesData=_uploadFiles.map(function(f){return{name:f.name,type:f.type,size:f.size,data:f.data}});try{await db.collection('notes').add({subject:f.subject.value,type:f.type.value,title:f.title.value,content:f.content.value,class:cls,section:sec,uploader_name:nm,student_id:sid,files:filesData,created_at:new Date().toISOString()});alert('Uploaded!');f.reset();_uploadFiles=[];showFilePreview();loadPrevNotes(cls,sec)}catch(er){alert('Failed: '+er.message)}btn.disabled=false;btn.textContent='Upload';return false};
 
-window.uploadNote=async function(e,cls,sec,nm){
-  e.preventDefault();var f=e.target;
-  if(!f.subject.value||!f.title.value||!f.content.value){alert('Fill all required fields');return false}
-  var db=await getDB();if(!db){alert('Firebase not connected');return false}
-  var btn=e.target.querySelector('button[type=submit]');btn.disabled=true;btn.textContent='Uploading...';
-  var filesData=_uploadFiles.map(function(f){return{name:f.name,type:f.type,size:f.size,data:f.data}});
-  try{
-    await db.collection('notes').add({subject:f.subject.value,type:f.type.value,title:f.title.value,content:f.content.value,
-      class:cls,section:sec,uploader_name:nm,student_id:sid,files:filesData,created_at:new Date().toISOString()});
-    alert('Uploaded successfully!');
-    f.reset();_uploadFiles=[];showFilePreview();
-    loadPrevNotes(cls,sec);
-  }catch(er){alert('Upload failed: '+er.message)}
-  btn.disabled=false;btn.textContent='Upload Notes / Homework';
-  return false;
-};
+// ===== NOTICES (Real-time from Firestore) =====
+async function buildNoticesPage(cls,sec,sid,isAdmin){document.getElementById('mainContent').innerHTML='<div class="crd"><div class="crd-h"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--r)" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>Notices — Class '+cls+'-'+sec+'</div><div class="crd-b" id="noticesContent"><div class="loading"><div class="spinner"></div><p>Loading notices...</p></div></div></div>';loadNotices(cls,sec,sid,isAdmin)}
 
+async function loadNotices(cls,sec,sid,isAdmin){var db=await getDB();if(!db){document.getElementById('noticesContent').innerHTML='<p style="color:var(--r);font-size:12px">Firebase not connected</p>';return}try{var allS=await db.collection('notes').where('type','==','Notice').get();var classS=await db.collection('notes').where('class','==',cls).where('section','==',sec).where('type','==','Notice').get();var data=classS.docs.concat(allS.docs.filter(function(d){return !d.data().class}));data=data.map(function(d){var r=d.data();r.id=d.id;return r}).sort(function(a,b){return(b.created_at||'').localeCompare(a.created_at||'')}).filter(function(v,i,a){return a.findIndex(function(t){return t.id===v.id})===i});if(!data.length){document.getElementById('noticesContent').innerHTML='<p style="font-size:12px;color:var(--g500)">No notices for your class.</p>';return}var h='';for(var i=0;i<data.length;i++){var n=data[i];h+='<div class="notice-item"><strong>'+esc(n.title)+'</strong>';if(n.nType)h+='<span class="badge bdg-r" style="margin-left:6px">'+esc(n.nType)+'</span>';h+='<div style="font-size:11px;color:var(--g600);margin-top:4px;white-space:pre-wrap">'+esc(n.content||n.nMsg||'')+'</div><div class="meta">By '+esc(n.teacher_name)+' | '+new Date(n.created_at).toLocaleDateString();if(isAdmin)h+=' | <a href="#" onclick="deleteNotice(\''+esc(n.id)+'\')" style="color:var(--r);font-size:9px">Delete</a>';h+='</div></div>'}document.getElementById('noticesContent').innerHTML=h}catch(e){document.getElementById('noticesContent').innerHTML='<p style="font-size:11px;color:var(--r)">'+esc(e.message)+'</p>'}}
+
+window.deleteNotice=async function(id){if(!confirm('Delete this notice?'))return;var db=await getDB();if(!db)return;try{await db.collection('notes').doc(id).delete();var cl=(sd.class||sd.cls||'').toUpperCase().trim();var sc=(sd.section||sd.sec||'A').toUpperCase().trim();loadNotices(cl,sc,sid,false);alert('Deleted')}catch(e){alert('Failed: '+e.message)}};
+
+// ===== RENDER =====
 function render(){
-  var nm=sd.full_name||sd.name||'Student';
-  var cl=sd.class||sd.cls||'-';var sc=sd.section||sd.sec||'A';
-  var hs=sd.house||'Earth';var rn=sd.roll_no||sd.roll||'-';
+  var nm=sd.full_name||sd.name||'Student',cl=sd.class||sd.cls||'-',sc=sd.section||sd.sec||'A',hs=sd.house||'Earth',rn=sd.roll_no||sd.roll||'-';
   var h='';
-
   switch(curTab){
     case 'db':
       h='<div class="hero"><h1>Welcome, '+nm.split(' ')[0]+'</h1><div class="sub">Class '+cl+'-'+sc+' | Roll '+rn+' | '+hs+' House</div></div>';
       h+='<div class="stats-row">'+statCard('blue',svg.book,cl,'Class')+statCard('green',svg.home,hs,'House')+statCard('yellow',svg.hash,rn,'Roll No')+statCard('red',svg.phone,sd.parent_phone||sd.phone||'-','Contact')+'</div>';
-      h+='<div class="crd"><div class="crd-h"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--p)" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Recent Notices</div><div class="crd-b"><div class="notice-item"><strong>Registration Open 2026-2027</strong>Download prospectus from school website.</div><div class="notice-item"><strong>School Timings</strong>Monday-Saturday: 7:30 AM — 2:00 PM</div></div></div>';
+      h+='<div class="crd"><div class="crd-h"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--r)" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>Recent Notices</div><div class="crd-b" id="homeNotices"><div class="loading"><div class="spinner"></div></div></div></div>';
       h+='<div class="crd"><div class="crd-h">Quick Links</div><div class="crd-b"><div style="display:flex;gap:8px;flex-wrap:wrap"><a href="../index.html" class="btn btn-primary btn-sm">School Website</a><a href="#" onclick="lg()" class="btn btn-outline btn-sm">Logout</a></div></div></div>';
+      document.getElementById('mainContent').innerHTML=h;
+      loadHomeNotices(cl,sc,sid);
       break;
-
     case 'profile':
       h='<div class="crd"><div class="crd-h"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--p)" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>My Profile</div><div class="crd-b"><div class="profile"><div class="av">'+nm.charAt(0).toUpperCase()+'</div><div class="det">';
       h+=kv('Name',nm)+kv('Father',sd.father_name||sd.father||'-')+kv('Mother',sd.mother_name||sd.mother||'-');
       h+=kv('Class',cl+'-'+sc)+kv('Roll',rn)+kv('House',hs)+kv('Gender',sd.gender||'-');
       h+=kv('DOB',sd.date_of_birth||sd.dob||'-')+kv('Phone',sd.parent_phone||sd.phone||'-')+kv('Blood',sd.blood_group||'-');
-      h+='</div></div></div></div>';
+      h+='</div></div></div></div>';document.getElementById('mainContent').innerHTML=h;
       break;
-
-    case 'notices':
-      h='<div class="crd"><div class="crd-h"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--r)" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>Notices & Announcements</div><div class="crd-b">';
-      h+='<div class="notice-item"><strong>Registration Open For Session 2026-2027</strong>New admissions are open. Contact school office for details.</div>';
-      h+='<div class="notice-item"><strong>School Timings</strong>Monday to Saturday: 7:30 AM to 2:00 PM. Sunday closed.</div>';
-      h+='<div class="notice-item"><strong>Parent-Teacher Meeting</strong>Scheduled for the last Saturday of every month.</div>';
-      h+='<div class="notice-item"><strong>Examination Schedule</strong>Term exams dates will be announced soon. Check noticeboard regularly.</div>';
-      h+='</div></div>';
-      break;
-
-    case 'notes':
-      loadNotesSection(cl,sc,nm,sid);
-      break;
-
+    case 'notices':buildNoticesPage(cl,sc,sid,false);break;
+    case 'notes':buildNotesPage(cl,sc,nm);break;
     case 'links':
-      h='<div class="crd"><div class="crd-h">Quick Links</div><div class="crd-b">';
-      h+='<div style="display:flex;flex-direction:column;gap:10px">';
+      h='<div class="crd"><div class="crd-h">Quick Links</div><div class="crd-b"><div style="display:flex;flex-direction:column;gap:10px">';
       h+='<a href="../index.html" class="btn btn-primary" style="justify-content:flex-start"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10"/><path d="M12 2a15.3 15.3 0 00-4 10 15.3 15.3 0 004 10"/></svg>School Website</a>';
       h+='<a href="../noticeboard.html" class="btn btn-outline" style="justify-content:flex-start"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>Noticeboard</a>';
       h+='<a href="../feesstructure-payments.html" class="btn btn-outline" style="justify-content:flex-start"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>Fees Structure</a>';
       h+='<a href="../eventcalendar.html" class="btn btn-outline" style="justify-content:flex-start"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Event Calendar</a>';
-      h+='</div></div></div>';
+      h+='</div></div></div>';document.getElementById('mainContent').innerHTML=h;
       break;
   }
-  document.getElementById('mainContent').innerHTML=h;
+  if(curTab==='db'||curTab==='profile'||curTab==='links')document.getElementById('mainContent').innerHTML=h;
 }
 
-document.getElementById('mainContent').innerHTML='<div class="loading"><div class="spinner"></div><p>Loading your dashboard...</p></div>';
+async function loadHomeNotices(cls,sec,sid){var db=await getDB();if(!db){document.getElementById('homeNotices').innerHTML='<p style="font-size:11px;color:var(--g500)">Not connected</p>';return}try{var classS=await db.collection('notes').where('class','==',cls).where('section','==',sec).where('type','==','Notice').get();var allS=await db.collection('notes').where('type','==','Notice').get();var data=classS.docs.concat(allS.docs.filter(function(d){return !d.data().class}));data=data.map(function(d){var r=d.data();r.id=d.id;return r}).sort(function(a,b){return(b.created_at||'').localeCompare(a.created_at||'')}).filter(function(v,i,a){return a.findIndex(function(t){return t.id===v.id})===i}).slice(0,3);if(!data.length){document.getElementById('homeNotices').innerHTML='<div class="notice-item"><strong>Registration Open 2026-2027</strong>Download prospectus from school website.</div><div class="notice-item"><strong>School Timings</strong>Monday-Saturday: 7:30 AM - 2:00 PM</div>';return}var h='';for(var i=0;i<data.length;i++){var n=data[i];h+='<div class="notice-item"><strong>'+esc(n.title)+'</strong>';if(n.nType)h+='<span class="badge bdg-r" style="margin-left:6px">'+esc(n.nType)+'</span>';h+='<div style="font-size:10px;color:var(--g500);margin-top:3px">By '+esc(n.teacher_name)+' | '+new Date(n.created_at).toLocaleDateString()+'</div></div>'}document.getElementById('homeNotices').innerHTML=h}catch(e){document.getElementById('homeNotices').innerHTML='<div class="notice-item"><strong>Registration Open 2026-2027</strong></div><div class="notice-item"><strong>School Timings</strong>Monday-Saturday: 7:30 AM - 2:00 PM</div>'}}
+
+document.getElementById('mainContent').innerHTML='<div class="loading"><div class="spinner"></div><p>Loading...</p></div>';
 loadData();
 })();
 </script>
