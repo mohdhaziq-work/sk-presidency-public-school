@@ -53,10 +53,12 @@ body{font-family:var(--f);background:var(--bg);color:var(--g800);-webkit-font-sm
 /* Assign table */
 .assign-tbl{width:100%;border-collapse:collapse;font-size:12px}
 .assign-tbl td{padding:6px 8px;border-bottom:1px solid var(--g100);vertical-align:middle}
-.assign-tbl td:first-child{font-weight:600;color:var(--g800);min-width:90px;font-size:11px}
-.assign-tbl select{width:100%;padding:7px 8px;border:1.5px solid var(--g300);border-radius:var(--rx);font-size:11px;font-family:var(--f);background:var(--w)}
+.assign-tbl td:first-child{font-weight:600;color:var(--g800);min-width:80px;font-size:11px}
+.assign-tbl th{padding:8px 8px 6px;text-align:left;font-size:9px;color:var(--g600);text-transform:uppercase;letter-spacing:.4px;border-bottom:2px solid var(--g200);background:var(--g50)}
+.assign-tbl select{width:100%;max-width:220px;padding:7px 8px;border:1.5px solid var(--g300);border-radius:var(--rx);font-size:11px;font-family:var(--f);background:var(--w)}
 .assign-tbl select:focus{outline:none;border-color:var(--p)}
-.assign-tbl .assigned-cell{font-size:10px;color:var(--g);font-weight:500;min-width:120px}
+.assign-tbl .assigned-cell{font-size:10px;color:var(--g);font-weight:500;min-width:100px}
+@media(max-width:500px){.assign-tbl td:first-child{min-width:60px;font-size:10px}.assign-tbl select{max-width:160px;font-size:10px}}
 @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}@keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
