@@ -172,10 +172,19 @@ async function loadPrevNotes(cls,sec){
 }
 
 _uploadFiles=[];
-window.handleFiles=function(input){var files=input.files;if(!files||!files.length)return;for(var i=0;i<files.length;i++){(function(file){if(file.size>10*1024*1024){alert(file.name+' too large (max 10MB)');return}var reader=new FileReader();reader.onload=function(e){_uploadFiles.push({name:file.name,type:file.type,size:file.size,data:e.target.result});showFilePreview()};reader.readAsDataURL(file)})(files[i])}input.value=''};
+window.handleFiles=function(input){var files=input.files;if(!files||!files.length)return;var pending=files.length;function checkDone(){pending--;if(pending===0)showFilePreview()}
+  for(var i=0;i<files.length;i++){(function(file){
+    if(file.size>10*1024*1024){alert(file.name+' too large (max 10MB)');checkDone();return}
+    var reader=new FileReader();
+    reader.onload=function(e){_uploadFiles.push({name:file.name,type:file.type,size:file.size,data:e.target.result});checkDone()};
+    reader.onerror=function(){alert('Failed to read: '+file.name);checkDone()};
+    reader.readAsDataURL(file)
+  })(files[i])}input.value=''};
 function showFilePreview(){var h='';for(var i=0;i<_uploadFiles.length;i++){var f=_uploadFiles[i];h+='<div class="file-preview">';if(f.type.indexOf('image/')===0)h+='<img src="'+esc(f.data)+'" alt="'+esc(f.name)+'">';else h+='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--r)" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg>';h+='<span>'+esc(f.name)+' ('+Math.round(f.size/1024)+'KB)</span><span class="fp-remove" onclick="removeFile('+i+')">×</span></div>'}document.getElementById('filePreview').innerHTML=h||''}
 window.removeFile=function(idx){_uploadFiles.splice(idx,1);showFilePreview()};
-window.uploadNote=async function(e,cls,sec,nm){e.preventDefault();var f=e.target;if(!f.subject.value||!f.title.value||!f.content.value){alert('Fill all fields');return false}var db=await getDB();if(!db){alert('Firebase not connected');return false}var btn=e.target.querySelector('button[type=submit]');btn.disabled=true;btn.textContent='Uploading...';var filesData=_uploadFiles.map(function(f){return{name:f.name,type:f.type,size:f.size,data:f.data}});try{await db.collection('notes').add({subject:f.subject.value,type:f.type.value,title:f.title.value,content:f.content.value,class:cls,section:sec,uploader_name:nm,student_id:sid,files:filesData,created_at:new Date().toISOString()});alert('Uploaded!');f.reset();_uploadFiles=[];showFilePreview();loadPrevNotes(cls,sec)}catch(er){alert('Failed: '+er.message)}btn.disabled=false;btn.textContent='Upload';return false};
+window.uploadNote=async function(e,cls,sec,nm){e.preventDefault();var f=e.target;if(!f.subject.value||!f.title.value||!f.content.value){alert('Fill all fields');return false}var db=await getDB();if(!db){alert('Firebase not connected');return false}var btn=e.target.querySelector('button[type=submit]');btn.disabled=true;btn.textContent='Uploading...';
+  var filesData=[];for(var i=0;i<_uploadFiles.length;i++){var uf=_uploadFiles[i];if(uf&&uf.name&&uf.data&&uf.data.length>0){filesData.push({name:uf.name,type:uf.type||'application/octet-stream',size:uf.size||0,data:uf.data})}}
+  try{await db.collection('notes').add({subject:f.subject.value,type:f.type.value,title:f.title.value,content:f.content.value,class:cls,section:sec,uploader_name:nm,student_id:sid,files:filesData.length?filesData:[],created_at:new Date().toISOString()});alert('Uploaded successfully!');f.reset();_uploadFiles=[];showFilePreview();loadPrevNotes(cls,sec)}catch(er){alert('Upload failed: '+er.message)}btn.disabled=false;btn.textContent='Upload Notes / Homework';return false};
 
 // ===== NOTICES (Real-time from Firestore) =====
 async function buildNoticesPage(cls,sec,sid,isAdmin){document.getElementById('mainContent').innerHTML='<div class="crd"><div class="crd-h"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--r)" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>Notices — Class '+cls+'-'+sec+'</div><div class="crd-b" id="noticesContent"><div class="loading"><div class="spinner"></div><p>Loading notices...</p></div></div></div>';loadNotices(cls,sec,sid,isAdmin)}
