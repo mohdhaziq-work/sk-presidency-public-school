@@ -1,0 +1,25 @@
+# Render.com Static + Web Service config
+services:
+  - type: web
+    name: skpp-next
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: "18"
+      - key: NEXT_PUBLIC_FIREBASE_API_KEY
+        value: AIzaSyDYHVi3c-cNvdcMON5wcPjRrJ1nxpdrw2Y
+      - key: NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
+        value: sk-presidency-public-school.firebaseapp.com
+      - key: NEXT_PUBLIC_FIREBASE_PROJECT_ID
+        value: sk-presidency-public-school
+      - key: NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
+        value: sk-presidency-public-school.firebasestorage.app
+      - key: NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
+        value: "808351998605"
+      - key: NEXT_PUBLIC_FIREBASE_APP_ID
+        value: 1:808351998605:web:0c8d072cfea4efa74278c4
+      - key: IMGBB_API_KEY
+        sync: false

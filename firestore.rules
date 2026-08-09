@@ -1,0 +1,71 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAuthenticated() { return request.auth != null; }
+    function isString(v) { return v is string; }
+    function minLen(v,n) { return isString(v) && v.size() >= n; }
+    function maxLen(v,n) { return isString(v) && v.size() <= n; }
+
+    // ── NOTES ─────────────────────────────────────────
+    match /notes/{docId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated()
+        && isString(request.resource.data.subject)
+        && isString(request.resource.data.type)
+        && isString(request.resource.data.class)
+        && isString(request.resource.data.section)
+        && isString(request.resource.data.content)
+        && request.resource.data.content.size() >= 1
+        && isString(request.resource.data.studentId)
+        && isString(request.resource.data.studentName)
+        && (request.resource.data.files == null || request.resource.data.files is list);
+      allow update: if isAuthenticated()
+        && isString(request.resource.data.content);
+      allow delete: if isAuthenticated();
+    }
+
+    // ── STUDENTS ──────────────────────────────────────
+    match /students/{studentId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated()
+        && isString(request.resource.data.full_name)
+        && minLen(request.resource.data.full_name, 3)
+        && isString(request.resource.data.class)
+        && isString(request.resource.data.section)
+        && isString(request.resource.data.father_name)
+        && isString(request.resource.data.parent_phone)
+        && request.resource.data.parent_phone.size() == 10;
+      allow update: if isAuthenticated()
+        && isString(request.resource.data.full_name);
+      allow delete: if isAuthenticated();
+    }
+
+    // ── TEACHERS ──────────────────────────────────────
+    match /teachers/{teacherId} {
+      allow read: if isAuthenticated();
+      allow create, update: if isAuthenticated()
+        && isString(request.resource.data.full_name)
+        && isString(request.resource.data.username)
+        && isString(request.resource.data.password);
+      allow delete: if isAuthenticated();
+    }
+
+    // ── CURRICULUM ────────────────────────────────────
+    match /curriculum/{docId} {
+      allow read: if isAuthenticated();
+      allow create, update: if isAuthenticated()
+        && isString(request.resource.data.class)
+        && isString(request.resource.data.name);
+      allow delete: if isAuthenticated();
+    }
+
+    // ── SETTINGS ──────────────────────────────────────
+    match /settings/{docId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    // ── DENY EVERYTHING ELSE ──────────────────────────
+    match /{document=**} { allow read, write: if false; }
+  }
+}
