@@ -17,5 +17,5 @@ export default function Page() {
   <li>Transfer Certificate (for Class 2 and above)</li>
   <li>Aadhar Card copy of student and parent</li>
 </ul>
-<div className="flex gap-3 flex-wrap"><a href="/Prospectus.pdf" className="inline-flex items-center gap-2 bg-blue-600 text-white px-4 py-2.5 rounded-xl text-xs font-semibold hover:bg-blue-700 transition">Download Prospectus</a><a href="/AdmissionForm.pdf" className="inline-flex items-center gap-2 bg-gray-100 text-gray-700 px-4 py-2.5 rounded-xl text-xs font-semibold hover:bg-gray-200 transition">Download Admission Form</a></div></InnerPageLayout>;
+<div className="flex gap-3 flex-wrap"><a href="https://www.skpresidency.com/Prospectus.pdf" className="inline-flex items-center gap-2 bg-blue-600 text-white px-4 py-2.5 rounded-xl text-xs font-semibold hover:bg-blue-700 transition">Download Prospectus</a><a href="https://www.skpresidency.com/AdmissionForm.pdf" className="inline-flex items-center gap-2 bg-gray-100 text-gray-700 px-4 py-2.5 rounded-xl text-xs font-semibold hover:bg-gray-200 transition">Download Admission Form</a></div></InnerPageLayout>;
 }

@@ -24,7 +24,7 @@ const SIDEBAR = [
   { href: '/fees', label: 'Fees Structure', icon: 'M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6', color: '#D97706' },
   { href: '/principal', label: "Principal's Message", icon: 'M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 7a4 4 0 100-8', color: '#4F46E5' },
   { href: '/eventcalendar', label: 'Event Calendar', icon: 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7', color: '#059669' },
-  { href: '/Prospectus.pdf', label: 'Download Prospectus', icon: 'M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10 12 15 17 10M12 15V3', color: '#0891B2' },
+  { href: 'https://www.skpresidency.com/Prospectus.pdf', label: 'Download Prospectus', icon: 'M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10 12 15 17 10M12 15V3', color: '#0891B2' },
 ];
 
 export default function InnerPageLayout({ title, subtitle, children }: { title: string; subtitle?: string; children: React.ReactNode }) {

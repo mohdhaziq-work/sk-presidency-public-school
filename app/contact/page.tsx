@@ -15,8 +15,8 @@ export default function Page() {
           <p>Web: skpresidency.com</p>
         </div>
         <div className="flex gap-3 flex-wrap">
-          <a href="/Prospectus.pdf" className="inline-flex items-center gap-1.5 bg-blue-600 text-white px-4 py-2.5 rounded-lg text-xs font-semibold hover:bg-blue-700 transition">Download Prospectus</a>
-          <a href="/AdmissionForm.pdf" className="inline-flex items-center gap-1.5 bg-gray-100 text-gray-700 px-4 py-2.5 rounded-lg text-xs font-semibold hover:bg-gray-200 transition">Admission Form</a>
+          <a href="https://www.skpresidency.com/Prospectus.pdf" className="inline-flex items-center gap-1.5 bg-blue-600 text-white px-4 py-2.5 rounded-lg text-xs font-semibold hover:bg-blue-700 transition">Download Prospectus</a>
+          <a href="https://www.skpresidency.com/AdmissionForm.pdf" className="inline-flex items-center gap-1.5 bg-gray-100 text-gray-700 px-4 py-2.5 rounded-lg text-xs font-semibold hover:bg-gray-200 transition">Admission Form</a>
         </div>
       </div>
       <div className="flex items-center justify-center"><img src="https://skpresidency.com/images/section-pic/contact.jpg" alt="Contact" className="rounded-xl w-full max-w-sm shadow-md" /></div>

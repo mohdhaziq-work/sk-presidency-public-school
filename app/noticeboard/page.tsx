@@ -7,7 +7,7 @@ export default function Page() {
       </div>
       <div className="bg-white rounded-xl p-5 border">
         <h4 className="font-bold mb-2">Prospectus 2026-27</h4>
-        <a href="/Prospectus.pdf" className="inline-flex items-center gap-1.5 text-blue-600 font-semibold text-sm hover:underline">Click for Prospectus 2026-27</a>
+        <a href="https://www.skpresidency.com/Prospectus.pdf" className="inline-flex items-center gap-1.5 text-blue-600 font-semibold text-sm hover:underline">Click for Prospectus 2026-27</a>
       </div>
       <div className="bg-white rounded-xl p-5 border">
         <h4 className="font-bold mb-2 text-green-700">The school has been approved for XII standard classes.</h4>

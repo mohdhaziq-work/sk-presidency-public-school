@@ -23,7 +23,7 @@ const SIDEBAR = [
   {h:'/aboutschool',l:'About School',i:'M22 10l-10-7L2 10M4 11v8M20 11v8M8 11v8h8v-8M12 18v-3',c:'#0F766E'},
   {h:'/sports',l:'School Sports',i:'M12 2a15.3 15.3 0 014 10M12 2a15.3 15.3 0 00-4 10M2 12h20',c:'#EA580C'},
   {h:'/principal',l:"Principal's Message",i:'M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 7a4 4 0 100-8',c:'#4F46E5'},
-  {h:'/Prospectus.pdf',l:'Download Prospectus',i:'M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10 12 15 17 10M12 15V3',c:'#0891B2'},
+  {h:'https://www.skpresidency.com/Prospectus.pdf',l:'Download Prospectus',i:'M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10 12 15 17 10M12 15V3',c:'#0891B2'},
 ];
 
 export default function HomePage() {
@@ -91,11 +91,11 @@ export default function HomePage() {
       <div className="bg-blue-600 text-white overflow-hidden"><div className="flex items-center gap-2 px-5 py-2 max-w-6xl mx-auto">
         <span className="text-[9px] font-bold bg-white/20 px-2 py-0.5 rounded-full flex-shrink-0">LATEST</span>
         <div className="overflow-hidden"><div className="flex gap-12 text-xs whitespace-nowrap animate-[ticker_30s_linear_infinite]">
-          <a href="/Prospectus.pdf" className="text-white/90 hover:text-white">Registration Open 2026-2027</a><span className="opacity-30">|</span>
-          <a href="/AdmissionForm.pdf" className="text-white/90 hover:text-white">Admission Form</a><span className="opacity-30">|</span>
+          <a href="https://www.skpresidency.com/Prospectus.pdf" className="text-white/90 hover:text-white">Registration Open 2026-2027</a><span className="opacity-30">|</span>
+          <a href="https://www.skpresidency.com/AdmissionForm.pdf" className="text-white/90 hover:text-white">Admission Form</a><span className="opacity-30">|</span>
           <span>CBSE: 2133231 | Contact: 86017 35757</span><span className="opacity-30">|</span>
-          <a href="/Prospectus.pdf" className="text-white/90 hover:text-white">Registration Open 2026-2027</a><span className="opacity-30">|</span>
-          <a href="/AdmissionForm.pdf" className="text-white/90 hover:text-white">Admission Form</a>
+          <a href="https://www.skpresidency.com/Prospectus.pdf" className="text-white/90 hover:text-white">Registration Open 2026-2027</a><span className="opacity-30">|</span>
+          <a href="https://www.skpresidency.com/AdmissionForm.pdf" className="text-white/90 hover:text-white">Admission Form</a>
         </div></div>
       </div></div>
 
@@ -191,11 +191,11 @@ export default function HomePage() {
                 <h3 className="font-bold text-lg mb-2">Registration Open For Session 2026-2027</h3>
                 <p className="text-blue-100 text-sm mb-4">Contact <strong className="text-white">86017 35757, 86017 38180</strong></p>
                 <div className="flex gap-3">
-                  <a href="/Prospectus.pdf" className="bg-white text-blue-700 px-4 py-2.5 rounded-xl text-xs font-bold hover:bg-blue-50 transition">Prospectus</a>
-                  <a href="/AdmissionForm.pdf" className="bg-white/15 text-white px-4 py-2.5 rounded-xl text-xs font-bold hover:bg-white/25 transition">Admission Form</a>
+                  <a href="https://www.skpresidency.com/Prospectus.pdf" className="bg-white text-blue-700 px-4 py-2.5 rounded-xl text-xs font-bold hover:bg-blue-50 transition">Prospectus</a>
+                  <a href="https://www.skpresidency.com/AdmissionForm.pdf" className="bg-white/15 text-white px-4 py-2.5 rounded-xl text-xs font-bold hover:bg-white/25 transition">Admission Form</a>
                 </div>
               </div>
-              <div className="bg-white border rounded-2xl p-4"><div className="flex items-start gap-2"><span className="w-2 h-2 rounded-full bg-green-500 mt-1.5 flex-shrink-0"/><div><p className="text-sm font-semibold">XII standard classes approved</p><a href="/Prospectus.pdf" className="text-[11px] text-blue-600 font-semibold hover:underline">Prospectus 2026-2027</a></div></div></div>
+              <div className="bg-white border rounded-2xl p-4"><div className="flex items-start gap-2"><span className="w-2 h-2 rounded-full bg-green-500 mt-1.5 flex-shrink-0"/><div><p className="text-sm font-semibold">XII standard classes approved</p><a href="https://www.skpresidency.com/Prospectus.pdf" className="text-[11px] text-blue-600 font-semibold hover:underline">Prospectus 2026-2027</a></div></div></div>
               <div className="bg-white border rounded-2xl p-4"><div className="flex items-start gap-2"><span className="w-2 h-2 rounded-full bg-green-500 mt-1.5 flex-shrink-0"/><div><p className="text-sm font-semibold">Plant Tree campaign by HDFC Bank</p><Link href="/eventcalendar" className="text-[11px] text-blue-600 font-semibold hover:underline">Details</Link></div></div></div>
               <div className="bg-white border rounded-2xl p-4"><div className="flex items-start gap-2"><span className="w-2 h-2 rounded-full bg-green-500 mt-1.5 flex-shrink-0"/><div><p className="text-sm font-semibold">Mango Day celebrated on 14th July, 2023</p><Link href="/eventcalendar" className="text-[11px] text-blue-600 font-semibold hover:underline">Details</Link></div></div></div>
             </div>
