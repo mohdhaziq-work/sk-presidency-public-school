@@ -41,8 +41,12 @@ export default function InnerPageLayout({ title, subtitle, children }: { title: 
         </Link>
         <div className="flex items-center gap-2">
           <Link href="/student" className="text-xs font-semibold bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 hover:shadow-lg transition-all active:scale-[0.97]">Student Login</Link>
-          <button onClick={() => setNavOpen(!navOpen)} className="sm:hidden p-1.5 border border-gray-200 rounded-lg">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          <button onClick={() => setNavOpen(!navOpen)} className="sm:hidden relative w-9 h-9 rounded-xl bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center shadow-md hover:shadow-lg hover:from-blue-700 hover:to-blue-800 transition-all active:scale-95">
+            <div className="w-4 h-3 flex flex-col justify-between">
+              <span className={`block w-full h-[2px] bg-white rounded-full transition-all duration-300 origin-center ${navOpen ? 'rotate-45 translate-y-[5px]' : ''}`}/>
+              <span className={`block w-full h-[2px] bg-white rounded-full transition-all duration-300 ${navOpen ? 'opacity-0 scale-x-0' : ''}`}/>
+              <span className={`block w-full h-[2px] bg-white rounded-full transition-all duration-300 origin-center ${navOpen ? '-rotate-45 -translate-y-[5px]' : ''}`}/>
+            </div>
           </button>
         </div>
       </header>
@@ -60,16 +64,85 @@ export default function InnerPageLayout({ title, subtitle, children }: { title: 
         </div>
       </nav>
 
-      {navOpen && (
-        <div className="sm:hidden bg-blue-700 flex flex-col">
-          {NAV.map(n => (
-            <Link key={n.href} href={n.href} onClick={() => setNavOpen(false)}
-              className={`px-4 py-2.5 text-xs font-medium border-b border-blue-600/50 ${
-                pathname === n.href ? 'text-white bg-white/10 font-semibold' : 'text-blue-100'
-              }`}>{n.label}</Link>
-          ))}
+      {/* ═══ MOBILE SLIDE-IN MENU ═══ */}
+      <div className={`sm:hidden fixed inset-0 z-[60] transition-opacity duration-300 ${navOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+        {/* Backdrop */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/60 via-black/50 to-indigo-900/60 backdrop-blur-sm" onClick={() => setNavOpen(false)}/>
+
+        {/* Panel — slides from right */}
+        <div className={`absolute top-0 right-0 bottom-0 w-[300px] max-w-[85vw] bg-white shadow-2xl flex flex-col transition-transform duration-400 ease-out ${navOpen ? 'translate-x-0' : 'translate-x-full'}`} style={{transitionDuration:'400ms',transitionTimingFunction:'cubic-bezier(0.16,1,0.3,1)'}}>
+
+          {/* Header */}
+          <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-5 py-6 flex-shrink-0">
+            <div className="flex items-center justify-between mb-4">
+              <Link href="/" onClick={() => setNavOpen(false)} className="flex items-center gap-2.5">
+                <img src="/images/logo-transparent.png" alt="SKPPS" className="w-9 h-9 object-contain rounded-lg"/>
+                <div className="text-white">
+                  <div className="font-bold text-sm tracking-tight leading-tight">SK Presidency</div>
+                  <div className="text-[9px] text-blue-200 tracking-wide">Public School</div>
+                </div>
+              </Link>
+              <button onClick={() => setNavOpen(false)} className="w-8 h-8 rounded-full bg-white/15 hover:bg-white/25 flex items-center justify-center text-white transition">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+              </button>
+            </div>
+            <div className="flex gap-2">
+              <Link href="/student" onClick={() => setNavOpen(false)} className="flex-1 text-center py-2 bg-white text-blue-700 rounded-lg text-[11px] font-bold hover:bg-blue-50 transition">Student Login</Link>
+              <Link href="/staff" onClick={() => setNavOpen(false)} className="flex-1 text-center py-2 bg-white/15 text-white rounded-lg text-[11px] font-bold hover:bg-white/25 transition">Staff</Link>
+            </div>
+          </div>
+
+          {/* Navigation Links */}
+          <div className="flex-1 overflow-y-auto py-3 px-4">
+            <div className="text-[9px] font-bold uppercase tracking-[0.15em] text-gray-400 mb-2 px-2">Main Navigation</div>
+            {NAV.map((n, i) => {
+              const active = pathname === n.href;
+              return (
+                <Link key={n.href} href={n.href} onClick={() => setNavOpen(false)}
+                  className={`flex items-center gap-3 px-3 py-3 rounded-xl mb-0.5 text-sm font-medium transition-all ${
+                    active
+                      ? 'bg-blue-50 text-blue-600 font-semibold shadow-[inset_0_0_0_1px_rgba(37,99,235,.2)]'
+                      : 'text-gray-600 hover:bg-gray-50 hover:text-gray-800'
+                  }`}
+                  style={{animationDelay: `${i * 0.03}s`}}
+                >
+                  <span className={`w-2 h-2 rounded-full flex-shrink-0 transition-all ${active ? 'bg-blue-600 scale-125 shadow-[0_0_8px_rgba(37,99,235,.4)]' : 'bg-gray-300'}`}/>
+                  {n.label}
+                  {active && <span className="ml-auto text-[10px] text-blue-400">● Active</span>}
+                </Link>
+              );
+            })}
+
+            <div className="my-4 border-t border-gray-100"/>
+
+            <div className="text-[9px] font-bold uppercase tracking-[0.15em] text-gray-400 mb-2 px-2">Quick Links</div>
+            {SIDEBAR.map((s, i) => {
+              const active = pathname === s.href;
+              return (
+                <Link key={s.href} href={s.href} onClick={() => setNavOpen(false)}
+                  className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl mb-0.5 text-xs font-medium transition-all ${
+                    active
+                      ? 'bg-blue-50 text-blue-600 font-semibold'
+                      : 'text-gray-500 hover:bg-gray-50 hover:text-gray-700'
+                  }`}
+                  style={{animationDelay: `${(i + NAV.length) * 0.03}s`}}
+                >
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={active ? s.color : 'currentColor'} strokeWidth="2" opacity={active ? 1 : 0.4}><path d={s.icon}/></svg>
+                  {s.label}
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* Footer */}
+          <div className="flex-shrink-0 px-4 py-3 border-t border-gray-100 bg-gray-50">
+            <div className="flex items-center justify-between text-[9px] text-gray-400">
+              <span>CBSE: 2133231</span>
+              <span>Astra Infotech</span>
+            </div>
+          </div>
         </div>
-      )}
+      </div>
 
       <div className="max-w-6xl mx-auto px-5 py-8">
         <div className="flex gap-8">
