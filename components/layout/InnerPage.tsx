@@ -35,7 +35,7 @@ export default function InnerPageLayout({ title, subtitle, children }: { title: 
       <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
         <div className="max-w-6xl mx-auto flex items-center gap-3 py-2.5 px-5">
           <Link href="/" className="flex items-center gap-2 flex-shrink-0">
-            <span className="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center text-[11px] font-extrabold">SK</span>
+            <img src="/images/logo-transparent.png" alt="SKPPS" className="w-8 h-8 object-contain rounded-lg" onError={(e:any)=>{e.target.style.display="none";e.target.nextSibling.style.display="flex"}}/><span className="w-8 h-8 rounded-lg bg-blue-600 text-white items-center justify-center text-[11px] font-extrabold hidden">SK</span>
             <div className="hidden sm:block leading-tight"><div className="font-bold text-xs tracking-tight">SK Presidency Public School</div><div className="text-[9px] text-gray-400">CBSE: 2133231 | Sultanpur, UP</div></div>
           </Link>
           <div className="flex items-center gap-1.5 ml-auto">

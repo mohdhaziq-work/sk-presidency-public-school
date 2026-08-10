@@ -1,7 +1,25 @@
 import InnerPageLayout from '@/components/layout/InnerPage';
-
 export default function Page() {
-  return <InnerPageLayout title="Contact Us" subtitle="Get in touch with SK Presidency Public School">
-    <div className="grid md:grid-cols-2 gap-6 mb-6"><div className="space-y-3"><div className="flex gap-3"><div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2563EB" strokeWidth="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><div className="font-semibold text-xs">Address</div><p className="text-xs text-gray-500">Vill. Odara, Faizabad Sultanpur Bypass, Near Tantia Nagar, Sultanpur, UP — 228001</p></div></div><div className="flex gap-3"><div className="w-8 h-8 rounded-lg bg-green-50 flex items-center justify-center flex-shrink-0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07"/></svg></div><div><div className="font-semibold text-xs">Phone</div><p className="text-xs text-gray-500">86017 35757 | 86017 38180</p></div></div><div className="flex gap-3"><div className="w-8 h-8 rounded-lg bg-amber-50 flex items-center justify-center flex-shrink-0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D97706" strokeWidth="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div className="font-semibold text-xs">Email</div><p className="text-xs text-gray-500">hrskpps@gmail.com</p></div></div></div><div className="bg-gray-50 rounded-xl p-5"><h4 className="font-bold mb-2">School Hours</h4><p className="text-xs text-gray-500 space-y-1">Monday–Saturday: 7:30 AM — 2:00 PM<br/>Sunday: Closed</p></div></div>
-  </InnerPageLayout>;
+  return <InnerPageLayout title="Contact"><div className="grid md:grid-cols-2 gap-6">
+      <div>
+        <div className="bg-gray-50 rounded-xl p-5 mb-4">
+          <h3 className="font-bold text-sm mb-2">SK Presidency Public School</h3>
+          <p className="text-xs text-gray-500 mb-3">Founded by Dr. Shrikant Upadhyaya Educational and Charitable Trust</p>
+          <div className="space-y-2 text-xs">
+            <div><span className="font-semibold">CBSE Affiliation Number:</span> <span className="font-bold text-blue-600">2133231</span></div>
+            <div><span className="font-semibold">Manager:</span> Shri Rajesh Upadhyaya</div>
+            <div><span className="font-semibold">Address:</span> Faizabad-Sultanpur Bypass, Near Gomti Bridge, Odara, Sultanpur</div>
+            <div><span className="font-semibold">Pincode:</span> 228001, Uttar Pradesh</div>
+            <div><span className="font-semibold">Phone:</span> 8601735757, 8601738180</div>
+            <div><span className="font-semibold">E-mail:</span> office@skpresidency.com, hrskpps@gmail.com</div>
+            <div><span className="font-semibold">Web:</span> skpresidency.com</div>
+          </div>
+        </div>
+        <div className="flex gap-3">
+          <a href="/Prospectus.pdf" className="text-xs font-semibold bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Download Prospectus</a>
+          <a href="/AdmissionForm.pdf" className="text-xs font-semibold bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200">Admission Form</a>
+        </div>
+      </div>
+      <div className="bg-gray-100 rounded-xl flex items-center justify-center min-h-[250px] text-gray-400 text-sm">📷 Contact Image</div>
+    </div></InnerPageLayout>;
 }

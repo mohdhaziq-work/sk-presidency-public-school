@@ -1,7 +1,24 @@
 import InnerPageLayout from '@/components/layout/InnerPage';
-
 export default function Page() {
-  return <InnerPageLayout title="Vision & Mission" subtitle="Our guiding principles and core values">
-    <div className="space-y-5"><div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-5 border border-blue-200"><h3 className="font-bold text-blue-800 mb-2">Our Vision</h3><p className="text-sm text-blue-700">To be a center of excellence in education that nurtures inquisitive minds, fosters creativity, and develops responsible global citizens rooted in Indian values.</p></div><div className="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-xl p-5 border border-emerald-200"><h3 className="font-bold text-emerald-800 mb-2">Our Mission</h3><ul className="list-disc ml-5 space-y-1 text-sm text-emerald-700"><li>Provide quality CBSE education accessible to all sections of society</li><li>Create a safe, inclusive, and stimulating learning environment</li><li>Develop critical thinking, problem-solving, and communication skills</li><li>Instill moral values, discipline, and respect for Indian culture</li><li>Prepare students for board examinations and competitive entrance tests</li></ul></div><div className="grid sm:grid-cols-4 gap-3 text-center">{[{v:"Excellence",c:"bg-blue-50 text-blue-700"},{v:"Integrity",c:"bg-emerald-50 text-emerald-700"},{v:"Innovation",c:"bg-purple-50 text-purple-700"},{v:"Compassion",c:"bg-amber-50 text-amber-700"}].map((v,i)=>(<div key={i} className={v.c+" rounded-xl p-3"}><div className="font-bold text-sm">{v.v}</div></div>))}</div></div>
-  </InnerPageLayout>;
+  return <InnerPageLayout title="Vision & Mission"><div className="grid md:grid-cols-2 gap-6 mb-6">
+      <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-5">
+        <h3 className="font-bold text-blue-800 mb-2">Our Mission</h3>
+        <p className="text-sm text-blue-700">To prepare the future generations with academic excellence and practical skill sets needed to face global challenges and lead the country into the world of the future.</p>
+      </div>
+      <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-xl p-5">
+        <h3 className="font-bold text-emerald-800 mb-2">Our Vision</h3>
+        <p className="text-sm text-emerald-700">To establish ourselves as a leading school providing education of highest standards with integrity, consistency and due diligence.</p>
+      </div>
+    </div>
+    <h3 className="font-bold mb-3">Our Sincere Efforts Are</h3>
+    <ul className="list-disc ml-5 space-y-2 text-sm leading-relaxed">
+      <li>Help students become mature, value-oriented citizens</li>
+      <li>Encourage them to continually strive for excellence</li>
+      <li>Dispose them to value freedom and use it judiciously</li>
+      <li>Teach them to be courageous and firm on principles</li>
+      <li>Inspire them to be selfless while serving others</li>
+      <li>Instil in them the drive and will to initiate social change</li>
+      <li>Train them to acquire good habits, sense of cleanliness and orderliness so as to prepare them to become a good citizen</li>
+      <li>Teach them good English to be at par international standard</li>
+    </ul></InnerPageLayout>;
 }

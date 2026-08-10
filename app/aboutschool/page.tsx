@@ -1,24 +1,19 @@
 import InnerPageLayout from '@/components/layout/InnerPage';
 export default function Page() {
-  return <InnerPageLayout title="About Our School" subtitle="Founded 2013 — Dr. Shrikant Upadhyaya Educational & Charitable Trust"><p className="mb-4">SK Presidency Public School is a CBSE-affiliated (2133231) Senior Secondary School located in Sultanpur, Uttar Pradesh. Founded in 2013 under the Dr. Shrikant Upadhyaya Educational and Charitable Trust, the school has grown into a premier educational institution serving students from Play Group to Class XII.</p>
-<div className="bg-blue-50 border border-blue-200 rounded-xl p-5 mb-5">
-  <h3 className="font-bold text-blue-800 mb-2">Our Mission</h3>
-  <p className="text-blue-700 text-sm">To provide world-class education that nurtures academic excellence, character building, and holistic development in every child. We believe education goes beyond textbooks — it shapes future leaders.</p>
-</div>
-<h3 className="font-bold mb-2">School Infrastructure</h3>
-<ul className="list-disc ml-5 space-y-1 mb-4 text-sm">
-  <li>Spacious, well-ventilated classrooms with smart boards</li>
-  <li>Science laboratories for Physics, Chemistry, and Biology</li>
-  <li>Computer lab with high-speed internet</li>
-  <li>Library with 5000+ books and digital resources</li>
-  <li>Sports grounds for cricket, football, volleyball</li>
-  <li>Indoor activity rooms for art, music, and dance</li>
-</ul>
-<h3 className="font-bold mb-2">Academics</h3>
-<p className="mb-4">We follow the CBSE curriculum with a strong emphasis on conceptual understanding and practical application. Regular assessments, remedial classes, and parent-teacher meetings ensure every student receives individual attention.</p>
-<div className="grid sm:grid-cols-3 gap-3 mb-4 text-center">
-  <div className="bg-gray-50 rounded-xl p-4"><div className="text-2xl font-extrabold text-blue-600">800+</div><div className="text-[10px] font-bold uppercase text-gray-400 mt-1">Students</div></div>
-  <div className="bg-gray-50 rounded-xl p-4"><div className="text-2xl font-extrabold text-blue-600">40+</div><div className="text-[10px] font-bold uppercase text-gray-400 mt-1">Teachers</div></div>
-  <div className="bg-gray-50 rounded-xl p-4"><div className="text-2xl font-extrabold text-blue-600">15+</div><div className="text-[10px] font-bold uppercase text-gray-400 mt-1">Years</div></div>
-</div></InnerPageLayout>;
+  return <InnerPageLayout title="About the School"><div className="grid md:grid-cols-2 gap-6 mb-6">
+      <div>
+        <p className="mb-3 text-sm leading-relaxed">The School is a place where children are encouraged to say <em>"I see it, I get it, I can do it."</em> Environment should be created to make the siblings grow in conducive ambience. Power of expression, power of writing and power of imagining make a child to develop. It all starts with the preparatory stages till the end of adolescence. The school is having Play Group to Standard XII classes.</p>
+        <p className="mb-3 text-sm leading-relaxed">We, at S K Presidency Public School, are dedicated to provide each of our students with complete learning experience. A combination of world class academic curriculum along with varied co-curricular and sporting activities will enrich them as well as develop their personalities keeping a balance between discipline and fun.</p>
+      </div>
+      <div className="bg-gray-100 rounded-xl flex items-center justify-center min-h-[200px] text-gray-400 text-sm">📷 About School Image</div>
+    </div>
+    <h3 className="font-bold mb-2">Our Objectives</h3>
+    <ul className="list-disc ml-5 space-y-1.5 mb-4 text-sm leading-relaxed">
+      <li>Our primary aim is to impart to our students a sound moral education based on the rules and the principles. Our primary aim is to educate our future generation within a dynamic system with academic excellence and help the students naturally become value oriented citizens.</li>
+      <li>Educate, then to continually strive for excellence.</li>
+      <li>Train them to acquire good habits, a sense of cleanliness, orderliness and to become a good and responsible citizen.</li>
+      <li>Teach them to be courageous and firm.</li>
+      <li>Attain self reliance through a balance of freedom and discipline within the body, mind and spirit.</li>
+    </ul>
+    <p className="text-sm leading-relaxed mb-4">Time is the most valuable thing a person can spend. At S K Presidency Public School, a student gets every opportunity for exploration. Knowledge, challenges and excellence along with valuable virtues of life and time are the most important ones. Students spend a well-planned and balanced day in the school involving curricular and co-curricular activities. We, at S K Presidency Public School, are dedicated to ensure that every aspect of a child in his or her formative years are taken care of. Their health, their education, their persona and their values. Our libraries and labs are the window to the world for the students. The smart classes make studies more interesting and lucid for them. Frequent workshops and seminars keep the students and teachers upbeat and enhance the valued situation.</p></InnerPageLayout>;
 }
