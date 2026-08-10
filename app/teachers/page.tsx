@@ -1,7 +1,11 @@
 import InnerPageLayout from '@/components/layout/InnerPage';
-
 export default function Page() {
-  return <InnerPageLayout title="Our Teachers" subtitle="Dedicated educators shaping young minds">
-    <p className="mb-4">SK Presidency Public School takes pride in its team of 40+ qualified, experienced, and passionate educators committed to nurturing every child.</p><div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-5 mb-4"><h4 className="font-bold text-blue-800 mb-2">Faculty Strength</h4><div className="grid grid-cols-3 gap-3 text-center">{[{n:"40+",l:"Teachers"},{n:"80%",l:"B.Ed Qualified"},{n:"15+",l:"Avg Experience"}].map((s,i)=>(<div key={i} className="bg-white/60 rounded-lg p-3"><div className="text-xl font-extrabold text-blue-700">{s.n}</div><div className="text-[9px] font-bold uppercase text-blue-400 mt-0.5">{s.l}</div></div>))}</div></div><h4 className="font-bold mb-2">Departments</h4><div className="grid grid-cols-2 gap-2">{[{d:"English",n:5},{d:"Hindi & Sanskrit",n:4},{d:"Mathematics",n:6},{d:"Science",n:5},{d:"Social Studies",n:4},{d:"Computer Science",n:3},{d:"Physical Education",n:2},{d:"Art & Music",n:2}].map((d,i)=>(<div key={i} className="flex justify-between items-center bg-gray-50 rounded-lg px-3 py-2"><span className="text-xs font-medium">{d.d}</span><span className="text-[10px] text-gray-400">{d.n} teachers</span></div>))}</div>
-  </InnerPageLayout>;
+  return <InnerPageLayout title="Teachers"><div className="grid md:grid-cols-2 gap-6 mb-6">
+      <div className="text-sm leading-relaxed text-gray-700">
+        <p className="mb-3">In SK Presidency, we are proud to have a group of highly dedicated team of teachers headed by an able Principal. Specially trained teachers are being inducted from Kerala to practice fluent English. These teachers are the driving force behind school's success in terms of student strength and reputation.</p>
+        <p>We acknowledge the contribution of our dear teachers for the growth of the school. We thank them for accepting and imbibing our ethos, values and philosophy of leading by examples in their professional and private lives as responsible teachers having a special place in Indian society.</p>
+      </div>
+      <div className="flex items-center justify-center"><img src="https://skpresidency.com/images/section-pic/teacher-1.jpg" alt="Teachers" className="rounded-xl w-full max-w-sm shadow-md" /></div>
+    </div>
+    <img src="https://skpresidency.com/images/section-pic/teacher-2.jpg" alt="Teachers Group" className="rounded-xl w-full shadow-md mt-2" /></InnerPageLayout>;
 }

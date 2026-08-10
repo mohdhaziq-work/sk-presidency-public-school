@@ -1,7 +1,6 @@
 import InnerPageLayout from '@/components/layout/InnerPage';
-
 export default function Page() {
-  return <InnerPageLayout title="Principal's Message" subtitle="Words from our leadership">
-    <div className="flex flex-col items-center text-center mb-6"><div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center mb-3"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#2563EB" strokeWidth="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><h3 className="font-bold text-lg">Mr. S M Mishra</h3><p className="text-xs text-gray-400">Principal, SK Presidency Public School</p></div><div className="bg-blue-50 rounded-xl p-5 border border-blue-200"><p className="text-sm text-blue-800 leading-relaxed italic">"At SK Presidency Public School, we believe every child has unique potential waiting to be discovered. Our mission is to create an environment where students can explore their strengths, develop character, and prepare for a bright future. We combine academic rigor with values-based education to nurture well-rounded individuals who will become the leaders of tomorrow."</p></div><p className="text-xs text-gray-500 mt-4">The Principal personally oversees academic planning, teacher development, and student welfare programs. Parents are encouraged to schedule meetings to discuss their child&apos;s progress.</p>
-  </InnerPageLayout>;
+  return <InnerPageLayout title="Principal's Message"><div className="flex justify-center mb-6">
+      <img src="https://skpresidency.com/images/principal-message.jpg" alt="Principal's Message" className="rounded-xl max-w-full shadow-md" />
+    </div></InnerPageLayout>;
 }
