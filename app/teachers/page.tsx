@@ -1,0 +1,7 @@
+import InnerPageLayout from '@/components/layout/InnerPage';
+
+export default function Page() {
+  return <InnerPageLayout title="Our Teachers" subtitle="Dedicated educators shaping young minds">
+    <p className="mb-4">SK Presidency Public School takes pride in its team of 40+ qualified, experienced, and passionate educators committed to nurturing every child.</p><div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-5 mb-4"><h4 className="font-bold text-blue-800 mb-2">Faculty Strength</h4><div className="grid grid-cols-3 gap-3 text-center">{[{n:"40+",l:"Teachers"},{n:"80%",l:"B.Ed Qualified"},{n:"15+",l:"Avg Experience"}].map((s,i)=>(<div key={i} className="bg-white/60 rounded-lg p-3"><div className="text-xl font-extrabold text-blue-700">{s.n}</div><div className="text-[9px] font-bold uppercase text-blue-400 mt-0.5">{s.l}</div></div>))}</div></div><h4 className="font-bold mb-2">Departments</h4><div className="grid grid-cols-2 gap-2">{[{d:"English",n:5},{d:"Hindi & Sanskrit",n:4},{d:"Mathematics",n:6},{d:"Science",n:5},{d:"Social Studies",n:4},{d:"Computer Science",n:3},{d:"Physical Education",n:2},{d:"Art & Music",n:2}].map((d,i)=>(<div key={i} className="flex justify-between items-center bg-gray-50 rounded-lg px-3 py-2"><span className="text-xs font-medium">{d.d}</span><span className="text-[10px] text-gray-400">{d.n} teachers</span></div>))}</div>
+  </InnerPageLayout>;
+}

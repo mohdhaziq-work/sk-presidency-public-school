@@ -1,0 +1,7 @@
+import InnerPageLayout from '@/components/layout/InnerPage';
+
+export default function Page() {
+  return <InnerPageLayout title="Smart Classroom" subtitle="Technology-enabled modern learning environments">
+    <p className="mb-4">All classrooms at SK Presidency Public School are equipped with modern smart class technology to make learning engaging, interactive, and effective.</p><div className="grid sm:grid-cols-2 gap-4 mb-4">{[{t:"Digital Smart Boards",d:"Interactive touch-enabled boards with multimedia support for visual learning."},{t:"Projectors",d:"High-resolution projectors in every classroom for presentations and video lessons."},{t:"Audio Systems",d:"Clear audio systems ensure every student can hear and participate effectively."},{t:"Internet Access",d:"High-speed WiFi across campus for research and digital learning resources."},{t:"Educational Software",d:"CBSE-aligned digital content, animated lessons, and practice modules."},{t:"Online Assessments",d:"Digital tests and quizzes with instant results and performance analytics."}].map((f,i)=>(<div key={i} className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-4"><h4 className="font-bold text-xs text-blue-800">{f.t}</h4><p className="text-[11px] text-blue-600 mt-1">{f.d}</p></div>))}</div>
+  </InnerPageLayout>;
+}

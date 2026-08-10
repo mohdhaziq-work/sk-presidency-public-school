@@ -1,0 +1,7 @@
+import InnerPageLayout from '@/components/layout/InnerPage';
+
+export default function Page() {
+  return <InnerPageLayout title="Rules & Regulations" subtitle="School code of conduct and policies">
+    <div className="space-y-4">{[{t:"Attendance",d:"Minimum 75% attendance is mandatory. Students must arrive by 7:25 AM. Late arrivals need guardian escort."},{t:"Uniform",d:"Complete school uniform is mandatory. House T-shirt on Saturdays. Black shoes with white socks."},{t:"Discipline",d:"Zero tolerance for bullying, violence, or misconduct. Respect for teachers and peers is fundamental."},{t:"Mobile Phones",d:"Mobile phones are strictly prohibited on campus. Confiscated phones will be returned only to parents."},{t:"Examinations",d:"Two term exams + unit tests. Promotion is based on cumulative performance across all assessments."},{t:"Fee Payment",d:"Fees must be paid by the 10th of each month. Late payment attracts a fine of Rs. 50 per day."}].map((r,i)=>(<div key={i} className="bg-white border border-gray-200 rounded-xl p-4 hover:shadow-sm transition"><div className="flex items-start gap-3"><div className="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-[10px] font-bold flex-shrink-0 mt-0.5">{i+1}</div><div><h4 className="font-bold text-sm">{r.t}</h4><p className="text-xs text-gray-500 mt-1">{r.d}</p></div></div></div>))}</div>
+  </InnerPageLayout>;
+}

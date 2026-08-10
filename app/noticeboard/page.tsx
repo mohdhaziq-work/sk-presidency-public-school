@@ -1,0 +1,7 @@
+import InnerPageLayout from '@/components/layout/InnerPage';
+
+export default function Page() {
+  return <InnerPageLayout title="Notice Board" subtitle="Latest announcements and school updates">
+    <div className="space-y-3">{[{t:"Registration Open 2026-2027",d:"Admissions are now open for the academic session 2026-2027 for all classes from Play Group to Class XII. Contact school office for details.",date:"April 2026",badge:"New"},{t:"Approved for XII Standard Classes",d:"SK Presidency Public School has received CBSE approval for Senior Secondary (Class XI-XII) classes. New admissions welcome.",date:"March 2026",badge:"Important"},{t:"Summer Vacation Schedule",d:"School will remain closed for summer vacation from May 15 to June 30. School reopens on July 1.",date:"May 2026",badge:"Holiday"},{t:"Annual Sports Meet Results",d:"Congratulations to all participants! Fire House won the overall championship trophy. Individual event winners will receive certificates.",date:"February 2026",badge:"Sports"}].map((n,i)=>(<div key={i} className="bg-gray-50 rounded-xl p-4 border border-gray-200 hover:shadow-md transition"><div className="flex justify-between items-start gap-2 mb-1"><strong className="text-sm">{n.t}</strong><span className="text-[9px] font-bold bg-blue-50 text-blue-600 px-2 py-0.5 rounded">{n.badge}</span></div><p className="text-xs text-gray-500">{n.d}</p><p className="text-[10px] text-gray-400 mt-2">{n.date}</p></div>))}</div>
+  </InnerPageLayout>;
+}
