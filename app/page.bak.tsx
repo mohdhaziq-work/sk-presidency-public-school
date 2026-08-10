@@ -1,7 +1,6 @@
 'use client';
 import Link from 'next/link';
 import { useState } from 'react';
-import { FadeIn, StaggerContainer } from '@/components/ui/animations';
 
 const NAV = [
   { href: '/', label: 'Home' },
@@ -114,7 +113,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="hidden md:flex justify-center">
-              <div className="w-44 h-44 rounded-full bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center animate-[float_6s_ease-in-out_infinite] shadow-xl shadow-blue-100/30 hover:shadow-2xl hover:shadow-blue-200/40 transition-shadow duration-500">
+              <div className="w-44 h-44 rounded-full bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center animate-[float_6s_ease-in-out_infinite] shadow-xl shadow-blue-100/30">
                 <img src="/images/logo-transparent.png" alt="SKPPS" className="w-20 h-20 object-contain"/>
               </div>
             </div>
@@ -123,9 +122,9 @@ export default function HomePage() {
       </section>
 
       {/* ═══ STATS ═══ */}
-      <div className="bg-white border-y border-gray-200"><div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-gray-100 text-center stagger">
+      <div className="bg-white border-y border-gray-200"><div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-gray-100 text-center">
         {[{n:'800+',l:'Students'},{n:'40+',l:'Teachers'},{n:'15+',l:'Years'},{n:'100%',l:'Results'}].map((s,i)=>(
-          <div key={i} className="py-8 px-4"><div className="text-3xl md:text-4xl font-black tracking-tight transition-all duration-300">{s.n}</div><div className="text-[10px] font-bold uppercase tracking-[0.12em] text-gray-400 mt-1">{s.l}</div></div>
+          <div key={i} className="py-8 px-4"><div className="text-3xl md:text-4xl font-black tracking-tight">{s.n}</div><div className="text-[10px] font-bold uppercase tracking-[0.12em] text-gray-400 mt-1">{s.l}</div></div>
         ))}
       </div></div>
 
@@ -135,12 +134,12 @@ export default function HomePage() {
           <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white text-[10px] font-bold uppercase tracking-[0.1em] px-3.5 py-2.5 rounded-t-lg shadow-sm">Quick Links</div>
           <div className="bg-white border border-t-0 border-gray-200 rounded-b-lg overflow-hidden shadow-sm">
             {SIDEBAR.map(s=>(
-              <Link key={s.h} href={s.h} className="flex items-center gap-2.5 px-3.5 py-2.5 text-xs font-medium border-b border-gray-100 last:border-0 transition-all hover:bg-gray-50 text-gray-600 hover:text-gray-800 hover:border-l-[3px] hover:border-l-gray-200 hover:translate-x-1">
+              <Link key={s.h} href={s.h} className="flex items-center gap-2.5 px-3.5 py-2.5 text-xs font-medium border-b border-gray-100 last:border-0 transition-all hover:bg-gray-50 text-gray-600 hover:text-gray-800 hover:border-l-[3px] hover:border-l-gray-200">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={s.c} strokeWidth="2" opacity="0.5"><path d={s.i}/></svg>{s.l}
               </Link>
             ))}
           </div>
-          <div className="mt-3 bg-amber-50 border border-amber-200 rounded-xl p-3 text-center hover:shadow-md hover:scale-[1.02] transition-all">
+          <div className="mt-3 bg-amber-50 border border-amber-200 rounded-xl p-3 text-center">
             <p className="text-[10px] font-bold text-amber-700 mb-1">Admissions Open 2026-27</p>
             <Link href="/admission" className="text-[10px] font-semibold text-amber-600 hover:text-amber-800">Apply Now →</Link>
           </div>
@@ -149,28 +148,28 @@ export default function HomePage() {
         <main className="flex-1 min-w-0">
           <div className="mb-10">
             <div className="mb-6"><span className="text-[10px] font-bold uppercase bg-blue-50 text-blue-600 px-3 py-1 rounded-full">Why Choose Us</span><h2 className="text-2xl md:text-3xl font-extrabold tracking-tight mt-3">Education Beyond the Classroom</h2></div>
-            <div className="grid md:grid-cols-3 gap-4 stagger">
-              <Link href="/aboutschool" className="group bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-xl hover:border-blue-200 hover:-translate-y-1 transition-all duration-300"><div className="w-9 h-9 rounded-xl bg-blue-50 flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563EB" strokeWidth="2"><path d="M22 10l-10-7L2 10M4 11v8M20 11v8M8 11v8h8v-8M12 18v-3"/></svg></div><h3 className="font-bold text-sm">About Our School</h3><p className="text-xs text-gray-500 mt-1.5">Founded by Dr. Shrikant Upadhyaya Educational & Charitable Trust.</p></Link>
-              <Link href="/academiccurriculum" className="group bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-xl hover:border-emerald-200 hover:-translate-y-1 transition-all duration-300"><div className="w-9 h-9 rounded-xl bg-emerald-50 flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div><h3 className="font-bold text-sm">Academic Curriculum</h3><p className="text-xs text-gray-500 mt-1.5">Rigorous CBSE-aligned academics with smart classrooms.</p></Link>
-              <Link href="/sports" className="group bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-xl hover:border-amber-200 hover:-translate-y-1 transition-all duration-300"><div className="w-9 h-9 rounded-xl bg-amber-50 flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D97706" strokeWidth="2"><path d="M12 12a5 5 0 100-10M12 12a15.3 15.3 0 014 10M12 12a15.3 15.3 0 00-4 10M2 12h20"/></svg></div><h3 className="font-bold text-sm">Sports & Activities</h3><p className="text-xs text-gray-500 mt-1.5">Comprehensive sports program and physical education.</p></Link>
+            <div className="grid md:grid-cols-3 gap-4">
+              <Link href="/aboutschool" className="group bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-xl hover:border-blue-200 hover:-translate-y-1 transition-all duration-300"><div className="w-9 h-9 rounded-xl bg-blue-50 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563EB" strokeWidth="2"><path d="M22 10l-10-7L2 10M4 11v8M20 11v8M8 11v8h8v-8M12 18v-3"/></svg></div><h3 className="font-bold text-sm">About Our School</h3><p className="text-xs text-gray-500 mt-1.5">Founded by Dr. Shrikant Upadhyaya Educational & Charitable Trust.</p></Link>
+              <Link href="/academiccurriculum" className="group bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-xl hover:border-emerald-200 hover:-translate-y-1 transition-all duration-300"><div className="w-9 h-9 rounded-xl bg-emerald-50 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div><h3 className="font-bold text-sm">Academic Curriculum</h3><p className="text-xs text-gray-500 mt-1.5">Rigorous CBSE-aligned academics with smart classrooms.</p></Link>
+              <Link href="/sports" className="group bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-xl hover:border-amber-200 hover:-translate-y-1 transition-all duration-300"><div className="w-9 h-9 rounded-xl bg-amber-50 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D97706" strokeWidth="2"><path d="M12 12a5 5 0 100-10M12 12a15.3 15.3 0 014 10M12 12a15.3 15.3 0 00-4 10M2 12h20"/></svg></div><h3 className="font-bold text-sm">Sports & Activities</h3><p className="text-xs text-gray-500 mt-1.5">Comprehensive sports program and physical education.</p></Link>
             </div>
           </div>
           <div>
             <div className="mb-6"><span className="text-[10px] font-bold uppercase bg-gray-100 text-gray-500 px-3 py-1 rounded-full">Quick Access</span><h2 className="text-2xl md:text-3xl font-extrabold tracking-tight mt-3">Everything You Need</h2></div>
-            <div className="grid sm:grid-cols-2 gap-4 stagger">
+            <div className="grid sm:grid-cols-2 gap-4">
               {[
                 {h:'/noticeboard',t:'Notice Board',s:'Latest announcements',c:'#2563EB',i:'M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0'},
                 {h:'/eventcalendar',t:'Event Calendar',s:'Academic schedule',c:'#059669',i:'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7'},
                 {h:'/admission',t:'Admissions',s:'Session 2026-2027',c:'#DC2626',i:'M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2'},
                 {h:'/fees',t:'Fees Structure',s:'Transparent details',c:'#D97706',i:'M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5'},
-              ].map((q,i)=>(<Link key={i} href={q.h} className="flex items-center gap-4 p-4 bg-white border border-gray-200 rounded-2xl hover:shadow-lg transition-all group"><div className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300" style={{background:q.c+'15',color:q.c}}><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d={q.i}/></svg></div><div><div className="font-semibold text-sm">{q.t}</div><div className="text-xs text-gray-400">{q.s}</div></div><span className="ml-auto text-gray-300 group-hover:translate-x-1.5 transition-all">&rarr;</span></Link>))}
+              ].map((q,i)=>(<Link key={i} href={q.h} className="flex items-center gap-4 p-4 bg-white border border-gray-200 rounded-2xl hover:shadow-lg transition-all group"><div className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform" style={{background:q.c+'15',color:q.c}}><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d={q.i}/></svg></div><div><div className="font-semibold text-sm">{q.t}</div><div className="text-xs text-gray-400">{q.s}</div></div><span className="ml-auto text-gray-300 group-hover:translate-x-1 transition-all">&rarr;</span></Link>))}
             </div>
           </div>
         </main>
       </div></div>
 
       {/* ═══ CTA ═══ */}
-      <section className="bg-gradient-to-r from-blue-700 to-blue-900 py-16 text-center"><div className="max-w-6xl mx-auto px-5"><h2 className="text-2xl md:text-3xl font-extrabold text-white mb-2">Join the SK Presidency Family</h2><p className="text-blue-200 mb-8 max-w-md mx-auto">Admissions open for Play Group to Class XII.</p><div className="flex gap-3 justify-center flex-wrap"><Link href="/admission" className="bg-white text-blue-700 px-5 py-3 rounded-xl font-semibold text-sm hover:shadow-xl hover:-translate-y-0.5 transition-all active:scale-[0.97]">Apply for Admission</Link><Link href="/contact" className="border border-blue-400/40 text-white px-5 py-3 rounded-xl font-semibold text-sm hover:bg-white/10 hover:-translate-y-0.5 transition-all active:scale-[0.97]">Contact Us</Link></div></div></section>
+      <section className="bg-gradient-to-r from-blue-700 to-blue-900 py-16 text-center"><div className="max-w-6xl mx-auto px-5"><h2 className="text-2xl md:text-3xl font-extrabold text-white mb-2">Join the SK Presidency Family</h2><p className="text-blue-200 mb-8 max-w-md mx-auto">Admissions open for Play Group to Class XII.</p><div className="flex gap-3 justify-center flex-wrap"><Link href="/admission" className="bg-white text-blue-700 px-5 py-3 rounded-xl font-semibold text-sm hover:shadow-xl transition">Apply for Admission</Link><Link href="/contact" className="border border-blue-400/40 text-white px-5 py-3 rounded-xl font-semibold text-sm hover:bg-white/10 transition">Contact Us</Link></div></div></section>
 
       {/* ═══ FOOTER ═══ */}
       <footer className="bg-gray-900 text-gray-400 py-12"><div className="max-w-6xl mx-auto px-5">

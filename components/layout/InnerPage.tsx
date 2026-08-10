@@ -40,8 +40,8 @@ export default function InnerPageLayout({ title, subtitle, children }: { title: 
           <span className="sm:hidden text-xs">SKPPS</span>
         </Link>
         <div className="flex items-center gap-2">
-          <Link href="/student" className="text-xs font-semibold bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 hover:shadow-lg transition-all active:scale-[0.97]">Student Login</Link>
-          <button onClick={() => setNavOpen(!navOpen)} className="sm:hidden relative w-9 h-9 rounded-xl bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center shadow-md hover:shadow-lg hover:from-blue-700 hover:to-blue-800 transition-all active:scale-95">
+          <Link href="/student" className="text-xs font-semibold bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-600/30 transition-all active:scale-[0.97]">Student Login</Link>
+          <button onClick={() => setNavOpen(!navOpen)} className="sm:hidden relative w-9 h-9 rounded-xl bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center shadow-md hover:shadow-lg hover:from-blue-700 hover:to-blue-800 hover:shadow-blue-600/40 transition-all active:scale-95">
             <div className="w-4 h-3 flex flex-col justify-between">
               <span className={`block w-full h-[2px] bg-white rounded-full transition-all duration-300 origin-center ${navOpen ? 'rotate-45 translate-y-[5px]' : ''}`}/>
               <span className={`block w-full h-[2px] bg-white rounded-full transition-all duration-300 ${navOpen ? 'opacity-0 scale-x-0' : ''}`}/>
@@ -58,7 +58,7 @@ export default function InnerPageLayout({ title, subtitle, children }: { title: 
               className={`flex-shrink-0 px-3.5 py-2.5 text-[11px] font-medium transition-all whitespace-nowrap ${
                 pathname === n.href
                   ? 'text-white bg-white/20 font-semibold shadow-[inset_0_-2px_0_white]'
-                  : 'text-blue-100 hover:text-white hover:bg-white/10'
+                  : 'text-blue-100 hover:text-white hover:bg-white/10 hover:-translate-y-0.5 transition-all'
               }`}>{n.label}</Link>
           ))}
         </div>
@@ -87,8 +87,8 @@ export default function InnerPageLayout({ title, subtitle, children }: { title: 
               </button>
             </div>
             <div className="flex gap-2">
-              <Link href="/student" onClick={() => setNavOpen(false)} className="flex-1 text-center py-2 bg-white text-blue-700 rounded-lg text-[11px] font-bold hover:bg-blue-50 transition">Student Login</Link>
-              <Link href="/staff" onClick={() => setNavOpen(false)} className="flex-1 text-center py-2 bg-white/15 text-white rounded-lg text-[11px] font-bold hover:bg-white/25 transition">Staff</Link>
+              <Link href="/student" onClick={() => setNavOpen(false)} className="flex-1 text-center py-2 bg-white text-blue-700 rounded-lg text-[11px] font-bold hover:bg-blue-50 hover:-translate-y-0.5 transition-all active:scale-[0.97]">Student Login</Link>
+              <Link href="/staff" onClick={() => setNavOpen(false)} className="flex-1 text-center py-2 bg-white/15 text-white rounded-lg text-[11px] font-bold hover:bg-white/25 hover:-translate-y-0.5 transition-all active:scale-[0.97]">Staff</Link>
             </div>
           </div>
 
@@ -99,10 +99,10 @@ export default function InnerPageLayout({ title, subtitle, children }: { title: 
               const active = pathname === n.href;
               return (
                 <Link key={n.href} href={n.href} onClick={() => setNavOpen(false)}
-                  className={`flex items-center gap-3 px-3 py-3 rounded-xl mb-0.5 text-sm font-medium transition-all ${
+                  className={`flex items-center gap-3 px-3 py-3 rounded-xl mb-0.5 text-sm font-medium transition-all hover:scale-[1.02] ${
                     active
                       ? 'bg-blue-50 text-blue-600 font-semibold shadow-[inset_0_0_0_1px_rgba(37,99,235,.2)]'
-                      : 'text-gray-600 hover:bg-gray-50 hover:text-gray-800'
+                      : 'text-gray-600 hover:bg-gray-50 hover:scale-[1.02] hover:text-gray-800'
                   }`}
                   style={{animationDelay: `${i * 0.03}s`}}
                 >
@@ -147,18 +147,18 @@ export default function InnerPageLayout({ title, subtitle, children }: { title: 
       <div className="max-w-6xl mx-auto px-5 py-8">
         <div className="flex gap-8">
           <aside className="w-52 flex-shrink-0 hidden lg:block sticky top-[100px] self-start">
-            <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white text-[10px] font-bold uppercase tracking-[0.1em] px-3.5 py-2.5 rounded-t-lg shadow-sm">Quick Links</div>
+            <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white text-[10px] font-bold uppercase tracking-[0.1em] px-3.5 py-2.5 rounded-t-lg shadow-sm animate-[fadeDown_.3s_ease-out]">Quick Links</div>
             <div className="bg-white border border-t-0 border-gray-200 rounded-b-lg overflow-hidden shadow-sm">
               {SIDEBAR.map(s => {
                 const active = pathname === s.href;
                 return (
                   <Link key={s.href} href={s.href}
-                    className={`flex items-center gap-2.5 px-3.5 py-2.5 text-xs font-medium border-b border-gray-100 last:border-0 transition-all ${
-                      active ? 'text-blue-600 bg-blue-50/60 font-semibold border-l-[3px] border-l-blue-600' : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-l-[3px] hover:border-l-gray-200'
+                    className={`flex items-center gap-2.5 px-3.5 py-2.5 text-xs font-medium border-b border-gray-100 last:border-0 transition-all hover:bg-gray-50 hover:translate-x-1 ${
+                      active ? 'text-blue-600 bg-blue-50/60 font-semibold border-l-[3px] border-l-blue-600' : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-l-[3px] hover:border-l-gray-200 hover:translate-x-1'
                     }`}>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={active ? s.color : 'currentColor'} strokeWidth="2" opacity={active ? 1 : 0.45}><path d={s.icon}/></svg>
                     {s.label}
-                    {active && <span className="ml-auto w-1.5 h-1.5 rounded-full bg-blue-600 animate-[scaleIn_.3s_ease]"/>}
+                    {active && <span className="ml-auto w-1.5 h-1.5 rounded-full bg-blue-600 animate-[scaleIn_.3s_ease] shadow-[0_0_8px_rgba(37,99,235,.3)]"/>}
                   </Link>
                 );
               })}
@@ -166,8 +166,8 @@ export default function InnerPageLayout({ title, subtitle, children }: { title: 
           </aside>
 
           <main className="flex-1 min-w-0">
-            <div className="bg-white border border-gray-200 rounded-2xl p-6 md:p-8 shadow-sm animate-[fadeUp_.5s_ease-out_both]">
-              <h2 className="text-xl md:text-2xl font-extrabold tracking-tight mb-1">{title}</h2>
+            <div className="bg-white border border-gray-200 rounded-2xl p-6 md:p-8 shadow-sm animate-[fadeUp_.5s_ease-out_both] hover:shadow-md transition-shadow duration-300">
+              <h2 className="text-xl md:text-2xl font-extrabold tracking-tight mb-1 relative inline-block after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[3px] after:w-0 after:bg-blue-600 hover:after:w-full after:transition-all after:duration-500">{title}</h2>
               {subtitle && <p className="text-xs text-gray-400 mb-6">{subtitle}</p>}
               <div className="text-sm text-gray-700 leading-relaxed">{children}</div>
             </div>
@@ -182,7 +182,7 @@ export default function InnerPageLayout({ title, subtitle, children }: { title: 
             const active = pathname === s.href;
             return (
               <Link key={s.href} href={s.href}
-                className={`flex items-center gap-1.5 px-3 py-2 text-[10px] font-medium border-b border-r border-gray-100 transition-all ${active ? 'text-blue-600 bg-blue-50' : 'text-gray-600 hover:bg-gray-50'}`}>
+                className={`flex items-center gap-1.5 px-3 py-2 text-[10px] font-medium border-b border-r border-gray-100 transition-all ${active ? 'text-blue-600 bg-blue-50' : 'text-gray-600 hover:bg-gray-50 hover:scale-[1.02]'}`}>
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke={active ? s.color : 'currentColor'} strokeWidth="2"><path d={s.icon}/></svg>
                 {s.label}
               </Link>
@@ -204,7 +204,7 @@ export default function InnerPageLayout({ title, subtitle, children }: { title: 
             <div className="flex gap-8">
               <div>
                 <h5 className="text-white text-[9px] font-bold uppercase tracking-[0.1em] mb-2">Navigate</h5>
-                {['About School','Noticeboard','Admissions','Fees','Contact'].map(l => <Link key={l} href="/" className="block text-xs py-0.5 text-gray-500 hover:text-white transition">{l}</Link>)}
+                {['About School','Noticeboard','Admissions','Fees','Contact'].map(l => <Link key={l} href="/" className="block text-xs py-0.5 text-gray-500 hover:text-white hover:translate-x-1 transition-all">{l}</Link>)}
               </div>
               <div>
                 <h5 className="text-white text-[9px] font-bold uppercase tracking-[0.1em] mb-2">Portals</h5>
