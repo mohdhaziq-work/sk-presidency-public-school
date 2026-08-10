@@ -3,7 +3,7 @@ import { initializeApp, getApps, getApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 
-export const firebaseConfig = {
+const firebaseConfig = {
   apiKey: "AIzaSyDYHVi3c-cNvdcMON5wcPjRrJ1nxpdrw2Y",
   authDomain: "sk-presidency-public-school.firebaseapp.com",
   projectId: "sk-presidency-public-school",
@@ -15,4 +15,5 @@ export const firebaseConfig = {
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
 const db = getFirestore(app);
 const auth = getAuth(app);
-export { app, db, auth };
+
+export { app, db, auth, firebaseConfig };
