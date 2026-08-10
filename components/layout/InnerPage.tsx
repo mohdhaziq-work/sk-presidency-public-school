@@ -16,14 +16,15 @@ const NAV = [
 ];
 
 const SIDEBAR = [
-  { href: '/noticeboard', label: 'Noticeboard', icon: 'M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0' },
-  { href: '/rules', label: 'Rules', icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 14l2 2 4-4' },
-  { href: '/facilities', label: 'Facilities', icon: 'M3 21h18M5 21V7l8-4v18M19 21V11l-6-4' },
-  { href: '/sports', label: 'Sports', icon: 'M12 2a15.3 15.3 0 014 10M12 2a15.3 15.3 0 00-4 10M2 12h20' },
-  { href: '/admission', label: 'Admissions', icon: 'M22 10v6M2 10l10-5 10 5-10 5zM6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5' },
-  { href: '/fees', label: 'Fees', icon: 'M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6' },
-  { href: '/principal', label: 'Principal', icon: 'M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 7a4 4 0 100-8' },
-  { href: '/eventcalendar', label: 'Calendar', icon: 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7' },
+  { href: '/noticeboard', label: 'Noticeboard', icon: 'M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0', color: '#2563EB' },
+  { href: '/rules', label: 'Rules & Regulations', icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 14l2 2 4-4', color: '#7C3AED' },
+  { href: '/facilities', label: 'Facilities', icon: 'M3 21h18M5 21V7l8-4v18M19 21V11l-6-4', color: '#0F766E' },
+  { href: '/sports', label: 'School Sports', icon: 'M12 2a15.3 15.3 0 014 10M12 2a15.3 15.3 0 00-4 10M2 12h20', color: '#EA580C' },
+  { href: '/admission', label: 'Admissions', icon: 'M22 10v6M2 10l10-5 10 5-10 5zM6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5', color: '#DC2626' },
+  { href: '/fees', label: 'Fees Structure', icon: 'M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6', color: '#D97706' },
+  { href: '/principal', label: "Principal's Message", icon: 'M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 7a4 4 0 100-8', color: '#4F46E5' },
+  { href: '/eventcalendar', label: 'Event Calendar', icon: 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7', color: '#059669' },
+  { href: '/Prospectus.pdf', label: 'Download Prospectus', icon: 'M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10 12 15 17 10M12 15V3', color: '#0891B2' },
 ];
 
 export default function InnerPageLayout({ title, subtitle, children }: { title: string; subtitle?: string; children: React.ReactNode }) {
@@ -32,25 +33,119 @@ export default function InnerPageLayout({ title, subtitle, children }: { title: 
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
-        <div className="max-w-6xl mx-auto flex items-center gap-3 py-2.5 px-5">
-          <Link href="/" className="flex items-center gap-2 flex-shrink-0">
-            <img src="/images/logo-transparent.png" alt="SKPPS" className="w-8 h-8 object-contain rounded-lg"/>
-            <div className="hidden sm:block leading-tight"><div className="font-bold text-xs tracking-tight">SK Presidency Public School</div><div className="text-[9px] text-gray-400">CBSE: 2133231 | Sultanpur, UP</div></div>
-          </Link>
-          <div className="flex items-center gap-1.5 ml-auto">
-            <Link href="/student" className="text-[10px] font-semibold bg-blue-600 text-white px-2.5 py-1.5 rounded-lg hover:bg-blue-700 transition hidden sm:inline">Student Login</Link>
-            <button onClick={()=>setNavOpen(!navOpen)} className="sm:hidden p-1.5 border border-gray-200 rounded-lg"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
-          </div>
+      <header className="sticky top-0 z-50 bg-white/85 backdrop-blur-2xl border-b border-gray-200 h-14 flex items-center justify-between px-5">
+        <Link href="/" className="flex items-center gap-2.5 font-bold text-sm tracking-tight text-gray-900">
+          <img src="/images/logo-transparent.png" alt="SKPPS" className="w-8 h-8 object-contain rounded-lg"/>
+          <span className="hidden sm:inline">SK Presidency Public School</span>
+          <span className="sm:hidden text-xs">SKPPS</span>
+        </Link>
+        <div className="flex items-center gap-2">
+          <Link href="/student" className="text-xs font-semibold bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 hover:shadow-lg transition-all active:scale-[0.97]">Student Login</Link>
+          <button onClick={() => setNavOpen(!navOpen)} className="sm:hidden p-1.5 border border-gray-200 rounded-lg">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
         </div>
       </header>
-      <nav className="bg-gray-900 sticky top-[49px] z-40 overflow-x-auto"><div className="max-w-6xl mx-auto flex">{NAV.map(n=>(<Link key={n.href} href={n.href} className={`flex-shrink-0 px-3.5 py-2.5 text-[11px] font-medium transition-colors whitespace-nowrap ${pathname===n.href?'text-white bg-white/10':'text-gray-400 hover:text-white hover:bg-white/5'}`}>{n.label}</Link>))}</div></nav>
-      {navOpen&&<div className="sm:hidden bg-gray-800 flex flex-col">{NAV.map(n=>(<Link key={n.href} href={n.href} onClick={()=>setNavOpen(false)} className={`px-4 py-2.5 text-xs font-medium border-b border-gray-700/50 ${pathname===n.href?'text-white bg-white/10':'text-gray-400'}`}>{n.label}</Link>))}</div>}
-      <div className="max-w-6xl mx-auto px-5 py-8"><div className="flex gap-8">
-        <aside className="w-48 flex-shrink-0 hidden lg:block sticky top-[98px] self-start"><div className="bg-gray-900 text-white text-[10px] font-bold uppercase tracking-[0.1em] px-3.5 py-2.5 rounded-t-lg">Quick Links</div><div className="bg-white border border-t-0 border-gray-200 rounded-b-lg overflow-hidden">{SIDEBAR.map(s=>(<Link key={s.href} href={s.href} className={`flex items-center gap-2.5 px-3.5 py-2.5 text-xs font-medium border-b border-gray-100 last:border-0 transition-all hover:bg-gray-50 ${pathname===s.href?'text-blue-600 bg-blue-50/50':'text-gray-600 hover:text-gray-800'}`}><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" opacity={pathname===s.href?1:.4}><path d={s.icon}/></svg>{s.label}</Link>))}</div></aside>
-        <main className="flex-1 min-w-0"><div className="animate-[fadeUp_.5s_ease-out_both]"><h2 className="text-xl md:text-2xl font-extrabold tracking-tight mb-1">{title}</h2>{subtitle&&<p className="text-xs text-gray-400 mb-6">{subtitle}</p>}<div className="text-sm text-gray-700 leading-relaxed">{children}</div></div></main>
-      </div></div>
-      <footer className="bg-gray-900 text-gray-500 py-8 mt-auto"><div className="max-w-6xl mx-auto px-5 text-center text-xs"><p className="mb-1">&copy; SK Presidency Public School 2025-2028</p><p>Powered by Astra Infotech</p></div></footer>
+
+      <nav className="bg-gradient-to-r from-blue-600 to-blue-700 sticky top-14 z-40 overflow-x-auto shadow-md">
+        <div className="max-w-6xl mx-auto flex">
+          {NAV.map(n => (
+            <Link key={n.href} href={n.href}
+              className={`flex-shrink-0 px-3.5 py-2.5 text-[11px] font-medium transition-all whitespace-nowrap ${
+                pathname === n.href
+                  ? 'text-white bg-white/20 font-semibold shadow-[inset_0_-2px_0_white]'
+                  : 'text-blue-100 hover:text-white hover:bg-white/10'
+              }`}>{n.label}</Link>
+          ))}
+        </div>
+      </nav>
+
+      {navOpen && (
+        <div className="sm:hidden bg-blue-700 flex flex-col">
+          {NAV.map(n => (
+            <Link key={n.href} href={n.href} onClick={() => setNavOpen(false)}
+              className={`px-4 py-2.5 text-xs font-medium border-b border-blue-600/50 ${
+                pathname === n.href ? 'text-white bg-white/10 font-semibold' : 'text-blue-100'
+              }`}>{n.label}</Link>
+          ))}
+        </div>
+      )}
+
+      <div className="max-w-6xl mx-auto px-5 py-8">
+        <div className="flex gap-8">
+          <aside className="w-52 flex-shrink-0 hidden lg:block sticky top-[100px] self-start">
+            <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white text-[10px] font-bold uppercase tracking-[0.1em] px-3.5 py-2.5 rounded-t-lg shadow-sm">Quick Links</div>
+            <div className="bg-white border border-t-0 border-gray-200 rounded-b-lg overflow-hidden shadow-sm">
+              {SIDEBAR.map(s => {
+                const active = pathname === s.href;
+                return (
+                  <Link key={s.href} href={s.href}
+                    className={`flex items-center gap-2.5 px-3.5 py-2.5 text-xs font-medium border-b border-gray-100 last:border-0 transition-all ${
+                      active ? 'text-blue-600 bg-blue-50/60 font-semibold border-l-[3px] border-l-blue-600' : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-l-[3px] hover:border-l-gray-200'
+                    }`}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={active ? s.color : 'currentColor'} strokeWidth="2" opacity={active ? 1 : 0.45}><path d={s.icon}/></svg>
+                    {s.label}
+                    {active && <span className="ml-auto w-1.5 h-1.5 rounded-full bg-blue-600 animate-[scaleIn_.3s_ease]"/>}
+                  </Link>
+                );
+              })}
+            </div>
+          </aside>
+
+          <main className="flex-1 min-w-0">
+            <div className="bg-white border border-gray-200 rounded-2xl p-6 md:p-8 shadow-sm animate-[fadeUp_.5s_ease-out_both]">
+              <h2 className="text-xl md:text-2xl font-extrabold tracking-tight mb-1">{title}</h2>
+              {subtitle && <p className="text-xs text-gray-400 mb-6">{subtitle}</p>}
+              <div className="text-sm text-gray-700 leading-relaxed">{children}</div>
+            </div>
+          </main>
+        </div>
+      </div>
+
+      <div className="lg:hidden max-w-6xl mx-auto px-5 pb-8">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white text-[10px] font-bold uppercase tracking-[0.1em] px-3.5 py-2 rounded-t-lg">Quick Links</div>
+        <div className="bg-white border border-t-0 border-gray-200 rounded-b-lg overflow-hidden grid grid-cols-2">
+          {SIDEBAR.map(s => {
+            const active = pathname === s.href;
+            return (
+              <Link key={s.href} href={s.href}
+                className={`flex items-center gap-1.5 px-3 py-2 text-[10px] font-medium border-b border-r border-gray-100 transition-all ${active ? 'text-blue-600 bg-blue-50' : 'text-gray-600 hover:bg-gray-50'}`}>
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke={active ? s.color : 'currentColor'} strokeWidth="2"><path d={s.icon}/></svg>
+                {s.label}
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+
+      <footer className="bg-gray-900 text-gray-400 py-10 mt-auto">
+        <div className="max-w-6xl mx-auto px-5">
+          <div className="grid md:grid-cols-3 gap-6 mb-6">
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <img src="/images/logo-transparent.png" alt="SKPPS" className="w-8 h-8 object-contain rounded-lg"/>
+                <h4 className="text-white font-bold text-sm">SK Presidency Public School</h4>
+              </div>
+              <p className="text-xs text-gray-500 leading-relaxed">Dr. Shrikant Upadhyaya Educational & Charitable Trust | CBSE: 2133231 | Sultanpur, UP — 228001</p>
+            </div>
+            <div className="flex gap-8">
+              <div>
+                <h5 className="text-white text-[9px] font-bold uppercase tracking-[0.1em] mb-2">Navigate</h5>
+                {['About School','Noticeboard','Admissions','Fees','Contact'].map(l => <Link key={l} href="/" className="block text-xs py-0.5 text-gray-500 hover:text-white transition">{l}</Link>)}
+              </div>
+              <div>
+                <h5 className="text-white text-[9px] font-bold uppercase tracking-[0.1em] mb-2">Portals</h5>
+                <Link href="/student" className="block text-xs py-0.5 text-blue-400 hover:text-blue-300 font-medium">Student Login</Link>
+                <Link href="/staff" className="block text-xs py-0.5 text-blue-400 hover:text-blue-300 font-medium">Staff Login</Link>
+              </div>
+            </div>
+          </div>
+          <div className="border-t border-gray-800 pt-4 flex justify-between flex-wrap gap-2 text-xs">
+            <span>&copy; SK Presidency Public School 2025-2028. All rights reserved.</span>
+            <span>Powered by Astra Infotech</span>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
