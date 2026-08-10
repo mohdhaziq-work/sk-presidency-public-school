@@ -171,6 +171,51 @@ export default function HomePage() {
       {/* ═══ CTA ═══ */}
       <section className="bg-gradient-to-r from-blue-700 to-blue-900 py-16 text-center"><div className="max-w-6xl mx-auto px-5"><h2 className="text-2xl md:text-3xl font-extrabold text-white mb-2">Join the SK Presidency Family</h2><p className="text-blue-200 mb-8 max-w-md mx-auto">Admissions open for Play Group to Class XII.</p><div className="flex gap-3 justify-center flex-wrap"><Link href="/admission" className="bg-white text-blue-700 px-5 py-3 rounded-xl font-semibold text-sm hover:shadow-xl hover:-translate-y-0.5 transition-all active:scale-[0.97]">Apply for Admission</Link><Link href="/contact" className="border border-blue-400/40 text-white px-5 py-3 rounded-xl font-semibold text-sm hover:bg-white/10 hover:-translate-y-0.5 transition-all active:scale-[0.97]">Contact Us</Link></div></div></section>
 
+      {/* ═══ YOUTUBE VIDEO + REGISTRATION ═══ */}
+      <section className="bg-white py-16">
+        <div className="max-w-6xl mx-auto px-5">
+          <div className="grid md:grid-cols-2 gap-8 items-start">
+            <div className="rounded-2xl overflow-hidden shadow-lg border border-gray-200">
+              <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-5 py-3">
+                <h3 className="text-white font-bold text-sm">Video on the School</h3>
+              </div>
+              <div className="aspect-video bg-gray-900">
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/IWTaYEczNkg?rel=0" title="SKPPS" allowFullScreen className="w-full h-full"/>
+              </div>
+              <div className="p-3 bg-gray-50 border-t">
+                <a href="https://www.youtube.com/channel/UCyYHfZf4gxt_aKjEqqqkmYg" target="_blank" rel="noopener" className="text-[11px] text-blue-600 font-semibold hover:underline">Subscribe to YouTube Channel &rarr;</a>
+              </div>
+            </div>
+            <div className="space-y-4">
+              <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-6 text-white">
+                <h3 className="font-bold text-lg mb-2">Registration Open For Session 2026-2027</h3>
+                <p className="text-blue-100 text-sm mb-4">Contact <strong className="text-white">86017 35757, 86017 38180</strong></p>
+                <div className="flex gap-3">
+                  <a href="/Prospectus.pdf" className="bg-white text-blue-700 px-4 py-2.5 rounded-xl text-xs font-bold hover:bg-blue-50 transition">Prospectus</a>
+                  <a href="/AdmissionForm.pdf" className="bg-white/15 text-white px-4 py-2.5 rounded-xl text-xs font-bold hover:bg-white/25 transition">Admission Form</a>
+                </div>
+              </div>
+              <div className="bg-white border rounded-2xl p-4"><div className="flex items-start gap-2"><span className="w-2 h-2 rounded-full bg-green-500 mt-1.5 flex-shrink-0"/><div><p className="text-sm font-semibold">XII standard classes approved</p><a href="/Prospectus.pdf" className="text-[11px] text-blue-600 font-semibold hover:underline">Prospectus 2026-2027</a></div></div></div>
+              <div className="bg-white border rounded-2xl p-4"><div className="flex items-start gap-2"><span className="w-2 h-2 rounded-full bg-green-500 mt-1.5 flex-shrink-0"/><div><p className="text-sm font-semibold">Plant Tree campaign by HDFC Bank</p><Link href="/eventcalendar" className="text-[11px] text-blue-600 font-semibold hover:underline">Details</Link></div></div></div>
+              <div className="bg-white border rounded-2xl p-4"><div className="flex items-start gap-2"><span className="w-2 h-2 rounded-full bg-green-500 mt-1.5 flex-shrink-0"/><div><p className="text-sm font-semibold">Mango Day celebrated on 14th July, 2023</p><Link href="/eventcalendar" className="text-[11px] text-blue-600 font-semibold hover:underline">Details</Link></div></div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ SCROLLING PHOTO STRIP ═══ */}
+      <div className="bg-white border-y border-gray-200 py-3 overflow-hidden">
+        <div className="flex gap-3 animate-[ticker_35s_linear_infinite]">
+          {Array.from({length:13},(_,i)=>(
+            <img key={i} src={`https://skpresidency.com/images/scroll/${(i%9)+1}.jpg`} alt="" className="h-20 w-auto rounded-lg object-cover flex-shrink-0 shadow-sm"/>
+          ))}
+          <img src="https://skpresidency.com/images/scroll/12.jpg" alt="" className="h-20 w-auto rounded-lg object-cover flex-shrink-0 shadow-sm"/>
+          {Array.from({length:13},(_,i)=>(
+            <img key={`d${i}`} src={`https://skpresidency.com/images/scroll/${(i%9)+1}.jpg`} alt="" className="h-20 w-auto rounded-lg object-cover flex-shrink-0 shadow-sm"/>
+          ))}
+        </div>
+      </div>
+
       {/* ═══ FOOTER ═══ */}
       <footer className="bg-gray-900 text-gray-400 py-12"><div className="max-w-6xl mx-auto px-5">
         <div className="grid md:grid-cols-4 gap-6 mb-8">
