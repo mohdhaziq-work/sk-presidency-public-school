@@ -171,6 +171,113 @@ export default function HomePage() {
       {/* ═══ CTA ═══ */}
       <section className="bg-gradient-to-r from-blue-700 to-blue-900 py-16 text-center"><div className="max-w-6xl mx-auto px-5"><h2 className="text-2xl md:text-3xl font-extrabold text-white mb-2">Join the SK Presidency Family</h2><p className="text-blue-200 mb-8 max-w-md mx-auto">Admissions open for Play Group to Class XII.</p><div className="flex gap-3 justify-center flex-wrap"><Link href="/admission" className="bg-white text-blue-700 px-5 py-3 rounded-xl font-semibold text-sm hover:shadow-xl hover:-translate-y-0.5 transition-all active:scale-[0.97]">Apply for Admission</Link><Link href="/contact" className="border border-blue-400/40 text-white px-5 py-3 rounded-xl font-semibold text-sm hover:bg-white/10 hover:-translate-y-0.5 transition-all active:scale-[0.97]">Contact Us</Link></div></div></section>
 
+      {/* ═══ YOUTUBE VIDEO + REGISTRATION ═══ */}
+      <section className="bg-white py-16">
+        <div className="max-w-6xl mx-auto px-5">
+          <div className="grid md:grid-cols-2 gap-8 items-start">
+            {/* YouTube Video */}
+            <div className="rounded-2xl overflow-hidden shadow-lg border border-gray-200">
+              <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-5 py-3">
+                <h3 className="text-white font-bold text-sm">Video on the School</h3>
+              </div>
+              <div className="aspect-video bg-gray-900">
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/IWTaYEczNkg?rel=0" title="SKPPS School Video" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen className="w-full h-full"/>
+              </div>
+              <div className="p-4 bg-gray-50 border-t border-gray-200">
+                <p className="text-xs text-gray-500 mb-1">S K PRESIDENCY PUBLIC SCHOOL ODRA SULTANPUR</p>
+                <a href="https://www.youtube.com/channel/UCyYHfZf4gxt_aKjEqqqkmYg" target="_blank" rel="noopener" className="text-[11px] text-blue-600 font-semibold hover:underline">Subscribe to YouTube Channel &rarr;</a>
+              </div>
+            </div>
+
+            {/* Registration + Notices */}
+            <div className="space-y-4">
+              <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-6 text-white shadow-lg">
+                <h3 className="font-bold text-lg mb-2">Registration Open For Session 2026-2027</h3>
+                <p className="text-blue-100 text-sm mb-4">For any information please contact <strong className="text-white">86017 35757, 86017 38180</strong></p>
+                <div className="flex gap-3 flex-wrap">
+                  <a href="/Prospectus.pdf" className="inline-flex items-center gap-1.5 bg-white text-blue-700 px-4 py-2.5 rounded-xl text-xs font-bold hover:bg-blue-50 hover:-translate-y-0.5 active:scale-[0.97] transition-all">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><path d="M12 15V3"/></svg>
+                    Download Prospectus
+                  </a>
+                  <a href="/AdmissionForm.pdf" className="inline-flex items-center gap-1.5 bg-white/15 text-white px-4 py-2.5 rounded-xl text-xs font-bold hover:bg-white/25 hover:-translate-y-0.5 active:scale-[0.97] transition-all">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg>
+                    Admission Form
+                  </a>
+                </div>
+              </div>
+
+              <div className="bg-white border border-gray-200 rounded-2xl p-5 hover:shadow-md transition stagger">
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 rounded-full bg-green-500 mt-1.5 flex-shrink-0"/>
+                  <div>
+                    <p className="text-sm font-semibold text-gray-800">The school has been approved for XII standard classes</p>
+                    <a href="/Prospectus.pdf" className="text-[11px] text-blue-600 font-semibold hover:underline">Click for Prospectus 2026-2027</a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white border border-gray-200 rounded-2xl p-5 hover:shadow-md transition stagger">
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 rounded-full bg-green-500 mt-1.5 flex-shrink-0"/>
+                  <div>
+                    <p className="text-sm font-semibold text-gray-800">Plant Tree campaign organised by HDFC Bank Team Sultanpur</p>
+                    <Link href="/eventcalendar" className="text-[11px] text-blue-600 font-semibold hover:underline">Click for details</Link>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white border border-gray-200 rounded-2xl p-5 hover:shadow-md transition stagger">
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 rounded-full bg-green-500 mt-1.5 flex-shrink-0"/>
+                  <div>
+                    <p className="text-sm font-semibold text-gray-800">Mango Day celebrated on 14th July, 2023</p>
+                    <Link href="/eventcalendar" className="text-[11px] text-blue-600 font-semibold hover:underline">Click for details</Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ CAMPUS GALLERY ═══ */}
+      <section className="bg-gray-50 py-16">
+        <div className="max-w-6xl mx-auto px-5">
+          <div className="text-center mb-8">
+            <span className="text-[10px] font-bold uppercase bg-blue-50 text-blue-600 px-3 py-1 rounded-full">Campus Life</span>
+            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight mt-3">Our Vibrant Campus</h2>
+          </div>
+          <div className="grid grid-cols-3 md:grid-cols-4 gap-3 stagger">
+            {[
+              {s:'https://skpresidency.com/images/sk-33.jpg'},{s:'https://skpresidency.com/images/sk-34.jpg'},
+              {s:'https://skpresidency.com/images/sk-35.jpg'},{s:'https://skpresidency.com/images/sk-40.jpg'},
+              {s:'https://skpresidency.com/images/sk-41.jpg'},{s:'https://skpresidency.com/images/sk-42.jpg'},
+              {s:'https://skpresidency.com/images/sk-44.jpg'},{s:'https://skpresidency.com/images/sk-45.jpg'},
+              {s:'https://skpresidency.com/images/sk-46.jpg'},{s:'https://skpresidency.com/images/sk-21.jpg'},
+              {s:'https://skpresidency.com/images/sk-22.jpg'},{s:'https://skpresidency.com/images/sk-23.jpg'},
+            ].map((img, i) => (
+              <div key={i} className="aspect-square rounded-xl overflow-hidden border border-gray-200 bg-gray-100 hover:shadow-lg hover:-translate-y-1 hover:border-blue-300 transition-all duration-300 cursor-pointer group">
+                <img src={img.s} alt={`SKPPS ${i+1}`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ SCROLLING PHOTO STRIP ═══ */}
+      <div className="bg-white border-y border-gray-200 py-3 overflow-hidden">
+        <div className="flex gap-3 animate-[ticker_35s_linear_infinite]">
+          {[...Array(12)].map((_,i) => (
+            <img key={i} src={`https://skpresidency.com/images/scroll/${(i%9)+1}.jpg`} alt="" className="h-20 w-auto rounded-lg object-cover flex-shrink-0 shadow-sm"/>
+          ))}
+          <img src="https://skpresidency.com/images/scroll/12.jpg" alt="" className="h-20 w-auto rounded-lg object-cover flex-shrink-0 shadow-sm"/>
+          {/* Duplicate for seamless loop */}
+          {[...Array(13)].map((_,i) => (
+            <img key={`d${i}`} src={`https://skpresidency.com/images/scroll/${(i%9)+1}.jpg`} alt="" className="h-20 w-auto rounded-lg object-cover flex-shrink-0 shadow-sm"/>
+          ))}
+        </div>
+      </div>
+
       {/* ═══ FOOTER ═══ */}
       <footer className="bg-gray-900 text-gray-400 py-12"><div className="max-w-6xl mx-auto px-5">
         <div className="grid md:grid-cols-4 gap-6 mb-8">
