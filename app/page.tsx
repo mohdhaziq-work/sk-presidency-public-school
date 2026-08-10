@@ -1,7 +1,6 @@
 'use client';
 import Link from 'next/link';
 import { useState } from 'react';
-import { FadeIn, StaggerContainer } from '@/components/ui/animations';
 
 const NAV = [
   { href: '/', label: 'Home' },
