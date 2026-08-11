@@ -32,16 +32,16 @@ export default function InnerPageLayout({ title, subtitle, children }: { title: 
   const [navOpen, setNavOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="sticky top-0 z-50 bg-white/85 backdrop-blur-2xl border-b border-gray-200 h-14 flex items-center justify-between px-5">
-        <Link href="/" className="flex items-center gap-2.5 font-bold text-sm tracking-tight text-gray-900">
+    <div className="min-h-screen bg-[#F8F9FA]">
+      <header className="sticky top-0 z-50 bg-white/85 backdrop-blur-2xl border-b border-[#DADCE0] h-14 flex items-center justify-between px-5">
+        <Link href="/" className="flex items-center gap-2.5 font-bold text-sm tracking-tight text-[#1A1C1E]">
           <img src="/images/logo-transparent.png" alt="SKPPS" className="w-8 h-8 object-contain rounded-lg"/>
           <span className="hidden sm:inline">SK Presidency Public School</span>
           <span className="sm:hidden text-xs">SKPPS</span>
         </Link>
         <div className="flex items-center gap-2">
-          <Link href="/student" className="text-xs font-semibold bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-600/30 transition-all active:scale-[0.97]">Student Login</Link>
-          <button onClick={() => setNavOpen(!navOpen)} className="sm:hidden relative w-9 h-9 rounded-xl bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center shadow-md hover:shadow-lg hover:from-blue-700 hover:to-blue-800 hover:shadow-blue-600/40 transition-all active:scale-95">
+          <Link href="/student" className="text-xs font-semibold bg-[#4285F4] text-white px-4 py-2 rounded-lg hover:bg-[#3367D6] hover:shadow-lg hover:shadow-blue-600/30 transition-all active:scale-[0.97]">Student Login</Link>
+          <button onClick={() => setNavOpen(!navOpen)} className="sm:hidden relative w-9 h-9 rounded-xl bg-gradient-to-br from-[#4285F4] to-[#3367D6] flex items-center justify-center shadow-md hover:shadow-lg hover:from-blue-700 hover:to-blue-800 hover:shadow-blue-600/40 transition-all active:scale-95">
             <div className="w-4 h-3 flex flex-col justify-between">
               <span className={`block w-full h-[2px] bg-white rounded-full transition-all duration-300 origin-center ${navOpen ? 'rotate-45 translate-y-[5px]' : ''}`}/>
               <span className={`block w-full h-[2px] bg-white rounded-full transition-all duration-300 ${navOpen ? 'opacity-0 scale-x-0' : ''}`}/>
@@ -51,14 +51,14 @@ export default function InnerPageLayout({ title, subtitle, children }: { title: 
         </div>
       </header>
 
-      <nav className="bg-gradient-to-r from-blue-600 to-blue-700 sticky top-14 z-40 overflow-x-auto shadow-md">
+      <nav className="bg-gradient-to-r from-[#4285F4] to-[#3367D6] sticky top-14 z-40 overflow-x-auto shadow-md">
         <div className="max-w-6xl mx-auto flex">
           {NAV.map(n => (
             <Link key={n.href} href={n.href}
               className={`flex-shrink-0 px-3.5 py-2.5 text-[11px] font-medium transition-all whitespace-nowrap ${
                 pathname === n.href
                   ? 'text-white bg-white/20 font-semibold shadow-[inset_0_-2px_0_white]'
-                  : 'text-blue-100 hover:text-white hover:bg-white/10 hover:-translate-y-0.5 transition-all'
+                  : 'text-[#D2E3FC] hover:text-white hover:bg-white/10 hover:-translate-y-0.5 transition-all'
               }`}>{n.label}</Link>
           ))}
         </div>
@@ -67,19 +67,19 @@ export default function InnerPageLayout({ title, subtitle, children }: { title: 
       {/* ═══ MOBILE SLIDE-IN MENU ═══ */}
       <div className={`sm:hidden fixed inset-0 z-[60] transition-opacity duration-300 ${navOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
         {/* Backdrop */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/60 via-black/50 to-indigo-900/60 backdrop-blur-sm" onClick={() => setNavOpen(false)}/>
+        <div className="absolute inset-0 bg-gradient-to-br from-[#174EA6]/60 via-[#1A1C1E]/50 to-[#174EA6]/60 backdrop-blur-sm" onClick={() => setNavOpen(false)}/>
 
         {/* Panel — slides from right */}
         <div className={`absolute top-0 right-0 bottom-0 w-[300px] max-w-[85vw] bg-white shadow-2xl flex flex-col transition-transform duration-400 ease-out ${navOpen ? 'translate-x-0' : 'translate-x-full'}`} style={{transitionDuration:'400ms',transitionTimingFunction:'cubic-bezier(0.16,1,0.3,1)'}}>
 
           {/* Header */}
-          <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-5 py-6 flex-shrink-0">
+          <div className="bg-gradient-to-r from-[#4285F4] to-[#3367D6] px-5 py-6 flex-shrink-0">
             <div className="flex items-center justify-between mb-4">
               <Link href="/" onClick={() => setNavOpen(false)} className="flex items-center gap-2.5">
                 <img src="/images/logo-transparent.png" alt="SKPPS" className="w-9 h-9 object-contain rounded-lg"/>
                 <div className="text-white">
                   <div className="font-bold text-sm tracking-tight leading-tight">SK Presidency</div>
-                  <div className="text-[9px] text-blue-200 tracking-wide">Public School</div>
+                  <div className="text-[9px] text-[#A8C7FA] tracking-wide">Public School</div>
                 </div>
               </Link>
               <button onClick={() => setNavOpen(false)} className="w-8 h-8 rounded-full bg-white/15 hover:bg-white/25 flex items-center justify-center text-white transition">
@@ -87,43 +87,43 @@ export default function InnerPageLayout({ title, subtitle, children }: { title: 
               </button>
             </div>
             <div className="flex gap-2">
-              <Link href="/student" onClick={() => setNavOpen(false)} className="flex-1 text-center py-2 bg-white text-blue-700 rounded-lg text-[11px] font-bold hover:bg-blue-50 hover:-translate-y-0.5 transition-all active:scale-[0.97]">Student Login</Link>
+              <Link href="/student" onClick={() => setNavOpen(false)} className="flex-1 text-center py-2 bg-white text-[#3367D6] rounded-lg text-[11px] font-bold hover:bg-[#E8F0FE] hover:-translate-y-0.5 transition-all active:scale-[0.97]">Student Login</Link>
               <Link href="/staff" onClick={() => setNavOpen(false)} className="flex-1 text-center py-2 bg-white/15 text-white rounded-lg text-[11px] font-bold hover:bg-white/25 hover:-translate-y-0.5 transition-all active:scale-[0.97]">Staff</Link>
             </div>
           </div>
 
           {/* Navigation Links */}
           <div className="flex-1 overflow-y-auto py-3 px-4">
-            <div className="text-[9px] font-bold uppercase tracking-[0.15em] text-gray-400 mb-2 px-2">Main Navigation</div>
+            <div className="text-[9px] font-bold uppercase tracking-[0.15em] text-[#80868B] mb-2 px-2">Main Navigation</div>
             {NAV.map((n, i) => {
               const active = pathname === n.href;
               return (
                 <Link key={n.href} href={n.href} onClick={() => setNavOpen(false)}
                   className={`flex items-center gap-3 px-3 py-3 rounded-xl mb-0.5 text-sm font-medium transition-all hover:scale-[1.02] ${
                     active
-                      ? 'bg-blue-50 text-blue-600 font-semibold shadow-[inset_0_0_0_1px_rgba(37,99,235,.2)]'
-                      : 'text-gray-600 hover:bg-gray-50 hover:scale-[1.02] hover:text-gray-800'
+                      ? 'bg-[#E8F0FE] text-[#4285F4] font-semibold shadow-[inset_0_0_0_1px_rgba(37,99,235,.2)]'
+                      : 'text-[#5F6368] hover:bg-[#F8F9FA] hover:scale-[1.02] hover:text-[#1A1C1E]'
                   }`}
                   style={{animationDelay: `${i * 0.03}s`}}
                 >
-                  <span className={`w-2 h-2 rounded-full flex-shrink-0 transition-all ${active ? 'bg-blue-600 scale-125 shadow-[0_0_8px_rgba(37,99,235,.4)]' : 'bg-gray-300'}`}/>
+                  <span className={`w-2 h-2 rounded-full flex-shrink-0 transition-all ${active ? 'bg-[#4285F4] scale-125 shadow-[0_0_8px_rgba(37,99,235,.4)]' : 'bg-gray-300'}`}/>
                   {n.label}
-                  {active && <span className="ml-auto text-[10px] text-blue-400">● Active</span>}
+                  {active && <span className="ml-auto text-[10px] text-[#669DF6]">● Active</span>}
                 </Link>
               );
             })}
 
-            <div className="my-4 border-t border-gray-100"/>
+            <div className="my-4 border-t border-[#E8EAED]"/>
 
-            <div className="text-[9px] font-bold uppercase tracking-[0.15em] text-gray-400 mb-2 px-2">Quick Links</div>
+            <div className="text-[9px] font-bold uppercase tracking-[0.15em] text-[#80868B] mb-2 px-2">Quick Links</div>
             {SIDEBAR.map((s, i) => {
               const active = pathname === s.href;
               return (
                 <Link key={s.href} href={s.href} onClick={() => setNavOpen(false)}
                   className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl mb-0.5 text-xs font-medium transition-all ${
                     active
-                      ? 'bg-blue-50 text-blue-600 font-semibold'
-                      : 'text-gray-500 hover:bg-gray-50 hover:text-gray-700'
+                      ? 'bg-[#E8F0FE] text-[#4285F4] font-semibold'
+                      : 'text-[#5F6368] hover:bg-[#F8F9FA] hover:text-[#1A1C1E]'
                   }`}
                   style={{animationDelay: `${(i + NAV.length) * 0.03}s`}}
                 >
@@ -135,8 +135,8 @@ export default function InnerPageLayout({ title, subtitle, children }: { title: 
           </div>
 
           {/* Footer */}
-          <div className="flex-shrink-0 px-4 py-3 border-t border-gray-100 bg-gray-50">
-            <div className="flex items-center justify-between text-[9px] text-gray-400">
+          <div className="flex-shrink-0 px-4 py-3 border-t border-[#E8EAED] bg-[#F8F9FA]">
+            <div className="flex items-center justify-between text-[9px] text-[#80868B]">
               <span>CBSE: 2133231</span>
               <span>Astra Infotech</span>
             </div>
@@ -147,18 +147,18 @@ export default function InnerPageLayout({ title, subtitle, children }: { title: 
       <div className="max-w-6xl mx-auto px-5 py-8">
         <div className="flex gap-8">
           <aside className="w-52 flex-shrink-0 hidden lg:block sticky top-[100px] self-start">
-            <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white text-[10px] font-bold uppercase tracking-[0.1em] px-3.5 py-2.5 rounded-t-lg shadow-sm animate-[fadeDown_.3s_ease-out]">Quick Links</div>
-            <div className="bg-white border border-t-0 border-gray-200 rounded-b-lg overflow-hidden shadow-sm">
+            <div className="bg-gradient-to-r from-[#4285F4] to-[#3367D6] text-white text-[10px] font-bold uppercase tracking-[0.1em] px-3.5 py-2.5 rounded-t-lg shadow-sm animate-[fadeDown_.3s_ease-out]">Quick Links</div>
+            <div className="bg-white border border-t-0 border-[#DADCE0] rounded-b-lg overflow-hidden shadow-sm">
               {SIDEBAR.map(s => {
                 const active = pathname === s.href;
                 return (
                   <Link key={s.href} href={s.href}
-                    className={`flex items-center gap-2.5 px-3.5 py-2.5 text-xs font-medium border-b border-gray-100 last:border-0 transition-all hover:bg-gray-50 hover:translate-x-1 ${
-                      active ? 'text-blue-600 bg-blue-50/60 font-semibold border-l-[3px] border-l-blue-600' : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-l-[3px] hover:border-l-gray-200 hover:translate-x-1'
+                    className={`flex items-center gap-2.5 px-3.5 py-2.5 text-xs font-medium border-b border-[#E8EAED] last:border-0 transition-all hover:bg-[#F8F9FA] hover:translate-x-1 ${
+                      active ? 'text-[#4285F4] bg-[#E8F0FE]/60 font-semibold border-l-[3px] border-l-[#4285F4]' : 'text-[#5F6368] hover:text-[#1A1C1E] hover:bg-[#F8F9FA] hover:border-l-[3px] hover:border-l-gray-200 hover:translate-x-1'
                     }`}>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={active ? s.color : 'currentColor'} strokeWidth="2" opacity={active ? 1 : 0.45}><path d={s.icon}/></svg>
                     {s.label}
-                    {active && <span className="ml-auto w-1.5 h-1.5 rounded-full bg-blue-600 animate-[scaleIn_.3s_ease] shadow-[0_0_8px_rgba(37,99,235,.3)]"/>}
+                    {active && <span className="ml-auto w-1.5 h-1.5 rounded-full bg-[#4285F4] animate-[scaleIn_.3s_ease] shadow-[0_0_8px_rgba(37,99,235,.3)]"/>}
                   </Link>
                 );
               })}
@@ -166,23 +166,23 @@ export default function InnerPageLayout({ title, subtitle, children }: { title: 
           </aside>
 
           <main className="flex-1 min-w-0">
-            <div className="bg-white border border-gray-200 rounded-2xl p-6 md:p-8 shadow-sm animate-[fadeUp_.5s_ease-out_both] hover:shadow-md transition-shadow duration-300">
-              <h2 className="text-xl md:text-2xl font-extrabold tracking-tight mb-1 relative inline-block after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[3px] after:w-0 after:bg-blue-600 hover:after:w-full after:transition-all after:duration-500">{title}</h2>
-              {subtitle && <p className="text-xs text-gray-400 mb-6">{subtitle}</p>}
-              <div className="text-sm text-gray-700 leading-relaxed">{children}</div>
+            <div className="bg-white border border-[#DADCE0] rounded-2xl p-6 md:p-8 shadow-sm animate-fade-up hover:shadow-md transition-shadow duration-300">
+              <h2 className="text-xl md:text-2xl font-extrabold tracking-tight mb-1 relative inline-block after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[3px] after:w-0 after:bg-[#4285F4] hover:after:w-full after:transition-all after:duration-500">{title}</h2>
+              {subtitle && <p className="text-xs text-[#80868B] mb-6">{subtitle}</p>}
+              <div className="text-sm text-[#1A1C1E] leading-relaxed">{children}</div>
             </div>
           </main>
         </div>
       </div>
 
       <div className="lg:hidden max-w-6xl mx-auto px-5 pb-8">
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white text-[10px] font-bold uppercase tracking-[0.1em] px-3.5 py-2 rounded-t-lg">Quick Links</div>
-        <div className="bg-white border border-t-0 border-gray-200 rounded-b-lg overflow-hidden grid grid-cols-2">
+        <div className="bg-gradient-to-r from-[#4285F4] to-[#3367D6] text-white text-[10px] font-bold uppercase tracking-[0.1em] px-3.5 py-2 rounded-t-lg">Quick Links</div>
+        <div className="bg-white border border-t-0 border-[#DADCE0] rounded-b-lg overflow-hidden grid grid-cols-2">
           {SIDEBAR.map(s => {
             const active = pathname === s.href;
             return (
               <Link key={s.href} href={s.href}
-                className={`flex items-center gap-1.5 px-3 py-2 text-[10px] font-medium border-b border-r border-gray-100 transition-all ${active ? 'text-blue-600 bg-blue-50' : 'text-gray-600 hover:bg-gray-50 hover:scale-[1.02]'}`}>
+                className={`flex items-center gap-1.5 px-3 py-2 text-[10px] font-medium border-b border-r border-[#E8EAED] transition-all ${active ? 'text-[#4285F4] bg-[#E8F0FE]' : 'text-[#5F6368] hover:bg-[#F8F9FA] hover:scale-[1.02]'}`}>
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke={active ? s.color : 'currentColor'} strokeWidth="2"><path d={s.icon}/></svg>
                 {s.label}
               </Link>
@@ -191,7 +191,7 @@ export default function InnerPageLayout({ title, subtitle, children }: { title: 
         </div>
       </div>
 
-      <footer className="bg-gray-900 text-gray-400 py-10 mt-auto">
+      <footer className="bg-[#1A1C1E] text-[#80868B] py-10 mt-auto">
         <div className="max-w-6xl mx-auto px-5">
           <div className="grid md:grid-cols-3 gap-6 mb-6">
             <div>
@@ -199,17 +199,17 @@ export default function InnerPageLayout({ title, subtitle, children }: { title: 
                 <img src="/images/logo-transparent.png" alt="SKPPS" className="w-8 h-8 object-contain rounded-lg"/>
                 <h4 className="text-white font-bold text-sm">SK Presidency Public School</h4>
               </div>
-              <p className="text-xs text-gray-500 leading-relaxed">Dr. Shrikant Upadhyaya Educational & Charitable Trust | CBSE: 2133231 | Sultanpur, UP — 228001</p>
+              <p className="text-xs text-[#5F6368] leading-relaxed">Dr. Shrikant Upadhyaya Educational & Charitable Trust | CBSE: 2133231 | Sultanpur, UP — 228001</p>
             </div>
             <div className="flex gap-8">
               <div>
                 <h5 className="text-white text-[9px] font-bold uppercase tracking-[0.1em] mb-2">Navigate</h5>
-                {['About School','Noticeboard','Admissions','Fees','Contact'].map(l => <Link key={l} href="/" className="block text-xs py-0.5 text-gray-500 hover:text-white hover:translate-x-1 transition-all">{l}</Link>)}
+                {['About School','Noticeboard','Admissions','Fees','Contact'].map(l => <Link key={l} href="/" className="block text-xs py-0.5 text-[#5F6368] hover:text-white hover:translate-x-1 transition-all">{l}</Link>)}
               </div>
               <div>
                 <h5 className="text-white text-[9px] font-bold uppercase tracking-[0.1em] mb-2">Portals</h5>
-                <Link href="/student" className="block text-xs py-0.5 text-blue-400 hover:text-blue-300 font-medium">Student Login</Link>
-                <Link href="/staff" className="block text-xs py-0.5 text-blue-400 hover:text-blue-300 font-medium">Staff Login</Link>
+                <Link href="/student" className="block text-xs py-0.5 text-[#669DF6] hover:text-blue-300 font-medium">Student Login</Link>
+                <Link href="/staff" className="block text-xs py-0.5 text-[#669DF6] hover:text-blue-300 font-medium">Staff Login</Link>
               </div>
             </div>
           </div>
