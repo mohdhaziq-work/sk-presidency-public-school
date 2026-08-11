@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { useState } from 'react';
+import { FloatingOrbs, TiltCard, AnimatedCounter } from '@/components/ui/interactive';
 
 const NAV = [
   { href: '/', label: 'Home' },
@@ -100,12 +101,12 @@ export default function HomePage() {
       </div></div>
 
       {/* ═══ HERO ═══ */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#F8F9FA] via-[#E8F0FE] to-[#E8F0FE]">
-        <div className="absolute inset-0 opacity-20" style={{backgroundImage:'radial-gradient(#CBD5E1 1px,transparent 1px)',backgroundSize:'28px 28px'}}/>
+      <section className="relative overflow-hidden bg-[#F8F9FA]">
+        <FloatingOrbs count={8} />
         <div className="max-w-6xl mx-auto px-5 py-16 md:py-28 relative z-10">
           <div className="grid md:grid-cols-2 gap-10 items-center">
             <div className="animate-fade-up">
-              <h1 className="text-4xl md:text-6xl font-black tracking-tighter leading-[0.95] mb-4">Shaping<br/><span className="bg-gradient-to-r from-[#4285F4] to-indigo-700 bg-clip-text text-transparent">Future Leaders</span></h1>
+              <h1 className="text-4xl md:text-6xl font-black tracking-tighter leading-[0.95] mb-4 animate-slide-right">Shaping<br/><span className="bg-gradient-to-r from-[#4285F4] to-indigo-700 bg-clip-text text-transparent">Future Leaders</span></h1>
               <p className="text-gray-500 max-w-md mb-8 leading-relaxed">Play Group to Class XII — CBSE Affiliated. Founded 2013 in Sultanpur. World-class academics blended with character building.</p>
               <div className="flex gap-3 flex-wrap">
                 <Link href="/aboutschool" className="bg-[#1A1C1E] text-white px-5 py-3 rounded-xl hover:bg-[#4285F4] font-semibold text-sm hover:bg-[#3367D6] hover:shadow-lg transition-all">About Our School</Link>
@@ -122,7 +123,7 @@ export default function HomePage() {
       </section>
 
       {/* ═══ STATS ═══ */}
-      <div className="bg-white border-y border-[#DADCE0]"><div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-[#E8EAED] text-center stagger">
+      <div className="bg-white border-y border-[#DADCE0]"><div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-[#E8EAED] text-center">
         {[{n:'800+',l:'Students'},{n:'40+',l:'Teachers'},{n:'15+',l:'Years'},{n:'100%',l:'Results'}].map((s,i)=>(
           <div key={i} className="py-8 px-4"><div className="text-3xl md:text-4xl font-black tracking-tight transition-all duration-300">{s.n}</div><div className="text-[10px] font-bold uppercase tracking-[0.12em] text-gray-400 mt-1">{s.l}</div></div>
         ))}
